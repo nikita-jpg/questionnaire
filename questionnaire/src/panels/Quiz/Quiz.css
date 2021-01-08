@@ -1,0 +1,38 @@
+.Quiz {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.Quiz__background-img {
+    padding: 0;
+    margin: 0;
+    background-image: url("./photo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.Quiz__content {
+    padding: 0;
+    margin: 0;
+    backdrop-filter:  blur(12px);
+    height: 100%;
+    width: 100%;
+}
+
+.Quiz__title {
+    padding-left: 10px;
+    color: white;
+    font-size: 16pt;
+    text-shadow: 0 0 4px 2px rgb(78, 78, 78);
+    background-position: center;
+}
+
+.PanelHeader__content{
+    color:white
+}
