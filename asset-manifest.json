@@ -1,29 +1,28 @@
 {
   "files": {
-    "main.css": "/questionnaire/static/css/main.03a67490.chunk.css",
-    "main.js": "/questionnaire/static/js/main.3aa28b0b.chunk.js",
-    "main.js.map": "/questionnaire/static/js/main.3aa28b0b.chunk.js.map",
+    "main.css": "/questionnaire/static/css/main.62bb8ee9.chunk.css",
+    "main.js": "/questionnaire/static/js/main.e807f9e4.chunk.js",
+    "main.js.map": "/questionnaire/static/js/main.e807f9e4.chunk.js.map",
     "runtime-main.js": "/questionnaire/static/js/runtime-main.7a8d77a9.js",
     "runtime-main.js.map": "/questionnaire/static/js/runtime-main.7a8d77a9.js.map",
     "static/css/2.cdee455b.chunk.css": "/questionnaire/static/css/2.cdee455b.chunk.css",
     "static/js/2.b68809bc.chunk.js": "/questionnaire/static/js/2.b68809bc.chunk.js",
     "static/js/2.b68809bc.chunk.js.map": "/questionnaire/static/js/2.b68809bc.chunk.js.map",
     "index.html": "/questionnaire/index.html",
-    "precache-manifest.61b991da157a1d8c7296eea4704a5d2d.js": "/questionnaire/precache-manifest.61b991da157a1d8c7296eea4704a5d2d.js",
+    "precache-manifest.360f7f605e6bd7f31b01634b2da39fb4.js": "/questionnaire/precache-manifest.360f7f605e6bd7f31b01634b2da39fb4.js",
     "service-worker.js": "/questionnaire/service-worker.js",
     "static/css/2.cdee455b.chunk.css.map": "/questionnaire/static/css/2.cdee455b.chunk.css.map",
-    "static/css/main.03a67490.chunk.css.map": "/questionnaire/static/css/main.03a67490.chunk.css.map",
+    "static/css/main.62bb8ee9.chunk.css.map": "/questionnaire/static/css/main.62bb8ee9.chunk.css.map",
     "static/js/2.b68809bc.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.b68809bc.chunk.js.LICENSE.txt",
     "static/media/how_gay_are_you.png": "/questionnaire/static/media/how_gay_are_you.3442dc4f.png",
     "static/media/img_test.png": "/questionnaire/static/media/img_test.5376b2d3.png",
-    "static/media/persik.png": "/questionnaire/static/media/persik.4e1ec840.png",
-    "static/media/Quiz.css": "/questionnaire/static/media/test.49abf19b.png"
+    "static/media/persik.png": "/questionnaire/static/media/persik.4e1ec840.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7a8d77a9.js",
     "static/css/2.cdee455b.chunk.css",
     "static/js/2.b68809bc.chunk.js",
-    "static/css/main.03a67490.chunk.css",
-    "static/js/main.3aa28b0b.chunk.js"
+    "static/css/main.62bb8ee9.chunk.css",
+    "static/js/main.e807f9e4.chunk.js"
   ]
 }
