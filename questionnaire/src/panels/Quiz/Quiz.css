@@ -36,9 +36,15 @@
     background-position: center;
 }
 
-.Quiz__button-take-survey {
-    width: 200px;
+.Quiz__button-take-survey{
+    max-width: 280px;
+    width: 80%;
+    min-width: 200px;
     border-radius: 8px;
+}
+
+.Quiz__button-take-survey .Button__content{
+    font-size: 14pt;
 }
 
 .Quiz__carousel {
@@ -46,6 +52,8 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 6px;
+    width: 100%;
+    height: 70%;
 }
 
 .Quiz__carousel-button {
@@ -65,7 +73,10 @@
 }
 
 .Quiz__carousel-img {
-    width: 166px;
+    /* width: 60%;
+    min-width: 166px;
+    max-width: 300px; */
+    height: 100%;
     margin: 0 15px;
     border-radius: 14px;
 }
