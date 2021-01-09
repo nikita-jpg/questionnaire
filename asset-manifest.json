@@ -1,33 +1,27 @@
 {
   "files": {
-    "main.css": "/questionnaire/static/css/main.9a7d0b49.chunk.css",
-    "main.js": "/questionnaire/static/js/main.7c743635.chunk.js",
-    "main.js.map": "/questionnaire/static/js/main.7c743635.chunk.js.map",
-    "runtime-main.js": "/questionnaire/static/js/runtime-main.8e8575e0.js",
-    "runtime-main.js.map": "/questionnaire/static/js/runtime-main.8e8575e0.js.map",
+    "main.css": "/questionnaire/static/css/main.c3efd13e.chunk.css",
+    "main.js": "/questionnaire/static/js/main.84e31673.chunk.js",
+    "main.js.map": "/questionnaire/static/js/main.84e31673.chunk.js.map",
+    "runtime-main.js": "/questionnaire/static/js/runtime-main.7a8d77a9.js",
+    "runtime-main.js.map": "/questionnaire/static/js/runtime-main.7a8d77a9.js.map",
     "static/css/2.cdee455b.chunk.css": "/questionnaire/static/css/2.cdee455b.chunk.css",
-    "static/js/2.b68809bc.chunk.js": "/questionnaire/static/js/2.b68809bc.chunk.js",
-    "static/js/2.b68809bc.chunk.js.map": "/questionnaire/static/js/2.b68809bc.chunk.js.map",
-    "static/js/3.01e6f687.chunk.js": "/questionnaire/static/js/3.01e6f687.chunk.js",
-    "static/js/3.01e6f687.chunk.js.map": "/questionnaire/static/js/3.01e6f687.chunk.js.map",
-    "static/js/4.09dd5f10.chunk.js": "/questionnaire/static/js/4.09dd5f10.chunk.js",
-    "static/js/4.09dd5f10.chunk.js.map": "/questionnaire/static/js/4.09dd5f10.chunk.js.map",
+    "static/js/2.430bab7d.chunk.js": "/questionnaire/static/js/2.430bab7d.chunk.js",
+    "static/js/2.430bab7d.chunk.js.map": "/questionnaire/static/js/2.430bab7d.chunk.js.map",
     "index.html": "/questionnaire/index.html",
-    "precache-manifest.b40be0853a1ba995e30a5040f5afc6ea.js": "/questionnaire/precache-manifest.b40be0853a1ba995e30a5040f5afc6ea.js",
+    "precache-manifest.0149cff181e5420cd7424c4f3a858e40.js": "/questionnaire/precache-manifest.0149cff181e5420cd7424c4f3a858e40.js",
     "service-worker.js": "/questionnaire/service-worker.js",
     "static/css/2.cdee455b.chunk.css.map": "/questionnaire/static/css/2.cdee455b.chunk.css.map",
-    "static/css/main.9a7d0b49.chunk.css.map": "/questionnaire/static/css/main.9a7d0b49.chunk.css.map",
-    "static/js/2.b68809bc.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.b68809bc.chunk.js.LICENSE.txt",
-    "static/js/3.01e6f687.chunk.js.LICENSE.txt": "/questionnaire/static/js/3.01e6f687.chunk.js.LICENSE.txt",
-    "static/media/how_gay_are_you.png": "/questionnaire/static/media/how_gay_are_you.3442dc4f.png",
-    "static/media/img_test.png": "/questionnaire/static/media/img_test.5376b2d3.png",
-    "static/media/persik.png": "/questionnaire/static/media/persik.4e1ec840.png"
+    "static/css/main.c3efd13e.chunk.css.map": "/questionnaire/static/css/main.c3efd13e.chunk.css.map",
+    "static/js/2.430bab7d.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.430bab7d.chunk.js.LICENSE.txt",
+    "static/media/persik.png": "/questionnaire/static/media/persik.4e1ec840.png",
+    "static/media/Quiz.css": "/questionnaire/static/media/photo.3442dc4f.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.8e8575e0.js",
+    "static/js/runtime-main.7a8d77a9.js",
     "static/css/2.cdee455b.chunk.css",
-    "static/js/2.b68809bc.chunk.js",
-    "static/css/main.9a7d0b49.chunk.css",
-    "static/js/main.7c743635.chunk.js"
+    "static/js/2.430bab7d.chunk.js",
+    "static/css/main.c3efd13e.chunk.css",
+    "static/js/main.84e31673.chunk.js"
   ]
 }
