@@ -17,9 +17,10 @@
 }
 
 .Quiz__content {
+    position: absolute;
     padding: 0;
     margin: 0;
-    backdrop-filter:  blur(12px);
+    background-color: rgba(0, 0, 0, 0.8);
     height: 100%;
     width: 100%;
     display: flex;
