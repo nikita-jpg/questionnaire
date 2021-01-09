@@ -9,7 +9,6 @@
 .Quiz__background-img {
     padding: 0;
     margin: 0;
-    background-image: url("./photo.png");
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
@@ -23,6 +22,10 @@
     backdrop-filter:  blur(12px);
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .Quiz__title {
@@ -33,6 +36,36 @@
     background-position: center;
 }
 
-.PanelHeader__content{
-    color:white
+.Quiz__button-take-survey {
+    width: 200px;
+    border-radius: 8px;
+}
+
+.Quiz__carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.Quiz__carousel-button {
+    background: none;
+    border: none;
+    outline: none;
+    opacity: .6;
+    cursor: pointer;
+}
+
+.Quiz__carousel-button_invisible {
+    visibility: hidden;
+}
+
+.Quiz__carousel-button:active {
+    opacity: 1;
+}
+
+.Quiz__carousel-img {
+    width: 166px;
+    margin: 0 15px;
+    border-radius: 14px;
 }

@@ -3,13 +3,16 @@ import bridge from '@vkontakte/vk-bridge';
 import View from '@vkontakte/vkui/dist/components/View/View';
 import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
 import '@vkontakte/vkui/dist/vkui.css';
+import PropTypes from 'prop-types';
 
 import Home from './panels/Home';
 import Persik from './panels/Persik';
 import Quiz from './panels/Quiz/Quiz';
 
-const App = () => {
-	const [activePanel, setActivePanel] = useState('quiz');
+const App = ({ quizzes }) => {
+	const createQuizId = currentIndex => `quiz_${currentIndex}`;
+
+	const [activePanel, setActivePanel] = useState(createQuizId(0));
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
@@ -33,14 +36,25 @@ const App = () => {
 		setActivePanel(e.currentTarget.dataset.to);
 	};
 
+	const createGoLeftQuiz = currentIndex => () => { setActivePanel(createQuizId(currentIndex - 1)) };
+
+	const createGoRightQuiz = currentIndex => () => { setActivePanel(createQuizId(currentIndex + 1)) };
+
 	return (
 		<View activePanel={activePanel} popout={popout} header={false}>
-			{/* <Home id='home' fetchedUser={fetchedUser} go={go} />
-			<Persik id='persik' go={go} />
-			<Panel id="quiz">
-				<PanelHeader>Quiz</PanelHeader>
-			</Panel> */}
-			<Quiz id="quiz" />
+			{
+				quizzes.map((quizze, i) => (
+					<Quiz
+						id={createQuizId(i)}
+						key={createQuizId(i)}
+						quizze={quizze}
+						goLeftQuiz={createGoLeftQuiz(i)}
+						goRightQuiz={createGoRightQuiz(i)}
+						hasRightQuiz={i < quizzes.length - 1}
+						hasLeftQuiz={i > 0}
+					/>
+				))
+			}
 		</View>
 	);
 }
