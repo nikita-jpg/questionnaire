@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b62de26bd69b6a333d2eeb053eb759d6",
+    "revision": "7609e366936d9226b56358783d39baa5",
     "url": "/questionnaire/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/css/2.cdee455b.chunk.css"
   },
   {
-    "revision": "eb798669b98e1a63910e",
-    "url": "/questionnaire/static/css/main.85c20a80.chunk.css"
+    "revision": "47580e637ed4117f1a73",
+    "url": "/questionnaire/static/css/main.3ddb3b49.chunk.css"
   },
   {
     "revision": "fc186df8d29ec0ec9b71",
@@ -32,12 +32,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/js/4.d83921b9.chunk.js"
   },
   {
-    "revision": "eb798669b98e1a63910e",
+    "revision": "47580e637ed4117f1a73",
     "url": "/questionnaire/static/js/main.23f1210f.chunk.js"
   },
   {
     "revision": "a8e4bcda74ca06c7635b",
     "url": "/questionnaire/static/js/runtime-main.ce75edc6.js"
+  },
+  {
+    "revision": "5376b2d3565f5d45ef24e9c9d2138628",
+    "url": "/questionnaire/static/media/img_test.5376b2d3.png"
   },
   {
     "revision": "4e1ec8403d903dc514271d7328fbdeb3",
