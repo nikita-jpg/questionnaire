@@ -42,19 +42,23 @@
     width: 80%;
     min-width: 200px;
     border-radius: 8px;
+    height: 34px;
 }
 
 .Quiz__button-take-survey .Button__content{
-    font-size: 14pt;
+    font-size: 16pt;
+    line-height: 17px;
+    height: 34px;
+    /* line-height: 16pt; */
 }
 
 .Quiz__carousel {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 6px;
+    margin-bottom: 16px;
     width: 100%;
-    height: 70%;
+    height: 60%;
 }
 
 .Quiz__carousel-button {
@@ -81,3 +85,10 @@
     margin: 0 15px;
     border-radius: 14px;
 }
+@media only screen and (min-height : 700px){
+    .Quiz__carousel {
+        max-height: 400px; 
+        max-width: 640px;
+    }
+}
+

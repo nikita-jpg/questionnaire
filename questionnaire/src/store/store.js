@@ -1,23 +1,26 @@
-import img_how_gay_are_you from "../img/how_gay_are_you.png";
-import img_test from "../img/img_test.png";
+import test_back from "../img/test_back.png";
+import test from "../img/test.png";
 
 const store = {
     quizzes: [
         {
             title: "Насколько вы гей?",
-            img: img_how_gay_are_you,
+            img: test,
+            imgBackground: test_back,
             quetions: []
         },
         {
-            title: "Опрос2",
-            img: img_test,
+            title: "Опрос 2",
+            img: test,
+            imgBackground: test_back,
             quetions: []
         },
         {
-            title: "Опрос3",
-            img: img_test,
+            title: "Опрос 3",
+            img: test,
+            imgBackground: test_back,
             quetions: []
-        }
+        },
     ]
 }
 
