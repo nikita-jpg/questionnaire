@@ -6,7 +6,7 @@ import "./Question.css";
 
 const osName = platform();
 
-const Question = ({ id, question, numberCurrentQuestion, countQuestions, 
+const Question = ({ id, question, numberCurrentQuestion, countQuestions,
     goToPrevQuestion, goToNextQuestion, backgroundImage }) => {
 
     const styleBackgroundImg = {
@@ -33,26 +33,28 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
             <Div className="Question">
                 <div className="Question__background-img" style={styleBackgroundImg}></div>
 
-                <Div className="Question__content">
-                    <img className="Question__image" src={question.questionImg} alt={`image_${id}`} />
+                <div className="Question__content-wrap">
+                    <Div className="Question__content">
+                        <img className="Question__image" src={question.questionImg} alt={`image_${id}`} />
 
-                    <p className="Question__question-text">{question.questionText}</p>
+                        <p className="Question__question-text">{question.questionText}</p>
 
-                    <div className="Question__answer-options">
-                        {
-                            question.answerOptions.map((answer, i) => (
-                                <Button 
-                                    key={i}
-                                    mode="overlay_secondary"
-                                    className="Question__answer"
-                                    onClick={() => goToNextQuestion(i)}
-                                >
-                                    {answer.text}
-                                </Button>
-                            ))
-                        }
-                    </div>
-                </Div>
+                        <div className="Question__answer-options">
+                            {
+                                question.answerOptions.map((answer, i) => (
+                                    <Button
+                                        key={i}
+                                        mode="overlay_secondary"
+                                        className="Question__answer"
+                                        onClick={() => goToNextQuestion(i)}
+                                    >
+                                        {answer.text}
+                                    </Button>
+                                ))
+                            }
+                        </div>
+                    </Div>
+                </div>
             </Div>
         </Panel>
     )
