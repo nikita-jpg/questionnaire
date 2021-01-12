@@ -3,13 +3,15 @@ import imgHowGayAreYou from "../img/how_gay_are_you/how_gay_are_you.png";
 import gaetanDuga from "../img/how_gay_are_you/Gaetan Duga.png";
 import nolanDiagram from '../img/how_gay_are_you/nolan diagram.png';
 
-import img_test from "../img/img_test.png";
+import test_back from "../img/test_back.png";
+import test from "../img/test.png";
 
 const store = {
     quizzes: [
         {
             title: "Насколько вы гей?",
             img: imgHowGayAreYou,
+            imgBackground: test_back,
             quetions: [
                 {
                     questionImg:  gaetanDuga,
@@ -49,6 +51,7 @@ const store = {
         {
             title: "Опрос2",
             img: img_test,
+            imgBackground: test_back,
             quetions: [
                 "21",
                 "22",
@@ -57,6 +60,7 @@ const store = {
         {
             title: "Опрос3",
             img: img_test,
+            imgBackground: test_back,
             quetions: [
                 "31"
             ]

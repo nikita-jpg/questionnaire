@@ -15,7 +15,7 @@ const Quiz = ({ id, quizze, goLeftQuiz, goRightQuiz, hasRightQuiz, hasLeftQuiz, 
     }
 
     const styleBackgroundImg = {
-        backgroundImage: "url(" + quizze.img + ")"
+        backgroundImage: "url(" + quizze.imgBackground + ")"
     }
 
     return (

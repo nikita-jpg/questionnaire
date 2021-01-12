@@ -11,6 +11,6 @@ import store from "./store/store.js";
 bridge.send("VKWebAppInit");
 
 ReactDOM.render(<App {...store}/>, document.getElementById("root"));
-if (process.env.NODE_ENV === "development") {
-  import("./eruda").then(({ default: eruda }) => {}); //runtime download
-}
+
+import("./eruda").then(({ default: eruda }) => {}); //runtime download
+
