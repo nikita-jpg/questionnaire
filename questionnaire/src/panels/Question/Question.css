@@ -64,6 +64,8 @@
 
 .Question__answer {
     margin-bottom: 12px;
+    display: block;
+    width: 100%;
 }
 /* @media only screen and (min-height : 700px){
     .Question__image{
