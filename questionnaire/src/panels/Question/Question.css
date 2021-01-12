@@ -40,17 +40,49 @@
 .Question__image {
     border-radius: 8px;
     height: fill-available;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .Question__question-text {
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .Question__answer-options {
     display: grid;
     grid-template-columns: 1fr;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .Question__answer {
     margin-bottom: 12px;
 }
+@media only screen and (min-height : 700px){
+    .Question__image{
+        max-width: 320px;
+        max-height: 320px;
+    }
+    .Question__answer-options {
+        max-width: 640px;
+    }
+    .Question__question-text{
+        max-width: 640px;
+    }
+}
+
+@media only screen and (max-height : 500px){
+    .Question__image{
+        max-width: 240px;
+        max-height: 240px;
+    }
+    .Question__answer-options {
+        max-width: 300px;
+    }
+    .Question__question-text{
+        max-width: 300px;
+    }
+}
+

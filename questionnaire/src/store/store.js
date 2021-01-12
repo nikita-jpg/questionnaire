@@ -1,5 +1,6 @@
 // картинки к тесту про гея
-import imgHowGayAreYou from "../img/how_gay_are_you/how_gay_are_you.png";
+import imgHowGayAreYou from "../img/how_gay_are_you/HowGayAreYou.png";
+import imgHowGayAreYouBack from "../img/how_gay_are_you/HowGayAreYouBack.png";
 import gaetanDuga from "../img/how_gay_are_you/Gaetan Duga.png";
 import nolanDiagram from '../img/how_gay_are_you/nolan diagram.png';
 
@@ -11,7 +12,7 @@ const store = {
         {
             title: "Насколько вы гей?",
             img: imgHowGayAreYou,
-            imgBackground: test_back,
+            imgBackground: imgHowGayAreYouBack,
             quetions: [
                 {
                     questionImg:  gaetanDuga,
