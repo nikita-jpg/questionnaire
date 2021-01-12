@@ -50,7 +50,7 @@ const store = {
         },
         {
             title: "Опрос2",
-            img: img_test,
+            img: test,
             imgBackground: test_back,
             quetions: [
                 "21",
@@ -59,7 +59,7 @@ const store = {
         },
         {
             title: "Опрос3",
-            img: img_test,
+            img: test,
             imgBackground: test_back,
             quetions: [
                 "31"

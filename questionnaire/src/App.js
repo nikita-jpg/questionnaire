@@ -119,6 +119,7 @@ const App = ({ quizzes }) => {
 							countQuestions={arr.length}
 							goToPrevQuestion={createGoToPrevQuestion(i)}
 							goToNextQuestion={createGoToNextQuestion(i, arr.length)}
+							backgroundImage={quizzes[indexQuestions].imgBackground}
 						/>
 					))
 				}

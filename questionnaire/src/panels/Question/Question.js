@@ -6,9 +6,11 @@ import "./Question.css";
 
 const osName = platform();
 
-const Question = ({ id, question, numberCurrentQuestion, countQuestions, goToPrevQuestion, goToNextQuestion }) => {
+const Question = ({ id, question, numberCurrentQuestion, countQuestions, 
+    goToPrevQuestion, goToNextQuestion, backgroundImage }) => {
+
     const styleBackgroundImg = {
-        backgroundImage: `url('${question.questionImg}')`
+        backgroundImage: `url('${backgroundImage}')`
     }
 
     return (
