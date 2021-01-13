@@ -10,7 +10,7 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
     goToPrevQuestion, goToNextQuestion, backgroundImage }) => {
 
     const styleBackgroundImg = {
-        backgroundImage: `url('${backgroundImage}')`
+        backgroundImage: `url('${question.questionImgBack}')`
     }
 
     return (
