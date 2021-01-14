@@ -6,8 +6,6 @@ import "./Quiz.css"
 import { Icon16ChevronLeft, Icon16Chevron } from '@vkontakte/icons';
 
 const Quiz = ({ id, quizze, goLeftQuiz, goRightQuiz, hasRightQuiz, hasLeftQuiz, goToViewQuestions }) => {
-    console.log(quizze)
-
     const styleChevron = {
         width: 36,
         height: 36,

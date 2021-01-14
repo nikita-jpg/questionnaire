@@ -1,5 +1,5 @@
 import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
-import { Button, Div, IOS, Panel, PanelHeader, PanelHeaderButton, platform } from '@vkontakte/vkui';
+import { Button, IOS, Panel, PanelHeader, PanelHeaderButton, platform } from '@vkontakte/vkui';
 import React from 'react';
 
 import "./Question.css";
@@ -7,7 +7,7 @@ import "./Question.css";
 const osName = platform();
 
 const Question = ({ id, question, numberCurrentQuestion, countQuestions,
-    goToPrevQuestion, goToNextQuestion, backgroundImage }) => {
+    goToPrevQuestion, goToNextQuestion }) => {
 
     const styleBackgroundImg = {
         backgroundImage: `url('${question.questionImgBack}')`
@@ -21,7 +21,9 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
                         <PanelHeaderButton onClick={goToPrevQuestion}>
                             {osName === IOS ? <Icon28ChevronBack fill="white" /> : <Icon24Back fill="white" />}
                         </PanelHeaderButton>
-                        <div className="Question__number-question">{numberCurrentQuestion}/{countQuestions}</div>
+                        <div className="Question__number-question">
+                            <span>{numberCurrentQuestion}/{countQuestions}</span>
+                        </div>
                     </>
                 }
                 separator={false}
@@ -30,8 +32,8 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
             >
             </PanelHeader>
 
-            <Div className="Question" style={styleBackgroundImg}>
-                <Div className="Question__content">
+            <div className="Question" style={styleBackgroundImg}>
+                <div className="Question__content">
                     <img className="Question__image" src={question.questionImg} alt={`image_${id}`} />
 
                     <p className="Question__question-text">{question.questionText}</p>
@@ -50,8 +52,8 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
                             ))
                         }
                     </div>
-                </Div>
-            </Div>
+                </div>
+            </div>
         </Panel>
     )
 };

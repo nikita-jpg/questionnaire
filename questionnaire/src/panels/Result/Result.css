@@ -1,4 +1,4 @@
-.Question {
+.Result {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -9,44 +9,42 @@
     color: white;
 }
 
-.Question__number-question {
+.Result__title {
     color: white;
     font-size: 23px;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    line-height: 1.25;
+    margin: 5px 0;
 }
 
-.Question__content {
+.Result__content {
     max-width: 320px;
     padding-top: 55px;
     min-height: 100vh;
     box-sizing: border-box;
 }
 
-.Question__image {
+.Result__image {
     border-radius: 8px;
     display: block;
     width: 100%;
 }
 
-.Question__question-text {
+.Result__text {
     text-align: center;
     font-size: 14pt;
 }
 
-.Question__answer-options {
+.Result__list-buttons {
     display: grid;
     grid-template-columns: 1fr;
 }
 
-.Question__answer {
+.Result__button {
     margin-bottom: 12px;
     display: block;
     width: 100%;
 }
 
-.Question__answer .Button__content {
+.Result__list-buttons .Button__content {
     font-size: 12pt;
 }

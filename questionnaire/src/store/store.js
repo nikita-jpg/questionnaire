@@ -1,4 +1,5 @@
-/// картинки к тесту про гея
+//// картинки к тесту про гея ////
+/// Вопросы
 //Постер
 import imgHowGayAreYou from "../img/how_gay_are_you/HowGayAreYou.jpg";
 import imgHowGayAreYouBack from "../img/how_gay_are_you/HowGayAreYouBack.jpg";
@@ -26,6 +27,10 @@ import ussrBack from '../img/how_gay_are_you/USSR Back.jpg';
 //Принглс
 import pringles from '../img/how_gay_are_you/Pringles.jpg';
 import pringlesBack from '../img/how_gay_are_you/Pringles Back.jpg';
+/// Результаты теста
+// натурал
+import natural from '../img/how_gay_are_you/natural.jpg';
+import naturalBackground from '../img/how_gay_are_you/natural_background.jpg';
 
 import test_back from "../img/test_back.png";
 import test from "../img/test.png";
@@ -44,13 +49,16 @@ const store = {
                     questionText: "Знакомый пригласил вас на аниме «Первый мститель», ваши действия:",
                     answerOptions: [
                         {
-                            text: "С легкостью примите приглашение, даже не подумав, что он может оказаться геем"
+                            text: "С легкостью примите приглашение, даже не подумав, что он может оказаться геем",
+                            score: 0.5
                         },
                         {
-                            text: "Согласитесь с надеждой, что он может оказаться геем и вы станете парой"
+                            text: "Согласитесь с надеждой, что он может оказаться геем и вы станете парой",
+                            score: 1
                         },
                         {
-                            text: "Категорически откажитесь"
+                            text: "Категорически откажитесь",
+                            score: 0
                         }
                     ]
                 },
@@ -61,16 +69,20 @@ const store = {
                     questionText: "Твои политические убеждения?",
                     answerOptions: [
                         {
-                            text: "Левые"
+                            text: "Левые",
+                            score: 0
                         },
                         {
-                            text: "Правые"
+                            text: "Правые",
+                            score: 0
                         },
                         {
-                            text: "Тоталитаризм"
+                            text: "Тоталитаризм",
+                            score: 0
                         },
                         {
-                            text: "Либертарианство"
+                            text: "Либертарианство",
+                            score: 0
                         }
                     ]
                 },
@@ -81,13 +93,16 @@ const store = {
                     questionText: "Как вы себя чувствуете в обществе одних мужчин:",
                     answerOptions: [
                         {
-                            text: "Легко и уверенно"
+                            text: "Легко и уверенно",
+                            score: 0
                         },
                         {
-                            text: "Испытываете постоянно неловкость и напряжения"
+                            text: "Испытываете постоянно неловкость и напряжения",
+                            score: 0.5
                         },
                         {
-                            text: "испытываете удовольствие (даже от одной мысли, что рядом одни мужчины)"
+                            text: "испытываете удовольствие (даже от одной мысли, что рядом одни мужчины)",
+                            score: 1
                         }
                     ]
                 },
@@ -98,13 +113,16 @@ const store = {
                     questionText: "Часто ли вы с друзьями шутите про маструбацию и письки?",
                     answerOptions: [
                         {
-                            text: "Регулярно. Весело же"
+                            text: "Регулярно. Весело же",
+                            score: 1
                         },
                         {
-                            text: "Мы про это не шутим, мы нормальные люди"
+                            text: "Мы про это не шутим, мы нормальные люди",
+                            score: 0
                         },
                         {
-                            text: "Редко"
+                            text: "Редко",
+                            score: 0.5
                         }
                     ]
                 },
@@ -115,13 +133,16 @@ const store = {
                     questionText: "Ходите ли вы в качалку?",
                     answerOptions: [
                         {
-                            text: "Делаю там кардиo и oстальнoе без фанатизма"
+                            text: "Делаю там кардиo и oстальнoе без фанатизма",
+                            score: 0
                         },
                         {
-                            text: "Нет, не хожу"
+                            text: "Нет, не хожу",
+                            score: 1
                         },
                         {
-                            text: "Настoящий мужик дoлжен быть накаченым и сильным как Van Darkholme на фоне."
+                            text: "Настoящий мужик дoлжен быть накаченым и сильным как Van Darkholme на фоне.",
+                            score: 1
                         }
                     ]
                 },
@@ -132,13 +153,16 @@ const store = {
                     questionText: "Что вы знаете про Голландский штурвал?",
                     answerOptions: [
                         {
-                            text: "Знаю"
+                            text: "Знаю",
+                            score: 0.5
                         },
                         {
-                            text: "Hичего не знаю, но загуглю"
+                            text: "Hичего не знаю, но загуглю",
+                            score: 0.5
                         },
                         {
-                            text: "Ничего не знаю и гуглить не буду (Правда не буду!)"
+                            text: "Ничего не знаю и гуглить не буду (Правда не буду!)",
+                            score: 1
                         }
                     ]
                 },
@@ -149,10 +173,12 @@ const store = {
                     questionText: "В детстве вы ходили с мальчиками, взявшись за руки?",
                     answerOptions: [
                         {
-                            text: "Да"
+                            text: "Да",
+                            score: 1
                         },
                         {
-                            text: "Нет"
+                            text: "Нет",
+                            score: 0
                         }
                     ]
                 },
@@ -163,13 +189,27 @@ const store = {
                     questionText: "Вам нравится творчество LOBODA-ы?",
                     answerOptions: [
                         {
-                            text: "Да"
+                            text: "Да",
+                            score: 1
                         },
                         {
-                            text: "Нет"
+                            text: "Нет",
+                            score: 0.5
                         }
                     ]
                 },
+            ],
+            results: [
+                {
+                    // min, max в абсолютном значении
+                    min: 1,
+                    max: 25,
+                    text: "Вы гей всего на (0-25)%. Округляем, получаем 0.",
+                    backgroundImage: naturalBackground,
+                    image: natural,
+                    historyImage: natural,
+                    wallImage: natural
+                }
             ]
         },
         {

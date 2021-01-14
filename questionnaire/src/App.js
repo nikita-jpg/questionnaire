@@ -7,6 +7,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 import Quiz from './panels/Quiz/Quiz';
 import { Panel, Root } from '@vkontakte/vkui';
 import Question from './panels/Question/Question';
+import Result from './panels/Result/Result';
 
 const App = ({ quizzes }) => {
 	const [fetchedUser, setUser] = useState(null);
@@ -48,9 +49,10 @@ const App = ({ quizzes }) => {
 
 	const createGoRightQuiz = currentIndex => () => { setQuizActivePanel(createQuizId(currentIndex + 1)) };
 
-	// логика переключения вопросов
-	const [indexQuestions, setIndexQuestions] = useState(0);
+	// индекс опроса
+	const [indexQuiz, setIndexQuiz] = useState(0);
 
+	// логика переключения вопросов
 	const createQuestionId = currentIndex => `question_${currentIndex}`;
 
 	const [activeQuestionPanel, setQuestionActivePanel] = useState(createQuestionId(0));
@@ -61,6 +63,22 @@ const App = ({ quizzes }) => {
 	const pushIndexAnswer = indexAnswer => setIndexesAnswers([...indexesAnswers, indexAnswer]);
 
 	const removeIndexAnswer = () => setIndexesAnswers(indexesAnswers.slice(0, indexesAnswers.length - 1));
+
+	const [indexResult, setIndexResult] = useState(0);
+
+	const calculateIndexResult = () => {
+		const quizze = quizzes[indexQuiz];
+
+		const totalScore = indexesAnswers.reduce((sumScore, indexAnswer, indexQuestion) => {
+			return sumScore + quizze.quetions[indexQuestion].answerOptions[indexAnswer].score;
+		}, 0);
+
+		quizze.results.forEach(({min, max}, index) => {
+			if (totalScore >= min && totalScore <= max) {
+				setIndexResult(index);
+			}
+		});
+	}
 
 	const createGoToPrevQuestion = currentIndex => () =>  { 
 		removeIndexAnswer()
@@ -78,6 +96,7 @@ const App = ({ quizzes }) => {
 		if (currentIndex + 1 < length) {
 			setQuestionActivePanel(createQuestionId(currentIndex + 1));
 		} else {
+			calculateIndexResult();
 			goToViewResult();
 		}
 	};
@@ -85,7 +104,7 @@ const App = ({ quizzes }) => {
 	// функция создающая функцию для перехода к вопросам
 	const createGoToQuestion = index => () => {
 		goToViewQuestions();
-		setIndexQuestions(index);
+		setIndexQuiz(0)
 		setQuestionActivePanel(createQuestionId(0));
 	}
 
@@ -110,7 +129,7 @@ const App = ({ quizzes }) => {
 
 			<View activePanel={activeQuestionPanel} id={VIEW_ID_QUESTIONES}>
 				{
-					quizzes[indexQuestions].quetions.map((question, i, arr) => (
+					quizzes[indexQuiz].quetions.map((question, i, arr) => (
 						<Question 
 							id={createQuestionId(i)}
 							key={createQuestionId(i)}
@@ -119,7 +138,6 @@ const App = ({ quizzes }) => {
 							countQuestions={arr.length}
 							goToPrevQuestion={createGoToPrevQuestion(i)}
 							goToNextQuestion={createGoToNextQuestion(i, arr.length)}
-							backgroundImage={quizzes[indexQuestions].imgBackground}
 						/>
 					))
 				}
@@ -127,7 +145,14 @@ const App = ({ quizzes }) => {
 
 			<View id={VIEW_ID_RESULT} activePanel="PANEL_RESULT">
 				<Panel id="PANEL_RESULT">
-					{indexesAnswers}
+					<Result
+						backgroundImage={quizzes[indexQuiz].results[indexResult].backgroundImage}
+						image={quizzes[indexQuiz].results[indexResult].image}
+						historyImage={quizzes[indexQuiz].results[indexResult].historyImage}
+						wallImage={quizzes[indexQuiz].results[indexResult].wallImage}
+						text={quizzes[indexQuiz].results[indexResult].text}
+						goBack={goToViewQuizes}
+					/>
 				</Panel>
 			</View>
 		</Root>
