@@ -28,9 +28,19 @@ import ussrBack from '../img/how_gay_are_you/USSR Back.jpg';
 import pringles from '../img/how_gay_are_you/Pringles.jpg';
 import pringlesBack from '../img/how_gay_are_you/Pringles Back.jpg';
 /// Результаты теста
-// натурал
-import natural from '../img/how_gay_are_you/natural.jpg';
-import naturalBackground from '../img/how_gay_are_you/natural_background.jpg';
+
+// 0 баллов
+import natural from '../img/how_gay_are_you/r_natural.jpg';
+import resBack from '../img/how_gay_are_you/r_back.jpg';
+// 1-3 балла
+import natural from '../img/how_gay_are_you/r_natural.jpg';
+// 4-5 баллов
+import garri from '../img/how_gay_are_you/r_garri.jpg';
+// 6-7 баллов
+import stopper from '../img/how_gay_are_you/r_stopper.jpg';
+// >=8 баллов
+import drink from '../img/how_gay_are_you/r_drink.jpg';
+
 
 import test_back from "../img/test_back.png";
 import test from "../img/test.png";
@@ -70,19 +80,19 @@ const store = {
                     answerOptions: [
                         {
                             text: "Левые",
-                            score: 0
+                            score: 1
                         },
                         {
                             text: "Правые",
-                            score: 0
+                            score: 1
                         },
                         {
                             text: "Тоталитаризм",
-                            score: 0
+                            score: -1
                         },
                         {
                             text: "Либертарианство",
-                            score: 0
+                            score: 1
                         }
                     ]
                 },
@@ -114,11 +124,11 @@ const store = {
                     answerOptions: [
                         {
                             text: "Регулярно. Весело же",
-                            score: 1
+                            score: 0
                         },
                         {
                             text: "Мы про это не шутим, мы нормальные люди",
-                            score: 0
+                            score: 1
                         },
                         {
                             text: "Редко",
@@ -134,15 +144,15 @@ const store = {
                     answerOptions: [
                         {
                             text: "Делаю там кардиo и oстальнoе без фанатизма",
-                            score: 0
+                            score: 1
                         },
                         {
                             text: "Нет, не хожу",
-                            score: 1
+                            score: 0
                         },
                         {
                             text: "Настoящий мужик дoлжен быть накаченым и сильным как Van Darkholme на фоне.",
-                            score: 1
+                            score: 2
                         }
                     ]
                 },
@@ -154,15 +164,15 @@ const store = {
                     answerOptions: [
                         {
                             text: "Знаю",
-                            score: 0.5
+                            score: 0
                         },
                         {
                             text: "Hичего не знаю, но загуглю",
-                            score: 0.5
+                            score: 0
                         },
                         {
                             text: "Ничего не знаю и гуглить не буду (Правда не буду!)",
-                            score: 1
+                            score: 2
                         }
                     ]
                 },
@@ -190,23 +200,64 @@ const store = {
                     answerOptions: [
                         {
                             text: "Да",
-                            score: 1
+                            score: 0
                         },
                         {
                             text: "Нет",
-                            score: 0.5
+                            score: 1
                         }
                     ]
                 },
             ],
             results: [
+                // min, max в абсолютном значении (включительно)
+                //0 баллов
                 {
-                    // min, max в абсолютном значении
-                    min: 1,
-                    max: 25,
-                    text: "Вы гей всего на (0-25)%. Округляем, получаем 0.",
-                    backgroundImage: naturalBackground,
+                    min: 0,
+                    max: 0,
+                    text: "Вы гей всего на (0)%. Вы на столько в вошли в роль натурала ,что уже не мыслите иначе, но вы гей.",
+                    backgroundImage: resBack,
                     image: natural,
+                    historyImage: natural,
+                    wallImage: natural
+                },
+                // 1-3 балла
+                {
+                    min: 1,
+                    max: 3,
+                    text: "Вы гей всего на (0-25)%. Округляем, получаем 0.",
+                    backgroundImage: resBack,
+                    image: natural,
+                    historyImage: natural,
+                    wallImage: natural
+                },
+                // 4-5 баллов
+                {
+                    min: 4,
+                    max: 5,
+                    text: "Вы гей на (25-50)%. Латентный гомосексуалист. Задумайтесь, возможно вам стоит переехать туда, где вы сможете быть самим собой",
+                    backgroundImage: resBack,
+                    image: garri,
+                    historyImage: natural,
+                    wallImage: natural
+                },
+                // 6-7 баллов
+                {
+                    min: 6,
+                    max: 7,
+                    text: "Вы гей на (51-75)%. Вы не босс качалки, но и не факинг слэйв",
+                    backgroundImage: resBack,
+                    image: stopper,
+                    historyImage: natural,
+                    wallImage: natural
+                },
+                // >=8 баллов
+                {
+                    min: 8,
+                    max: Infinity,
+                    text: "Вы гей на 110%. Амбасадор слова “гомосексуалист” в СНГ. ",
+                    backgroundImage: resBack,
+                    image: drink,
                     historyImage: natural,
                     wallImage: natural
                 }
