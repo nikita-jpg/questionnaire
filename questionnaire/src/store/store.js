@@ -1,31 +1,31 @@
 /// картинки к тесту про гея
 //Постер
-import imgHowGayAreYou from "../img/how_gay_are_you/HowGayAreYou.png";
-import imgHowGayAreYouBack from "../img/how_gay_are_you/HowGayAreYouBack.png";
+import imgHowGayAreYou from "../img/how_gay_are_you/HowGayAreYou.jpg";
+import imgHowGayAreYouBack from "../img/how_gay_are_you/HowGayAreYouBack.jpg";
 //Дюга
-import gaetanDuga from "../img/how_gay_are_you/Gaetan Duga.png";
-import gaetanDugaBack from "../img/how_gay_are_you/Gaetan Duga Back.png";
+import gaetanDuga from "../img/how_gay_are_you/Gaetan Duga.jpg";
+import gaetanDugaBack from "../img/how_gay_are_you/Gaetan Duga Back.jpg";
 //Диаграмма
-import nolanDiagram from '../img/how_gay_are_you/Nolan Diagram.png';
-import nolanDiagramBack from '../img/how_gay_are_you/Nolan Diagram Back.png';
+import nolanDiagram from '../img/how_gay_are_you/Nolan Diagram.jpg';
+import nolanDiagramBack from '../img/how_gay_are_you/Nolan Diagram Back.jpg';
 //Кобейн
-import cobain from '../img/how_gay_are_you/Cobain.png';
-import cobainBack from '../img/how_gay_are_you/Cobain Back.png';
+import cobain from '../img/how_gay_are_you/Cobain.jpg';
+import cobainBack from '../img/how_gay_are_you/Cobain Back.jpg';
 //Суп
-import supply from '../img/how_gay_are_you/Supply.png';
-import supplyBack from '../img/how_gay_are_you/Supply Back.png';
+import supply from '../img/how_gay_are_you/Supply.jpg';
+import supplyBack from '../img/how_gay_are_you/Supply Back.jpg';
 //Базука
-import bazooka from '../img/how_gay_are_you/Bazooka.png';
-import bazookaBack from '../img/how_gay_are_you/Bazooka Back.png';
+import bazooka from '../img/how_gay_are_you/Bazooka.jpg';
+import bazookaBack from '../img/how_gay_are_you/Bazooka Back.jpg';
 //Штурвал
-import steuerrad from '../img/how_gay_are_you/Steuerrad.png';
-import steuerradBack from '../img/how_gay_are_you/Steuerrad Back.png';
+import steuerrad from '../img/how_gay_are_you/Steuerrad.jpg';
+import steuerradBack from '../img/how_gay_are_you/Steuerrad Back.jpg';
 //СССР
-import ussr from '../img/how_gay_are_you/USSR.png';
-import ussrBack from '../img/how_gay_are_you/USSR Back.png';
+import ussr from '../img/how_gay_are_you/USSR.jpg';
+import ussrBack from '../img/how_gay_are_you/USSR Back.jpg';
 //Принглс
-import pringles from '../img/how_gay_are_you/Pringles.png';
-import pringlesBack from '../img/how_gay_are_you/Pringles Back.png';
+import pringles from '../img/how_gay_are_you/Pringles.jpg';
+import pringlesBack from '../img/how_gay_are_you/Pringles Back.jpg';
 
 import test_back from "../img/test_back.png";
 import test from "../img/test.png";
