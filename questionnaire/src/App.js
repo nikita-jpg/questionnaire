@@ -64,6 +64,10 @@ const App = ({ quizzes }) => {
 
 	const removeIndexAnswer = () => setIndexesAnswers(indexesAnswers.slice(0, indexesAnswers.length - 1));
 
+	const clearIndexAnswer = () => setIndexesAnswers([]);
+
+	const [totalScore, setTotalScore] = useState(0);
+
 	const [indexResult, setIndexResult] = useState(0);
 
 	const calculateIndexResult = () => {
@@ -72,6 +76,8 @@ const App = ({ quizzes }) => {
 		const totalScore = indexesAnswers.reduce((sumScore, indexAnswer, indexQuestion) => {
 			return sumScore + quizze.quetions[indexQuestion].answerOptions[indexAnswer].score;
 		}, 0);
+
+		setTotalScore(totalScore);
 
 		quizze.results.forEach(({min, max}, index) => {
 			if (totalScore >= min && totalScore <= max) {
@@ -103,9 +109,30 @@ const App = ({ quizzes }) => {
 
 	// функция создающая функцию для перехода к вопросам
 	const createGoToQuestion = index => () => {
+		clearIndexAnswer();
 		goToViewQuestions();
-		setIndexQuiz(0)
+		setIndexQuiz(index)
 		setQuestionActivePanel(createQuestionId(0));
+	}
+
+	// функция для добавления процента в строчку текста
+	const layoutTextWithPercent = (text) => {
+		let result = text;
+
+		const PERCENT_SUBSTRING = "{%percent%}";
+
+		const percent = Math.round(totalScore / quizzes[indexQuiz].maxScore * 100);
+		
+		let index = String(result).indexOf(PERCENT_SUBSTRING);
+
+		while (index !== -1) {
+			let arrResult = String(result).split("");
+			arrResult.splice(index, PERCENT_SUBSTRING.length, ...String(percent).split(""));
+			result = arrResult.join("");
+			index = String(result).indexOf(PERCENT_SUBSTRING, index + 1);
+		}
+
+		return String(result);
 	}
 
 	return (
@@ -150,7 +177,7 @@ const App = ({ quizzes }) => {
 						image={quizzes[indexQuiz].results[indexResult].image}
 						historyImage={quizzes[indexQuiz].results[indexResult].historyImage}
 						wallImage={quizzes[indexQuiz].results[indexResult].wallImage}
-						text={quizzes[indexQuiz].results[indexResult].text}
+						text={layoutTextWithPercent(quizzes[indexQuiz].results[indexResult].text)}
 						goBack={goToViewQuizes}
 					/>
 				</Panel>

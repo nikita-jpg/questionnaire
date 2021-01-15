@@ -30,7 +30,6 @@ import pringlesBack from '../img/how_gay_are_you/Pringles Back.jpg';
 /// Результаты теста
 
 // 0 баллов
-import natural from '../img/how_gay_are_you/r_natural.jpg';
 import resBack from '../img/how_gay_are_you/r_back.jpg';
 // 1-3 балла
 import natural from '../img/how_gay_are_you/r_natural.jpg';
@@ -51,6 +50,7 @@ const store = {
             title: "Насколько вы гей?",
             img: imgHowGayAreYou,
             imgBackground: imgHowGayAreYouBack,
+            maxScore: 8,
             quetions: [
                 // Вопрос 1
                 {
@@ -213,9 +213,9 @@ const store = {
                 // min, max в абсолютном значении (включительно)
                 //0 баллов
                 {
-                    min: 0,
+                    min: -Infinity,
                     max: 0,
-                    text: "Вы гей всего на (0)%. Вы на столько в вошли в роль натурала ,что уже не мыслите иначе, но вы гей.",
+                    text: "Вы гей всего на {%percent%}%. Вы на столько в вошли в роль натурала ,что уже не мыслите иначе, но вы гей.",
                     backgroundImage: resBack,
                     image: natural,
                     historyImage: natural,
@@ -225,7 +225,7 @@ const store = {
                 {
                     min: 1,
                     max: 3,
-                    text: "Вы гей всего на (0-25)%. Округляем, получаем 0.",
+                    text: "Вы гей всего на {%percent%}%. Округляем, получаем 0.",
                     backgroundImage: resBack,
                     image: natural,
                     historyImage: natural,
@@ -235,7 +235,7 @@ const store = {
                 {
                     min: 4,
                     max: 5,
-                    text: "Вы гей на (25-50)%. Латентный гомосексуалист. Задумайтесь, возможно вам стоит переехать туда, где вы сможете быть самим собой",
+                    text: "Вы гей на {%percent%}%. Латентный гомосексуалист. Задумайтесь, возможно вам стоит переехать туда, где вы сможете быть самим собой",
                     backgroundImage: resBack,
                     image: garri,
                     historyImage: natural,
@@ -245,7 +245,7 @@ const store = {
                 {
                     min: 6,
                     max: 7,
-                    text: "Вы гей на (51-75)%. Вы не босс качалки, но и не факинг слэйв",
+                    text: "Вы гей на {%percent%}%. Вы не босс качалки, но и не факинг слэйв",
                     backgroundImage: resBack,
                     image: stopper,
                     historyImage: natural,
@@ -255,7 +255,7 @@ const store = {
                 {
                     min: 8,
                     max: Infinity,
-                    text: "Вы гей на 110%. Амбасадор слова “гомосексуалист” в СНГ. ",
+                    text: "Вы гей на {%percent%}%. Амбасадор слова “гомосексуалист” в СНГ. ",
                     backgroundImage: resBack,
                     image: drink,
                     historyImage: natural,
