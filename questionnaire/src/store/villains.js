@@ -167,7 +167,7 @@ const quizVillains = {
             ]
         },
         {
-            questionImgBack: Treachery,
+            questionImgBack: TreacheryBack,
             questionImg: Treachery,
             questionText: "Итак, этот fucking slave неожиданно появился и атаковал со спины. Что будешь делать?",
             answerOptions: [
