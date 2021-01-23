@@ -1,247 +1,255 @@
 //Постер
-import imgKarKarich from "../img/villains/KarKarich.jpg";
-import imgKarKarichBack from "../img/villains/KarKarichBack.jpg";
+import KarKarich from "../img/villains/KarKarich.jpg";
+import KarKarichBack from "../img/villains/KarKarichBack.jpg";
 // картинки к тесту про злодея
-//Бетмен
-import imgBatman from "../img/villains/Batman.jpg";
-import imgBatmanBack from "../img/villains/BatmanBack.jpg";
 //Лес
-import imgForest from "../img/villains/Forest.jpg";
-import imgForestBack from "../img/villains/ForestBack.jpg";
-//Иннокентий
-import imgInnocent from "../img/villains/Innocent.jpg";
-import imgInnocentBack from "../img/villains/InnocentBack.jpg";
-//Институт
-import imgInstitute from "../img/villains/Institute.jpg";
-import imgInstituteBack from "../img/villains/InstituteBack.jpg";
+import Forest from "../img/villains/Forest.jpg";
+import ForestBack from "../img/villains/ForestBack.jpg";
 //Копатыч
-import imgKopatych from "../img/villains/Kopatych.jpg";
-import imgKopatychBack from "../img/villains/KopatychBack.jpg";
+import Kopatych from "../img/villains/Kopatych.jpg";
+import KopatychBack from "../img/villains/KopatychBack.jpg";
+//Иннокентий
+import Innocent from "../img/villains/Innocent.jpg";
+import InnocentBack from "../img/villains/InnocentBack.jpg";
 //Фишка
-import imgPiece from "../img/villains/Piece.jpg";
-import imgPieceBack from "../img/villains/PieceBack.jpg";
-//Шерлок
-import imgSherlock from "../img/villains/Sherlock.jpg";
-import imgSherlockBack from "../img/villains/SherlockBack.jpg";
+import Piece from "../img/villains/Piece.jpg";
+import PieceBack from "../img/villains/PieceBack.jpg";
+//Институт
+import Institute from "../img/villains/Institute.jpg";
+import InstituteBack from "../img/villains/InstituteBack.jpg";
+//Бетмен
+import Batman from "../img/villains/Batman.jpg";
+import BatmanBack from "../img/villains/BatmanBack.jpg";
 //Коварство
-import imgTreachery from "../img/villains/Treachery.jpg";
-import imgTreacheryBack from "../img/villains/TreacheryBack.jpg";
+import Treachery from "../img/villains/Treachery.jpg";
+import TreacheryBack from "../img/villains/TreacheryBack.jpg";
+//Шерлок
+import Sherlock from "../img/villains/Sherlock.jpg";
+import SherlockBack from "../img/villains/SherlockBack.jpg";
+
+//Результаты
+import resBack from '../img/villains/r_back.jpg';
+//Кексик
+import resCupcake from '../img/villains/r_Cupcake.jpg';
+//Волан-Де-Морт
+import resVolanDeMort from '../img/villains/r_VolanDeMort.jpg';
+//Веном
+import resVenom from '../img/villains/r_Venom.jpg';
+//Иван Ванко
+import resIvan from '../img/villains/r_Ivan.jpg';
+//Джокер
+import resJoker from '../img/villains/r_Joker.jpg';
 
 
 const quizVillains = {
     title: "Кто вы из злодеев?",
-    img: imgKarKarich,
-    imgBackground: imgKarKarichBack,
+    img: KarKarich,
+    imgBackground: KarKarichBack,
     maxScore: 8,
     quetions: [
         // Вопрос 1
         {
-            questionImgBack: gaetanDugaBack,
-            questionImg: imgBatman,
-            questionText: "Знакомый пригласил вас на аниме «Первый мститель», ваши действия:",
+            questionImgBack: ForestBack,
+            questionImg: Forest,
+            questionText: "Здесь начинается наше злодейское путешествие, вы готовы?",
             answerOptions: [
                 {
-                    text: "С легкостью примите приглашение, даже не подумав, что он может оказаться геем",
+                    text: "Интересно, насколько оно злодейское.. ",
                     score: 0.5
                 },
                 {
-                    text: "Согласитесь с надеждой, что он может оказаться геем и вы станете парой",
+                    text: "Не уверен..",
                     score: 1
                 },
                 {
-                    text: "Категорически откажитесь",
+                    text: "Я только что подумал, почему б мне не взять с собой пару приспешников",
+                    score: 0
+                },
+                {
+                    text: "Да *С ножом в руке*",
                     score: 0
                 }
             ]
         },
-        // Вопрос 2
         {
-            questionImgBack: nolanDiagramBack,
-            questionImg: nolanDiagram,
-            questionText: "Твои политические убеждения?",
+            questionImgBack: KopatychBack,
+            questionImg: Kopatych,
+            questionText: "Во-первых! Вам нужно выбрать свое злодейское оружие в этой жуткой лачуге. Какое из них вам больше нравится?",
             answerOptions: [
                 {
-                    text: "Левые",
+                    text: "Топор",
                     score: 1
                 },
                 {
-                    text: "Правые",
+                    text: "Пистолет",
                     score: 1
                 },
                 {
-                    text: "Тоталитаризм",
+                    text: "Магия БДСМ",
                     score: -1
-                },
-                {
-                    text: "Либертарианство",
-                    score: 1
                 }
             ]
         },
-        // Вопрос 3
         {
-            questionImgBack: cobainBack,
-            questionImg: cobain,
-            questionText: "Как вы себя чувствуете в обществе одних мужчин:",
+            questionImgBack: InnocentBack,
+            questionImg: Innocent,
+            questionText: "Выберите слово, которое ассоциируется у вас с вашим злодейством!",
             answerOptions: [
                 {
-                    text: "Легко и уверенно",
+                    text: "Доминирование",
                     score: 0
                 },
                 {
-                    text: "Испытываете постоянно неловкость и напряжения",
+                    text: "Смерть",
                     score: 0.5
                 },
                 {
-                    text: "испытываете удовольствие (даже от одной мысли, что рядом одни мужчины)",
+                    text: "Мрак",
                     score: 1
                 }
             ]
         },
-        // Вопрос 4
         {
-            questionImgBack: supplyBack,
-            questionImg: supply,
-            questionText: "Часто ли вы с друзьями шутите про маструбацию и письки?",
+            questionImgBack: PieceBack,
+            questionImg: Piece,
+            questionText: "Каждый злодей нуждается в своей фишке, какую выберите вы?",
             answerOptions: [
                 {
-                    text: "Регулярно. Весело же",
+                    text: "Уродство",
                     score: 0
                 },
                 {
-                    text: "Мы про это не шутим, мы нормальные люди",
+                    text: "Взгляд",
                     score: 1
                 },
                 {
-                    text: "Редко",
+                    text: "Смех",
                     score: 0.5
                 }
             ]
         },
-        // Вопрос 5
         {
-            questionImgBack: bazookaBack,
-            questionImg: bazooka,
-            questionText: "Ходите ли вы в качалку?",
+            questionImgBack: InstituteBack,
+            questionImg: Institute,
+            questionText: "Ваше злодейское величество нуждается в убежище, выберите себе логово!",
             answerOptions: [
                 {
-                    text: "Делаю там кардиo и oстальнoе без фанатизма",
+                    text: "Пещера *смех*",
                     score: 1
                 },
                 {
-                    text: "Нет, не хожу",
+                    text: "Психбольница",
                     score: 0
                 },
                 {
-                    text: "Настoящий мужик дoлжен быть накаченым и сильным как Van Darkholme на фоне.",
+                    text: "Обычный дом",
                     score: 2
                 }
             ]
         },
-        // Вопрос 6
         {
-            questionImgBack: steuerradBack,
-            questionImg: steuerrad,
-            questionText: "Что вы знаете про Голландский штурвал?",
+            questionImgBack: BatmanBack,
+            questionImg: Batman,
+            questionText: "Пришло время выбрать своего первого врага",
             answerOptions: [
                 {
-                    text: "Знаю",
+                    text: "Бетмен",
                     score: 0
                 },
                 {
-                    text: "Hичего не знаю, но загуглю",
+                    text: "Супер мен",
                     score: 0
                 },
                 {
-                    text: "Ничего не знаю и гуглить не буду (Правда не буду!)",
+                    text: "Представители ЛГБТ сообщества",
                     score: 2
                 }
             ]
         },
-        // Вопрос 7
         {
-            questionImgBack: ussrBack,
-            questionImg: ussr,
-            questionText: "В детстве вы ходили с мальчиками, взявшись за руки?",
+            questionImgBack: Treachery,
+            questionImg: Treachery,
+            questionText: "Итак, этот fucking slave неожиданно появился и атаковал со спины. Что будешь делать?",
             answerOptions: [
                 {
-                    text: "Да",
+                    text: "Ничего (¬‿¬)",
                     score: 1
                 },
                 {
-                    text: "Нет",
+                    text: "Сражаться как настоящий воин",
+                    score: 0
+                },
+                {
+                    text: "Попробую договориться",
                     score: 0
                 }
             ]
         },
-        // Вопрос 8
         {
-            questionImgBack: pringlesBack,
-            questionImg: pringles,
-            questionText: "Вам нравится творчество LOBODA-ы?",
+            questionImgBack: SherlockBack,
+            questionImg: Sherlock,
+            questionText: "Произошло что-то странное. Вы почувствовали, что вас уже не так прижали к полу. Повернув голову, вы увидели эти глаза. Добрые глаза. Они кричали вам о том, что всё происходящее чистой воды безумие.",
             answerOptions: [
                 {
-                    text: "Да",
+                    text: "Посмотреть взглядом “Я тебя уничтожу”",
                     score: 0
                 },
                 {
-                    text: "Нет",
+                    text: "Посмотреть взглядом “Я тебя понимаю”",
+                    score: 1
+                },
+                {
+                    text: "Посмотреть взглядом “пойдём смотреть аниме”",
                     score: 1
                 }
             ]
-        },
+        }
     ],
     results: [
-        // min, max в абсолютном значении (включительно)
-        //0 баллов
         {
             min: -Infinity,
             max: 0,
-            text: "Вы гей всего на {%percent%}%. Вы на столько в вошли в роль натурала ,что уже не мыслите иначе, но вы гей.",
+            text: "Вы кексик. Красивый снаружи и вкусный внутри. В Вас нет совершенно ничего плохоко *обнимашки*",
             backgroundImage: resBack,
-            image: natural,
-            historyImage: natural,
-            wallImage: natural
+            image: resCupcake,
+            historyImage: resCupcake,
+            wallImage: resCupcake
         },
-        // 1-3 балла
         {
             min: 1,
             max: 3,
-            text: "Вы гей всего на {%percent%}%. Округляем, получаем 0.",
+            text: "Вы голубой, и не только по цвету кожи. Всё, на что вы годитесь - гоняться за детьми в попытках осуществить свои злодияния.",
             backgroundImage: resBack,
-            image: natural,
-            historyImage: natural,
-            wallImage: natural
+            image: resVolanDeMort,
+            historyImage: resVolanDeMort,
+            wallImage: resVolanDeMort
         },
-        // 4-5 баллов
         {
             min: 4,
             max: 5,
-            text: "Вы гей на {%percent%}%. Латентный гомосексуалист. Задумайтесь, возможно вам стоит переехать туда, где вы сможете быть самим собой",
+            text: "Веном. Большой. Чёрный. Любишь  Гэнг-бэнг. Это всё, что можно о тебе сказать",
             backgroundImage: resBack,
-            image: garri,
-            historyImage: natural,
-            wallImage: natural
+            image: resVenom,
+            historyImage: resVenom,
+            wallImage: resVenom
         },
-        // 6-7 баллов
         {
             min: 6,
             max: 7,
-            text: "Вы гей на {%percent%}%. Вы не босс качалки, но и не факинг слэйв",
+            text: "Иван Ванко. Ваша мотивация проста как ведро огурцов, а решение напасть на миллиардера в месте, где более сотни вооружённых охранников и имея из защиты лишь штаны и крутые тату на почти голом торсе, вызывает уважение.",
             backgroundImage: resBack,
-            image: stopper,
-            historyImage: natural,
-            wallImage: natural
+            image: resIvan,
+            historyImage: resIvan,
+            wallImage: resIvan
         },
-        // >=8 баллов
         {
             min: 8,
             max: Infinity,
-            text: "Вы гей на {%percent%}%. Амбасадор слова “гомосексуалист” в СНГ. ",
+            text: "Джокер. Вы злодей принципиально нового уровня. Идеологический. Вы верите в свою правоту, верите, что творите добро, творя зло.",
             backgroundImage: resBack,
-            image: drink,
-            historyImage: natural,
-            wallImage: natural
+            image: resJoker,
+            historyImage: resJoker,
+            wallImage: resJoker
         }
     ]
 }

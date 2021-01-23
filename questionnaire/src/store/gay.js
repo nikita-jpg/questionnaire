@@ -40,10 +40,6 @@ import stopper from '../img/how_gay_are_you/r_stopper.jpg';
 // >=8 баллов
 import drink from '../img/how_gay_are_you/r_drink.jpg';
 
-
-import test_back from "../img/test_back.png";
-import test from "../img/test.png";
-
 const quizGay = {
     title: "Насколько вы гей?",
     img: imgHowGayAreYou,
