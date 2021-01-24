@@ -4,41 +4,41 @@
 import imgHowGayAreYou from "../img/how_gay_are_you/HowGayAreYou.jpg";
 import imgHowGayAreYouBack from "../img/how_gay_are_you/HowGayAreYouBack.jpg";
 //Дюга
-import gaetanDuga from "../img/how_gay_are_you/Gaetan Duga.jpg";
-import gaetanDugaBack from "../img/how_gay_are_you/Gaetan Duga Back.jpg";
+import gaetanDuga from "../img/how_gay_are_you/GaetanDuga.jpg";
+import gaetanDugaBack from "../img/how_gay_are_you/GaetanDugaBack.jpg";
 //Диаграмма
-import nolanDiagram from '../img/how_gay_are_you/Nolan Diagram.jpg';
-import nolanDiagramBack from '../img/how_gay_are_you/Nolan Diagram Back.jpg';
+import nolanDiagram from '../img/how_gay_are_you/NolanDiagram.jpg';
+import nolanDiagramBack from '../img/how_gay_are_you/NolanDiagramBack.jpg';
 //Кобейн
 import cobain from '../img/how_gay_are_you/Cobain.jpg';
-import cobainBack from '../img/how_gay_are_you/Cobain Back.jpg';
+import cobainBack from '../img/how_gay_are_you/CobainBack.jpg';
 //Суп
 import supply from '../img/how_gay_are_you/Supply.jpg';
-import supplyBack from '../img/how_gay_are_you/Supply Back.jpg';
+import supplyBack from '../img/how_gay_are_you/SupplyBack.jpg';
 //Базука
 import bazooka from '../img/how_gay_are_you/Bazooka.jpg';
-import bazookaBack from '../img/how_gay_are_you/Bazooka Back.jpg';
+import bazookaBack from '../img/how_gay_are_you/BazookaBack.jpg';
 //Штурвал
 import steuerrad from '../img/how_gay_are_you/Steuerrad.jpg';
-import steuerradBack from '../img/how_gay_are_you/Steuerrad Back.jpg';
+import steuerradBack from '../img/how_gay_are_you/SteuerradBack.jpg';
 //СССР
 import ussr from '../img/how_gay_are_you/USSR.jpg';
-import ussrBack from '../img/how_gay_are_you/USSR Back.jpg';
+import ussrBack from '../img/how_gay_are_you/USSRBack.jpg';
 //Принглс
 import pringles from '../img/how_gay_are_you/Pringles.jpg';
-import pringlesBack from '../img/how_gay_are_you/Pringles Back.jpg';
+import pringlesBack from '../img/how_gay_are_you/PringlesBack.jpg';
 /// Результаты теста
 
 // 0 баллов
-import resBack from '../img/how_gay_are_you/r_back.jpg';
+import resBack from '../img/how_gay_are_you/r_Back.jpg';
 // 1-3 балла
-import natural from '../img/how_gay_are_you/r_natural.jpg';
+import natural from '../img/how_gay_are_you/r_Natural.jpg';
 // 4-5 баллов
-import garri from '../img/how_gay_are_you/r_garri.jpg';
+import garri from '../img/how_gay_are_you/r_Garri.jpg';
 // 6-7 баллов
-import stopper from '../img/how_gay_are_you/r_stopper.jpg';
+import stopper from '../img/how_gay_are_you/r_Stopper.jpg';
 // >=8 баллов
-import drink from '../img/how_gay_are_you/r_drink.jpg';
+import drink from '../img/how_gay_are_you/r_Drink.jpg';
 
 const quizGay = {
     title: "Насколько вы гей?",
