@@ -38,42 +38,11 @@ import resHomeTyrant from '../img/hate/r_HomeTyrant.jpg';
 //1984
 import res1984 from '../img/hate/r_1984.jpg';
 
-// то что не импортировал
-import KarKarich from "../img/villains/KarKarich.jpg";
-import KarKarichBack from "../img/villains/KarKarichBack.jpg";
-
-import Innocent from "../img/villains/Innocent.jpg";
-import InnocentBack from "../img/villains/InnocentBack.jpg";
-
-import Piece from "../img/villains/Piece.jpg";
-import PieceBack from "../img/villains/PieceBack.jpg";
-
-import Institute from "../img/villains/Institute.jpg";
-import InstituteBack from "../img/villains/InstituteBack.jpg";
-
-import Batman from "../img/villains/Batman.jpg";
-import BatmanBack from "../img/villains/BatmanBack.jpg";
-
-import Treachery from "../img/villains/Treachery.jpg";
-import TreacheryBack from "../img/villains/TreacheryBack.jpg";
-
-import Sherlock from "../img/villains/Sherlock.jpg";
-import SherlockBack from "../img/villains/SherlockBack.jpg";
-
-import resCupcake from "../img/villains/r_Cupcake.jpg";
-
-import resVolanDeMort from "../img/villains/r_VolanDeMort.jpg";
-
-import resVenom from "../img/villains/r_Venom.jpg";
-
-import resIvan from "../img/villains/r_Ivan.jpg";
-
-import resJoker from "../img/villains/r_Joker.jpg";
 
 const quizHate = {
     title: "Сколько в тебе ненависти?",
-    img: KarKarich,
-    imgBackground: KarKarichBack,
+    img: Stalin,
+    imgBackground: StalinBack,
     maxScore: 8,
     quetions: [
         // Вопрос 1
@@ -118,8 +87,8 @@ const quizHate = {
         },
         // Вопрос 3
         {
-            questionImgBack: InnocentBack,
-            questionImg: Innocent,
+            questionImgBack: GunBack,
+            questionImg: Gun,
             questionText: "Выбери вид оружия",
             answerOptions: [
                 {
@@ -138,8 +107,8 @@ const quizHate = {
         },
         // Вопрос 4
         {
-            questionImgBack: PieceBack,
-            questionImg: Piece,
+            questionImgBack: ColorBack,
+            questionImg: Color,
             questionText: "Выбери цвет",
             answerOptions: [
                 {
@@ -158,8 +127,8 @@ const quizHate = {
         },
         // Вопрос 5
         {
-            questionImgBack: InstituteBack,
-            questionImg: Institute,
+            questionImgBack: DudeBack,
+            questionImg: Dude,
             questionText: "Какой жанр в кинематографе ты предпочитаешь?",
             answerOptions: [
                 {
@@ -178,8 +147,8 @@ const quizHate = {
         },
         // Вопрос 6
         {
-            questionImgBack: BatmanBack,
-            questionImg: Batman,
+            questionImgBack: KFCBack,
+            questionImg: KFC,
             questionText: "'Черный юмор' по-твоему - это...?",
             answerOptions: [
                 {
@@ -194,8 +163,8 @@ const quizHate = {
         },
         // Вопрос 7
         {
-            questionImgBack: TreacheryBack,
-            questionImg: Treachery,
+            questionImgBack: DalmatianBack,
+            questionImg: Dalmatian,
             questionText: "Какой персонаж тебе импонирует?",
             answerOptions: [
                 {
@@ -214,8 +183,8 @@ const quizHate = {
         },
         // Вопрос 8
         {
-            questionImgBack: SherlockBack,
-            questionImg: Sherlock,
+            questionImgBack: CatBack,
+            questionImg: Cat,
             questionText: "Ты любишь котиков?",
             answerOptions: [
                 {
@@ -233,47 +202,47 @@ const quizHate = {
         {
             min: -Infinity,
             max: 0,
-            text: "Ты кексик. Красивый снаружи и вкусный внутри. В тебе нет совершенно ничего плохоко *обнимашки*",
+            text: "Ты ненавистен всего на 0%. Ты котя. Мяяяяя",
             backgroundImage: resBack,
-            image: resCupcake,
-            historyImage: resCupcake,
-            wallImage: resCupcake
+            image: resCat,
+            historyImage: resCat,
+            wallImage: resCat
         },
         {
             min: 1,
             max: 3,
-            text: "Ты голубой, и не только по цвету кожи. Всё, на что ты годишься - гоняться за детьми в попытках осуществить свои злодияния.",
+            text: "Ты ненавистен всего на {%percent%}%. Округляем, получаем 0. Ты котя. Мяяяяя",
             backgroundImage: resBack,
-            image: resVolanDeMort,
-            historyImage: resVolanDeMort,
-            wallImage: resVolanDeMort
+            image: resCat,
+            historyImage: resCat,
+            wallImage: resCat
         },
         {
             min: 4,
             max: 5,
-            text: "Веном. Большой. Чёрный. Любишь  Гэнг-бэнг. Это всё, что можно о тебе сказать",
+            text: "Ты ненавистен всего {%percent%}%. Латентный тиран. Задумайся, возможно тебе стоит сходить к психологу, это поможет тебе решить твои внутренние проблемы",
             backgroundImage: resBack,
-            image: resVenom,
-            historyImage: resVenom,
-            wallImage: resVenom
+            image: resWorm,
+            historyImage: resWorm,
+            wallImage: resWorm
         },
         {
             min: 6,
             max: 7,
-            text: "Иван Ванко. Твоя мотивация проста как ведро огурцов, а решение напасть на миллиардера в месте, где более сотни вооружённых охранников и имея из защиты лишь штаны и крутые тату на почти голом торсе, вызывает уважение.",
+            text: "Ты ненавистен всего {%percent%}%. Ты открытый тиран. Злодействуешь, вредишь людям. И это ооочень плохо",
             backgroundImage: resBack,
-            image: resIvan,
-            historyImage: resIvan,
-            wallImage: resIvan
+            image: resHomeTyrant,
+            historyImage: resHomeTyrant,
+            wallImage: resHomeTyrant
         },
         {
             min: 8,
             max: Infinity,
-            text: "Джокер. Ты злодей принципиально нового уровня. Идеологический. Ты верищь в свою правоту, верищь, что творишь добро, творя зло.",
+            text: "Ты ненавистен всего {%percent%}%. Амбасадор слова “тиран” в СНГ. В аду для тебя и Сталина приготовлен личный ГУЛАГ",
             backgroundImage: resBack,
-            image: resJoker,
-            historyImage: resJoker,
-            wallImage: resJoker
+            image: res1984,
+            historyImage: res1984,
+            wallImage: res1984
         }
     ]
 }
