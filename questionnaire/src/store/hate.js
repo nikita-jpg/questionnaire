@@ -1,44 +1,74 @@
 //Постер
-import Stalin from "../hate/hate/Stalin.jpg";
-import StalinBack from "../hate/villains/StalinBack.jpg";
+import Stalin from "../img/hate/Stalin.jpg";
+import StalinBack from "../img/hate/StalinBack.jpg";
 // картинки к тесту про злодея
 //ТикТок
-import TikTok from "../hate/villains/TikTok.jpg";
-import TikTokBack from "../hate/villains/TikTokBack.jpg";
+import TikTok from "../img/hate/TikTok.jpg";
+import TikTokBack from "../img/hate/TikTokBack.jpg";
 //Мусор
-import Trash from "../hate/villains/Trash.jpg";
-import TrashBack from "../hate/villains/TrashBack.jpg";
+import Trash from "../img/hate/Trash.jpg";
+import TrashBack from "../img/hate/TrashBack.jpg";
 //Оружие
-import Gun from "../hate/villains/Gun.jpg";
-import GunBack from "../hate/villains/GunBack.jpg";
+import Gun from "../img/hate/Gun.jpg";
+import GunBack from "../img/hate/GunBack.jpg";
 //Цвет
-import Color from "../hate/villains/Color.jpg";
-import ColorBack from "../hate/villains/ColorBack.jpg";
+import Color from "../img/hate/Color.jpg";
+import ColorBack from "../img/hate/ColorBack.jpg";
 //Чувак
-import Dude from "../hate/villains/Dude.jpg";
-import DudeBack from "../hate/villains/DudeBack.jpg";
+import Dude from "../img/hate/Dude.jpg";
+import DudeBack from "../img/hate/DudeBack.jpg";
 //KFC
-import KFC from "../hate/villains/KFC.jpg";
-import KFCBack from "../hate/villains/KFCBack.jpg";
+import KFC from "../img/hate/KFC.jpg";
+import KFCBack from "../img/hate/KFCBack.jpg";
 //Долматинцы
-import Dalmatian from "../hate/villains/Dalmatian.jpg";
-import DalmatianBack from "../hate/villains/DalmatianBack.jpg";
+import Dalmatian from "../img/hate/Dalmatian.jpg";
+import DalmatianBack from "../img/hate/DalmatianBack.jpg";
 //Котик
-import Cat from "../hate/villains/Cat.jpg";
-import CatBack from "../hate/villains/CatBack.jpg";
+import Cat from "../img/hate/Cat.jpg";
+import CatBack from "../img/hate/CatBack.jpg";
 
 //Результаты
-import resBack from '../hate/villains/r_back.jpg';
+import resBack from '../img/hate/r_back.jpg';
 //Котик
-import resCat from '../hate/villains/r_Cat.jpg';
-//Котик
-import resCat from '../hate/villains/r_Cat.jpg';
+import resCat from '../img/hate/r_Cat.jpg';
 //Червяк
-import resWorm from '../hate/villains/r_Worm.jpg';
+import resWorm from '../img/hate/r_Worm.jpg';
 //Домашнее насилие
-import resHomeTyrant from '../hate/villains/r_HomeTyrant.jpg';
+import resHomeTyrant from '../img/hate/r_HomeTyrant.jpg';
 //1984
-import res1984 from '../hate/villains/r_1984.jpg';
+import res1984 from '../img/hate/r_1984.jpg';
+
+// то что не импортировал
+import KarKarich from "../img/villains/KarKarich.jpg";
+import KarKarichBack from "../img/villains/KarKarichBack.jpg";
+
+import Innocent from "../img/villains/Innocent.jpg";
+import InnocentBack from "../img/villains/InnocentBack.jpg";
+
+import Piece from "../img/villains/Piece.jpg";
+import PieceBack from "../img/villains/PieceBack.jpg";
+
+import Institute from "../img/villains/Institute.jpg";
+import InstituteBack from "../img/villains/InstituteBack.jpg";
+
+import Batman from "../img/villains/Batman.jpg";
+import BatmanBack from "../img/villains/BatmanBack.jpg";
+
+import Treachery from "../img/villains/Treachery.jpg";
+import TreacheryBack from "../img/villains/TreacheryBack.jpg";
+
+import Sherlock from "../img/villains/Sherlock.jpg";
+import SherlockBack from "../img/villains/SherlockBack.jpg";
+
+import resCupcake from "../img/villains/r_Cupcake.jpg";
+
+import resVolanDeMort from "../img/villains/r_VolanDeMort.jpg";
+
+import resVenom from "../img/villains/r_Venom.jpg";
+
+import resIvan from "../img/villains/r_Ivan.jpg";
+
+import resJoker from "../img/villains/r_Joker.jpg";
 
 const quizHate = {
     title: "Сколько в тебе ненависти?",

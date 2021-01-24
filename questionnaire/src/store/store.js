@@ -1,10 +1,12 @@
 import quizGay from "./gay";
 import quizVillains from "./villains";
+import quizHate from "./hate";
 
 const store = {
     quizzes: [
         quizGay,
-        quizVillains
+        quizVillains,
+        quizHate
     ]
 }
 
