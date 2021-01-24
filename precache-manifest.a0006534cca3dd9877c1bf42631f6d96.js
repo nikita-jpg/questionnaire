@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a5021cfa42f78975ea7a7e6737462c9e",
+    "revision": "b008712c062278339c6c115c4d5c9e32",
     "url": "/questionnaire/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/css/2.cdee455b.chunk.css"
   },
   {
-    "revision": "6283e9eff7589ef4825d",
+    "revision": "3db703e2c51f5da6195b",
     "url": "/questionnaire/static/css/main.2770b5fd.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/js/4.867692e8.chunk.js"
   },
   {
-    "revision": "6283e9eff7589ef4825d",
-    "url": "/questionnaire/static/js/main.143fb698.chunk.js"
+    "revision": "3db703e2c51f5da6195b",
+    "url": "/questionnaire/static/js/main.b234c40e.chunk.js"
   },
   {
     "revision": "5f3f7720b1399edd7c50",
@@ -44,12 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/media/Batman.e499e9b6.jpg"
   },
   {
-    "revision": "3cc7a268f4730e6f2a59a084584a5685",
-    "url": "/questionnaire/static/media/Bazooka.3cc7a268.jpg"
+    "revision": "a1e3041e22f29b0d919181c610aa3696",
+    "url": "/questionnaire/static/media/Bazooka.a1e3041e.jpg"
   },
   {
-    "revision": "ff914d8c77567fab54e0b566f3ad966c",
-    "url": "/questionnaire/static/media/BazookaBack.ff914d8c.jpg"
+    "revision": "3aa185765e23b856c81cf17d9e535f7f",
+    "url": "/questionnaire/static/media/BazookaBack.3aa18576.jpg"
   },
   {
     "revision": "342e1167687ed9967110ccbcda286c17",
@@ -60,8 +60,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/media/CatBack.9a4b4c64.jpg"
   },
   {
-    "revision": "e3563bb35e5d7f48e5cbb7f723090f51",
-    "url": "/questionnaire/static/media/Cobain.e3563bb3.jpg"
+    "revision": "5dd035ccf0163a595eaeb0de8466d157",
+    "url": "/questionnaire/static/media/Cobain.5dd035cc.jpg"
   },
   {
     "revision": "d5efed00a6b79ddf5271fc9fb9ce7da4",
@@ -92,16 +92,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/media/ForestBack.7f22d3e1.jpg"
   },
   {
-    "revision": "a86b31655d61c29537fabdc3bbe3ddfb",
-    "url": "/questionnaire/static/media/GaetanDuga.a86b3165.jpg"
+    "revision": "a202b5f0c9516ad32526fd0949110d74",
+    "url": "/questionnaire/static/media/GaetanDuga.a202b5f0.jpg"
   },
   {
     "revision": "4e8a91dd410aec2e4335a5add98ca70f",
     "url": "/questionnaire/static/media/Gun.4e8a91dd.jpg"
   },
   {
-    "revision": "83820c2714206657fdcd1d14ddd1be4b",
-    "url": "/questionnaire/static/media/HowGayAreYou.83820c27.jpg"
+    "revision": "d0912502c9b3ef66c24973000de56b08",
+    "url": "/questionnaire/static/media/HowGayAreYou.d0912502.jpg"
   },
   {
     "revision": "66d01cf415e4ee2dab4eb47e11d5745e",
@@ -132,24 +132,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/media/KopatychBack.4b214bde.jpg"
   },
   {
-    "revision": "d2636acb4f03d53fe2b0d44ea357d44c",
-    "url": "/questionnaire/static/media/NolanDiagram.d2636acb.jpg"
+    "revision": "11d798ed68b0c6b0d531f769510a9ff6",
+    "url": "/questionnaire/static/media/NolanDiagram.11d798ed.jpg"
   },
   {
-    "revision": "a8f8ed00593796a86f36820a33fcc8a1",
-    "url": "/questionnaire/static/media/NolanDiagramBack.a8f8ed00.jpg"
+    "revision": "e391aaa9a249aed71f7e6562a2ac3dbd",
+    "url": "/questionnaire/static/media/NolanDiagramBack.e391aaa9.jpg"
   },
   {
     "revision": "d4bfc39a88e5b20252f714c809766bf1",
     "url": "/questionnaire/static/media/Piece.d4bfc39a.jpg"
   },
   {
-    "revision": "aa316e020f1e3d1f0f01e7d830fdc362",
-    "url": "/questionnaire/static/media/Pringles.aa316e02.jpg"
+    "revision": "a7441846041f1837d04835a702e59428",
+    "url": "/questionnaire/static/media/Pringles.a7441846.jpg"
   },
   {
-    "revision": "122029db7aa624e5a50c2d2c711ccd11",
-    "url": "/questionnaire/static/media/PringlesBack.122029db.jpg"
+    "revision": "992e2115ef16a94bb57ed469df87b9d1",
+    "url": "/questionnaire/static/media/PringlesBack.992e2115.jpg"
   },
   {
     "revision": "5ebcc9dcd24d070c1195e2f9a881d10f",
@@ -168,16 +168,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/media/StalinBack.3d08c591.jpg"
   },
   {
-    "revision": "603c7b86bc59735273e4dbb78a2dee4a",
-    "url": "/questionnaire/static/media/Steuerrad.603c7b86.jpg"
+    "revision": "042a4aae738ac51fa50214833ad5f301",
+    "url": "/questionnaire/static/media/Steuerrad.042a4aae.jpg"
   },
   {
-    "revision": "30f8afbb0a936931fa517c69a30ff5ba",
-    "url": "/questionnaire/static/media/SteuerradBack.30f8afbb.jpg"
+    "revision": "5b45184b458f67c043100bfdff99ce39",
+    "url": "/questionnaire/static/media/SteuerradBack.5b45184b.jpg"
   },
   {
-    "revision": "a17a288bb90e4dbbd46a4bf729a9b530",
-    "url": "/questionnaire/static/media/Supply.a17a288b.jpg"
+    "revision": "c00b5d8ff2da27e5debe9edf0b9ec3e1",
+    "url": "/questionnaire/static/media/Supply.c00b5d8f.jpg"
   },
   {
     "revision": "b6b821830bc3be5f4fbe478d20fcc95a",
@@ -204,16 +204,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/media/TreacheryBack.d25b4974.jpg"
   },
   {
-    "revision": "887829e6f56038a4c9e2ff4ce09649f8",
-    "url": "/questionnaire/static/media/USSR.887829e6.jpg"
-  },
-  {
-    "revision": "ce7215a1c725fd4b8e8ff88f649b3f4f",
-    "url": "/questionnaire/static/media/USSRBack.ce7215a1.jpg"
+    "revision": "c23845d86a59a42c19c9e936956d1c58",
+    "url": "/questionnaire/static/media/USSR.c23845d8.jpg"
   },
   {
     "revision": "72bf275b2dd2510d0424a5821b75431a",
     "url": "/questionnaire/static/media/r_1984.72bf275b.jpg"
+  },
+  {
+    "revision": "8e11667cf633ba5f5f9de7c969feb5b1",
+    "url": "/questionnaire/static/media/r_Back.8e11667c.jpg"
   },
   {
     "revision": "e0ce3a1281f5aa8cc4338e2ed9b7a603",
@@ -222,6 +222,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e474759dd794d07f0b8fcf170a2002bc",
     "url": "/questionnaire/static/media/r_Cupcake.e474759d.jpg"
+  },
+  {
+    "revision": "574d5412a5f1a7e6980fab609314b411",
+    "url": "/questionnaire/static/media/r_Drink.574d5412.jpg"
+  },
+  {
+    "revision": "70f40b00d695acdccc4495e3a25cc563",
+    "url": "/questionnaire/static/media/r_Garri.70f40b00.jpg"
   },
   {
     "revision": "381113c3c7ede8af415716ed2f64fda0",
@@ -234,6 +242,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "2add381417d0d2e70aa96467b044dbaf",
     "url": "/questionnaire/static/media/r_Joker.2add3814.jpg"
+  },
+  {
+    "revision": "1fd511714a7baa4f5f5e64d4db6056c9",
+    "url": "/questionnaire/static/media/r_Natural.1fd51171.jpg"
   },
   {
     "revision": "e0ecd53b286bfcb38906409bd517ca0b",
@@ -250,21 +262,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "8e11667cf633ba5f5f9de7c969feb5b1",
     "url": "/questionnaire/static/media/r_back.8e11667c.jpg"
-  },
-  {
-    "revision": "47850e533dea9e18fae2c151efd7ae97",
-    "url": "/questionnaire/static/media/r_drink.47850e53.jpg"
-  },
-  {
-    "revision": "08324e23ecd5b67d7cdd1a18d24c84fa",
-    "url": "/questionnaire/static/media/r_garri.08324e23.jpg"
-  },
-  {
-    "revision": "bf3ab0837580d4bd8eb18bd3fb2ea055",
-    "url": "/questionnaire/static/media/r_natural.bf3ab083.jpg"
-  },
-  {
-    "revision": "dc9a17a856132a33be1e075b4f349da8",
-    "url": "/questionnaire/static/media/r_stopper.dc9a17a8.jpg"
   }
 ]);
