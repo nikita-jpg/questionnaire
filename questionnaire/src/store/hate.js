@@ -40,7 +40,7 @@ import res1984 from '../img/hate/r_1984.jpg';
 
 
 const quizHate = {
-    title: "Сколько в тебе ненависти?",
+    title: "Сколько в тебе ...",
     img: Stalin,
     imgBackground: StalinBack,
     maxScore: 8,
