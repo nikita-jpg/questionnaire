@@ -1,6 +1,7 @@
+import React from 'react';
 //Постер
-import Stalin from "../img/hate/Stalin.jpg";
-import StalinBack from "../img/hate/StalinBack.jpg";
+import RickPoster from "../img/hate/RickPoster.jpg";
+import RickPosterBack from "../img/hate/RickPosterBack.jpg";
 // картинки к тесту про злодея
 //ТикТок
 import TikTok from "../img/hate/TikTok.jpg";
@@ -40,9 +41,9 @@ import res1984 from '../img/hate/r_1984.jpg';
 
 
 const quizHate = {
-    title: "Сколько в тебе ...",
-    img: Stalin,
-    imgBackground: StalinBack,
+    title: "Сколько в тебе негатива?",
+    img: RickPoster,
+    imgBackground: RickPosterBack,
     maxScore: 8,
     quetions: [
         // Вопрос 1

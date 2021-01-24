@@ -21,6 +21,7 @@ const Quiz = ({ id, quizze, goLeftQuiz, goRightQuiz, hasRightQuiz, hasLeftQuiz, 
             <PanelHeaderSimple left={
                 <h1 className="Quiz__title">
                     {quizze.title}
+                    
                 </h1>
             } separator={false} visor={false} transparent={true}></PanelHeaderSimple>
 
