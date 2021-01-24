@@ -50,18 +50,18 @@ const quizGay = {
         {
             questionImgBack : gaetanDugaBack,
             questionImg:  gaetanDuga,
-            questionText: "Знакомый пригласил вас на аниме «Первый мститель», ваши действия:",
+            questionText: "Знакомый пригласил тебя на аниме «Первый мститель», твои действия:",
             answerOptions: [
                 {
-                    text: "С легкостью примите приглашение, даже не подумав, что он может оказаться геем",
+                    text: "С лёгкостью приму приглашение, даже не подумав, что он может оказаться геем",
                     score: 0.5
                 },
                 {
-                    text: "Согласитесь с надеждой, что он может оказаться геем и вы станете парой",
+                    text: "Соглашусь с надеждой, что он может оказаться геем и мы станем парой",
                     score: 1
                 },
                 {
-                    text: "Категорически откажитесь",
+                    text: "Категорически откажусь",
                     score: 0
                 }
             ]
@@ -94,18 +94,18 @@ const quizGay = {
         {
             questionImgBack : cobainBack,
             questionImg:  cobain,
-            questionText: "Как вы себя чувствуете в обществе одних мужчин:",
+            questionText: "Как ты себя чувствуете в обществе одних мужчин:",
             answerOptions: [
                 {
                     text: "Легко и уверенно",
                     score: 0
                 },
                 {
-                    text: "Испытываете постоянно неловкость и напряжения",
+                    text: "Испытывю постоянно неловкость и напряжения",
                     score: 0.5
                 },
                 {
-                    text: "испытываете удовольствие (даже от одной мысли, что рядом одни мужчины)",
+                    text: "Испытываете удовольствие (даже от одной мысли, что рядом одни мужчины)",
                     score: 1
                 }
             ]
@@ -114,7 +114,7 @@ const quizGay = {
         {
             questionImgBack : supplyBack,
             questionImg:  supply,
-            questionText: "Часто ли вы с друзьями шутите про маструбацию и письки?",
+            questionText: "Часто ли ты с друзьями шутишь про маструбацию и письки?",
             answerOptions: [
                 {
                     text: "Регулярно. Весело же",
@@ -134,7 +134,7 @@ const quizGay = {
         {
             questionImgBack : bazookaBack,
             questionImg:  bazooka,
-            questionText: "Ходите ли вы в качалку?",
+            questionText: "Ходишь ли ты в качалку?",
             answerOptions: [
                 {
                     text: "Делаю там кардиo и oстальнoе без фанатизма",
@@ -145,7 +145,7 @@ const quizGay = {
                     score: 0
                 },
                 {
-                    text: "Настoящий мужик дoлжен быть накаченым и сильным как Van Darkholme на фоне.",
+                    text: "Настoящий мужчина дoлжен быть накаченым и сильным как Van Darkholme на фоне.",
                     score: 2
                 }
             ]
@@ -154,7 +154,7 @@ const quizGay = {
         {
             questionImgBack : steuerradBack,
             questionImg:  steuerrad,
-            questionText: "Что вы знаете про Голландский штурвал?",
+            questionText: "Ты знаешь про Голландский штурвал?",
             answerOptions: [
                 {
                     text: "Знаю",
@@ -174,7 +174,7 @@ const quizGay = {
         {
             questionImgBack : ussrBack,
             questionImg:  ussr,
-            questionText: "В детстве вы ходили с мальчиками, взявшись за руки?",
+            questionText: "В детстве ты ходил с мальчиками, взявшись за руки?",
             answerOptions: [
                 {
                     text: "Да",
@@ -190,7 +190,7 @@ const quizGay = {
         {
             questionImgBack : pringlesBack,
             questionImg:  pringles,
-            questionText: "Вам нравится творчество LOBODA-ы?",
+            questionText: "Тебе нравится творчество LOBODA-ы?",
             answerOptions: [
                 {
                     text: "Да",
@@ -209,7 +209,7 @@ const quizGay = {
         {
             min: -Infinity,
             max: 0,
-            text: "Вы гей всего на {%percent%}%. Вы на столько в вошли в роль натурала ,что уже не мыслите иначе, но вы гей.",
+            text: "Ты гей всего на {%percent%}%. Ты на столько вошёл в роль натурала ,что уже не мыслшь иначе, но ты гей.",
             backgroundImage: resBack,
             image: natural,
             historyImage: natural,
@@ -219,7 +219,7 @@ const quizGay = {
         {
             min: 1,
             max: 3,
-            text: "Вы гей всего на {%percent%}%. Округляем, получаем 0.",
+            text: "Ты гей всего на {%percent%}%. Округляем, получаем 0.",
             backgroundImage: resBack,
             image: natural,
             historyImage: natural,
@@ -229,7 +229,7 @@ const quizGay = {
         {
             min: 4,
             max: 5,
-            text: "Вы гей на {%percent%}%. Латентный гомосексуалист. Задумайтесь, возможно вам стоит переехать туда, где вы сможете быть самим собой",
+            text: "Вы гей на {%percent%}%. Латентный гомосексуалист.  Задумайся, возможно тебе стоит переехать туда, где ты сможешь быть самим собой",
             backgroundImage: resBack,
             image: garri,
             historyImage: natural,
@@ -239,7 +239,7 @@ const quizGay = {
         {
             min: 6,
             max: 7,
-            text: "Вы гей на {%percent%}%. Вы не босс качалки, но и не факинг слэйв",
+            text: "Вы гей на {%percent%}%. Ты не босс качалки, но и не факинг слэйв",
             backgroundImage: resBack,
             image: stopper,
             historyImage: natural,
@@ -249,7 +249,7 @@ const quizGay = {
         {
             min: 8,
             max: Infinity,
-            text: "Вы гей на {%percent%}%. Амбасадор слова “гомосексуалист” в СНГ. ",
+            text: "Ты гей на {%percent%}%. Амбасадор слова “гомосексуалист” в СНГ. ",
             backgroundImage: resBack,
             image: drink,
             historyImage: natural,
