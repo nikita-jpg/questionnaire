@@ -30,15 +30,15 @@ import pringlesBack from '../img/how_gay_are_you/PringlesBack.jpg';
 /// Результаты теста
 
 // 0 баллов
-import resBack from '../img/how_gay_are_you/r_Back.jpg';
+import resBack from '../img/how_gay_are_you/r_back.jpg';
 // 1-3 балла
-import natural from '../img/how_gay_are_you/r_Natural.jpg';
+import natural from '../img/how_gay_are_you/r_natural.jpg';
 // 4-5 баллов
-import garri from '../img/how_gay_are_you/r_Garri.jpg';
+import garri from '../img/how_gay_are_you/r_garri.jpg';
 // 6-7 баллов
-import stopper from '../img/how_gay_are_you/r_Stopper.jpg';
+import stopper from '../img/how_gay_are_you/r_stopper.jpg';
 // >=8 баллов
-import drink from '../img/how_gay_are_you/r_Drink.jpg';
+import drink from '../img/how_gay_are_you/r_drink.jpg';
 
 const quizGay = {
     title: "Насколько вы гей?",

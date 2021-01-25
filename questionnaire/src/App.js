@@ -8,10 +8,14 @@ import Quiz from './panels/Quiz/Quiz';
 import { Panel, Root } from '@vkontakte/vkui';
 import Question from './panels/Question/Question';
 import Result from './panels/Result/Result';
+import preloadImages from './preloadImages';
 
 const App = ({ quizzes }) => {
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
+
+	const enablePopout = () => setPopout(<ScreenSpinner size='large' />);
+	const disablePopout = () => setPopout(null);
 
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data } }) => {
@@ -24,7 +28,7 @@ const App = ({ quizzes }) => {
 		async function fetchData() {
 			const user = await bridge.send('VKWebAppGetUserInfo');
 			setUser(user);
-			setPopout(null);
+			disablePopout();
 		}
 		fetchData();
 	}, []);
@@ -108,11 +112,24 @@ const App = ({ quizzes }) => {
 	};
 
 	// функция создающая функцию для перехода к вопросам
-	const createGoToQuestion = index => () => {
+	const createGoToQuestion = (index, { quetions, results }) => () => {
 		clearIndexAnswer();
-		goToViewQuestions();
-		setIndexQuiz(index)
-		setQuestionActivePanel(createQuestionId(0));
+		setIndexQuiz(index);
+
+		const imagesSrc = [
+			...quetions.map(q => q.questionImg),
+			...quetions.map(q => q.questionImgBack),
+			...results.map(r => r.image),
+			...results.map(r => r.backgroundImage)
+		];
+
+		enablePopout();
+		
+		preloadImages(imagesSrc, () => {
+			disablePopout();
+			goToViewQuestions();
+			setQuestionActivePanel(createQuestionId(0));
+		});
 	}
 
 	// функция для добавления процента в строчку текста
@@ -148,7 +165,7 @@ const App = ({ quizzes }) => {
 							goRightQuiz={createGoRightQuiz(i)}
 							hasRightQuiz={i < quizzes.length - 1}
 							hasLeftQuiz={i > 0}
-							goToViewQuestions={createGoToQuestion(i)}
+							goToViewQuestions={createGoToQuestion(i, quizze)}
 						/>
 					))
 				}

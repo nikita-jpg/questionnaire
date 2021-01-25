@@ -21,9 +21,7 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
                         <PanelHeaderButton onClick={goToPrevQuestion}>
                             {osName === IOS ? <Icon28ChevronBack fill="white" /> : <Icon24Back fill="white" />}
                         </PanelHeaderButton>
-                        <div className="Question__number-question">
-                            <span>{numberCurrentQuestion}/{countQuestions}</span>
-                        </div>
+                        <span className="Question__number-question">{numberCurrentQuestion}/{countQuestions}</span>
                     </>
                 }
                 separator={false}
