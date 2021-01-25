@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2e328c6a0efb1a5bc698f4ab9d11be2f",
+    "revision": "e293b1744e961f199fdbde0ae464fff8",
     "url": "/questionnaire/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/css/2.cdee455b.chunk.css"
   },
   {
-    "revision": "6a1c947d2e780c8591d0",
-    "url": "/questionnaire/static/css/main.39a17c35.chunk.css"
+    "revision": "c4662bf1e5c7d7443008",
+    "url": "/questionnaire/static/css/main.82bc2f35.chunk.css"
   },
   {
     "revision": "f51312f459b872aa7f84",
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/js/4.3697bd11.chunk.js"
   },
   {
-    "revision": "6a1c947d2e780c8591d0",
-    "url": "/questionnaire/static/js/main.ff04a615.chunk.js"
+    "revision": "c4662bf1e5c7d7443008",
+    "url": "/questionnaire/static/js/main.b602b2ad.chunk.js"
   },
   {
     "revision": "e3ffc23a2f6419411cd8",
@@ -256,6 +256,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/media/r_1984.72bf275b.jpg"
   },
   {
+    "revision": "8e11667cf633ba5f5f9de7c969feb5b1",
+    "url": "/questionnaire/static/media/r_Back.8e11667c.jpg"
+  },
+  {
     "revision": "cff7d551af63c028381b1a85c3e6fb25",
     "url": "/questionnaire/static/media/r_Bet.cff7d551.jpg"
   },
@@ -266,6 +270,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "2aab45a4e2fcfbdf1288db2a752a57d0",
     "url": "/questionnaire/static/media/r_Cupcake.2aab45a4.jpg"
+  },
+  {
+    "revision": "574d5412a5f1a7e6980fab609314b411",
+    "url": "/questionnaire/static/media/r_Drink.574d5412.jpg"
+  },
+  {
+    "revision": "70f40b00d695acdccc4495e3a25cc563",
+    "url": "/questionnaire/static/media/r_Garri.70f40b00.jpg"
   },
   {
     "revision": "381113c3c7ede8af415716ed2f64fda0",
@@ -288,6 +300,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/media/r_Morti.28fea7ac.jpg"
   },
   {
+    "revision": "1fd511714a7baa4f5f5e64d4db6056c9",
+    "url": "/questionnaire/static/media/r_Natural.1fd51171.jpg"
+  },
+  {
     "revision": "95a831d42db8c8a0c385b1895a61aebc",
     "url": "/questionnaire/static/media/r_Rick.95a831d4.jpg"
   },
@@ -306,17 +322,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "8e11667cf633ba5f5f9de7c969feb5b1",
     "url": "/questionnaire/static/media/r_back.8e11667c.jpg"
-  },
-  {
-    "revision": "574d5412a5f1a7e6980fab609314b411",
-    "url": "/questionnaire/static/media/r_drink.574d5412.jpg"
-  },
-  {
-    "revision": "70f40b00d695acdccc4495e3a25cc563",
-    "url": "/questionnaire/static/media/r_garri.70f40b00.jpg"
-  },
-  {
-    "revision": "1fd511714a7baa4f5f5e64d4db6056c9",
-    "url": "/questionnaire/static/media/r_natural.1fd51171.jpg"
   }
 ]);
