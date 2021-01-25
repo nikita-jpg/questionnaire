@@ -1,6 +1,6 @@
 //Постер
-import Stalin from "../img/rick/Stalin.jpg";
-import StalinBack from "../img/rick/StalinBack.jpg";
+import RickPoster from "../img/rick/RickPoster.jpg";
+import RickPosterBack from "../img/rick/RickPosterBack.jpg";
 // картинки к тесту про злодея
 //Гитара
 import Guitar from "../img/rick/Guitar.jpg";
@@ -28,7 +28,7 @@ import Headphones from "../img/rick/Headphones.jpg";
 import HeadphonesBack from "../img/rick/HeadphonesBack.jpg";
 
 //Результаты
-import resBack from '../img/rick/r_back.jpg';
+import resBack from '../img/rick/r_Back.jpg';
 //Рик
 import resRick from '../img/rick/r_Rick.jpg';
 //Саммер
@@ -41,10 +41,10 @@ import resJerri from '../img/rick/r_Jerri.jpg';
 import resMorti from '../img/rick/r_Morti.jpg';
 
 
-const quizHate = {
-    title: "Кто ты в мульт сериале Рик и Морти?",
-    img: Stalin,
-    imgBackground: StalinBack,
+const quizRick = {
+    title: "Кто ты в Рике и Морти?",
+    img: RickPoster,
+    imgBackground: RickPosterBack,
     maxScore: 8,
     quetions: [
         // Вопрос 1
@@ -277,4 +277,4 @@ const quizHate = {
     ]
 }
 
-export default quizHate;
+export default quizRick;
