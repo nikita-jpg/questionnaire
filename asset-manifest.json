@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/questionnaire/static/css/main.614ba85d.chunk.css",
-    "main.js": "/questionnaire/static/js/main.ab42f6d0.chunk.js",
-    "main.js.map": "/questionnaire/static/js/main.ab42f6d0.chunk.js.map",
+    "main.js": "/questionnaire/static/js/main.3c7ce4da.chunk.js",
+    "main.js.map": "/questionnaire/static/js/main.3c7ce4da.chunk.js.map",
     "runtime-main.js": "/questionnaire/static/js/runtime-main.0b7f29fb.js",
     "runtime-main.js.map": "/questionnaire/static/js/runtime-main.0b7f29fb.js.map",
     "static/css/2.cdee455b.chunk.css": "/questionnaire/static/css/2.cdee455b.chunk.css",
@@ -13,7 +13,7 @@
     "static/js/4.3697bd11.chunk.js": "/questionnaire/static/js/4.3697bd11.chunk.js",
     "static/js/4.3697bd11.chunk.js.map": "/questionnaire/static/js/4.3697bd11.chunk.js.map",
     "index.html": "/questionnaire/index.html",
-    "precache-manifest.7bc0408e3b1c05d6cc59884b8c74ac8a.js": "/questionnaire/precache-manifest.7bc0408e3b1c05d6cc59884b8c74ac8a.js",
+    "precache-manifest.0eb0f948109196eceb05661ef1af09e3.js": "/questionnaire/precache-manifest.0eb0f948109196eceb05661ef1af09e3.js",
     "service-worker.js": "/questionnaire/service-worker.js",
     "static/css/2.cdee455b.chunk.css.map": "/questionnaire/static/css/2.cdee455b.chunk.css.map",
     "static/css/main.614ba85d.chunk.css.map": "/questionnaire/static/css/main.614ba85d.chunk.css.map",
@@ -74,19 +74,19 @@
     "static/media/USSR.jpg": "/questionnaire/static/media/USSR.c23845d8.jpg",
     "static/media/r_1984.jpg": "/questionnaire/static/media/r_1984.72bf275b.jpg",
     "static/media/r_Back.jpg": "/questionnaire/static/media/r_Back.8e11667c.jpg",
-    "static/media/r_Bet.jpg": "/questionnaire/static/media/r_Bet.7771f5b4.jpg",
+    "static/media/r_Bet.jpg": "/questionnaire/static/media/r_Bet.cff7d551.jpg",
     "static/media/r_Cat.jpg": "/questionnaire/static/media/r_Cat.e0ce3a12.jpg",
     "static/media/r_Cupcake.jpg": "/questionnaire/static/media/r_Cupcake.2aab45a4.jpg",
     "static/media/r_Drink.jpg": "/questionnaire/static/media/r_Drink.574d5412.jpg",
     "static/media/r_Garri.jpg": "/questionnaire/static/media/r_Garri.70f40b00.jpg",
     "static/media/r_HomeTyrant.jpg": "/questionnaire/static/media/r_HomeTyrant.381113c3.jpg",
     "static/media/r_Ivan.jpg": "/questionnaire/static/media/r_Ivan.ce4d9b3e.jpg",
-    "static/media/r_Jerri.jpg": "/questionnaire/static/media/r_Jerri.c78a0155.jpg",
+    "static/media/r_Jerri.jpg": "/questionnaire/static/media/r_Jerri.dc0c1b74.jpg",
     "static/media/r_Joker.jpg": "/questionnaire/static/media/r_Joker.cc1504a9.jpg",
-    "static/media/r_Morti.jpg": "/questionnaire/static/media/r_Morti.5245fc93.jpg",
+    "static/media/r_Morti.jpg": "/questionnaire/static/media/r_Morti.28fea7ac.jpg",
     "static/media/r_Natural.jpg": "/questionnaire/static/media/r_Natural.1fd51171.jpg",
-    "static/media/r_Rick.jpg": "/questionnaire/static/media/r_Rick.f626786a.jpg",
-    "static/media/r_Summer.jpg": "/questionnaire/static/media/r_Summer.e5f38234.jpg",
+    "static/media/r_Rick.jpg": "/questionnaire/static/media/r_Rick.95a831d4.jpg",
+    "static/media/r_Summer.jpg": "/questionnaire/static/media/r_Summer.6e2725bb.jpg",
     "static/media/r_Venom.jpg": "/questionnaire/static/media/r_Venom.a94dc7b7.jpg",
     "static/media/r_Worm.jpg": "/questionnaire/static/media/r_Worm.34d9bcb9.jpg",
     "static/media/r_back.jpg": "/questionnaire/static/media/r_back.8e11667c.jpg"
@@ -96,6 +96,6 @@
     "static/css/2.cdee455b.chunk.css",
     "static/js/2.b50ec121.chunk.js",
     "static/css/main.614ba85d.chunk.css",
-    "static/js/main.ab42f6d0.chunk.js"
+    "static/js/main.3c7ce4da.chunk.js"
   ]
 }
