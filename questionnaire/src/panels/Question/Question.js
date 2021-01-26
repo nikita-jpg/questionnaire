@@ -1,6 +1,6 @@
 import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
 import { Button, IOS, Panel, PanelHeader, PanelHeaderButton, platform } from '@vkontakte/vkui';
-import React from 'react';
+import React, { useState } from 'react';
 
 import "./Question.css";
 
@@ -12,6 +12,10 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
     const styleBackgroundImg = {
         backgroundImage: `url('${question.questionImgBack}')`
     }
+
+    const [isRotated, setRotate] = useState(false);
+
+    const rotateImage = () => setRotate(!isRotated);
 
     return (
         <Panel id={id} separator={false}>
@@ -32,7 +36,23 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
 
             <div className="Question" style={styleBackgroundImg}>
                 <div className="Question__content">
-                    <img className="Question__image" src={question.questionImg} alt={`image_${id}`} />
+                    {
+                        question.overSideImg !== undefined
+                            ?
+                            <div 
+                                className={`Question__image-wrap ${isRotated ?"Question__image-wrap_rotated" :""}`}
+                                onClick={rotateImage}
+                            >
+                                <img className="Question__image Question__image_hidden" src={question.questionImg} alt={`image_hidden_${id}`} />
+        
+                                <img className="Question__image Question__image_side Question__image_front" src={question.questionImg} alt={`image_front_${id}`} />
+                                <img className="Question__image Question__image_side Question__image_back" src={question.overSideImg} alt={`image_back_${id}`} />
+                            </div>
+
+                            :<div className="Question__image-wrap">
+                                <img className="Question__image" src={question.questionImg} alt={`image_hidden_${id}`} />
+                            </div>
+                    }
 
                     <p className="Question__question-text">{question.questionText}</p>
 

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import "./Quiz.css"
 import { Icon16ChevronLeft, Icon16Chevron } from '@vkontakte/icons';
 
-const Quiz = ({ id, quizze, goLeftQuiz, goRightQuiz, hasRightQuiz, hasLeftQuiz, goToViewQuestions }) => {
+const Quiz = ({ id, quizze, goLeftQuiz, goRightQuiz, hasRightQuiz, hasLeftQuiz, goToViewQuestions, showAlert }) => {
     const styleChevron = {
         width: 36,
         height: 36,
@@ -46,7 +46,9 @@ const Quiz = ({ id, quizze, goLeftQuiz, goRightQuiz, hasRightQuiz, hasLeftQuiz, 
                         </button>
                     </div>
 
-                    <Button onClick={goToViewQuestions} className="Quiz__button-take-survey" mode="overlay_secondary">Пройти опрос</Button>
+                    <Button onClick={goToViewQuestions} className="Quiz__button" mode="overlay_secondary">Пройти опрос</Button>
+
+                    <Button onClick={showAlert} className="Quiz__button" mode="overlay_secondary">Инструкция</Button>
                 </Div>
             </Div>
         </Panel>

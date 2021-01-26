@@ -50,6 +50,7 @@ const quizGay = {
         {
             questionImgBack : gaetanDugaBack,
             questionImg:  gaetanDuga,
+            overSideImg: natural,
             questionText: "Знакомый пригласил тебя на аниме «Первый мститель», твои действия:",
             answerOptions: [
                 {

@@ -5,10 +5,12 @@ import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenS
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Quiz from './panels/Quiz/Quiz';
-import { Panel, Root } from '@vkontakte/vkui';
+import { Alert, Panel, Root } from '@vkontakte/vkui';
 import Question from './panels/Question/Question';
 import Result from './panels/Result/Result';
 import preloadImages from './preloadImages';
+
+import "./App.css";
 
 const App = ({ quizzes }) => {
 	const [fetchedUser, setUser] = useState(null);
@@ -16,6 +18,31 @@ const App = ({ quizzes }) => {
 
 	const enablePopout = () => setPopout(<ScreenSpinner size='large' />);
 	const disablePopout = () => setPopout(null);
+
+	const showAlert = () => {
+		setPopout(
+			<Alert
+				actions={[
+					{
+						title: "Ок",
+						autoclose: true,
+						mode: "cancel"
+					}
+				]}
+				onClose={disablePopout}
+				actionsLayout="horizontal"
+			>
+				<div className="App-alert">
+					<h2>Инструкция</h2>
+					<p>
+						1) Проходишь опрос 📋<br/>
+						2) Скидываешь приложение другу 📲<br/>
+						3) Сравнивайте ⚔
+					</p>
+				</div>
+			</Alert>
+		)
+	}
 
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data } }) => {
@@ -83,14 +110,14 @@ const App = ({ quizzes }) => {
 
 		setTotalScore(totalScore);
 
-		quizze.results.forEach(({min, max}, index) => {
+		quizze.results.forEach(({ min, max }, index) => {
 			if (totalScore >= min && totalScore <= max) {
 				setIndexResult(index);
 			}
 		});
 	}
 
-	const createGoToPrevQuestion = currentIndex => () =>  { 
+	const createGoToPrevQuestion = currentIndex => () => {
 		removeIndexAnswer()
 
 		if (currentIndex <= 0) {
@@ -100,7 +127,7 @@ const App = ({ quizzes }) => {
 		}
 	};
 
-	const createGoToNextQuestion = (currentIndex, length) => (indexAnswer) =>  { 
+	const createGoToNextQuestion = (currentIndex, length) => (indexAnswer) => {
 		pushIndexAnswer(indexAnswer);
 
 		if (currentIndex + 1 < length) {
@@ -124,7 +151,7 @@ const App = ({ quizzes }) => {
 		];
 
 		enablePopout();
-		
+
 		preloadImages(imagesSrc, () => {
 			disablePopout();
 			goToViewQuestions();
@@ -139,7 +166,7 @@ const App = ({ quizzes }) => {
 		const PERCENT_SUBSTRING = "{%percent%}";
 
 		const percent = Math.round(totalScore / quizzes[indexQuiz].maxScore * 100);
-		
+
 		let index = String(result).indexOf(PERCENT_SUBSTRING);
 
 		while (index !== -1) {
@@ -166,6 +193,7 @@ const App = ({ quizzes }) => {
 							hasRightQuiz={i < quizzes.length - 1}
 							hasLeftQuiz={i > 0}
 							goToViewQuestions={createGoToQuestion(i, quizze)}
+							showAlert={showAlert}
 						/>
 					))
 				}
@@ -174,11 +202,11 @@ const App = ({ quizzes }) => {
 			<View activePanel={activeQuestionPanel} id={VIEW_ID_QUESTIONES}>
 				{
 					quizzes[indexQuiz].quetions.map((question, i, arr) => (
-						<Question 
+						<Question
 							id={createQuestionId(i)}
 							key={createQuestionId(i)}
 							question={question}
-							numberCurrentQuestion={i+1}
+							numberCurrentQuestion={i + 1}
 							countQuestions={arr.length}
 							goToPrevQuestion={createGoToPrevQuestion(i)}
 							goToNextQuestion={createGoToNextQuestion(i, arr.length)}

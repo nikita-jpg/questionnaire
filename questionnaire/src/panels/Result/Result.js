@@ -33,7 +33,7 @@ const Result = ({backgroundImage, image, historyImage, wallImage, text, goBack})
                         <PanelHeaderButton onClick={goBack}>
                             {osName === IOS ? <Icon28ChevronBack fill="white" /> : <Icon24Back fill="white" />}
                         </PanelHeaderButton>
-                        <div className="Result__title">Итог</div>
+                        <span className="Result__title">Итог</span>
                     </>
                 }
                 separator={false}

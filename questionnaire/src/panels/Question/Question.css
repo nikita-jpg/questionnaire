@@ -25,10 +25,37 @@
     box-sizing: border-box;
 }
 
+.Question__image-wrap {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.Question__image-wrap_rotated {
+    transform: rotateY(180deg);
+}
+
 .Question__image {
-    border-radius: 8px;
     display: block;
     width: 100%;
+    border-radius: 8px;
+}
+
+.Question__image_side {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Question__image_hidden {
+    visibility: hidden;
+}
+
+.Question__image_front {
+}
+
+.Question__image_back {
+    transform: rotateY(180deg);
 }
 
 .Question__question-text {

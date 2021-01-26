@@ -30,6 +30,8 @@
 
 .Quiz__title {
     padding-left: 10px;
+    padding-top: 15px;
+    margin: 0;
     color: white;
     font-size: 16pt;
     text-shadow: 0 0 4px 2px rgb(78, 78, 78);
@@ -38,15 +40,16 @@
     white-space: normal;
 }
 
-.Quiz__button-take-survey{
+.Quiz__button{
     max-width: 280px;
     width: 80%;
     min-width: 200px;
     border-radius: 8px;
     height: 34px;
+    margin-bottom: 10px;
 }
 
-.Quiz__button-take-survey .Button__content{
+.Quiz__button .Button__content{
     font-size: 16pt;
     line-height: 17px;
     height: 34px;
