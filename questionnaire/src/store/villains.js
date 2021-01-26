@@ -28,17 +28,17 @@ import Sherlock from "../img/villains/Sherlock.jpg";
 import SherlockBack from "../img/villains/SherlockBack.jpg";
 
 //Результаты
-import resBack from '../img/villains/r_back.jpg';
+import resBack from '../img/villains/rback.jpg';
 //Кексик
-import resCupcake from '../img/villains/r_Cupcake.jpg';
+import resCupcake from '../img/villains/rCupcake.jpg';
 //Волан-Де-Морт
-import resVolanDeMort from '../img/villains/r_VolanDeMort.jpg';
+import resVolanDeMort from '../img/villains/rVolanDeMort.jpg';
 //Веном
-import resVenom from '../img/villains/r_Venom.jpg';
+import resVenom from '../img/villains/rVenom.jpg';
 //Иван Ванко
-import resIvan from '../img/villains/r_Ivan.jpg';
+import resIvan from '../img/villains/rIvan.jpg';
 //Джокер
-import resJoker from '../img/villains/r_Joker.jpg';
+import resJoker from '../img/villains/rJoker.jpg';
 
 
 const quizVillains = {

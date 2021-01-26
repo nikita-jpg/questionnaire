@@ -28,17 +28,17 @@ import Headphones from "../img/rick/Headphones.jpg";
 import HeadphonesBack from "../img/rick/HeadphonesBack.jpg";
 
 //Результаты
-import resBack from '../img/rick/r_Back.jpg';
+import resBack from '../img/rick/rBack.jpg';
 //Рик
-import resRick from '../img/rick/r_Rick.jpg';
+import resRick from '../img/rick/rRick.jpg';
 //Саммер
-import resSummer from '../img/rick/r_Summer.jpg';
+import resSummer from '../img/rick/rSummer.jpg';
 //Бет
-import resBet from '../img/rick/r_Bet.jpg';
+import resBet from '../img/rick/rBet.jpg';
 //Джерри
-import resJerri from '../img/rick/r_Jerri.jpg';
+import resJerri from '../img/rick/rJerri.jpg';
 //Морти
-import resMorti from '../img/rick/r_Morti.jpg';
+import resMorti from '../img/rick/rMorti.jpg';
 
 
 const quizRick = {

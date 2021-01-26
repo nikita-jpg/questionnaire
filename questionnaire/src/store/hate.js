@@ -28,15 +28,15 @@ import Cat from "../img/hate/Cat.jpg";
 import CatBack from "../img/hate/CatBack.jpg";
 
 //Результаты
-import resBack from '../img/hate/r_back.jpg';
+import resBack from '../img/hate/rback.jpg';
 //Котик
-import resCat from '../img/hate/r_Cat.jpg';
+import resCat from '../img/hate/rCat.jpg';
 //Червяк
-import resWorm from '../img/hate/r_Worm.jpg';
+import resWorm from '../img/hate/rWorm.jpg';
 //Домашнее насилие
-import resHomeTyrant from '../img/hate/r_HomeTyrant.jpg';
+import resHomeTyrant from '../img/hate/rHomeTyrant.jpg';
 //1984
-import res1984 from '../img/hate/r_1984.jpg';
+import res1984 from '../img/hate/r1984.jpg';
 
 
 const quizHate = {
