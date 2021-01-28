@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a0891914a8074cc3a09fa823af3a127c",
+    "revision": "4186baa75b51169463bbf4d79409be8b",
     "url": "/questionnaire/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/css/2.cdee455b.chunk.css"
   },
   {
-    "revision": "94e53f79be2694426cf8",
-    "url": "/questionnaire/static/css/main.a65ec0d7.chunk.css"
+    "revision": "cce9fedd2088faa3accc",
+    "url": "/questionnaire/static/css/main.b6a6e732.chunk.css"
   },
   {
     "revision": "52327d980063aa35c515",
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/questionnaire/static/js/4.e9ffe76d.chunk.js"
   },
   {
-    "revision": "94e53f79be2694426cf8",
-    "url": "/questionnaire/static/js/main.083ec324.chunk.js"
+    "revision": "cce9fedd2088faa3accc",
+    "url": "/questionnaire/static/js/main.cde32627.chunk.js"
   },
   {
     "revision": "721e5f477271595a064f",
@@ -253,74 +253,74 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "72bf275b2dd2510d0424a5821b75431a",
-    "url": "/questionnaire/static/media/r_1984.72bf275b.jpg"
+    "url": "/questionnaire/static/media/r1984.72bf275b.jpg"
   },
   {
     "revision": "8e11667cf633ba5f5f9de7c969feb5b1",
-    "url": "/questionnaire/static/media/r_Back.8e11667c.jpg"
+    "url": "/questionnaire/static/media/rBack.8e11667c.jpg"
   },
   {
     "revision": "cff7d551af63c028381b1a85c3e6fb25",
-    "url": "/questionnaire/static/media/r_Bet.cff7d551.jpg"
+    "url": "/questionnaire/static/media/rBet.cff7d551.jpg"
   },
   {
     "revision": "e0ce3a1281f5aa8cc4338e2ed9b7a603",
-    "url": "/questionnaire/static/media/r_Cat.e0ce3a12.jpg"
+    "url": "/questionnaire/static/media/rCat.e0ce3a12.jpg"
   },
   {
     "revision": "2aab45a4e2fcfbdf1288db2a752a57d0",
-    "url": "/questionnaire/static/media/r_Cupcake.2aab45a4.jpg"
+    "url": "/questionnaire/static/media/rCupcake.2aab45a4.jpg"
   },
   {
     "revision": "574d5412a5f1a7e6980fab609314b411",
-    "url": "/questionnaire/static/media/r_Drink.574d5412.jpg"
+    "url": "/questionnaire/static/media/rDrink.574d5412.jpg"
   },
   {
     "revision": "70f40b00d695acdccc4495e3a25cc563",
-    "url": "/questionnaire/static/media/r_Garri.70f40b00.jpg"
+    "url": "/questionnaire/static/media/rGarri.70f40b00.jpg"
   },
   {
     "revision": "381113c3c7ede8af415716ed2f64fda0",
-    "url": "/questionnaire/static/media/r_HomeTyrant.381113c3.jpg"
+    "url": "/questionnaire/static/media/rHomeTyrant.381113c3.jpg"
   },
   {
     "revision": "ce4d9b3e04b48376ed4e808b1c829ea1",
-    "url": "/questionnaire/static/media/r_Ivan.ce4d9b3e.jpg"
+    "url": "/questionnaire/static/media/rIvan.ce4d9b3e.jpg"
   },
   {
     "revision": "dc0c1b74d380af8a1456d3ce91dabcb0",
-    "url": "/questionnaire/static/media/r_Jerri.dc0c1b74.jpg"
+    "url": "/questionnaire/static/media/rJerri.dc0c1b74.jpg"
   },
   {
     "revision": "cc1504a96f24cad6539a74b2559f5592",
-    "url": "/questionnaire/static/media/r_Joker.cc1504a9.jpg"
+    "url": "/questionnaire/static/media/rJoker.cc1504a9.jpg"
   },
   {
     "revision": "28fea7acfcfaa570f5e9d67dd5bdc830",
-    "url": "/questionnaire/static/media/r_Morti.28fea7ac.jpg"
+    "url": "/questionnaire/static/media/rMorti.28fea7ac.jpg"
   },
   {
     "revision": "1fd511714a7baa4f5f5e64d4db6056c9",
-    "url": "/questionnaire/static/media/r_Natural.1fd51171.jpg"
+    "url": "/questionnaire/static/media/rNatural.1fd51171.jpg"
   },
   {
     "revision": "95a831d42db8c8a0c385b1895a61aebc",
-    "url": "/questionnaire/static/media/r_Rick.95a831d4.jpg"
+    "url": "/questionnaire/static/media/rRick.95a831d4.jpg"
   },
   {
     "revision": "6e2725bb94a1ccabea150072d663ea29",
-    "url": "/questionnaire/static/media/r_Summer.6e2725bb.jpg"
+    "url": "/questionnaire/static/media/rSummer.6e2725bb.jpg"
   },
   {
     "revision": "a94dc7b7d2a6a9de9ca7c7648175ad1a",
-    "url": "/questionnaire/static/media/r_Venom.a94dc7b7.jpg"
+    "url": "/questionnaire/static/media/rVenom.a94dc7b7.jpg"
   },
   {
     "revision": "34d9bcb9c2480efe4d559e72747be69a",
-    "url": "/questionnaire/static/media/r_Worm.34d9bcb9.jpg"
+    "url": "/questionnaire/static/media/rWorm.34d9bcb9.jpg"
   },
   {
     "revision": "8e11667cf633ba5f5f9de7c969feb5b1",
-    "url": "/questionnaire/static/media/r_back.8e11667c.jpg"
+    "url": "/questionnaire/static/media/rback.8e11667c.jpg"
   }
 ]);
