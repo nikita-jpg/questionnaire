@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/questionnaire/static/css/main.b6a6e732.chunk.css",
-    "main.js": "/questionnaire/static/js/main.cde32627.chunk.js",
-    "main.js.map": "/questionnaire/static/js/main.cde32627.chunk.js.map",
+    "main.css": "/questionnaire/static/css/main.00001d1e.chunk.css",
+    "main.js": "/questionnaire/static/js/main.e53f8408.chunk.js",
+    "main.js.map": "/questionnaire/static/js/main.e53f8408.chunk.js.map",
     "runtime-main.js": "/questionnaire/static/js/runtime-main.70a78e6f.js",
     "runtime-main.js.map": "/questionnaire/static/js/runtime-main.70a78e6f.js.map",
     "static/css/2.cdee455b.chunk.css": "/questionnaire/static/css/2.cdee455b.chunk.css",
@@ -13,10 +13,10 @@
     "static/js/4.e9ffe76d.chunk.js": "/questionnaire/static/js/4.e9ffe76d.chunk.js",
     "static/js/4.e9ffe76d.chunk.js.map": "/questionnaire/static/js/4.e9ffe76d.chunk.js.map",
     "index.html": "/questionnaire/index.html",
-    "precache-manifest.4af19c222056ff53aa0c31ff5147911f.js": "/questionnaire/precache-manifest.4af19c222056ff53aa0c31ff5147911f.js",
+    "precache-manifest.7226380a584e0e94a433747e1d2bfcad.js": "/questionnaire/precache-manifest.7226380a584e0e94a433747e1d2bfcad.js",
     "service-worker.js": "/questionnaire/service-worker.js",
     "static/css/2.cdee455b.chunk.css.map": "/questionnaire/static/css/2.cdee455b.chunk.css.map",
-    "static/css/main.b6a6e732.chunk.css.map": "/questionnaire/static/css/main.b6a6e732.chunk.css.map",
+    "static/css/main.00001d1e.chunk.css.map": "/questionnaire/static/css/main.00001d1e.chunk.css.map",
     "static/js/2.393950fa.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.393950fa.chunk.js.LICENSE.txt",
     "static/js/3.fecd7a67.chunk.js.LICENSE.txt": "/questionnaire/static/js/3.fecd7a67.chunk.js.LICENSE.txt",
     "static/media/Batman.jpg": "/questionnaire/static/media/Batman.e499e9b6.jpg",
@@ -72,6 +72,7 @@
     "static/media/Treachery.jpg": "/questionnaire/static/media/Treachery.624cd7e4.jpg",
     "static/media/TreacheryBack.jpg": "/questionnaire/static/media/TreacheryBack.90c4f188.jpg",
     "static/media/USSR.jpg": "/questionnaire/static/media/USSR.c23845d8.jpg",
+    "static/media/Question.css": "/questionnaire/static/media/frontButton.be8532f7.svg",
     "static/media/r1984.jpg": "/questionnaire/static/media/r1984.72bf275b.jpg",
     "static/media/rBack.jpg": "/questionnaire/static/media/rBack.8e11667c.jpg",
     "static/media/rBet.jpg": "/questionnaire/static/media/rBet.cff7d551.jpg",
@@ -95,7 +96,7 @@
     "static/js/runtime-main.70a78e6f.js",
     "static/css/2.cdee455b.chunk.css",
     "static/js/2.393950fa.chunk.js",
-    "static/css/main.b6a6e732.chunk.css",
-    "static/js/main.cde32627.chunk.js"
+    "static/css/main.00001d1e.chunk.css",
+    "static/js/main.e53f8408.chunk.js"
   ]
 }
