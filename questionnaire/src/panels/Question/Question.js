@@ -39,14 +39,31 @@ const Question = ({ id, question, numberCurrentQuestion, countQuestions,
                     {
                         question.overSideImg !== undefined
                             ?
-                            <div 
+                            <div
                                 className={`Question__image-wrap ${isRotated ?"Question__image-wrap_rotated" :""}`}
-                                onClick={rotateImage}
                             >
                                 <img className="Question__image Question__image_hidden" src={question.questionImg} alt={`image_hidden_${id}`} />
         
-                                <img className="Question__image Question__image_side Question__image_front" src={question.questionImg} alt={`image_front_${id}`} />
-                                <img className="Question__image Question__image_side Question__image_back" src={question.overSideImg} alt={`image_back_${id}`} />
+                                <div className="Question__image-side-wrap Question__image-side-wrap_front">
+                                    <img className="Question__image" src={question.questionImg} alt={`image_front_${id}`} />
+
+                                    <button 
+                                        onClick={rotateImage}
+                                        className="Question__rotate-button Question__rotate-button_front"
+                                    ></button>
+                                </div>
+
+                                <div className={`Question__image-side-wrap 
+                                    Question__image-side-wrap_back 
+                                    ${!isRotated ?"Question__image-side-wrap_disable" :""}`}
+                                >
+                                    <img className="Question__image" src={question.overSideImg} alt={`image_back_${id}`} />
+                                
+                                    <button
+                                        onClick={rotateImage}
+                                        className="Question__rotate-button Question__rotate-button_back"
+                                    ></button>
+                                </div>
                             </div>
 
                             :<div className="Question__image-wrap">

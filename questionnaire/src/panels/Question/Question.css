@@ -35,27 +35,51 @@
     transform: rotateY(180deg);
 }
 
+.Question__image-side-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Question__image-side-wrap_front {
+    transform: rotateY(0);
+}
+
+.Question__image-side-wrap_back {
+    transform: rotateY(180deg);    
+}
+
+.Question__image-side-wrap_disable {
+    pointer-events: none;
+}
+
 .Question__image {
     display: block;
     width: 100%;
     border-radius: 8px;
 }
 
-.Question__image_side {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 .Question__image_hidden {
     visibility: hidden;
 }
 
-.Question__image_front {
+.Question__rotate-button {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    height: 40px;
+    width: 40px;
+    background: none;
+    border: none;
+    outline: none;
 }
 
-.Question__image_back {
-    transform: rotateY(180deg);
+.Question__rotate-button_front {
+    background-image: url("./frontButton.svg");
+}
+
+.Question__rotate-button_back {
+    background-image: url("./backButton.svg");
 }
 
 .Question__question-text {
