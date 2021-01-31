@@ -12,38 +12,14 @@ import preloadImages from './preloadImages';
 
 import "./App.css";
 import StartWindow from './panels/StartWindow/StartWindow';
+import ListAge from './panels/ListAge/ListAge';
 
-const App = ({ quizzes }) => {
+const App = ({ eras, quizzes }) => {
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
 	const enablePopout = () => setPopout(<ScreenSpinner size='large' />);
 	const disablePopout = () => setPopout(null);
-
-	const showAlert = () => {
-		setPopout(
-			<Alert
-				actions={[
-					{
-						title: "Ок",
-						autoclose: true,
-						mode: "cancel"
-					}
-				]}
-				onClose={disablePopout}
-				actionsLayout="horizontal"
-			>
-				<div className="App-alert">
-					<h2>Инструкция</h2>
-					<p>
-						1) Проходишь опрос 📋<br/>
-						2) Скидываешь приложение другу 📲<br/>
-						3) Сравнивайте ⚔
-					</p>
-				</div>
-			</Alert>
-		)
-	}
 
 	useEffect(() => {
 		bridge.subscribe(({ detail: { type, data } }) => {
@@ -63,11 +39,12 @@ const App = ({ quizzes }) => {
 
 	// логика переключения между View
 	const VIEW_ID_START_WINDOW = "VIEW_ID_START_WINDOW";
+	const VIEW_ID_LIST_AGE = "VIEW_ID_LIST_AGE";
 	const VIEW_ID_QUIZES = "VIEW_ID_QUIZES";
 	const VIEW_ID_QUESTIONES = "VIEW_ID_QUESTIONES";
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE);
 
 	const goToViewQuizes = () => setActiveView(VIEW_ID_QUIZES);
 	const goToViewQuestions = () => setActiveView(VIEW_ID_QUESTIONES);
@@ -184,6 +161,8 @@ const App = ({ quizzes }) => {
 	return (
 		<Root activeView={activeView}>
 			<StartWindow id={VIEW_ID_START_WINDOW}/>
+
+			<ListAge id={VIEW_ID_LIST_AGE} eras={eras}/>
 
 			{/* <View activePanel={activeQuizPanel} popout={popout} header={false} id={VIEW_ID_QUIZES}>
 				{

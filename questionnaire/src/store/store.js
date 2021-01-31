@@ -1,14 +1,13 @@
-import quizGay from "./gay";
+import ageRussianEmpire from "./ageRussianEmpire/ageRussianEmpire";
 import quizVillains from "./villains";
-import quizHate from "./hate";
-import quizRick from "./rick"
 
 const store = {
     quizzes: [
-        quizGay,
-        quizVillains,
-        quizHate,
-        quizRick
+        quizVillains
+    ],
+
+    eras: [
+        ageRussianEmpire
     ]
 }
 
