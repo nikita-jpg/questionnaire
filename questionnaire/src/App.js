@@ -11,6 +11,7 @@ import Result from './panels/Result/Result';
 import preloadImages from './preloadImages';
 
 import "./App.css";
+import StartWindow from './panels/StartWindow/StartWindow';
 
 const App = ({ quizzes }) => {
 	const [fetchedUser, setUser] = useState(null);
@@ -61,11 +62,12 @@ const App = ({ quizzes }) => {
 	}, []);
 
 	// логика переключения между View
+	const VIEW_ID_START_WINDOW = "VIEW_ID_START_WINDOW";
 	const VIEW_ID_QUIZES = "VIEW_ID_QUIZES";
 	const VIEW_ID_QUESTIONES = "VIEW_ID_QUESTIONES";
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_QUIZES);
+	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
 
 	const goToViewQuizes = () => setActiveView(VIEW_ID_QUIZES);
 	const goToViewQuestions = () => setActiveView(VIEW_ID_QUESTIONES);
@@ -181,7 +183,9 @@ const App = ({ quizzes }) => {
 
 	return (
 		<Root activeView={activeView}>
-			<View activePanel={activeQuizPanel} popout={popout} header={false} id={VIEW_ID_QUIZES}>
+			<StartWindow id={VIEW_ID_START_WINDOW}/>
+
+			{/* <View activePanel={activeQuizPanel} popout={popout} header={false} id={VIEW_ID_QUIZES}>
 				{
 					quizzes.map((quizze, i) => (
 						<Quiz
@@ -226,7 +230,7 @@ const App = ({ quizzes }) => {
 						goBack={goToViewQuizes}
 					/>
 				</Panel>
-			</View>
+			</View> */}
 		</Root>
 	);
 }
