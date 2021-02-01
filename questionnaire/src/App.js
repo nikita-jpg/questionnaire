@@ -13,8 +13,9 @@ import preloadImages from './preloadImages';
 import "./App.css";
 import StartWindow from './panels/StartWindow/StartWindow';
 import ListAge from './panels/ListAge/ListAge';
+import ListQuizes from './panels/ListQuizes/ListQuizes';
 
-const App = ({ eras, quizzes }) => {
+const App = ({ eras }) => {
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
@@ -44,175 +45,57 @@ const App = ({ eras, quizzes }) => {
 	const VIEW_ID_QUESTIONES = "VIEW_ID_QUESTIONES";
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE);
+	const [activeView, setActiveView] = useState(VIEW_ID_QUIZES);
 
+	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
+	const goToViewListAge = () => setActiveView(VIEW_ID_LIST_AGE);
 	const goToViewQuizes = () => setActiveView(VIEW_ID_QUIZES);
 	const goToViewQuestions = () => setActiveView(VIEW_ID_QUESTIONES);
 	const goToViewResult = () => setActiveView(VIEW_ID_RESULT);
 
-	// логика переключения опросов
-	const createQuizId = currentIndex => `quiz_${currentIndex}`;
-
-	const [activeQuizPanel, setQuizActivePanel] = useState(createQuizId(0));
-
-	const createGoLeftQuiz = currentIndex => () => { setQuizActivePanel(createQuizId(currentIndex - 1)) };
-
-	const createGoRightQuiz = currentIndex => () => { setQuizActivePanel(createQuizId(currentIndex + 1)) };
-
-	// индекс опроса
+	// логика хранения индексов
+	const [indexAge, setIndexAge] = useState(0);
 	const [indexQuiz, setIndexQuiz] = useState(0);
+	const [indexResuslt, setIndexResult] = useState(0);
 
-	// логика переключения вопросов
-	const createQuestionId = currentIndex => `question_${currentIndex}`;
-
-	const [activeQuestionPanel, setQuestionActivePanel] = useState(createQuestionId(0));
-
-	// хранит массив индексов ответов
-	const [indexesAnswers, setIndexesAnswers] = useState([]);
-
-	const pushIndexAnswer = indexAnswer => setIndexesAnswers([...indexesAnswers, indexAnswer]);
-
-	const removeIndexAnswer = () => setIndexesAnswers(indexesAnswers.slice(0, indexesAnswers.length - 1));
-
-	const clearIndexAnswer = () => setIndexesAnswers([]);
-
-	const [totalScore, setTotalScore] = useState(0);
-
-	const [indexResult, setIndexResult] = useState(0);
-
-	const calculateIndexResult = () => {
-		const quizze = quizzes[indexQuiz];
-
-		const totalScore = indexesAnswers.reduce((sumScore, indexAnswer, indexQuestion) => {
-			return sumScore + quizze.quetions[indexQuestion].answerOptions[indexAnswer].score;
-		}, 0);
-
-		setTotalScore(totalScore);
-
-		quizze.results.forEach(({ min, max }, index) => {
-			if (totalScore >= min && totalScore <= max) {
-				setIndexResult(index);
-			}
-		});
+	// функции для ListAge
+	const createOnClickItemAge = (index) => () => {
+		setIndexAge(index);
+		goToViewQuizes();
 	}
 
-	const createGoToPrevQuestion = currentIndex => () => {
-		removeIndexAnswer()
+	// функции для ListQuizes
+	const onBack = () => {
+		goToViewListAge();
+	}
 
-		if (currentIndex <= 0) {
-			goToViewQuizes();
-		} else {
-			setQuestionActivePanel(createQuestionId(currentIndex - 1));
-		}
-	};
-
-	const createGoToNextQuestion = (currentIndex, length) => (indexAnswer) => {
-		pushIndexAnswer(indexAnswer);
-
-		if (currentIndex + 1 < length) {
-			setQuestionActivePanel(createQuestionId(currentIndex + 1));
-		} else {
-			calculateIndexResult();
-			goToViewResult();
-		}
-	};
-
-	// функция создающая функцию для перехода к вопросам
-	const createGoToQuestion = (index, { quetions, results }) => () => {
-		clearIndexAnswer();
+	const createOnClickItemQuizes = (index) => () => {
 		setIndexQuiz(index);
-
-		const imagesSrc = [
-			...quetions.map(q => q.questionImg),
-			...quetions.map(q => q.questionImgBack),
-			...results.map(r => r.image),
-			...results.map(r => r.backgroundImage)
-		];
-
-		enablePopout();
-
-		preloadImages(imagesSrc, () => {
-			disablePopout();
-			goToViewQuestions();
-			setQuestionActivePanel(createQuestionId(0));
-		});
-	}
-
-	// функция для добавления процента в строчку текста
-	const layoutTextWithPercent = (text) => {
-		let result = text;
-
-		const PERCENT_SUBSTRING = "{%percent%}";
-
-		const percent = Math.round(totalScore / quizzes[indexQuiz].maxScore * 100);
-
-		let index = String(result).indexOf(PERCENT_SUBSTRING);
-
-		while (index !== -1) {
-			let arrResult = String(result).split("");
-			arrResult.splice(index, PERCENT_SUBSTRING.length, ...String(percent).split(""));
-			result = arrResult.join("");
-			index = String(result).indexOf(PERCENT_SUBSTRING, index + 1);
-		}
-
-		return String(result);
+		goToViewQuizes();
 	}
 
 	return (
 		<Root activeView={activeView}>
-			<StartWindow id={VIEW_ID_START_WINDOW}/>
+			<StartWindow 
+				id={VIEW_ID_START_WINDOW} 
+				onClick={goToViewListAge}
+			/>
 
-			<ListAge id={VIEW_ID_LIST_AGE} eras={eras}/>
+			<ListAge 
+				id={VIEW_ID_LIST_AGE} 
+				eras={eras} 
+				createOnClickItemAge={createOnClickItemAge}
+			/>
 
-			{/* <View activePanel={activeQuizPanel} popout={popout} header={false} id={VIEW_ID_QUIZES}>
-				{
-					quizzes.map((quizze, i) => (
-						<Quiz
-							id={createQuizId(i)}
-							key={createQuizId(i)}
-							quizze={quizze}
-							goLeftQuiz={createGoLeftQuiz(i)}
-							goRightQuiz={createGoRightQuiz(i)}
-							hasRightQuiz={i < quizzes.length - 1}
-							hasLeftQuiz={i > 0}
-							goToViewQuestions={createGoToQuestion(i, quizze)}
-							showAlert={showAlert}
-						/>
-					))
-				}
-			</View>
-
-			<View activePanel={activeQuestionPanel} id={VIEW_ID_QUESTIONES}>
-				{
-					quizzes[indexQuiz].quetions.map((question, i, arr) => (
-						<Question
-							id={createQuestionId(i)}
-							key={createQuestionId(i)}
-							question={question}
-							numberCurrentQuestion={i + 1}
-							countQuestions={arr.length}
-							goToPrevQuestion={createGoToPrevQuestion(i)}
-							goToNextQuestion={createGoToNextQuestion(i, arr.length)}
-						/>
-					))
-				}
-			</View>
-
-			<View id={VIEW_ID_RESULT} activePanel="PANEL_RESULT">
-				<Panel id="PANEL_RESULT">
-					<Result
-						backgroundImage={quizzes[indexQuiz].results[indexResult].backgroundImage}
-						image={quizzes[indexQuiz].results[indexResult].image}
-						historyImage={quizzes[indexQuiz].results[indexResult].historyImage}
-						wallImage={quizzes[indexQuiz].results[indexResult].wallImage}
-						text={layoutTextWithPercent(quizzes[indexQuiz].results[indexResult].text)}
-						goBack={goToViewQuizes}
-					/>
-				</Panel>
-			</View> */}
+			<ListQuizes 
+				id={VIEW_ID_QUIZES} 
+				title={eras[indexAge].shortTitle} 
+				quizes={eras[indexAge].quizzes} 
+				onBack={onBack} 
+				createOnClickItemQuizes={createOnClickItemQuizes}
+			/>
 		</Root>
 	);
 }
 
 export default App;
-

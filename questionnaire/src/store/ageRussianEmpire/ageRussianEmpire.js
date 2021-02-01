@@ -4,6 +4,7 @@ import quizTheEraOfPalaceCoups from "./quizTheEraOfPalaceCoups";
 
 const ageRussianEmpire = {
     title: "Российская империя",
+    shortTitle: "Рос. империя",
     image: mainImage,
     quizzes: [
         quizPetr1,

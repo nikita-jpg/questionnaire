@@ -2,7 +2,7 @@ import { View } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import ItemListAge from './ItemListAge/ItemListAge';
 
-const ListAge = ({id, eras}) => {
+const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
     const createIdPanel = index => `${id}_${index}`;
 
     const [indexActivePanel, setIndexActivePanel] = useState(0);
@@ -21,7 +21,7 @@ const ListAge = ({id, eras}) => {
                         title={age.title}
                         image={age.image}
                         percentProgress={age.percentProgress}
-                        onClick={age.showListQuizOfAge}
+                        onClick={createOnClickItemAge(i)}
                         hasLeftButton={i > 0}
                         hasRightButton={i < arrAge.length - 1}
                         goLeft={createGoLeft(i)}
