@@ -30,7 +30,7 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { }, createOnClickItemQu
                         quizes.map((quiz, i) => (
                             <ItemListQuizes
                                 key={i}
-                                image={quiz.image}
+                                imageSrc={quiz.imageSrc}
                                 title={quiz.title}
                                 onClick={createOnClickItemQuizes(i)}
                                 percentProgress={quiz.percentProgress}

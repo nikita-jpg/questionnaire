@@ -19,7 +19,7 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
                         key={createIdPanel(i)}
                         id={createIdPanel(i)}
                         title={age.title}
-                        image={age.image}
+                        imageSrc={age.imageSrc}
                         percentProgress={age.percentProgress}
                         onClick={createOnClickItemAge(i)}
                         hasLeftButton={i > 0}

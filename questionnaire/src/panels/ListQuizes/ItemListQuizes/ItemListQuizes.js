@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ItemListQuizes.css';
 
-const ItemListQuizes = ({ image, title, onClick, percentProgress }) => {
+const ItemListQuizes = ({ imageSrc, title, onClick, percentProgress }) => {
     let classNamePersentProgress;
 
     if (percentProgress === undefined) {
@@ -18,7 +18,7 @@ const ItemListQuizes = ({ image, title, onClick, percentProgress }) => {
     return (
         <li className="ItemListQuizes">
             <div className="ItemListQuizes__image-wrap">
-                <img className="ItemListQuizes__image" src={image} alt={`ItemListQuizes-${title}`} />
+                <img className="ItemListQuizes__image" src={imageSrc} alt={`ItemListQuizes-${title}`} />
 
                 <div className="ItemListQuizes__percent-wrap">
                     {

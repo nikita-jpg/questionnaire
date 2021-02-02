@@ -2,7 +2,7 @@ import imageTheEraOfPalaceCoups from "../../img/ageRussianEmpire/The era of pala
 
 const quizTheEraOfPalaceCoups = {
     title: "Эпоха Дворцовых переворотов",
-    image: imageTheEraOfPalaceCoups,
+    imageSrc: imageTheEraOfPalaceCoups,
     questions: []
 }
 

@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
-import View from '@vkontakte/vkui/dist/components/View/View';
 import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Quiz from './panels/Quiz/Quiz';
-import { Alert, Panel, Root } from '@vkontakte/vkui';
-import Question from './panels/Question/Question';
-import Result from './panels/Result/Result';
-import preloadImages from './preloadImages';
+import { Root } from '@vkontakte/vkui';
 
 import "./App.css";
 import StartWindow from './panels/StartWindow/StartWindow';
 import ListAge from './panels/ListAge/ListAge';
 import ListQuizes from './panels/ListQuizes/ListQuizes';
+import ListQuestions from './panels/ListQuestions/ListQuestions';
 
 const App = ({ eras }) => {
 	const [fetchedUser, setUser] = useState(null);
@@ -41,16 +37,16 @@ const App = ({ eras }) => {
 	// логика переключения между View
 	const VIEW_ID_START_WINDOW = "VIEW_ID_START_WINDOW";
 	const VIEW_ID_LIST_AGE = "VIEW_ID_LIST_AGE";
-	const VIEW_ID_QUIZES = "VIEW_ID_QUIZES";
-	const VIEW_ID_QUESTIONES = "VIEW_ID_QUESTIONES";
+	const VIEW_ID_LIST_QUIZES = "VIEW_ID_LIST_QUIZES";
+	const VIEW_ID_LIST_QUESTIONES = "VIEW_ID_LIST_QUESTIONES";
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_QUIZES);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
 	const goToViewListAge = () => setActiveView(VIEW_ID_LIST_AGE);
-	const goToViewQuizes = () => setActiveView(VIEW_ID_QUIZES);
-	const goToViewQuestions = () => setActiveView(VIEW_ID_QUESTIONES);
+	const goToViewListQuizes = () => setActiveView(VIEW_ID_LIST_QUIZES);
+	const goToViewListQuestions = () => setActiveView(VIEW_ID_LIST_QUESTIONES);
 	const goToViewResult = () => setActiveView(VIEW_ID_RESULT);
 
 	// логика хранения индексов
@@ -58,27 +54,41 @@ const App = ({ eras }) => {
 	const [indexQuiz, setIndexQuiz] = useState(0);
 	const [indexResuslt, setIndexResult] = useState(0);
 
+	// функции для StartWindow
+	const onClickStartWindow = () => {
+		goToViewListAge();
+	}
+
 	// функции для ListAge
 	const createOnClickItemAge = (index) => () => {
 		setIndexAge(index);
-		goToViewQuizes();
+		goToViewListQuizes();
 	}
 
 	// функции для ListQuizes
-	const onBack = () => {
+	const onBackListQuizes = () => {
 		goToViewListAge();
 	}
 
 	const createOnClickItemQuizes = (index) => () => {
 		setIndexQuiz(index);
-		goToViewQuizes();
+		goToViewListQuestions();
+	}
+
+	// функции для ListQuestions
+	const onBackListQuestions = () => {
+		goToViewListQuizes();
+	}
+
+	const onFinishListQuestions = (totalScore) => {
+		alert(totalScore);
 	}
 
 	return (
 		<Root activeView={activeView}>
 			<StartWindow 
 				id={VIEW_ID_START_WINDOW} 
-				onClick={goToViewListAge}
+				onClick={onClickStartWindow}
 			/>
 
 			<ListAge 
@@ -88,11 +98,18 @@ const App = ({ eras }) => {
 			/>
 
 			<ListQuizes 
-				id={VIEW_ID_QUIZES} 
+				id={VIEW_ID_LIST_QUIZES} 
 				title={eras[indexAge].shortTitle} 
 				quizes={eras[indexAge].quizzes} 
-				onBack={onBack} 
+				onBack={onBackListQuizes} 
 				createOnClickItemQuizes={createOnClickItemQuizes}
+			/>
+
+			<ListQuestions 
+				id={VIEW_ID_LIST_QUESTIONES}
+				arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
+				onBack={onBackListQuestions}
+				onFinish={onFinishListQuestions}
 			/>
 		</Root>
 	);

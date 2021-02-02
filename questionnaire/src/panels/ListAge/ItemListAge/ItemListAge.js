@@ -3,7 +3,7 @@ import React from 'react';
 
 import "./ItemListAge.css";
 
-const ItemListAge = ({id, image, title, percentProgress, onClick,
+const ItemListAge = ({id, imageSrc, title, percentProgress, onClick,
     hasLeftButton, goLeft, hasRightButton, goRight}) => {
 
     return (
@@ -19,7 +19,7 @@ const ItemListAge = ({id, image, title, percentProgress, onClick,
             ></PanelHeader>
             <div className="ItemListAge">
                 <div className="ItemListAge__image-wrap">
-                    <img className="ItemListAge__image" src={image} alt={`ItemListAge-image-${id}`}/>
+                    <img className="ItemListAge__image" src={imageSrc} alt={`ItemListAge-image-${id}`}/>
 
                     {
                         hasLeftButton && 
