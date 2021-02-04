@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/questionnaire/static/css/main.3645a21a.chunk.css",
+    "main.css": "/questionnaire/static/css/main.a80929f7.chunk.css",
     "main.js": "/questionnaire/static/js/main.2065370b.chunk.js",
     "main.js.map": "/questionnaire/static/js/main.2065370b.chunk.js.map",
     "runtime-main.js": "/questionnaire/static/js/runtime-main.b3fe7366.js",
@@ -13,10 +13,10 @@
     "static/js/4.6fec8f96.chunk.js": "/questionnaire/static/js/4.6fec8f96.chunk.js",
     "static/js/4.6fec8f96.chunk.js.map": "/questionnaire/static/js/4.6fec8f96.chunk.js.map",
     "index.html": "/questionnaire/index.html",
-    "precache-manifest.4c9f64ac3b6908510a24d13359c5d718.js": "/questionnaire/precache-manifest.4c9f64ac3b6908510a24d13359c5d718.js",
+    "precache-manifest.bcf0c61b1faacb3186df0639cecb36a5.js": "/questionnaire/precache-manifest.bcf0c61b1faacb3186df0639cecb36a5.js",
     "service-worker.js": "/questionnaire/service-worker.js",
     "static/css/2.cdee455b.chunk.css.map": "/questionnaire/static/css/2.cdee455b.chunk.css.map",
-    "static/css/main.3645a21a.chunk.css.map": "/questionnaire/static/css/main.3645a21a.chunk.css.map",
+    "static/css/main.a80929f7.chunk.css.map": "/questionnaire/static/css/main.a80929f7.chunk.css.map",
     "static/js/2.0bd4c519.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.0bd4c519.chunk.js.LICENSE.txt",
     "static/js/3.e0ba4dd2.chunk.js.LICENSE.txt": "/questionnaire/static/js/3.e0ba4dd2.chunk.js.LICENSE.txt",
     "static/media/The era of palace coups.png": "/questionnaire/static/media/The era of palace coups.42e7310b.png",
@@ -33,7 +33,7 @@
     "static/js/runtime-main.b3fe7366.js",
     "static/css/2.cdee455b.chunk.css",
     "static/js/2.0bd4c519.chunk.js",
-    "static/css/main.3645a21a.chunk.css",
+    "static/css/main.a80929f7.chunk.css",
     "static/js/main.2065370b.chunk.js"
   ]
 }
