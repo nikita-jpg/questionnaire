@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/questionnaire/static/css/main.e421eb36.chunk.css",
-    "main.js": "/questionnaire/static/js/main.92be40e6.chunk.js",
-    "main.js.map": "/questionnaire/static/js/main.92be40e6.chunk.js.map",
+    "main.js": "/questionnaire/static/js/main.b2bd9463.chunk.js",
+    "main.js.map": "/questionnaire/static/js/main.b2bd9463.chunk.js.map",
     "runtime-main.js": "/questionnaire/static/js/runtime-main.b3fe7366.js",
     "runtime-main.js.map": "/questionnaire/static/js/runtime-main.b3fe7366.js.map",
     "static/css/2.cdee455b.chunk.css": "/questionnaire/static/css/2.cdee455b.chunk.css",
@@ -13,7 +13,7 @@
     "static/js/4.6fec8f96.chunk.js": "/questionnaire/static/js/4.6fec8f96.chunk.js",
     "static/js/4.6fec8f96.chunk.js.map": "/questionnaire/static/js/4.6fec8f96.chunk.js.map",
     "index.html": "/questionnaire/index.html",
-    "precache-manifest.6db0a811138062438f218113f22d7f51.js": "/questionnaire/precache-manifest.6db0a811138062438f218113f22d7f51.js",
+    "precache-manifest.a4e76dd5a0e66d449e4de00b3fba4095.js": "/questionnaire/precache-manifest.a4e76dd5a0e66d449e4de00b3fba4095.js",
     "service-worker.js": "/questionnaire/service-worker.js",
     "static/css/2.cdee455b.chunk.css.map": "/questionnaire/static/css/2.cdee455b.chunk.css.map",
     "static/css/main.e421eb36.chunk.css.map": "/questionnaire/static/css/main.e421eb36.chunk.css.map",
@@ -22,7 +22,7 @@
     "static/media/The era of palace coups.png": "/questionnaire/static/media/The era of palace coups.42e7310b.png",
     "static/media/ItemListAge.css": "/questionnaire/static/media/arrowRight.d5883368.svg",
     "static/media/IteamListQuestion.css": "/questionnaire/static/media/frontButton.be8532f7.svg",
-    "static/media/candelabrumClose.svg": "/questionnaire/static/media/candelabrumClose.021d2944.svg",
+    "static/media/candelabrumClose.svg": "/questionnaire/static/media/candelabrumClose.0403b318.svg",
     "static/media/candelabrumOpen.svg": "/questionnaire/static/media/candelabrumOpen.021d2944.svg",
     "static/media/contacts.svg": "/questionnaire/static/media/contacts.da748c82.svg",
     "static/media/main.png": "/questionnaire/static/media/main.96699d6f.png",
@@ -34,6 +34,6 @@
     "static/css/2.cdee455b.chunk.css",
     "static/js/2.0bd4c519.chunk.js",
     "static/css/main.e421eb36.chunk.css",
-    "static/js/main.92be40e6.chunk.js"
+    "static/js/main.b2bd9463.chunk.js"
   ]
 }
