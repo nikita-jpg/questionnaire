@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import './BottomSheet.css';
 
-import candelabrumOpen from "./candelabrumOpen.svg";
-import candelabrumClose from "./candelabrumClose.svg";
+import svgRectangle from "./rectangle.svg";
+import svgCandelabrum from "./candelabrum.svg";
+import BlackBackground from '../../../../components/BlackBackground/BlackBackground';
 
-const BottomSheet = ({stateAnswers, onFinish=()=>{}, goToQuestionWithoutAnswer=(toIndexQuestion)=>{}}) => {
+const BottomSheet = ({ stateAnswers, onFinish = () => { }, goToQuestionWithoutAnswer = (toIndexQuestion) => { } }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleIsOpen = () => setIsOpen(!isOpen);
@@ -30,32 +31,43 @@ const BottomSheet = ({stateAnswers, onFinish=()=>{}, goToQuestionWithoutAnswer=(
     }, [isOpen]);
 
     return (
-        <div className={`BottomSheet ${isOpen && "BottomSheet__open"}`}>
-            <img 
-                onClick={toggleIsOpen} 
-                className="BottomSheet__candelabrum" 
-                src={isOpen ?candelabrumOpen :candelabrumClose}
-                alt="candelabrum"
-            />
+        <>
+            {isOpen && <BlackBackground />}
+            
+            <div className={`BottomSheet ${isOpen && "BottomSheet__open"}`}>
+                <div className="BottomSheet__svg-wrap" onClick={toggleIsOpen}>
+                    <img
+                        className={`BottomSheet__candelabrum ${isOpen && "BottomSheet__candelabrum_open"}`}
+                        src={svgCandelabrum}
+                        alt="candelabrum"
+                    />
 
-            <ul className="BottomSheet__list">
-                {
-                    stateAnswers.map(({questionText, indexAnswer}, i) => (
-                        <li key={i} className="BottomSheet__list-item" onClick={() => goToQuestionWithoutAnswer(i)}>
-                            <span className="BottomSheet__question-text">{i+1}) {questionText}...</span>
+                    <img
+                        className="BottomSheet__rectangle"
+                        src={svgRectangle}
+                        alt="rectangle"
+                    />
+                </div>
 
-                            {
-                                indexAnswer !== -1
-                                    ?<span className="BottomSheet__has-answer">Вы ответили</span>
-                                    :<span className="BottomSheet__has-not-answer">Нет ответа</span>
-                            }
-                        </li>
-                    ))
-                }
-            </ul>
+                <ul className="BottomSheet__list">
+                    {
+                        stateAnswers.map(({ questionText, indexAnswer }, i) => (
+                            <li key={i} className="BottomSheet__list-item" onClick={() => goToQuestionWithoutAnswer(i)}>
+                                <span className="BottomSheet__question-text">{i + 1}) {questionText}...</span>
 
-            <button className="BottomSheet__button" onClick={onFinish}>Закончить тест</button>
-        </div>
+                                {
+                                    indexAnswer !== -1
+                                        ? <span className="BottomSheet__has-answer">Вы ответили</span>
+                                        : <span className="BottomSheet__has-not-answer">Нет ответа</span>
+                                }
+                            </li>
+                        ))
+                    }
+                </ul>
+
+                <button className="BottomSheet__button" onClick={onFinish}>Закончить тест</button>
+            </div>
+        </>
     )
 }
 

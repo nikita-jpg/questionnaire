@@ -2,7 +2,7 @@
     background: #202020;
     border-radius: 8px;
     margin-top: 10px;
-    padding: 0 16px;
+    position: relative;
 }
 
 .ItemAnswerQuestion__question-wrap {
@@ -21,6 +21,8 @@
 .ItemAnswerQuestion__arrow {
     width: 26px;
     height: 26px;
+    flex-shrink: 0;
+    margin-left: 5px;
 }
 
 .ItemAnswerQuestion__arrow_good {
@@ -37,7 +39,7 @@
 
 .ItemAnswerQuestion__wrap-answers {
     overflow: hidden;
-    height: 200px;
+    height: auto;
     transition: height 0.8s;
 }
 
@@ -100,7 +102,6 @@
 }
 
 .ItemAnswerQuestion__text-answer {
-    height: 36px;
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -108,7 +109,7 @@
     color: #EEEEEE;
     background: #404040;
     border-radius: 8px;
-    padding: 0 8px;
+    padding: 3px 8px;
     margin: 0;
     margin-bottom: 8px;
 }

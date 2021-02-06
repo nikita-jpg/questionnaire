@@ -1,6 +1,6 @@
 import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
 import { IOS, Panel, PanelHeader, PanelHeaderButton, platform } from '@vkontakte/vkui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomSheet from './BottomSheet/BottomSheet';
 
 import "./IteamListQuestion.css";
@@ -25,14 +25,14 @@ const IteamListQuestion = ({ id, question,
                 left={
                     <>
                         <PanelHeaderButton onClick={goToPrevQuestion}>
-                            {osName === IOS ? <Icon28ChevronBack fill="white" /> : <Icon24Back fill="white" />}
+                            <Icon24Back fill="white" />
                         </PanelHeaderButton>
                         <span className="IteamListQuestion__number-question">{numberCurrentQuestion}/{countQuestions}</span>
                     </>
                 }
                 className="IteamListQuestion__PanelHeader"
                 separator={false}
-                visor={true}
+                visor={false}
                 transparent={false}
             >
             </PanelHeader>

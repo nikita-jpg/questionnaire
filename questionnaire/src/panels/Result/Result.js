@@ -87,7 +87,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
         setTimeout(() => animate({
             timing: easeOut,
 
-            duration: 4000,
+            duration: 3000,
 
             draw(progress) {
                 const newStyles = { ...styles };

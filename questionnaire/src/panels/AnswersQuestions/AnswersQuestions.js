@@ -28,6 +28,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                     {
                         questions.map((q, i) => (
                             <ItemAnswerQuestion
+                                id={`ItemAnswerQuestion-${i}`}
                                 key={i}
                                 question={q}
                                 indexRightAnswer={questions[i].answerOptions.findIndex(a => a.score === 1)}
