@@ -6,6 +6,7 @@ const ageRussianEmpire = {
     title: "Российская империя",
     shortTitle: "Рос. империя",
     imageSrc: mainImage,
+    percentProgress: 0,
     quizzes: [
         quizPetr1,
         quizTheEraOfPalaceCoups

@@ -41,12 +41,12 @@ const ListQuestions = ({id, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}
     }
 
     const createGoToNextQuestion = (indexQuestion, maxLength) => (indexAnswer) => {
-        giveAnswer(indexQuestion, indexAnswer);    
+        giveAnswer(indexQuestion, indexAnswer);
 
         if (indexQuestion < maxLength - 1) {
             setIndexQuestion(indexQuestion + 1);
         } else {
-            onFinish(calculateScore());
+            onFinish(calculateScore(), stateAnswers.map(answer => answer.indexAnswer));
             resetData();
         }
     }

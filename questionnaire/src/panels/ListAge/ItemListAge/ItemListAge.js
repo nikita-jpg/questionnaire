@@ -19,7 +19,7 @@ const ItemListAge = ({id, imageSrc, title, percentProgress, onClick,
             ></PanelHeader>
             <div className="ItemListAge">
                 <div className="ItemListAge__image-wrap">
-                    <img className="ItemListAge__image" src={imageSrc} alt={`ItemListAge-image-${id}`}/>
+                    <img className="ItemListAge__image" src={imageSrc} alt={`ItemListAge-${id}`}/>
 
                     {
                         hasLeftButton && 

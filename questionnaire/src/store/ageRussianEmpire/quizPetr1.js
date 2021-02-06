@@ -41,10 +41,6 @@ const quizPetr1 = {
                 {
                     text: "3",
                     score: 0
-                },
-                {
-                    text: "4",
-                    score: 0
                 }
             ],
         },
@@ -64,10 +60,6 @@ const quizPetr1 = {
                 {
                     text: "3",
                     score: 0
-                },
-                {
-                    text: "4",
-                    score: 0
                 }
             ],
         },
@@ -86,10 +78,6 @@ const quizPetr1 = {
                 },
                 {
                     text: "3",
-                    score: 0
-                },
-                {
-                    text: "4",
                     score: 0
                 }
             ]

@@ -2,9 +2,10 @@
     background: #232323;
     border-radius: 8px;
     padding: 9px;
-    max-width: 340px;
     width: 100%;
+    max-width: 340px;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 .ItemListQuizes__image-wrap {
@@ -64,6 +65,7 @@
     font-size: 17px;
     font-weight: 500;
     margin: 0;
+    margin-right: 10px;
 }
 
 .ItemListQuizes__button-play {

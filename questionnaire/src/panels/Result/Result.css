@@ -1,52 +1,92 @@
 .Result {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    color: white;
+    background: black;
+    min-height: 100vh;
+    padding: 60px 23px 10px 23px;
+    box-sizing: border-box;
+}
+
+.Result__PanelHeader .PanelHeader__fixed{
+    background: black;
 }
 
 .Result__title {
     color: white;
-    font-size: 23px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    line-height: 1.25;
 }
 
-.Result__content {
-    max-width: 320px;
-    padding-top: 55px;
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
-.Result__image {
-    border-radius: 8px;
-    display: block;
-    width: 100%;
-}
-
-.Result__text {
+.Result__year {
+    font-weight: 500;
     text-align: center;
-    font-size: 14pt;
+    font-size: 100px;
+    line-height: 76px;
+    font-family: 'Lato';
+    color: #848485;
+    white-space: nowrap;
 }
 
-.Result__list-buttons {
+.Result__year-prefix {
+}
+
+.Result__year-postfix_good {
+    color: #79C52D;
+}
+
+.Result__year-postfix_normal {
+    color: #E0C225;
+}
+
+.Result__year-postfix_bad {
+    color: #F10D0D;
+}
+
+.Result__historical-event {
+    color: #858584;
+    font-size: 20px;
+    text-align: center;
+}
+
+.Result__buttons-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    margin: 16px -10px 0 -10px;
 }
 
 .Result__button {
-    margin-bottom: 12px;
-    display: block;
-    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 13px;
+    color: #FFFFFF;
+    background: #101010;
+    border-radius: 8px;
+    height: 50px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
 }
 
-.Result__list-buttons .Button__content {
-    font-size: 12pt;
+.Result__button::before {
+    padding-right: 3px;
+    width: 30px;
+    height: 30px;
+}
+
+.Result__button_favorite::before {
+    content: url("./favorite.svg");
+}
+
+.Result__button_refresh::before {
+    content: url("./refresh.svg");
+}
+
+.Result__button_share::before {
+    content: url("./share.svg");
+}
+
+.Result__button_format-list-bulleted::before {
+    content: url("./format_list_bulleted.svg");
+}
+
+@media (min-width: 375px) {
+    .Result__button {
+        font-size: 18px;
+    }
 }

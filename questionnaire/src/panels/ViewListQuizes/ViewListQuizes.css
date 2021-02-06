@@ -1,0 +1,22 @@
+.ViewListQuizes {
+    min-height: calc(100vh - 52px);
+    background: black;
+    padding: 0 16px;
+}
+
+.ViewListQuizes__header {
+    background: black;
+    display: block;
+}
+
+.ViewListQuizes__header-left {
+    display: flex;
+    align-items: center;
+}
+
+.ViewListQuizes__title {
+    margin-left: 10px;
+    color: white;
+    font-size: 23px;
+}
+

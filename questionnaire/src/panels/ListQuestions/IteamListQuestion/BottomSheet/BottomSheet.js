@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './BottomSheet.css';
 
@@ -17,11 +17,17 @@ const BottomSheet = ({stateAnswers, onFinish=()=>{}, goToQuestionWithoutAnswer=(
         }
     }
 
-    if (isOpen) {
-        window.addEventListener("click", handlerClickWithoutBottomSheet);
-    } else {
-        window.removeEventListener("click", handlerClickWithoutBottomSheet);
-    }
+    useEffect(() => {
+        if (isOpen) {
+            window.addEventListener("click", handlerClickWithoutBottomSheet);
+        } else {
+            window.removeEventListener("click", handlerClickWithoutBottomSheet);
+        }
+
+        return () => {
+            window.removeEventListener("click", handlerClickWithoutBottomSheet);
+        }
+    }, [isOpen]);
 
     return (
         <div className={`BottomSheet ${isOpen && "BottomSheet__open"}`}>

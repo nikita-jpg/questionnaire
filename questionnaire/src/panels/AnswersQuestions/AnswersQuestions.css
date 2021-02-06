@@ -1,0 +1,18 @@
+.AnswersQuestions {
+    padding: 60px 14px 32px 14px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.AnswersQuestions__PanelHeader .PanelHeader__fixed {
+    background: black;
+}
+
+.AnswersQuestions__title {
+    color: white;
+}
