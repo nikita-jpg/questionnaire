@@ -1,7 +1,9 @@
 .Result {
     background: black;
     min-height: 100vh;
-    padding: 60px 23px 10px 23px;
+    /* Говнокод */
+    /*Было padding: 60px 23px 10px 23px; */
+    padding-top: 60px;
     box-sizing: border-box;
 }
 
@@ -42,25 +44,35 @@
     color: #858584;
     font-size: 20px;
     text-align: center;
+    /* Говнокод */
+    padding-top: 12px;
 }
 
 .Result__buttons-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 16px -10px 0 -10px;
+     /* Говнокод */
+    margin: 24px -10px 24px -10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 340px;
+    height: 114px;
 }
 
 .Result__button {
     outline: none;
     border: none;
-    font-size: 13px;
     color: #FFFFFF;
     background: #101010;
     border-radius: 8px;
     height: 50px;
-    margin: 10px;
     display: flex;
     align-items: center;
+    /* Говнокод */
+    width: 163px;
+    /* margin: 10px; */
+    /* Было так font-size: 13px; */
+    font-size: 18px;
 }
 
 .Result__button::before {
@@ -71,6 +83,7 @@
 
 .Result__button_favorite::before {
     content: url("./favorite.svg");
+    grid-column-end: auto;
 }
 
 .Result__button_refresh::before {
