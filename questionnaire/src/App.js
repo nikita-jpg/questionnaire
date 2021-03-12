@@ -63,6 +63,9 @@ const App = ({ eras, results, MAX_SCORE,
 	// логика хранения ответов
 	const [indexesAnswers, setIndexesAnswers] = useState([]);
 
+	// первый раз открываем Result
+	const [isFirstOpenResult, setIsFirstOpenResult] = useState(true);
+
 	// функции для StartWindow
 	const onClickStartWindow = () => {
 		goToViewListAge();
@@ -76,6 +79,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// функции для ListQuizes
 	const onBackListQuizes = () => {
+		setIsFirstOpenResult(true);
 		goToViewListAge();
 	}
 
@@ -154,6 +158,8 @@ const App = ({ eras, results, MAX_SCORE,
 				createOnClickItemQuizes={createOnClickItemQuizes}
 				onAgain={onAgainResult}
 				onGoToAnswersQuestion={onGoToAnswersQuestionResult}
+				isFirstOpenResult={isFirstOpenResult}
+				setIsFirstOpenResult={setIsFirstOpenResult}
 			/>
 
 			<AnswersQuestions

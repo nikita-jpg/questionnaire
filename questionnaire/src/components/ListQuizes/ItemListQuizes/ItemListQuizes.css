@@ -2,13 +2,10 @@
     background: #232323;
     border-radius: 8px;
     padding: 9px;
-    
-    /* max-width: 340px; */
+    max-width: 340px;
     margin-bottom: 10px;
     box-sizing: border-box;
-    /* Говнокод */
-    /*Было так width: 100%; */
-    width: 340px;
+    width: 100%;
 }
 
 .ItemListQuizes__image-wrap {

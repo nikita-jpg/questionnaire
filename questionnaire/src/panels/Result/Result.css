@@ -1,9 +1,10 @@
 .Result {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     background: black;
     min-height: 100vh;
-    /* Говнокод */
-    /*Было padding: 60px 23px 10px 23px; */
-    padding-top: 60px;
+    padding: 60px 10px 10px 10px;
     box-sizing: border-box;
 }
 
@@ -44,19 +45,14 @@
     color: #858584;
     font-size: 20px;
     text-align: center;
-    /* Говнокод */
     padding-top: 12px;
 }
 
 .Result__buttons-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-     /* Говнокод */
-    margin: 24px -10px 24px -10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 340px;
-    height: 114px;
+    margin: 24px -7px 24px -7px;
+    max-width: 354px;
 }
 
 .Result__button {
@@ -68,11 +64,11 @@
     height: 50px;
     display: flex;
     align-items: center;
-    /* Говнокод */
-    width: 163px;
-    /* margin: 10px; */
-    /* Было так font-size: 13px; */
-    font-size: 18px;
+    /* max-width: 163px;
+    width: 100%; */
+    /* box-sizing: border-box; */
+    font-size: 16px;
+    margin: 7px;
 }
 
 .Result__button::before {

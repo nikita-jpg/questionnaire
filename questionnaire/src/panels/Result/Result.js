@@ -8,9 +8,14 @@ import easeOut from "../../anime/easeOut";
 import ListQuizes from "../../components/ListQuizes/ListQuizes";
 import ResultButtons from "./ResultButtons/ResultButtons";
 
-const Result = ({ id, year, percent, historicalEvent, quizes,
+const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult, setIsFirstOpenResult,
     onBack = () => { }, createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, onGoToAnswersQuestion=()=>{} }) => {
+
+	const modifyIsFirstOpenResult = (f) => (...args) => {
+		setIsFirstOpenResult(true);
+		return f(...args);
+	}
 
     const getClassNameForPercent = (percent) => {
         if (percent <= 39) {
@@ -31,15 +36,19 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
     const WIDTH_YEAR = WIDTH_CHAR_IN_YEAR * year.length;
     const WIDTH_POSTFIX = WIDTH_CHAR_IN_YEAR * String(percent).length;
     const WIDTH_PRETFIX = WIDTH_YEAR - WIDTH_POSTFIX;
-    const PADDING_LEFT_AND_RIGHT = 23;
+    const PADDING_LEFT_AND_RIGHT = 10;
 
     const stringPrefix = String(year).replace(String(percent), "");
     const widthContent = document.documentElement.clientWidth - PADDING_LEFT_AND_RIGHT * 2;
 
+    const shiftX = WIDTH_YEAR + WIDTH_PERCENT > widthContent
+        ?(widthContent - WIDTH_YEAR) / 2
+        :WIDTH_PERCENT / 2;
+
     let initialTransitionYearX;
 
     if (WIDTH_YEAR + WIDTH_PERCENT > widthContent) {
-        initialTransitionYearX = (widthContent - WIDTH_POSTFIX) / 2;
+        initialTransitionYearX = (widthContent - WIDTH_POSTFIX - WIDTH_PERCENT) / 2 + (WIDTH_YEAR + WIDTH_PERCENT - widthContent);
     } else {
         initialTransitionYearX = WIDTH_PRETFIX / 2;
     }
@@ -55,7 +64,18 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
         opacityContent: 0
     };
 
-    const [styles, setStyles] = useState(initialStyles);
+    const finishStyles = {
+        overflowResult: "",
+        opacityPercent: 0,
+        opacityPrefixYear: 1,
+        transitionYearY: 0,
+        transitionYearX: shiftX,
+        opacityHistoricalEvent: 1,
+        transitionContentY: 0,
+        opacityContent: 1
+    }
+
+    const [styles, setStyles] = useState(isFirstOpenResult ?initialStyles :finishStyles);
 
     const stylePercent = {
         opacity: styles.opacityPercent
@@ -84,6 +104,12 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
     }
 
     useEffect(() => {
+        if (isFirstOpenResult) {
+            setIsFirstOpenResult(false);
+        } else {
+            return;
+        }
+
         setTimeout(() => animate({
             timing: easeOut,
 
@@ -94,11 +120,6 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
 
                 const getProgressStyle = (min, max) => (progress - min) / (max - min);
 
-                let shiftX = Math.min(
-                    WIDTH_PERCENT / 2,
-                    (document.documentElement.clientWidth - PADDING_LEFT_AND_RIGHT * 2 - WIDTH_YEAR) / 2
-                );
-
                 if (progress < 0.33) {
                     const progressStyles = getProgressStyle(0, 0.33);
 
@@ -108,9 +129,9 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
                     newStyles.opacityPrefixYear = progressStyles;
                     newStyles.transitionYearX = newTransition;
                 } else {
-                    newStyles.opacityPrefixYear = 1;
-                    newStyles.transitionYearX = shiftX;
-                    newStyles.opacityPercent = 0;
+                    newStyles.opacityPrefixYear = finishStyles.opacityPrefixYear;
+                    newStyles.transitionYearX = finishStyles.transitionYearX;
+                    newStyles.opacityPercent = finishStyles.opacityPercent;
                 }
 
                 if (progress >= 0.33 && progress < 0.66) {
@@ -118,7 +139,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
 
                     newStyles.opacityHistoricalEvent = progressStyles;
                 } else if (progress >= 0.66) {
-                    newStyles.opacityHistoricalEvent = 1;
+                    newStyles.opacityHistoricalEvent = finishStyles.opacityHistoricalEvent;
                 }
 
                 if (progress >= 0.66 && progress < 1) {
@@ -128,10 +149,10 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
                     newStyles.transitionYearY = initialStyles.transitionYearY * (1 - progressStyles);
                     newStyles.opacityContent = progressStyles;
                 } else if (progress >= 1) {
-                    newStyles.transitionContentY = 0;
-                    newStyles.transitionYearY = 0;
-                    newStyles.opacityContent = 1;
-                    newStyles.overflowResult = "";
+                    newStyles.transitionContentY = finishStyles.transitionContentY;
+                    newStyles.transitionYearY = finishStyles.transitionYearY;
+                    newStyles.opacityContent = finishStyles.opacityContent;
+                    newStyles.overflowResult = finishStyles.overflowResult;
                 }
 
                 setStyles(newStyles);
@@ -146,7 +167,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
                     className="Result__PanelHeader"
                     left={
                         <>
-                            <PanelHeaderButton onClick={onBack}>
+                            <PanelHeaderButton onClick={modifyIsFirstOpenResult(onBack)}>
                                 <Icon24Back fill="white" />
                             </PanelHeaderButton>
                             <h1 className="Result__title">Результаты</h1>
@@ -171,13 +192,18 @@ const Result = ({ id, year, percent, historicalEvent, quizes,
 
                     <div style={styleContent} className="Result__content">
                         <ResultButtons 
-                            onAgain={onAgain}
+                            onAgain={modifyIsFirstOpenResult(onAgain)}
                             onGoToAnswersQuestion={onGoToAnswersQuestion}
                         />
 
                         <ListQuizes
                             quizes={quizes}
-                            createOnClickItemQuizes={createOnClickItemQuizes}
+                            createOnClickItemQuizes={
+                                (...args1) => (...args2) => {
+                                    createOnClickItemQuizes(...args1)(...args2);
+                                    setIsFirstOpenResult(true);
+                                }
+                            }
                         />
                     </div>
                 </div>
