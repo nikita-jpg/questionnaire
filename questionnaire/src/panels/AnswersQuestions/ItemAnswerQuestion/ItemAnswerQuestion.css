@@ -3,6 +3,8 @@
     border-radius: 8px;
     margin-top: 10px;
     position: relative;
+    width: 100%;
+    max-width: 332px;
 }
 
 .ItemAnswerQuestion__question-wrap {
