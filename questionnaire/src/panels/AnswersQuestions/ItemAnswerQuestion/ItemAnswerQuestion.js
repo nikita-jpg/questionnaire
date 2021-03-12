@@ -58,7 +58,7 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer })
 
     const styleItemAnswerQuestion = {
         padding: `0 ${PADDING_ITEM_ANSWER_QUESTION}px`,
-        zIndex: isOpen ?6 :0
+        zIndex: isOpen ?10 :0
     }
 
     // логика закрытия по щелчку вне ItemAnswerQuestion
