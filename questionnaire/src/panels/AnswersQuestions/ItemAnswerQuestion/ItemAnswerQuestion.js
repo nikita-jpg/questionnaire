@@ -1,14 +1,19 @@
 import React, { createRef, useEffect, useState } from 'react';
 import BlackBackground from '../../../components/BlackBackground/BlackBackground';
+import Arrow, { colorsArrow, directionArrow } from './Arrow';
 
 import "./ItemAnswerQuestion.css";
 
-const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer }) => {
+const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, isGrey, setIsAllGrey }) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     const [isOpen, setIsOpen] = useState(false);
+    const [typeColor, setTypeColor] = useState(indexRightAnswer === indexUserAnswer ?colorsArrow.GREEN :colorsArrow.RED);
 
-    const toggleIsOpen = () => setIsOpen(!isOpen);
+    const onClick = () => {
+        setIsOpen(!isOpen);
+        setIsAllGrey(!isGrey);
+    }
 
     const getClassNameArrow = (isOpen, indexRightAnswer, indexUserAnswer) => {
         if (isOpen) {
@@ -86,15 +91,18 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer })
 
             <div style={styleItemAnswerQuestion} className="ItemAnswerQuestion" id={id}>
                 <div
-                    onClick={toggleIsOpen}
+                    onClick={onClick}
                     className="ItemAnswerQuestion__question-wrap"
                 >
                     <p className="ItemAnswerQuestion__question-text">
                         {isOpen ? question.questionText : question.questionText.substring(0, 20) + "..."}
                     </p>
 
-                    <span
-                        className={`ItemAnswerQuestion__arrow ${getClassNameArrow(isOpen, indexRightAnswer, indexUserAnswer)}`}>
+                    <span className="ItemAnswerQuestion__arrow">
+                        <Arrow
+                            direction={isOpen ?directionArrow.UP :directionArrow.DOWN}
+                            typeColor={isGrey ?colorsArrow.GREY :typeColor}
+                        />
                     </span>
                 </div>
 
