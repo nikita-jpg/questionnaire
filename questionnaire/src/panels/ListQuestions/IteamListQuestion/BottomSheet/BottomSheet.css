@@ -29,7 +29,7 @@
 
 .BottomSheet__candelabrum {
     position: absolute;
-    bottom: 100%;
+    bottom: calc(100% - 2px);
     left: 50%;
     transform: translate(-50%, 110%);
     transition: transform 0.8s;
@@ -42,7 +42,7 @@
 .BottomSheet__rectangle {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -1px;
     display: block;
     width: 120px;
     height: 15px;
