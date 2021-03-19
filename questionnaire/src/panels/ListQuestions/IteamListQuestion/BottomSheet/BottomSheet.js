@@ -52,14 +52,21 @@ const BottomSheet = ({ stateAnswers, onFinish = () => { }, goToQuestionWithoutAn
                 <ul className="BottomSheet__list">
                     {
                         stateAnswers.map(({ questionText, indexAnswer }, i) => (
-                            <li key={i} className="BottomSheet__list-item" onClick={() => goToQuestionWithoutAnswer(i)}>
-                                <span className="BottomSheet__question-text">{i + 1}) {questionText}...</span>
+                            <li key={i} className="BottomSheet__list-item">
+                                <div 
+                                    className="BottomSheet__selection-block BottomSheet__selection-block_left"
+                                    onClick={() => goToQuestionWithoutAnswer(i)}
+                                >
+                                    <span className="BottomSheet__question-text">{i + 1}) {questionText}...</span>
+                                </div>
 
-                                {
-                                    indexAnswer !== -1
-                                        ? <span className="BottomSheet__has-answer">Вы ответили</span>
-                                        : <span className="BottomSheet__has-not-answer">Нет ответа</span>
-                                }
+                                <div className="BottomSheet__selection-block BottomSheet__selection-block_right">
+                                    {
+                                        indexAnswer !== -1
+                                            ? <div className="BottomSheet__answer BottomSheet__answer_has">Вы ответили</div>
+                                            : <div className="BottomSheet__answer BottomSheet__answer_not-has">Нет ответа</div>
+                                    }
+                                </div>
                             </li>
                         ))
                     }

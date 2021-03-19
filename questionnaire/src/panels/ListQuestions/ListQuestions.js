@@ -8,7 +8,7 @@ const ListQuestions = ({id, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}
     // логика хранения ответов
     const getInitStateAnswers = () => [
         ...arrQuestions.map(question => ({
-            questionText: question.questionText.substring(0, 20),
+            questionText: question.questionText.substring(0, 15),
             indexAnswer: -1
         }))
     ];

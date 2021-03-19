@@ -2,6 +2,7 @@
     background: #202020;
     border-radius: 30px 30px 0px 0px;
     position: fixed;
+    max-width: 360px;
     width: 100%;
     box-sizing: border-box;
     bottom: 0;
@@ -10,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 16px 78px 16px;
+    padding: 0 8px 78px 8px;
     z-index: 10;
 }
 
@@ -57,8 +58,9 @@
     padding: 0;
     height: 168px;
     overflow-y: auto;
-    padding: 35px;
+    padding-top: 35px;
     background: #202020;
+    border-radius: 30px 30px 0px 0px;
 }
 
 .BottomSheet__list-item {
@@ -67,26 +69,56 @@
     align-items: center;
     font-size: 12px;
     margin-bottom: 8px;
+    margin-right: 5px;
+}
+
+.BottomSheet__selection-block {
+    background: #404040;
+    border-radius: 8px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.BottomSheet__selection-block_left {
+    flex-grow: 1;
+}
+
+.BottomSheet__selection-block_right {
+    width: 88px;
+    margin-left: 9px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .BottomSheet__question-text {
     color: #EEEEEE;
     font-size: 14px;
+    padding-left: 8px;
 }
 
-.BottomSheet__has-answer {
+.BottomSheet__answer {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.BottomSheet__answer_has {
     color: #79C52D;
 }
 
-.BottomSheet__has-not-answer {
+.BottomSheet__answer_not-has {
     color: #BB1111;
 }
 
 .BottomSheet__button {
     border: none;
     outline: none;
-    background: none;
+    display: block;
+    width: 100%;
+    height: 36px;
     color: #BB1111;
     font-size: 18px;
-    margin-top: 8px;
+    margin-top: 16px;
+    background: #404040;
+    border-radius: 8px;
 }
