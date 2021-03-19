@@ -7,12 +7,12 @@ const ItemListQuizes = ({ imageSrc, title, onClick, percentProgress }) => {
 
     if (percentProgress === undefined) {
         classNamePersentProgress = undefined;
-    }else if (percentProgress > 50) {
+    } else if (percentProgress > 50) {
         classNamePersentProgress = "ItemListQuizes__percent_good";
     } else if (percentProgress > 25) {
         classNamePersentProgress = "ItemListQuizes__percent_normal";
     } else {
-        classNamePersentProgress = "ItemListQuizes__percent_bad";        
+        classNamePersentProgress = "ItemListQuizes__percent_bad";
     }
 
     return (
@@ -20,12 +20,12 @@ const ItemListQuizes = ({ imageSrc, title, onClick, percentProgress }) => {
             <div className="ItemListQuizes__image-wrap">
                 <img className="ItemListQuizes__image" src={imageSrc} alt={`ItemListQuizes-${title}`} />
 
-                <div className="ItemListQuizes__percent-wrap">
-                    {
-                        classNamePersentProgress && 
+                {
+                    classNamePersentProgress && <div className="ItemListQuizes__percent-wrap">
+
                         <span className={`ItemListQuizes__percent ${classNamePersentProgress}`}>{percentProgress}%</span>
-                    }
-                </div>
+                    </div>
+                }
             </div>
 
             <div className="ItemListQuizes__row-bottom">
