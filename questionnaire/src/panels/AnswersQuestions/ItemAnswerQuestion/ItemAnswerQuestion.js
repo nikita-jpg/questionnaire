@@ -1,4 +1,6 @@
 import React, { createRef, useEffect, useState } from 'react';
+import animate from '../../../anime/animate';
+import easeOut from '../../../anime/easeOut';
 import BlackBackground from '../../../components/BlackBackground/BlackBackground';
 import Arrow, { colorsArrow, directionArrow } from './Arrow';
 
@@ -10,21 +12,59 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
     const [isOpen, setIsOpen] = useState(false);
     const [typeColor, setTypeColor] = useState(indexRightAnswer === indexUserAnswer ?colorsArrow.GREEN :colorsArrow.RED);
 
+    const [isDisabledClick, setIsDisabledClick] = useState(false);
+
+
+    // работа с текстом вопроса
+    const MAX_LENGTH_QUESTION_TEXT = 15;
+
+    const cutQuestionText = (text, length=MAX_LENGTH_QUESTION_TEXT) => text.substring(0, length) + "...";
+
+    const [questionText, setQuestionText] = useState(question.questionText.substring(0, MAX_LENGTH_QUESTION_TEXT) + "...");
+
+    useEffect(() => {
+        if (isFirstRender) {
+            return;
+        }
+
+        setIsDisabledClick(true);
+
+        if (isOpen) {
+            animate({
+                timing: easeOut,
+                duration: 1000,
+                draw(progress) {
+                    if (progress < 1) {
+                        const length = MAX_LENGTH_QUESTION_TEXT + 
+                            Math.floor((question.questionText.length - MAX_LENGTH_QUESTION_TEXT) * progress);
+                        setQuestionText(question.questionText.substring(0, length));
+                    } else {
+                        setQuestionText(question.questionText);
+                        setIsDisabledClick(false);
+                    }
+                }
+            });
+        } else {
+            animate({
+                timing: easeOut,
+                duration: 1000,
+                draw(progress) {
+                    if (progress < 1) {
+                        const length = MAX_LENGTH_QUESTION_TEXT + 
+                            Math.floor((question.questionText.length - MAX_LENGTH_QUESTION_TEXT) * (1 - progress));
+                        setQuestionText(question.questionText.substring(0, length));
+                    } else {
+                        setQuestionText(question.questionText.substring(0, MAX_LENGTH_QUESTION_TEXT) + "...");
+                        setIsDisabledClick(false);
+                    }
+                }
+            });
+        }
+    }, [isOpen]);
+
     const onClick = () => {
         setIsOpen(!isOpen);
         setIsAllGrey(!isGrey);
-    }
-
-    const getClassNameArrow = (isOpen, indexRightAnswer, indexUserAnswer) => {
-        if (isOpen) {
-            return "ItemAnswerQuestion__arrow_open";
-        }
-
-        if (indexUserAnswer === indexRightAnswer) {
-            return "ItemAnswerQuestion__arrow_good";
-        }
-
-        return "ItemAnswerQuestion__arrow_bad";
     }
 
     const getAnswerText = (index) => {
@@ -91,11 +131,11 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
 
             <div style={styleItemAnswerQuestion} className="ItemAnswerQuestion" id={id}>
                 <div
-                    onClick={onClick}
+                    onClick={!isDisabledClick && onClick}
                     className="ItemAnswerQuestion__question-wrap"
                 >
                     <p className="ItemAnswerQuestion__question-text">
-                        {isOpen ? question.questionText : question.questionText.substring(0, 20) + "..."}
+                        {questionText}
                     </p>
 
                     <span className="ItemAnswerQuestion__arrow">
