@@ -45,7 +45,7 @@ const IteamListQuestion = ({ id, question,
             </ModalCard>
 
             <div className="IteamListQuestion">
-            <button className="testButton" onClick={openModal}></button>
+            {/* <button className="testButton" onClick={openModal}></button> */}
                 <div className="IteamListQuestion__content">
                     {
                         question.overSideImg !== undefined && question.overSideImg !== null
