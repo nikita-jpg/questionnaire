@@ -64,8 +64,11 @@ const ListQuestions = ({id, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}
     const [lastIndexQuestion, setLastIndexQuestion] = useState(-1);
 
     const createGoToQuestionWithoutAnswer = (fromIndexQuestion) => (toIndexQuestion) => {
-        setLastIndexQuestion(fromIndexQuestion);
-        setIndexQuestion(toIndexQuestion);
+        if (fromIndexQuestion != toIndexQuestion)
+        {
+            setLastIndexQuestion(fromIndexQuestion);
+            setIndexQuestion(toIndexQuestion);
+        }
     }
 
     const goToLastQuestion = () => {
