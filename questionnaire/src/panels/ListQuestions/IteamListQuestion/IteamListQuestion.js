@@ -1,5 +1,5 @@
 import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
-import { IOS, Panel, PanelHeader, PanelHeaderButton, platform } from '@vkontakte/vkui';
+import { ModalCard, Panel, PanelHeader, PanelHeaderButton, platform } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
 import BottomSheet from './BottomSheet/BottomSheet';
 
@@ -19,6 +19,9 @@ const IteamListQuestion = ({ id, question,
 
     const rotateImage = () => setRotate(!isRotated);
 
+    const [isOpenList, setOpenList] = useState(false);
+    const openModal = () => setOpenList(!isOpenList)
+
     return (
         <Panel id={id} separator={false}>
             <PanelHeader
@@ -37,7 +40,12 @@ const IteamListQuestion = ({ id, question,
             >
             </PanelHeader>
 
+            <ModalCard>
+
+            </ModalCard>
+
             <div className="IteamListQuestion">
+            <button className="testButton" onClick={openModal}></button>
                 <div className="IteamListQuestion__content">
                     {
                         question.overSideImg !== undefined && question.overSideImg !== null

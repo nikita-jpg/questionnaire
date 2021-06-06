@@ -12,6 +12,7 @@ import ListQuestions from './panels/ListQuestions/ListQuestions';
 import Result from './panels/Result/Result';
 import ViewListQuizes from './panels/ViewListQuizes/ViewListQuizes';
 import AnswersQuestions from './panels/AnswersQuestions/AnswersQuestions';
+import Modal from './panels/ListQuestions/IteamListQuestion/Modal/Modal';
 
 const App = ({ eras, results, MAX_SCORE, 
 	savePercentQuiz = (indexAge, indexQuiz, percentProgress) => {}}) => {
@@ -46,7 +47,12 @@ const App = ({ eras, results, MAX_SCORE,
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 	const VIEW_ID_ANSWERS_QUESTIONS = "VIEW_ID_ANSWERS_QUESTIONS";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
+	//Модальные окна
+	const MODAL_TEST = "MODAL_TEST";
+
+	const[activeModal, setActiveModal] = useState(MODAL_TEST)
+
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE);
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
 	const goToViewListAge = () => setActiveView(VIEW_ID_LIST_AGE);
@@ -120,6 +126,11 @@ const App = ({ eras, results, MAX_SCORE,
 		goToViewResult();
 	}
 
+	// функции для открытия Modal
+	const openModalWithQuestions = () => {
+		setActiveModal(MODAL_TEST);
+	}
+
 	return (
 		<Root activeView={activeView}>
 			<StartWindow 
@@ -168,6 +179,11 @@ const App = ({ eras, results, MAX_SCORE,
 				indexesAnswers={indexesAnswers}
 				onBack={onBackAnswersQuestions}
 			/>
+
+			{/* <Modal
+				id={MODAL_TEST}
+				idInside={activeModal}
+			/> */}
 		</Root>
 	);
 }
