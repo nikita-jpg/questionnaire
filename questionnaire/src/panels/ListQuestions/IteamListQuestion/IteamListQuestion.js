@@ -40,9 +40,9 @@ const IteamListQuestion = ({ id, question,
             >
             </PanelHeader>
 
-            <ModalCard>
+            {/* <ModalCard>
 
-            </ModalCard>
+            </ModalCard> */}
 
             <div className="IteamListQuestion">
             {/* <button className="testButton" onClick={openModal}></button> */}

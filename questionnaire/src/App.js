@@ -3,7 +3,7 @@ import bridge from '@vkontakte/vk-bridge';
 import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import { Root } from '@vkontakte/vkui';
+import { AdaptivityProvider, AppRoot, ConfigProvider, Root, SplitCol, SplitLayout } from '@vkontakte/vkui';
 
 import "./App.css";
 import StartWindow from './panels/StartWindow/StartWindow';
@@ -132,59 +132,69 @@ const App = ({ eras, results, MAX_SCORE,
 	}
 
 	return (
-		<Root activeView={activeView}>
-			<StartWindow 
-				id={VIEW_ID_START_WINDOW} 
-				onClick={onClickStartWindow}
-			/>
+	<ConfigProvider>
+		<AdaptivityProvider>
+			<AppRoot>
+				<SplitLayout>
+					<SplitCol>
+						<Root activeView={activeView}>
+							<StartWindow 
+								id={VIEW_ID_START_WINDOW} 
+								onClick={onClickStartWindow}
+							/>
 
-			<ListAge 
-				id={VIEW_ID_LIST_AGE} 
-				eras={eras} 
-				createOnClickItemAge={createOnClickItemAge}
-			/>
+							<ListAge 
+								id={VIEW_ID_LIST_AGE} 
+								eras={eras} 
+								createOnClickItemAge={createOnClickItemAge}
+							/>
 
-			<ViewListQuizes 
-				id={VIEW_ID_LIST_QUIZES} 
-				title={eras[indexAge].shortTitle} 
-				quizes={eras[indexAge].quizzes} 
-				onBack={onBackListQuizes} 
-				createOnClickItemQuizes={createOnClickItemQuizes}
-			/>
+							<ViewListQuizes 
+								id={VIEW_ID_LIST_QUIZES} 
+								title={eras[indexAge].shortTitle} 
+								quizes={eras[indexAge].quizzes} 
+								onBack={onBackListQuizes} 
+								createOnClickItemQuizes={createOnClickItemQuizes}
+							/>
 
-			<ListQuestions 
-				id={VIEW_ID_LIST_QUESTIONES}
-				arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
-				onBack={onBackListQuestions}
-				onFinish={onFinishListQuestions}
-			/>
+							<ListQuestions 
+								id={VIEW_ID_LIST_QUESTIONES}
+								arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
+								onBack={onBackListQuestions}
+								onFinish={onFinishListQuestions}
+							/>
 
-			<Result
-				id={VIEW_ID_RESULT}
-				percent={results[indexResuslt].percent}
-				year={results[indexResuslt].year}
-				historicalEvent={results[indexResuslt].historicalEvent}
-				quizes={eras[indexAge].quizzes.filter(quiz => quiz.percentProgress !== 100)}
-				onBack={onBackResult}
-				createOnClickItemQuizes={createOnClickItemQuizes}
-				onAgain={onAgainResult}
-				onGoToAnswersQuestion={onGoToAnswersQuestionResult}
-				isFirstOpenResult={isFirstOpenResult}
-				setIsFirstOpenResult={setIsFirstOpenResult}
-			/>
+							<Result
+								id={VIEW_ID_RESULT}
+								percent={results[indexResuslt].percent}
+								year={results[indexResuslt].year}
+								historicalEvent={results[indexResuslt].historicalEvent}
+								quizes={eras[indexAge].quizzes.filter(quiz => quiz.percentProgress !== 100)}
+								onBack={onBackResult}
+								createOnClickItemQuizes={createOnClickItemQuizes}
+								onAgain={onAgainResult}
+								onGoToAnswersQuestion={onGoToAnswersQuestionResult}
+								isFirstOpenResult={isFirstOpenResult}
+								setIsFirstOpenResult={setIsFirstOpenResult}
+							/>
 
-			<AnswersQuestions
-				id={VIEW_ID_ANSWERS_QUESTIONS}
-				questions={eras[indexAge].quizzes[indexQuiz].questions}
-				indexesAnswers={indexesAnswers}
-				onBack={onBackAnswersQuestions}
-			/>
+							<AnswersQuestions
+								id={VIEW_ID_ANSWERS_QUESTIONS}
+								questions={eras[indexAge].quizzes[indexQuiz].questions}
+								indexesAnswers={indexesAnswers}
+								onBack={onBackAnswersQuestions}
+							/>
 
-			{/* <Modal
-				id={MODAL_TEST}
-				idInside={activeModal}
-			/> */}
-		</Root>
+							{/* <Modal
+								id={MODAL_TEST}
+								idInside={activeModal}
+							/> */}
+						</Root>
+					</SplitCol>
+				</SplitLayout>
+			</AppRoot>
+    	</AdaptivityProvider>
+    </ConfigProvider>
 	);
 }
 
