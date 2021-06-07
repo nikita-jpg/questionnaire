@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/questionnaire/static/css/main.60c64995.chunk.css",
-    "main.js": "/questionnaire/static/js/main.7f27fdc7.chunk.js",
-    "main.js.map": "/questionnaire/static/js/main.7f27fdc7.chunk.js.map",
+    "main.css": "/questionnaire/static/css/main.fa912af7.chunk.css",
+    "main.js": "/questionnaire/static/js/main.2f37279b.chunk.js",
+    "main.js.map": "/questionnaire/static/js/main.2f37279b.chunk.js.map",
     "runtime-main.js": "/questionnaire/static/js/runtime-main.b4091b80.js",
     "runtime-main.js.map": "/questionnaire/static/js/runtime-main.b4091b80.js.map",
     "static/css/2.86e0f72b.chunk.css": "/questionnaire/static/css/2.86e0f72b.chunk.css",
-    "static/js/2.407cc951.chunk.js": "/questionnaire/static/js/2.407cc951.chunk.js",
-    "static/js/2.407cc951.chunk.js.map": "/questionnaire/static/js/2.407cc951.chunk.js.map",
+    "static/js/2.93d021f4.chunk.js": "/questionnaire/static/js/2.93d021f4.chunk.js",
+    "static/js/2.93d021f4.chunk.js.map": "/questionnaire/static/js/2.93d021f4.chunk.js.map",
     "static/js/3.e7de2f50.chunk.js": "/questionnaire/static/js/3.e7de2f50.chunk.js",
     "static/js/3.e7de2f50.chunk.js.map": "/questionnaire/static/js/3.e7de2f50.chunk.js.map",
     "static/js/4.91cc5556.chunk.js": "/questionnaire/static/js/4.91cc5556.chunk.js",
     "static/js/4.91cc5556.chunk.js.map": "/questionnaire/static/js/4.91cc5556.chunk.js.map",
     "index.html": "/questionnaire/index.html",
-    "precache-manifest.94651c1762ef2da394895ce642209941.js": "/questionnaire/precache-manifest.94651c1762ef2da394895ce642209941.js",
+    "precache-manifest.8df8f648040f961c859082af15c94cc5.js": "/questionnaire/precache-manifest.8df8f648040f961c859082af15c94cc5.js",
     "service-worker.js": "/questionnaire/service-worker.js",
     "static/css/2.86e0f72b.chunk.css.map": "/questionnaire/static/css/2.86e0f72b.chunk.css.map",
-    "static/css/main.60c64995.chunk.css.map": "/questionnaire/static/css/main.60c64995.chunk.css.map",
-    "static/js/2.407cc951.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.407cc951.chunk.js.LICENSE.txt",
+    "static/css/main.fa912af7.chunk.css.map": "/questionnaire/static/css/main.fa912af7.chunk.css.map",
+    "static/js/2.93d021f4.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.93d021f4.chunk.js.LICENSE.txt",
     "static/js/3.e7de2f50.chunk.js.LICENSE.txt": "/questionnaire/static/js/3.e7de2f50.chunk.js.LICENSE.txt",
     "static/media/The era of palace coups.png": "/questionnaire/static/media/The era of palace coups.42e7310b.png",
     "static/media/ItemAnswerQuestion.css": "/questionnaire/static/media/arrowOpen.7f40413e.svg",
@@ -34,8 +34,8 @@
   "entrypoints": [
     "static/js/runtime-main.b4091b80.js",
     "static/css/2.86e0f72b.chunk.css",
-    "static/js/2.407cc951.chunk.js",
-    "static/css/main.60c64995.chunk.css",
-    "static/js/main.7f27fdc7.chunk.js"
+    "static/js/2.93d021f4.chunk.js",
+    "static/css/main.fa912af7.chunk.css",
+    "static/js/main.2f37279b.chunk.js"
   ]
 }
