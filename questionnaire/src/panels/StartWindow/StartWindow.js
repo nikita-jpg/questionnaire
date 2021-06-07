@@ -20,7 +20,7 @@ const StartWindow = ({id, onClick}) => {
                 <div className="StartWindow">
                     <div className="StartWindow__container">
                         <img width="50" height="50" src={svgContacts} alt="contacts"/>
-                        <h1 className="StartWindow__title">Привет, друг!</h1>
+                        <h1 className="StartWindow__title">Привет, друг!1</h1>
                         <p className="StartWindow__text">
                             Это приложение поможет тебе проверить свои знания в области истори родной страны. Удачи!
                         </p>

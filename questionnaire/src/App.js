@@ -3,7 +3,7 @@ import bridge from '@vkontakte/vk-bridge';
 import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import { AdaptivityProvider, AppRoot, ConfigProvider, Root, SplitCol, SplitLayout } from '@vkontakte/vkui';
+import { AdaptivityProvider, Appearance, AppRoot, ConfigProvider, Group, Header, Panel, PanelHeader, Platform, Root, Scheme, SimpleCell, SplitCol, SplitLayout, View } from '@vkontakte/vkui';
 
 import "./App.css";
 import StartWindow from './panels/StartWindow/StartWindow';
@@ -17,26 +17,21 @@ import Modal from './panels/ListQuestions/IteamListQuestion/Modal/Modal';
 const App = ({ eras, results, MAX_SCORE, 
 	savePercentQuiz = (indexAge, indexQuiz, percentProgress) => {}}) => {
 
-	const [fetchedUser, setUser] = useState(null);
-	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
-
-	const enablePopout = () => setPopout(<ScreenSpinner size='large' />);
-	const disablePopout = () => setPopout(null);
-
 	useEffect(() => {
-		bridge.subscribe(({ detail: { type, data } }) => {
-			if (type === 'VKWebAppUpdateConfig') {
-				const schemeAttribute = document.createAttribute('scheme');
-				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-				document.body.attributes.setNamedItem(schemeAttribute);
-			}
-		});
-		async function fetchData() {
-			const user = await bridge.send('VKWebAppGetUserInfo');
-			setUser(user);
-			disablePopout();
-		}
-		fetchData();
+		bridge
+			.send("VKWebAppGetClientVersion")
+			.then(data => {
+				if(data.platform === Platform.IOS){
+					bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light"});
+				}
+				else if (data.platform === Platform.ANDROID){
+					bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light", "action_bar_color": "#000","navigation_bar_color":"#000000"});
+				}
+			})
+			.catch(error =>{
+				console.log(error)
+			})
+		
 	}, []);
 
 	// логика переключения между View
@@ -47,12 +42,10 @@ const App = ({ eras, results, MAX_SCORE,
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 	const VIEW_ID_ANSWERS_QUESTIONS = "VIEW_ID_ANSWERS_QUESTIONS";
 
-	//Модальные окна
-	const MODAL_TEST = "MODAL_TEST";
+	
+	const TEST = "TEST";
 
-	const[activeModal, setActiveModal] = useState(MODAL_TEST)
-
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE);
+	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
 	const goToViewListAge = () => setActiveView(VIEW_ID_LIST_AGE);
@@ -72,7 +65,7 @@ const App = ({ eras, results, MAX_SCORE,
 	// первый раз открываем Result
 	const [isFirstOpenResult, setIsFirstOpenResult] = useState(true);
 
-	// функции для StartWindow
+	// функции для StartWindowY
 	const onClickStartWindow = () => {
 		goToViewListAge();
 	}
@@ -126,17 +119,13 @@ const App = ({ eras, results, MAX_SCORE,
 		goToViewResult();
 	}
 
-	// функции для открытия Modal
-	const openModalWithQuestions = () => {
-		setActiveModal(MODAL_TEST);
-	}
 
 	return (
 	<ConfigProvider>
 		<AdaptivityProvider>
 			<AppRoot>
-				<SplitLayout>
-					<SplitCol>
+				<SplitLayout header={<PanelHeader separator={false} />}>
+					<SplitCol >
 						<Root activeView={activeView}>
 							<StartWindow 
 								id={VIEW_ID_START_WINDOW} 
@@ -184,6 +173,16 @@ const App = ({ eras, results, MAX_SCORE,
 								indexesAnswers={indexesAnswers}
 								onBack={onBackAnswersQuestions}
 							/>
+
+							{/* <View activePanel="main" id={TEST}>
+										<Panel id="main">
+										<PanelHeader>VKUI</PanelHeader>
+										<Group header={<Header mode="secondary">Items</Header>}>
+											<SimpleCell>Hello</SimpleCell>
+											<SimpleCell>World</SimpleCell>
+										</Group>
+										</Panel>
+									</View> */}
 
 							{/* <Modal
 								id={MODAL_TEST}

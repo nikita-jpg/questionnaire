@@ -125,12 +125,12 @@ const IteamListQuestion = ({ id, question,
                         к вопросу {lastIndexQuestion + 1}
                     </div>
                 }
-
+{/* 
                 <BottomSheet
                     stateAnswers={stateAnswers}
                     onFinish={onFinish}
                     goToQuestionWithoutAnswer={goToQuestionWithoutAnswer}
-                />
+                /> */}
             </div>
         </Panel>
     )

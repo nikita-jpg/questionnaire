@@ -1,3 +1,7 @@
 .App-alert {
     text-align: left;
 }
+:root {
+    --main-bg-color: #000000;
+  }
+.Panel::after { position: fixed; background: var(--main-bg-color); }
