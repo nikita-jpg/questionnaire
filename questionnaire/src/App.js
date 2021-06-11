@@ -18,9 +18,11 @@ const App = ({ eras, results, MAX_SCORE,
 	savePercentQuiz = (indexAge, indexQuiz, percentProgress) => {}}) => {
 
 	useEffect(() => {
+		//Стилизуем компоненты интерфейса клиента
 		bridge
 			.send("VKWebAppGetClientVersion")
 			.then(data => {
+				console.log(data)
 				if(data.platform === Platform.IOS){
 					bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light"});
 				}
@@ -32,6 +34,8 @@ const App = ({ eras, results, MAX_SCORE,
 				console.log(error)
 			})
 		
+		//Обновляем текущую ширину
+		setCurWidth(document.getElementById('root').scrollWidth)
 	}, []);
 
 	// логика переключения между View
@@ -46,6 +50,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const TEST = "TEST";
 
 	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
+	const [curWidth, setCurWidth] = useState(0)
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
 	const goToViewListAge = () => setActiveView(VIEW_ID_LIST_AGE);
@@ -124,9 +129,9 @@ const App = ({ eras, results, MAX_SCORE,
 	<ConfigProvider>
 		<AdaptivityProvider>
 			<AppRoot>
-				<SplitLayout header={<PanelHeader separator={false} />}>
+				<SplitLayout header={null}>
 					<SplitCol >
-						<Root activeView={activeView}>
+						<Root activeView={VIEW_ID_LIST_AGE}>
 							<StartWindow 
 								id={VIEW_ID_START_WINDOW} 
 								onClick={onClickStartWindow}
@@ -135,6 +140,7 @@ const App = ({ eras, results, MAX_SCORE,
 							<ListAge 
 								id={VIEW_ID_LIST_AGE} 
 								eras={eras} 
+								curWidth={curWidth}
 								createOnClickItemAge={createOnClickItemAge}
 							/>
 

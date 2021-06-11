@@ -4,6 +4,10 @@ import results from "./results/results";
 
 const store = {
     eras: [
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
         ageRussianEmpire
     ],
 
