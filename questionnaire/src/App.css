@@ -16,5 +16,7 @@
   .vkuiPanelHeader__content-in{
     font-weight: 500;
   }
- 
+ .Panel.Panel--regular{
+   background-color: var(--background_content);
+ }
 .Panel::after { position: fixed; background: var(--background_content); }

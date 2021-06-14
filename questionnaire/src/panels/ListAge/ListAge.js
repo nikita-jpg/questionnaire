@@ -30,9 +30,10 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                     visor={true}
                     transparent={true}
                     fixed={false}
-                    left={curWidth >= 375 ? <div style={{width:"90px"}}></div> : null}
-                    right={curWidth >= 375 ? <div style={{width:"90px"}}></div> : null}
-                    style={curWidth >= 375 ? {textAlign:"center"} : null}
+                    // Центрируем надпись
+                    left={curWidth >= 360 ? <div style={{width:"90px"}}></div> : null}
+                    right={curWidth >= 360 ? <div style={{width:"90px"}}></div> : null}
+                    style={curWidth >= 360 ? {textAlign:"center"} : null}
                     >
                     Выбирете эпоху
                 </PanelHeader>
