@@ -1,7 +1,7 @@
 import { PanelHeader, View, Panel, CardGrid, ContentCard, usePlatform } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import ItemListAge from './ItemListAge/ItemListAge';
-import test from './petr.png'
+import test from './petr.jpg'
 import './ListAge.css'
 
 const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
@@ -31,9 +31,9 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                     transparent={true}
                     fixed={false}
                     // Центрируем надпись
-                    left={curWidth >= 360 ? <div style={{width:"90px"}}></div> : null}
-                    right={curWidth >= 360 ? <div style={{width:"90px"}}></div> : null}
-                    style={curWidth >= 360 ? {textAlign:"center"} : null}
+                    left={curWidth >= 370 ? <div style={{width:"90px"}}></div> : null}
+                    right={curWidth >= 370 ? <div style={{width:"90px"}}></div> : null}
+                    style={curWidth >= 370 ? {textAlign:"center"} : null}
                     >
                     Выбирете эпоху
                 </PanelHeader>
@@ -41,8 +41,14 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                         {
                             eras.map((age, i, arrAge) => (
                                 <ContentCard
-                                    header={age.title}
+                                    header={
+                                        <div className="ListAge__title">
+                                            <div>{age.title}</div>
+                                            <div>{age.percentProgress}/10</div>
+                                        </div>
+                                    }
                                     image={test}
+                                    caption={age.description}
                                     className="ListAge__Card"
                                 />
                             ))

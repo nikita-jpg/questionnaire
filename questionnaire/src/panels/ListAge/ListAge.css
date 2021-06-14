@@ -12,3 +12,8 @@
 .ListAge__Card{
     background-color: var(--main-second-bg-color)
 }
+.ListAge__title{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
