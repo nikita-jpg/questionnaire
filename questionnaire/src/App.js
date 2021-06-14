@@ -22,7 +22,6 @@ const App = ({ eras, results, MAX_SCORE,
 		bridge
 			.send("VKWebAppGetClientVersion")
 			.then(data => {
-				console.log(data)
 				if(data.platform === Platform.IOS){
 					bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light"});
 				}
@@ -49,7 +48,7 @@ const App = ({ eras, results, MAX_SCORE,
 	
 	const TEST = "TEST";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);

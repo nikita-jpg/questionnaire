@@ -1,4 +1,4 @@
-import { PanelHeader, View, Panel, CardGrid, ContentCard } from '@vkontakte/vkui';
+import { PanelHeader, View, Panel, CardGrid, ContentCard, usePlatform } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import ItemListAge from './ItemListAge/ItemListAge';
 import test from './petr.png'
@@ -29,8 +29,12 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                     separator={false}
                     visor={true}
                     transparent={true}
-                    fixed={false}>
-                    <span className="ListAge__Header">Выберете эпоху</span>
+                    fixed={false}
+                    left={curWidth >= 375 ? <div style={{width:"90px"}}></div> : null}
+                    right={curWidth >= 375 ? <div style={{width:"90px"}}></div> : null}
+                    style={curWidth >= 375 ? {textAlign:"center"} : null}
+                    >
+                    Выбирете эпоху
                 </PanelHeader>
                     <CardGrid size={getColNumber(curWidth)}>
                         {

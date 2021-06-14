@@ -2,6 +2,19 @@
     text-align: left;
 }
 :root {
-    --main-bg-color: rgb(32,32,34);
+    --main-second-bg-color:rgb(37,37,39);
+    --main-white-color:rgb(226,226,226);
+
+    /* Переопределено */
+    --background_content:rgb(32,32,34);
+    --header_text:white;
   }
-.Panel::after { position: fixed; background: var(--main-bg-color); }
+  /* Переопределено */
+  .vkui__root{
+    --font-tt: "Lato", "TT Commons", -apple-system, Helvetica Neue, Roboto, sans-serif;
+  }
+  .vkuiPanelHeader__content-in{
+    font-weight: 500;
+  }
+ 
+.Panel::after { position: fixed; background: var(--background_content); }
