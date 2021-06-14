@@ -2,6 +2,6 @@
     text-align: left;
 }
 :root {
-    --main-bg-color: #000000;
+    --main-bg-color: rgb(32,32,34);
   }
 .Panel::after { position: fixed; background: var(--main-bg-color); }

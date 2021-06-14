@@ -131,7 +131,7 @@ const App = ({ eras, results, MAX_SCORE,
 			<AppRoot>
 				<SplitLayout header={null}>
 					<SplitCol >
-						<Root activeView={VIEW_ID_LIST_AGE}>
+						<Root activeView={activeView}>
 							<StartWindow 
 								id={VIEW_ID_START_WINDOW} 
 								onClick={onClickStartWindow}

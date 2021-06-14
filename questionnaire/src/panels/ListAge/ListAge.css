@@ -1,0 +1,15 @@
+.ListAge{
+    margin: 0;
+    position: absolute;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    color: white;
+}
+.ListAge__Header{
+    color: white;
+}
+.ListAge__Card{
+    background-color: rgb(37,37,39);
+}
