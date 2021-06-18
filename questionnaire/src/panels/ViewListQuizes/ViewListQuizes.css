@@ -1,7 +1,10 @@
 .ViewListQuizes {
-    min-height: calc(100vh - 52px);
-    background: black;
-    padding: 0 16px;
+    margin: 0;
+    position: absolute;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--main-white-color);
 }
 
 .ViewListQuizes__header {
@@ -12,11 +15,15 @@
 .ViewListQuizes__header-left {
     display: flex;
     align-items: center;
+    width: 90px;
 }
 
 .ViewListQuizes__title {
     margin-left: 10px;
     color: white;
     font-size: 23px;
+}
+.ViewListQuizes__bacl{
+    color: var(--main-white-color);
 }
 

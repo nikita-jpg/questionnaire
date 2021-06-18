@@ -48,7 +48,7 @@ const App = ({ eras, results, MAX_SCORE,
 	
 	const TEST = "TEST";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUIZES);
 	const [curWidth, setCurWidth] = useState(0)
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
@@ -145,7 +145,8 @@ const App = ({ eras, results, MAX_SCORE,
 
 							<ViewListQuizes 
 								id={VIEW_ID_LIST_QUIZES} 
-								title={eras[indexAge].shortTitle} 
+								curWidth={curWidth}
+								title={eras[indexAge].title} 
 								quizes={eras[indexAge].quizzes} 
 								onBack={onBackListQuizes} 
 								createOnClickItemQuizes={createOnClickItemQuizes}

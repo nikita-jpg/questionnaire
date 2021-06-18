@@ -3,22 +3,13 @@ import React, { useState } from 'react';
 import ItemListAge from './ItemListAge/ItemListAge';
 import test from './petr.jpg'
 import './ListAge.css'
+import { getColNumber, isTitleCentre } from '../../help';
+
 
 const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
 
     const ID_ACTIVE_PANEL = "ID_ACTIVE_PANEL";
 
-    const getColNumber = (curWidth) => {
-        if(curWidth>1280){
-            return "s"
-        }
-        else if (curWidth>560){
-            return "m"
-        }
-        else {
-            return "l"
-        } 
-    }
 
     return (
         <View id={id} activePanel={ID_ACTIVE_PANEL} >
@@ -31,9 +22,9 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                     transparent={true}
                     fixed={false}
                     // Центрируем надпись
-                    left={curWidth >= 370 ? <div style={{width:"90px"}}></div> : null}
-                    right={curWidth >= 370 ? <div style={{width:"90px"}}></div> : null}
-                    style={curWidth >= 370 ? {textAlign:"center"} : null}
+                    left={isTitleCentre(curWidth).stub}
+                    right={isTitleCentre(curWidth).stub}
+                    style={isTitleCentre(curWidth).text}
                     >
                     Выбирете эпоху
                 </PanelHeader>
@@ -47,6 +38,7 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                                             <div>{age.percentProgress}/10</div>
                                         </div>
                                     }
+                                    onClick={createOnClickItemAge(i)}
                                     image={test}
                                     caption={age.description}
                                     className="ListAge__Card"
