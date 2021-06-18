@@ -12,10 +12,9 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
 
 
     return (
-        <View id={id} activePanel={ID_ACTIVE_PANEL} >
-            <Panel id={ID_ACTIVE_PANEL}>
+        <Panel id={ID_ACTIVE_PANEL}>
 
-                <div className="ListAge">
+            <div className="ListAge">
                 <PanelHeader                     
                     separator={false}
                     visor={true}
@@ -28,27 +27,26 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                     >
                     Выбирете эпоху
                 </PanelHeader>
-                    <CardGrid size={getColNumber(curWidth)}>
-                        {
-                            eras.map((age, i, arrAge) => (
-                                <ContentCard
-                                    header={
-                                        <div className="ListAge__title">
-                                            <div>{age.title}</div>
-                                            <div>{age.percentProgress}/10</div>
-                                        </div>
-                                    }
-                                    onClick={createOnClickItemAge(i)}
-                                    image={test}
-                                    caption={age.description}
-                                    className="ListAge__Card"
-                                />
-                            ))
-                        }
-                    </CardGrid>
-                </div>
-            </Panel>
-        </View>
+                <CardGrid size={getColNumber(curWidth)}>
+                    {
+                        eras.map((age, i, arrAge) => (
+                            <ContentCard
+                                header={
+                                    <div className="ListAge__title">
+                                        <div>{age.title}</div>
+                                        <div>{age.percentProgress}/10</div>
+                                    </div>
+                                }
+                                onClick={createOnClickItemAge(i)}
+                                image={test}
+                                caption={age.description}
+                                className="ListAge__Card"
+                            />
+                        ))
+                    }
+                </CardGrid>
+            </div>
+        </Panel>
     )
 }
 

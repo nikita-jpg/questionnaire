@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
 import '@vkontakte/vkui/dist/vkui.css';
+import vkBridge from '@vkontakte/vk-bridge'
 
 import { AdaptivityProvider, Appearance, AppRoot, ConfigProvider, Group, Header, Panel, PanelHeader, Platform, Root, Scheme, SimpleCell, SplitCol, SplitLayout, View } from '@vkontakte/vkui';
 
@@ -45,10 +46,9 @@ const App = ({ eras, results, MAX_SCORE,
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 	const VIEW_ID_ANSWERS_QUESTIONS = "VIEW_ID_ANSWERS_QUESTIONS";
 
-	
-	const TEST = "TEST";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUIZES);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE);
+	const [history, setHistory] = useState([VIEW_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
@@ -76,6 +76,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// функции для ListAge
 	const createOnClickItemAge = (index) => () => {
+		goForward(VIEW_ID_LIST_QUIZES);
 		setIndexAge(index);
 		goToViewListQuizes();
 	}
@@ -83,7 +84,7 @@ const App = ({ eras, results, MAX_SCORE,
 	// функции для ListQuizes
 	const onBackListQuizes = () => {
 		setIsFirstOpenResult(true);
-		goToViewListAge();
+		goBack(VIEW_ID_LIST_AGE)
 	}
 
 	const createOnClickItemQuizes = (index) => () => {
@@ -123,14 +124,44 @@ const App = ({ eras, results, MAX_SCORE,
 		goToViewResult();
 	}
 
+	// история
+	const goBack = () => {
+		let his = history;
+		his.pop()
+		if (activeView === VIEW_ID_LIST_AGE) {
+			vkBridge.send('VKWebAppEnableSwipeBack');
+		  }
+		setHistory(his)
+		setActiveView(history[history.length - 1])
+		console.log(history)
+	}
+
+	const goForward = (view) => { 
+		let his = history;
+		his.push(view);
+		if (activeView === VIEW_ID_LIST_AGE) {
+			// vkBridge.send('VKWebAppDisableSwipeBack');
+			setHistory(his)
+		  }
+		else{
+			setHistory(his)
+		}
+	}
+
 
 	return (
-	<ConfigProvider>
+	<ConfigProvider isWebView={true}>
 		<AdaptivityProvider>
 			<AppRoot>
 				<SplitLayout header={null}>
-					<SplitCol >
-						<Root activeView={activeView}>
+					<SplitCol animate={true}>
+						<Root activeView={"test"}>
+							<View 
+							id={"test"}
+							activePanel={activeView}
+							onSwipeBack={goBack}
+							history={history}>
+
 							<StartWindow 
 								id={VIEW_ID_START_WINDOW} 
 								onClick={onClickStartWindow}
@@ -151,6 +182,9 @@ const App = ({ eras, results, MAX_SCORE,
 								onBack={onBackListQuizes} 
 								createOnClickItemQuizes={createOnClickItemQuizes}
 							/>
+
+							</View>
+
 
 							<ListQuestions 
 								id={VIEW_ID_LIST_QUESTIONES}

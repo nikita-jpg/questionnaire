@@ -20,7 +20,7 @@
 
 .ViewListQuizes__title {
     margin-left: 10px;
-    color: white;
+    color: var(--main-white-color);
     font-size: 23px;
 }
 .ViewListQuizes__bacl{
