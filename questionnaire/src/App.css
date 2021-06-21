@@ -19,4 +19,12 @@
  .Panel.Panel--regular{
    background-color: var(--background_content);
  }
-.Panel::after { position: fixed; background: var(--background_content); }
+ body{
+   background-color: var(--background_content);
+ }
+ html{
+   background-color: var(--background_content);
+ }
+.Panel::after { 
+  position: fixed; 
+}

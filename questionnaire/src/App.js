@@ -40,23 +40,29 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// логика переключения между View
 	const VIEW_ID_START_WINDOW = "VIEW_ID_START_WINDOW";
-	const VIEW_ID_LIST_AGE = "VIEW_ID_LIST_AGE";
-	const VIEW_ID_LIST_QUIZES = "VIEW_ID_LIST_QUIZES";
+	const VIEW_ID_LIST_AGE_AND_QUIZES = "VIEW_ID_LIST_AGE_AND_QUIZES";
 	const VIEW_ID_LIST_QUESTIONES = "VIEW_ID_LIST_QUESTIONES";
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 	const VIEW_ID_ANSWERS_QUESTIONS = "VIEW_ID_ANSWERS_QUESTIONS";
 
+	// логика переключения между Панелями
+	const PANEL_ID_LIST_AGE = "PANEL_ID_LIST_AGE";
+	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE);
-	const [history, setHistory] = useState([VIEW_ID_LIST_AGE]);
+
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE_AND_QUIZES);
+	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
+	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
-	const goToViewListAge = () => setActiveView(VIEW_ID_LIST_AGE);
-	const goToViewListQuizes = () => setActiveView(VIEW_ID_LIST_QUIZES);
+	const goToViewListAndQuizes = () => setActiveView(VIEW_ID_LIST_AGE_AND_QUIZES)
 	const goToViewListQuestions = () => setActiveView(VIEW_ID_LIST_QUESTIONES);
 	const goToViewResult = () => setActiveView(VIEW_ID_RESULT);
 	const goToViewAnswersQuestions = () => setActiveView(VIEW_ID_ANSWERS_QUESTIONS);
+
+	const goToPanelListAge = () => setActivePanel(PANEL_ID_LIST_AGE);
+	const goToPanelListQuizes = () => setActivePanel(PANEL_ID_LIST_QUIZES);
 
 	// логика хранения индексов
 	const [indexAge, setIndexAge] = useState(0);
@@ -71,20 +77,20 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// функции для StartWindowY
 	const onClickStartWindow = () => {
-		goToViewListAge();
+		goToViewListAndQuizes();
 	}
 
 	// функции для ListAge
 	const createOnClickItemAge = (index) => () => {
-		goForward(VIEW_ID_LIST_QUIZES);
+		goForward(PANEL_ID_LIST_QUIZES);
 		setIndexAge(index);
-		goToViewListQuizes();
+		goToPanelListQuizes();
 	}
 
 	// функции для ListQuizes
 	const onBackListQuizes = () => {
 		setIsFirstOpenResult(true);
-		goBack(VIEW_ID_LIST_AGE)
+		goBack(PANEL_ID_LIST_AGE)
 	}
 
 	const createOnClickItemQuizes = (index) => () => {
@@ -94,7 +100,8 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// функции для ListQuestions
 	const onBackListQuestions = () => {
-		goToViewListQuizes();
+		goToViewListAndQuizes();
+		goToPanelListQuizes();
 	}
 
 	const onFinishListQuestions = (totalScore, indexesAnswers) => {
@@ -108,7 +115,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// функции для Result
 	const onBackResult = () => {
-		goToViewListQuizes();
+		goToViewListAndQuizes();
 	}
 
 	const onAgainResult = () => {
@@ -128,19 +135,19 @@ const App = ({ eras, results, MAX_SCORE,
 	const goBack = () => {
 		let his = history;
 		his.pop()
-		if (activeView === VIEW_ID_LIST_AGE) {
+		if (activePanel === PANEL_ID_LIST_AGE) {
 			vkBridge.send('VKWebAppEnableSwipeBack');
 		  }
 		setHistory(his)
-		setActiveView(history[history.length - 1])
+		setActivePanel(history[history.length - 1])
 		console.log(history)
 	}
 
 	const goForward = (view) => { 
 		let his = history;
 		his.push(view);
-		if (activeView === VIEW_ID_LIST_AGE) {
-			// vkBridge.send('VKWebAppDisableSwipeBack');
+		if (activePanel === PANEL_ID_LIST_AGE) {
+			vkBridge.send('VKWebAppDisableSwipeBack');
 			setHistory(his)
 		  }
 		else{
@@ -155,33 +162,33 @@ const App = ({ eras, results, MAX_SCORE,
 			<AppRoot>
 				<SplitLayout header={null}>
 					<SplitCol animate={true}>
-						<Root activeView={"test"}>
-							<View 
-							id={"test"}
-							activePanel={activeView}
-							onSwipeBack={goBack}
-							history={history}>
+						<Root activeView={VIEW_ID_LIST_AGE_AND_QUIZES}>
 
 							<StartWindow 
 								id={VIEW_ID_START_WINDOW} 
-								onClick={onClickStartWindow}
-							/>
+								onClick={onClickStartWindow}/>
 
-							<ListAge 
-								id={VIEW_ID_LIST_AGE} 
-								eras={eras} 
-								curWidth={curWidth}
-								createOnClickItemAge={createOnClickItemAge}
-							/>
+							<View 
+								id={VIEW_ID_LIST_AGE_AND_QUIZES}
+								activePanel={activePanel}
+								onSwipeBack={goBack}
+								history={history}>
 
-							<ViewListQuizes 
-								id={VIEW_ID_LIST_QUIZES} 
-								curWidth={curWidth}
-								title={eras[indexAge].title} 
-								quizes={eras[indexAge].quizzes} 
-								onBack={onBackListQuizes} 
-								createOnClickItemQuizes={createOnClickItemQuizes}
-							/>
+								<ListAge 
+									id={PANEL_ID_LIST_AGE} 
+									eras={eras} 
+									curWidth={curWidth}
+									createOnClickItemAge={createOnClickItemAge}
+								/>
+
+								<ViewListQuizes 
+									id={PANEL_ID_LIST_QUIZES} 
+									curWidth={curWidth}
+									title={eras[indexAge].title} 
+									quizes={eras[indexAge].quizzes} 
+									onBack={onBackListQuizes} 
+									createOnClickItemQuizes={createOnClickItemQuizes}
+								/>
 
 							</View>
 
