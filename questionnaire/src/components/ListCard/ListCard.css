@@ -1,4 +1,4 @@
-.ListAge{
+.ListCard{
     margin: 0;
     position: absolute;
     padding: 0;
@@ -6,13 +6,10 @@
     height: 100%;
     color: var(--main-white-color);
 }
-.ListAge__Header{
-    color: var(--main-white-color);
-}
-.ListAge__Card{
+.ListCard__Card{
     background-color: var(--main-second-bg-color)
 }
-.ListAge__title{
+.ListCard__title{
     display: flex;
     justify-content: space-between;
     flex-direction: row;

@@ -1,7 +1,7 @@
 import { Icon24Back, Icon28AddOutline } from '@vkontakte/icons';
 import { Panel, PanelHeader, View, PanelHeaderBack, PanelHeaderButton} from '@vkontakte/vkui';
 import React from 'react';
-import ListQuizes from '../../components/ListQuizes/ListQuizes';
+import ListQuizes from '../ListQuizes/ListQuizes';
 
 import './ViewListQuizes.css';
 import { getColNumber, isTitleCentre } from '../../help';
@@ -28,9 +28,10 @@ const ViewListQuizes = ({ id, curWidth, title, quizes, history, onBack = () => {
                 style={isTitleCentre(curWidth).text}
                 >{title}
             </PanelHeader>
-            
+
                 <ListQuizes
                     quizes={quizes}
+                    curWidth={curWidth}
                     createOnClickItemQuizes={createOnClickItemQuizes}
                 />
             </div>

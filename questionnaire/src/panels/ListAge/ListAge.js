@@ -4,6 +4,7 @@ import ItemListAge from './ItemListAge/ItemListAge';
 import test from './petr.jpg'
 import './ListAge.css'
 import { getColNumber, isTitleCentre } from '../../help';
+import ListCard from '../../components/ListCard/ListCard'
 
 
 const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
@@ -13,8 +14,8 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
 
     return (
         <Panel id={ID_ACTIVE_PANEL}>
-
             <div className="ListAge">
+                
                 <PanelHeader                     
                     separator={false}
                     visor={true}
@@ -27,24 +28,13 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                     >
                     Выбирете эпоху
                 </PanelHeader>
-                <CardGrid size={getColNumber(curWidth)}>
-                    {
-                        eras.map((age, i, arrAge) => (
-                            <ContentCard
-                                header={
-                                    <div className="ListAge__title">
-                                        <div>{age.title}</div>
-                                        <div>{age.percentProgress}/10</div>
-                                    </div>
-                                }
-                                onClick={createOnClickItemAge(i)}
-                                image={test}
-                                caption={age.description}
-                                className="ListAge__Card"
-                            />
-                        ))
-                    }
-                </CardGrid>
+
+                <ListCard
+                    info={eras}
+                    curWidth={curWidth}
+                    cardClick={createOnClickItemAge}>
+                </ListCard>
+
             </div>
         </Panel>
     )

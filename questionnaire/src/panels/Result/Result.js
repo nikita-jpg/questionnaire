@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import "./Result.css";
 import animate from "../../anime/animate";
 import easeOut from "../../anime/easeOut";
-import ListQuizes from "../../components/ListQuizes/ListQuizes";
+// import ListQuizes from "../../components/ListQuizes/ListQuizes";
 import ResultButtons from "./ResultButtons/ResultButtons";
 
 const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult, setIsFirstOpenResult,
@@ -196,7 +196,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
                             onGoToAnswersQuestion={onGoToAnswersQuestion}
                         />
 
-                        <ListQuizes
+                        {/* <ListQuizes
                             quizes={quizes}
                             createOnClickItemQuizes={
                                 (...args1) => (...args2) => {
@@ -204,7 +204,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
                                     setIsFirstOpenResult(true);
                                 }
                             }
-                        />
+                        /> */}
                     </div>
                 </div>
             </Panel>
