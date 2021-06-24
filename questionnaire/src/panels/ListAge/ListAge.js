@@ -18,7 +18,7 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                 <Header
                     curWidth={curWidth}
                     title="Выбирете эпоху"
-                ></Header>
+                ></Header> 
 
                 <ListCard
                     info={eras}

@@ -11,7 +11,7 @@ import StartWindow from './panels/StartWindow/StartWindow';
 import ListAge from './panels/ListAge/ListAge';
 import ListQuestions from './panels/ListQuestions/ListQuestions';
 import Result from './panels/Result/Result';
-import ViewListQuizes from './panels/ViewListQuizes/ViewListQuizes';
+import ListQuizes from './panels/ListQuizes/ListQuizes';
 import AnswersQuestions from './panels/AnswersQuestions/AnswersQuestions';
 import Modal from './panels/ListQuestions/IteamListQuestion/Modal/Modal';
 
@@ -181,7 +181,7 @@ const App = ({ eras, results, MAX_SCORE,
 									createOnClickItemAge={createOnClickItemAge}
 								/>
 
-								<ViewListQuizes 
+								<ListQuizes 
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
 									title={eras[indexAge].title} 

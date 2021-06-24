@@ -2,9 +2,10 @@ import { PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
 import React from 'react';
 import { isTitleCentre } from '../../help';
 import './Header.css'
+
 const Header = ({curWidth, title, hasBatton, onBack }) => {
     return(
-            <PanelHeader                     
+        <PanelHeader                     
             separator={false}
             visor={true}
             transparent={true}
