@@ -1,9 +1,7 @@
-import { PanelHeader, View, Panel, CardGrid, ContentCard, usePlatform } from '@vkontakte/vkui';
-import React, { useState } from 'react';
-import ItemListAge from './ItemListAge/ItemListAge';
-import test from './petr.jpg'
+import { PanelHeader, Panel } from '@vkontakte/vkui';
+import React from 'react';
 import './ListAge.css'
-import { getColNumber, isTitleCentre } from '../../help';
+import { isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
 
 
@@ -15,7 +13,7 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
     return (
         <Panel id={ID_ACTIVE_PANEL}>
             <div className="ListAge">
-                
+
                 <PanelHeader                     
                     separator={false}
                     visor={true}

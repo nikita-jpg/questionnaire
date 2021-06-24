@@ -3,7 +3,7 @@ import React from 'react';
 import './ListCard.css'
 import { getColNumber } from '../../help';
 
-const ListCard = ({info, curWidth, cardClick = (index) => null }) => {
+const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
     return (
         <div className="ListCard">
             <CardGrid size={getColNumber(curWidth)}>
