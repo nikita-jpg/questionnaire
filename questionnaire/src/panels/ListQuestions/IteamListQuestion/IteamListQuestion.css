@@ -158,7 +158,35 @@
     background-color: wheat;
 }
 
-/* Переопределяем классы для компонентов */
-/* .ContentCard__body{
-    padding: 0;
-} */
+
+
+/* Картинка */
+.IteamListQuestion__image-container{
+    position:relative;  
+    overflow: hidden;
+    border-radius: 6px; 
+    cursor: pointer;
+}
+
+.IteamListQuestion__image-info{
+    opacity: 0;
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background:var(--main-second-bg-color);
+}
+  .IteamListQuestion__image-info-enter {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+  .IteamListQuestion__image-info-enter-done {
+    opacity: 1;
+  }
+  .IteamListQuestion__image-info-exit {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }

@@ -12,7 +12,7 @@ const quizPetr1 = {
     imageSrc: imagePetr1,
     questions: [
         {
-            questionImg: imgExample,
+            imageSrc: imgExample,
             overSideImg: imgExample,
             questionText: "Основная причина дефолта 98-го года?",
             answerOptions: [
@@ -31,7 +31,7 @@ const quizPetr1 = {
             ]
         },
         {
-            questionImg: imgExample,
+            imageSrc: imgExample,
             overSideImg: null,
             questionText: "Вопрос 2",
             answerOptions: [
@@ -50,7 +50,7 @@ const quizPetr1 = {
             ],
         },
         {
-            questionImg: imgExample,
+            imageSrc: imgExample,
             overSideImg: null,
             questionText: "Вопрос 3",
             answerOptions: [
@@ -69,7 +69,7 @@ const quizPetr1 = {
             ],
         },
         {
-            questionImg: imgExample,
+            imageSrc: imgExample,
             overSideImg: null,
             questionText: "Вопрос 4",
             answerOptions: [

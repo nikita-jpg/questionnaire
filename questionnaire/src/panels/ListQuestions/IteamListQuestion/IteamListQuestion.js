@@ -1,7 +1,9 @@
 import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
-import { ModalCard, Panel, PanelHeader, PanelHeaderButton, platform, Card, ContentCard } from '@vkontakte/vkui';
+import { ModalCard, Panel, PanelHeader, PanelHeaderButton, platform, Card, ContentCard, CardGrid } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import Header from '../../../components/Header/Header';
+import ListCard from '../../../components/ListCard/ListCard';
 import BottomSheet from './BottomSheet/BottomSheet';
 
 import "./IteamListQuestion.css";
@@ -24,6 +26,9 @@ const IteamListQuestion = ({ id, curWidth, question,
     const openModal = () => setOpenList(!isOpenList);
     // caption={<div style={{width:"100%",height:"100%",backgroundColor:"black"}}></div>}
 
+    const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
+
+    console.log(question)
     return (
         <Panel id={id} separator={false}>
             <div className="IteamListQuestion">
@@ -36,15 +41,24 @@ const IteamListQuestion = ({ id, curWidth, question,
                 />
                 
                 <div className="IteamListQuestion__content">
-                    
-                        <ContentCard image={question.questionImg} alt="12">
-                            {/* <img
-                            // style={{maxHeight:"150px"}}
-                            // className="IteamListQuestion__image IteamListQuestion__image_hidden"
-                            src={question.questionImg}
-                            alt={`image_hidden_${id}`} */}
-                            
-                        </ContentCard>
+
+                    <div className="IteamListQuestion__image-container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
+
+                        <img
+                            className="IteamListQuestion__image"
+                            src={question.imageSrc}
+                        />
+                        
+                        <CSSTransition 
+                            in={isImgInfoOpen} 
+                            timeout={200} 
+                            classNames="IteamListQuestion__image-info"
+                            onEnter={() => {setisImgInfoOpen(true)}}
+                            onExited={() => {setisImgInfoOpen(false)}}>
+                            <div className="IteamListQuestion__image-info"/>
+                        </CSSTransition>
+
+                    </div>
                         {/* <div
                             className={`IteamListQuestion__image-wrap ${isRotated && "IteamListQuestion__image-wrap_rotated"}`}
                         >
