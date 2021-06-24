@@ -3,6 +3,7 @@ import React from 'react';
 import './ListAge.css'
 import { isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
+import Header from '../../components/Header/Header'
 
 
 const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
@@ -14,18 +15,10 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
         <Panel id={ID_ACTIVE_PANEL}>
             <div className="ListAge">
 
-                <PanelHeader                     
-                    separator={false}
-                    visor={true}
-                    transparent={true}
-                    fixed={false}
-                    // Центрируем надпись
-                    left={isTitleCentre(curWidth).stub}
-                    right={isTitleCentre(curWidth).stub}
-                    style={isTitleCentre(curWidth).text}
-                    >
-                    Выбирете эпоху
-                </PanelHeader>
+                <Header
+                    curWidth={curWidth}
+                    title="Выбирете эпоху"
+                ></Header>
 
                 <ListCard
                     info={eras}
