@@ -162,7 +162,7 @@ const App = ({ eras, results, MAX_SCORE,
 			<AppRoot>
 				<SplitLayout header={null}>
 					<SplitCol animate={true}>
-						<Root activeView={VIEW_ID_LIST_AGE_AND_QUIZES}>
+						<Root activeView={activeView}>
 
 							<StartWindow 
 								id={VIEW_ID_START_WINDOW} 
@@ -184,17 +184,19 @@ const App = ({ eras, results, MAX_SCORE,
 								<ListQuizes 
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
-									title={eras[indexAge].title} 
-									quizes={eras[indexAge].quizzes} 
+									// title={eras[indexAge].title} 
+									// quizes={eras[indexAge].quizzes} 
+									title={eras[0].title} 
+									quizes={eras[0].quizzes} 
 									onBack={onBackListQuizes} 
 									createOnClickItemQuizes={createOnClickItemQuizes}
 								/>
 
 							</View>
 
-
 							<ListQuestions 
 								id={VIEW_ID_LIST_QUESTIONES}
+								curWidth={curWidth}
 								arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
 								onBack={onBackListQuestions}
 								onFinish={onFinishListQuestions}

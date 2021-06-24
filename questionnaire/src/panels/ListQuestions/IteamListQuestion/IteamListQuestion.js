@@ -1,13 +1,14 @@
 import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
-import { ModalCard, Panel, PanelHeader, PanelHeaderButton, platform } from '@vkontakte/vkui';
+import { ModalCard, Panel, PanelHeader, PanelHeaderButton, platform, Card, ContentCard } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
+import Header from '../../../components/Header/Header';
 import BottomSheet from './BottomSheet/BottomSheet';
 
 import "./IteamListQuestion.css";
 
 const osName = platform();
 
-const IteamListQuestion = ({ id, question,
+const IteamListQuestion = ({ id, curWidth, question,
     numberCurrentQuestion, countQuestions,
     stateAnswers, indexAnswer,
     lastIndexQuestion, currentIndexQuestion,
@@ -20,77 +21,63 @@ const IteamListQuestion = ({ id, question,
     const rotateImage = () => setRotate(!isRotated);
 
     const [isOpenList, setOpenList] = useState(false);
-    const openModal = () => setOpenList(!isOpenList)
+    const openModal = () => setOpenList(!isOpenList);
+    // caption={<div style={{width:"100%",height:"100%",backgroundColor:"black"}}></div>}
 
     return (
         <Panel id={id} separator={false}>
-            <PanelHeader
-                left={
-                    <>
-                        <PanelHeaderButton onClick={goToPrevQuestion}>
-                            <Icon24Back fill="white" />
-                        </PanelHeaderButton>
-                        <span className="IteamListQuestion__number-question">{numberCurrentQuestion}/{countQuestions}</span>
-                    </>
-                }
-                className="IteamListQuestion__PanelHeader"
-                separator={false}
-                visor={false}
-                transparent={false}
-            >
-            </PanelHeader>
-
-            {/* <ModalCard>
-
-            </ModalCard> */}
-
             <div className="IteamListQuestion">
-            {/* <button className="testButton" onClick={openModal}></button> */}
+
+                <Header
+                    curWidth={curWidth}
+                    title={numberCurrentQuestion + " из " + countQuestions}
+                    isClose={true}
+                    // leftBtnFunc={}
+                />
+                
                 <div className="IteamListQuestion__content">
-                    {
-                        question.overSideImg !== undefined && question.overSideImg !== null
-                            ?
-                            <div
-                                className={`IteamListQuestion__image-wrap ${isRotated && "IteamListQuestion__image-wrap_rotated"}`}
+                    
+                        <ContentCard image={question.questionImg} alt="12">
+                            {/* <img
+                            // style={{maxHeight:"150px"}}
+                            // className="IteamListQuestion__image IteamListQuestion__image_hidden"
+                            src={question.questionImg}
+                            alt={`image_hidden_${id}`} */}
+                            
+                        </ContentCard>
+                        {/* <div
+                            className={`IteamListQuestion__image-wrap ${isRotated && "IteamListQuestion__image-wrap_rotated"}`}
+                        >
+                            <img
+                                className="IteamListQuestion__image IteamListQuestion__image_hidden"
+                                src={question.questionImg}
+                                alt={`image_hidden_${id}`}
+                            />
+
+                            <div className="IteamListQuestion__image-side-wrap IteamListQuestion__image-side-wrap_front">
+                                <img className="IteamListQuestion__image" src={question.questionImg} alt={`image_front_${id}`} />
+
+                                <button
+                                    onClick={rotateImage}
+                                    className="IteamListQuestion__rotate-button IteamListQuestion__rotate-button_front"
+                                ></button>
+                            </div>
+
+                            <div className={`IteamListQuestion__image-side-wrap 
+                                IteamListQuestion__image-side-wrap_back 
+                                ${!isRotated ? "IteamListQuestion__image-side-wrap_disable" : ""}`}
                             >
-                                <img
-                                    className="IteamListQuestion__image IteamListQuestion__image_hidden"
-                                    src={question.questionImg}
-                                    alt={`image_hidden_${id}`}
-                                />
+                                <img className="IteamListQuestion__image" src={question.overSideImg} alt={`image_back_${id}`} />
 
-                                <div className="IteamListQuestion__image-side-wrap IteamListQuestion__image-side-wrap_front">
-                                    <img className="IteamListQuestion__image" src={question.questionImg} alt={`image_front_${id}`} />
-
-                                    <button
-                                        onClick={rotateImage}
-                                        className="IteamListQuestion__rotate-button IteamListQuestion__rotate-button_front"
-                                    ></button>
-                                </div>
-
-                                <div className={`IteamListQuestion__image-side-wrap 
-                                    IteamListQuestion__image-side-wrap_back 
-                                    ${!isRotated ? "IteamListQuestion__image-side-wrap_disable" : ""}`}
-                                >
-                                    <img className="IteamListQuestion__image" src={question.overSideImg} alt={`image_back_${id}`} />
-
-                                    <button
-                                        onClick={rotateImage}
-                                        className="IteamListQuestion__rotate-button IteamListQuestion__rotate-button_back"
-                                    ></button>
-                                </div>
+                                <button
+                                    onClick={rotateImage}
+                                    className="IteamListQuestion__rotate-button IteamListQuestion__rotate-button_back"
+                                ></button>
                             </div>
+                        </div> */}
+                    
 
-                            : <div className="IteamListQuestion__image-wrap">
-                                <img
-                                    className="IteamListQuestion__image"
-                                    src={question.questionImg}
-                                    alt={`image_hidden_${id}`}
-                                />
-                            </div>
-                    }
-
-                    <p className="IteamListQuestion__question-text">{question.questionText}</p>
+                    {/* <p className="IteamListQuestion__question-text">{question.questionText}</p>
 
                     <div className="IteamListQuestion__answer-options">
                         {
@@ -107,10 +94,10 @@ const IteamListQuestion = ({ id, question,
                                 </button>
                             ))
                         }
-                    </div>
+                    </div> */}
                 </div>
 
-                {
+                {/* {
                     lastIndexQuestion !== -1 &&
                     <div
                         onClick={goToLastQuestion}
@@ -124,13 +111,7 @@ const IteamListQuestion = ({ id, question,
                     >
                         к вопросу {lastIndexQuestion + 1}
                     </div>
-                }
-{/* 
-                <BottomSheet
-                    stateAnswers={stateAnswers}
-                    onFinish={onFinish}
-                    goToQuestionWithoutAnswer={goToQuestionWithoutAnswer}
-                /> */}
+                } */}
             </div>
         </Panel>
     )

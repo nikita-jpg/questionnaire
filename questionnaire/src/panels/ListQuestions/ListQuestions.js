@@ -2,7 +2,7 @@ import { View } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 
-const ListQuestions = ({id, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}}) => {
+const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
 
     // логика хранения ответов
@@ -83,6 +83,7 @@ const ListQuestions = ({id, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}
                     <IteamListQuestion
                         key={i}
                         id={createIdActivePanel(i)}
+                        curWidth={curWidth}
 
                         question={question}
                         numberCurrentQuestion={i+1}

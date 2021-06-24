@@ -2,6 +2,8 @@ import imagePetr1 from "../../img/ageRussianEmpire/quizPetr1/petr.png";
 
 import imgExample from "../../img/ageRussianEmpire/quizPetr1/Картинка.png";
 
+import ababa from "../../img/ageRussianEmpire/main.png"
+
 const quizPetr1 = {
     title: "Император Пётр I",
     description:"Росси́йская импе́рия (рус. дореф. Россійская имперія; также Всеросси́йская импе́рия, ца́рская Росси́я) — государство, существовавшее в период с 22 октября (2 ноября) 1721 года до Февральской революции и провозглашения республики в сентябре 1917 года Временным правительством.",

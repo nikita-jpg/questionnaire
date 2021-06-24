@@ -16,6 +16,7 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
                                 <div>{record.percentProgress}/{record.numberOfQuestions}</div>
                             </div>
                         }
+                        mode={"tint"}
                         onClick={cardClick(i)}
                         image={record.imageSrc}
                         caption={record.description}

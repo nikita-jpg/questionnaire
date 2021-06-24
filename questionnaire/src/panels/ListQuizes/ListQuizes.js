@@ -13,8 +13,7 @@ const ListQuizes = ({ id, curWidth, title, quizes, onBack = () => { }, createOnC
 
                 <Header
                     curWidth={curWidth}
-                    hasBatton={true}
-                    onBack={onBack}
+                    leftBtnFunc={onBack}
                     title={title}
                 >
                 </Header>
