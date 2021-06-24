@@ -11,7 +11,7 @@ const Header = ({curWidth, title, hasBatton, onBack }) => {
             transparent={true}
             fixed={false}
             // Центрируем надпись
-            left={ hasBatton == true ?<PanelHeaderBack onClick={onBack} className="Header__button-back"></PanelHeaderBack> : isTitleCentre(curWidth).stub }
+            left={ hasBatton == true ? isTitleCentre(curWidth,<PanelHeaderBack onClick={onBack} ></PanelHeaderBack>).stub : isTitleCentre(curWidth).stub }
             right={ isTitleCentre(curWidth).stub }
             style={ isTitleCentre(curWidth).text }
             >
