@@ -1,7 +1,8 @@
 import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
-import { ModalCard, Panel, PanelHeader, PanelHeaderButton, platform, Text, Div, CardGrid } from '@vkontakte/vkui';
+import { ModalCard, Panel, PanelHeader, Button, platform, Text, Div, CardGrid } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import AnswerOption from '../../../components/AnswerOption/AnswerOption';
 import Header from '../../../components/Header/Header';
 import ListCard from '../../../components/ListCard/ListCard';
 import BottomSheet from './BottomSheet/BottomSheet';
@@ -60,7 +61,22 @@ const IteamListQuestion = ({ id, curWidth, question,
 
                     </div>
 
-                    <Text weight="regular" className="IteamListQuestion__question">Какие кочевые племена, постоянно совершавшие набеги на Русь, были окончательно разгромлены в годы правления Ярослава Мудрого?</Text> 
+                    <Text weight="regular" className="IteamListQuestion__question">{question.questionText}</Text> 
+
+                    <div className="IteamListQuestion__answer-options">
+                        {
+                            question.answerOptions.map((answer, i) => (
+                                <AnswerOption
+                                    click={() => goToNextQuestion(i)}
+                                    isActived={indexAnswer === i}
+                                    text={answer.text}
+                                    style={{marginTop:"10px"}}
+                                >
+                                </AnswerOption>
+                            ))
+                        }
+                    </div>
+
                         {/* <div
                             className={`IteamListQuestion__image-wrap ${isRotated && "IteamListQuestion__image-wrap_rotated"}`}
                         >
