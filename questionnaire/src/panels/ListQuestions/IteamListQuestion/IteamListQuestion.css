@@ -21,9 +21,11 @@
 }
 
 .IteamListQuestion__content {
-    width: 100%;
+    max-width: 375px;
+    margin: auto;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .IteamListQuestion__image-wrap {
@@ -189,4 +191,11 @@
   .IteamListQuestion__image-info-exit {
     opacity: 0;
     transition: opacity 0.2s;
+  }
+
+  /* Текст вопроса */
+  .IteamListQuestion__question{
+      text-align: justify;
+      margin-top: 16px;
+      color: var(--main-white-color);
   }

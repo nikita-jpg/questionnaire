@@ -1,5 +1,5 @@
 import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
-import { ModalCard, Panel, PanelHeader, PanelHeaderButton, platform, Card, ContentCard, CardGrid } from '@vkontakte/vkui';
+import { ModalCard, Panel, PanelHeader, PanelHeaderButton, platform, Text, Div, CardGrid } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Header from '../../../components/Header/Header';
@@ -40,12 +40,12 @@ const IteamListQuestion = ({ id, curWidth, question,
                     // leftBtnFunc={}
                 />
                 
-                <div className="IteamListQuestion__content">
+                <Div className="IteamListQuestion__content">
 
                     <div className="IteamListQuestion__image-container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
                         <img
-                            className="IteamListQuestion__image"
+                            className="IteamListQuestion__image" 
                             src={question.imageSrc}
                         />
                         
@@ -59,6 +59,8 @@ const IteamListQuestion = ({ id, curWidth, question,
                         </CSSTransition>
 
                     </div>
+
+                    <Text weight="regular" className="IteamListQuestion__question">Какие кочевые племена, постоянно совершавшие набеги на Русь, были окончательно разгромлены в годы правления Ярослава Мудрого?</Text> 
                         {/* <div
                             className={`IteamListQuestion__image-wrap ${isRotated && "IteamListQuestion__image-wrap_rotated"}`}
                         >
@@ -109,7 +111,7 @@ const IteamListQuestion = ({ id, curWidth, question,
                             ))
                         }
                     </div> */}
-                </div>
+                </Div>
 
                 {/* {
                     lastIndexQuestion !== -1 &&

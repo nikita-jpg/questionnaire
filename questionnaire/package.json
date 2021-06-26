@@ -6,7 +6,7 @@
   "homepage": "https://nikita-jpg.github.io/questionnaire/",
   "scripts": {
     "start": "cross-env PORT=10887 HTTPS=true react-scripts start",
-    "anotherPort": "cross-env PORT=10888 HTTPS=false react-scripts start",
+    "aP": "cross-env PORT=10888 HTTPS=false react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
