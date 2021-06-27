@@ -6,9 +6,6 @@ import { isTitleCentre } from "../../help";
 
 const ModalPageHead = ({text, curWidth, onClose = () => {}}) => {
 
-    const { viewWidth } = useAdaptivity();
-    const isMobile = true;
-
     let textAlign = isTitleCentre(curWidth).text;
     
     return(
@@ -16,8 +13,8 @@ const ModalPageHead = ({text, curWidth, onClose = () => {}}) => {
             separator={false}
             visor={true}
             transparent={true}
-            left={isMobile && <PanelHeaderClose className="ModalPageHead__button-close" onClick={onClose}/>}
-            right={isMobile && <div style={{width:"58px",height:"1px"}}></div>}
+            left={<PanelHeaderClose className="ModalPageHead__button-close" onClick={onClose}/>}
+            right={<PanelHeaderClose className="ModalPageHead__button-pug"/>}
         >
          <div className="ModalPageHead__inside" style={{textAlign}}>
             {text}

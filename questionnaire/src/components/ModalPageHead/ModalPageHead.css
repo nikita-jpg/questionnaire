@@ -9,3 +9,7 @@
 .ModalPageHead__button-close{
     color: var(--main-white-color);
 }
+.ModalPageHead__button-pug{
+    color: var(--background_content);
+    cursor: inherit;
+}
