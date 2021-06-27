@@ -6,7 +6,7 @@ import './Header.css'
 const Header = ({curWidth, leftBtnFunc, isClose, text, icon, click}) => {
     
     let left 
-    let justifyContent = "start";
+    let justifyContent = isTitleCentre(curWidth).text;
     let cursor = "inherit";
 
     if (isClose) {
@@ -19,15 +19,9 @@ const Header = ({curWidth, leftBtnFunc, isClose, text, icon, click}) => {
         left = isTitleCentre(curWidth).stub
     }
 
-    if(curWidth >= 370){
-        justifyContent="center"
-    }
-
     if(click !== undefined){
         cursor="pointer"
     }
-
-    console.log(justifyContent)
 
     return(
         <PanelHeader                     
@@ -38,7 +32,7 @@ const Header = ({curWidth, leftBtnFunc, isClose, text, icon, click}) => {
             left={ left }
             >
 
-            <div className="Header__inside" style={{justifyContent:justifyContent, cursor:cursor}} onClick={click}>
+            <div className="Header__inside" style={{justifyContent, cursor:cursor}} onClick={click}>
                 {text}
                 {icon}
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 export function isTitleCentre (curWidth, element) {
     return({
     stub:curWidth >= 370 ? <div style={{width:"90px"}}>{element} </div> :element,
-    text:curWidth >= 370 ? {textAlign:"center"} : null
+    text:curWidth >= 370 ? "center" : "start"
     })
 }
 

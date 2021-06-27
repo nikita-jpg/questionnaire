@@ -1,4 +1,4 @@
-import mainImage from "../../img/ageRussianEmpire/main.png";
+import mainImage from "../../img/ageRussianEmpire/quizPetr1/petr.png";
 import quizPetr1 from "./quizPetr1";
 import quizTheEraOfPalaceCoups from "./quizTheEraOfPalaceCoups";
 

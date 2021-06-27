@@ -1,4 +1,4 @@
-import { PanelHeader, Panel } from '@vkontakte/vkui';
+import { PanelHeader, Panel, Div } from '@vkontakte/vkui';
 import React from 'react';
 import './ListAge.css'
 import { isTitleCentre } from '../../help';
@@ -13,20 +13,20 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
 
     return (
         <Panel id={ID_ACTIVE_PANEL}>
+            
             <div className="ListAge">
 
                 <Header
                     curWidth={curWidth}
-                    title="Выбирете эпоху"
+                    text="Выбирете эпоху"
                 ></Header> 
-
                 <ListCard
                     info={eras}
                     curWidth={curWidth}
                     cardClick={createOnClickItemAge}>
                 </ListCard>
-
             </div>
+
         </Panel>
     )
 }

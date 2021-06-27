@@ -14,6 +14,9 @@
   .vkui__root{
     --font-tt: "Lato", "TT Commons", -apple-system, Helvetica Neue, Roboto, sans-serif;
   }
+  .vkuiModalPageHeader__content-in{
+    width: 100%;
+  }
   /* .vkuiPanelHeader__content-in{
     font-weight: 500;
     height: 100%;

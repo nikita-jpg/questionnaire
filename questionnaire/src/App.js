@@ -4,7 +4,7 @@ import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenS
 import '@vkontakte/vkui/dist/vkui.css';
 import vkBridge from '@vkontakte/vk-bridge'
 
-import { AdaptivityProvider, Appearance, AppRoot, ConfigProvider, Group, Header, Panel, PanelHeader, Platform, Root, Scheme, SimpleCell, SplitCol, SplitLayout, View } from '@vkontakte/vkui';
+import { AdaptivityProvider, ModalRoot, AppRoot, ConfigProvider, ModalPage, Header, Panel, PanelHeader, Platform, Root, Scheme, SimpleCell, SplitCol, SplitLayout, View, usePlatform } from '@vkontakte/vkui';
 
 import "./App.css";
 import StartWindow from './panels/StartWindow/StartWindow';
@@ -14,6 +14,7 @@ import Result from './panels/Result/Result';
 import ListQuizes from './panels/ListQuizes/ListQuizes';
 import AnswersQuestions from './panels/AnswersQuestions/AnswersQuestions';
 import Modal from './panels/ListQuestions/IteamListQuestion/Modal/Modal';
+import ModalPageHead from './components/ModalPageHead/ModalPageHead';
 
 const App = ({ eras, results, MAX_SCORE, 
 	savePercentQuiz = (indexAge, indexQuiz, percentProgress) => {}}) => {
@@ -156,13 +157,46 @@ const App = ({ eras, results, MAX_SCORE,
 	}
 
 
+	// Модальное окно
+
+	const MODAL_ID = "MODAL_ID"
+	const platform = usePlatform()
+	const [isModalOpen, setModalOpen] = useState(null)
+    const changeModal = () => {
+		console.log(platform)
+        if(isModalOpen === MODAL_ID){
+            setModalOpen(null)
+        }
+        else{
+            setModalOpen(MODAL_ID)
+        }
+    }
+
+    const modal = (
+        <ModalRoot activeModal={isModalOpen} onClose={changeModal} onClick={() => {console.log("6+56")}}>
+            <ModalPage 
+                id={MODAL_ID}
+                settlingHeight={100}
+                header={
+                    <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
+                }>
+            </ModalPage>
+
+        </ModalRoot>
+    )
+
+
 	return (
 	<ConfigProvider isWebView={true}>
 		<AdaptivityProvider>
 			<AppRoot>
-				<SplitLayout header={null}>
-					<SplitCol animate={true}>
+				<SplitLayout header={null} modal={modal}>
+					<SplitCol animate={true} >
 						<Root activeView={activeView}>
+
+							<View id="TEST_ID">
+								<button onClick={changeModal}></button>
+							</View>
 
 							<StartWindow 
 								id={VIEW_ID_START_WINDOW} 

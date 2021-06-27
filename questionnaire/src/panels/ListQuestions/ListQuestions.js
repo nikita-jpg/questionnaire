@@ -1,6 +1,11 @@
-import { View } from '@vkontakte/vkui';
+import { View,ModalRoot,ModalPage,ModalPageHeader, PanelHeaderSubmit, PanelHeaderClose, useAdaptivity, usePlatform, ViewWidth } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
+import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
+
+
+const MODAL_ID = "MODAL_ID"
+
 
 const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
@@ -76,8 +81,33 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         setLastIndexQuestion(-1);
     }
 
+    // Работа с модальным окном
+
+    const [isModalOpen, setModalOpen] = useState(null)
+    const changeModal = () => {
+        if(isModalOpen === MODAL_ID){
+            setModalOpen(null)
+        }
+        else{
+            setModalOpen(MODAL_ID)
+        }
+    }
+
+    const modal = (
+        <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
+            <ModalPage 
+                id={MODAL_ID}
+                settlingHeight={100}
+                header={
+                    <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
+                }>
+            </ModalPage>
+
+        </ModalRoot>
+    )
+
     return (
-        <View id={id} activePanel={createIdActivePanel(indexQuestion)}>
+        <View id={id} activePanel={createIdActivePanel(indexQuestion)} modal={modal}>
             {
                 arrQuestions.map((question, i, arr) =>(
                     <IteamListQuestion
@@ -101,6 +131,8 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         goToPrevQuestion={createGoToPrevQuestion(i)}
 
                         onFinish={() => onFinish(calculateScore())}
+                        
+                        changeModal={changeModal}
                     />
                 ))
             }

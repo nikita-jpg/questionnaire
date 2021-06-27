@@ -1,5 +1,5 @@
 import { Icon24Back, Icon28ChevronBack, Icon28UsersOutline, Icon28ChevronDownOutline } from '@vkontakte/icons';
-import { ModalCard, Panel, PanelHeaderContext, PanelHeaderContent, platform, Text, Div, CardGrid, Cell, List } from '@vkontakte/vkui';
+import { ModalRoot, Panel, PanelHeaderContext, PanelHeaderContent, platform, Text, Div, CardGrid, Cell, List, ModalPage } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import AnswerOption from '../../../components/AnswerOption/AnswerOption';
@@ -17,7 +17,7 @@ const IteamListQuestion = ({ id, curWidth, question,
     lastIndexQuestion, currentIndexQuestion,
     goToLastQuestion, goToQuestionWithoutAnswer,
     goToPrevQuestion, goToNextQuestion,
-    onFinish = () => { } }) => {
+    onFinish = () => { }, changeModal = () => {} }) => {
 
     const [isRotated, setRotate] = useState(false);
 
@@ -31,7 +31,8 @@ const IteamListQuestion = ({ id, curWidth, question,
 
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
 
-    console.log(question)
+
+
     return (
         <Panel id={id} separator={false}>
             <div className="IteamListQuestion">
@@ -41,7 +42,7 @@ const IteamListQuestion = ({ id, curWidth, question,
                     isClose={true}
                     text={numberCurrentQuestion + " из " + countQuestions} 
                     icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isContextOpen ? '180deg' : '0'})` }} />}
-                    click={() => setOpenContext(!isContextOpen)}
+                    click={changeModal}
                     // leftBtnFunc={}
                 >              
                 {/* <div>
@@ -57,7 +58,7 @@ const IteamListQuestion = ({ id, curWidth, question,
                     
                 </Header>
 
-            <PanelHeaderContext opened={true}>
+            <PanelHeaderContext opened={isContextOpen}>
                 <List>
                   <Cell
                     before={<Icon28UsersOutline />}
