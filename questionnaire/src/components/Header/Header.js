@@ -1,11 +1,13 @@
-import { PanelHeader, PanelHeaderBack, PanelHeaderClose  } from '@vkontakte/vkui';
+import { PanelHeader, PanelHeaderBack, PanelHeaderClose, PanelHeaderContent  } from '@vkontakte/vkui';
 import React from 'react';
 import { isTitleCentre } from '../../help';
 import './Header.css'
 
-const Header = ({curWidth, title, leftBtnFunc, isClose }) => {
+const Header = ({curWidth, leftBtnFunc, isClose, text, icon, click}) => {
     
     let left 
+    let justifyContent = "start";
+    let cursor = "inherit";
 
     if (isClose) {
         left = isTitleCentre(curWidth,<PanelHeaderClose  onClick={leftBtnFunc} className="Header__button-back" ></PanelHeaderClose>).stub 
@@ -17,18 +19,30 @@ const Header = ({curWidth, title, leftBtnFunc, isClose }) => {
         left = isTitleCentre(curWidth).stub
     }
 
+    if(curWidth >= 370){
+        justifyContent="center"
+    }
+
+    if(click !== undefined){
+        cursor="pointer"
+    }
+
+    console.log(justifyContent)
+
     return(
         <PanelHeader                     
             separator={false}
             visor={true}
             transparent={true}
             fixed={false}
-            // Центрируем надпись
             left={ left }
-            right={ isTitleCentre(curWidth).stub }
-            style={ isTitleCentre(curWidth).text }
             >
-            {title}
+
+            <div className="Header__inside" style={{justifyContent:justifyContent, cursor:cursor}} onClick={click}>
+                {text}
+                {icon}
+            </div>
+
         </PanelHeader>
     )
 }

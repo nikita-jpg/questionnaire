@@ -14,8 +14,12 @@
   .vkui__root{
     --font-tt: "Lato", "TT Commons", -apple-system, Helvetica Neue, Roboto, sans-serif;
   }
-  .vkuiPanelHeader__content-in{
+  /* .vkuiPanelHeader__content-in{
     font-weight: 500;
+    height: 100%;
+  } */
+  .PanelHeader__content{
+    height: 100%;
   }
  .Panel.Panel--regular{
    background-color: var(--background_content);

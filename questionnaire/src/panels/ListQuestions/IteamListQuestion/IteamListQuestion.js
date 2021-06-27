@@ -1,5 +1,5 @@
-import { Icon24Back, Icon28ChevronBack } from '@vkontakte/icons';
-import { ModalCard, Panel, PanelHeader, Button, platform, Text, Div, CardGrid } from '@vkontakte/vkui';
+import { Icon24Back, Icon28ChevronBack, Icon28UsersOutline, Icon28ChevronDownOutline } from '@vkontakte/icons';
+import { ModalCard, Panel, PanelHeaderContext, PanelHeaderContent, platform, Text, Div, CardGrid, Cell, List } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import AnswerOption from '../../../components/AnswerOption/AnswerOption';
@@ -21,6 +21,8 @@ const IteamListQuestion = ({ id, curWidth, question,
 
     const [isRotated, setRotate] = useState(false);
 
+    const [isContextOpen, setOpenContext] = useState(false)
+
     const rotateImage = () => setRotate(!isRotated);
 
     const [isOpenList, setOpenList] = useState(false);
@@ -36,10 +38,45 @@ const IteamListQuestion = ({ id, curWidth, question,
 
                 <Header
                     curWidth={curWidth}
-                    title={numberCurrentQuestion + " из " + countQuestions}
                     isClose={true}
+                    text={numberCurrentQuestion + " из " + countQuestions} 
+                    icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isContextOpen ? '180deg' : '0'})` }} />}
+                    click={() => setOpenContext(!isContextOpen)}
                     // leftBtnFunc={}
-                />
+                >              
+                {/* <div>
+                    
+                </div> */}
+                    {/* <PanelHeaderContent
+                        aside={<Icon16Dropdown style={{ transform: `rotate(${isContextOpen ? '180deg' : '0'})` }} />}
+                        onClick={ () => {setOpenContext(!isContextOpen)}}
+                        style={{textAlign:"center"}}
+                    >
+                        
+                    </PanelHeaderContent> */}
+                    
+                </Header>
+
+            <PanelHeaderContext opened={true}>
+                <List>
+                  <Cell
+                    before={<Icon28UsersOutline />}
+                    // after={this.state.mode === 'all' ? <Icon24Done fill="var(--accent)" /> : null}
+                    // onClick={this.select}
+                    data-mode="all"
+                  >
+                    Communities
+                  </Cell>
+                  <Cell
+                    before={<Icon28UsersOutline />}
+                    // after={this.state.mode === 'managed' ? <Icon24Done fill="var(--accent)" /> : null}
+                    // onClick={this.select}
+                    data-mode="managed"
+                  >
+                    Managed Communities
+                  </Cell>
+                </List>
+              </PanelHeaderContext>
                 
                 <Div className="IteamListQuestion__content">
 
