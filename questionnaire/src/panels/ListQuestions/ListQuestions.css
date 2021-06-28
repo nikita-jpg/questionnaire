@@ -1,0 +1,8 @@
+.ListQuestions__modal-el{
+    background-color: var(--main-zero-bg-color);
+    border-radius: 10px;
+    margin-top: 8px;
+}
+.ListQuestions__modal-el__text{
+    color: var(--main-white-color);
+}

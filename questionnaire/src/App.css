@@ -2,6 +2,7 @@
     text-align: left;
 }
 :root {
+    --main-zero-bg-color:rgb(29,29,31);
     --main-second-bg-color:rgb(37,37,39);
     --main-therd-bg-color:rgb(45,45,47);
     --main-white-color:rgb(226,226,226);

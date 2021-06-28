@@ -1,8 +1,8 @@
-import { View,ModalRoot,ModalPage,ModalPageHeader, PanelHeaderSubmit, PanelHeaderClose, useAdaptivity, usePlatform, ViewWidth } from '@vkontakte/vkui';
+import { View,ModalRoot,ModalPage,List, SimpleCell, PanelHeaderClose, useAdaptivity, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
-
+import './ListQuestions.css'
 
 const MODAL_ID = "MODAL_ID"
 
@@ -68,10 +68,12 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
     // логика перехода к любому вопросу
     const [lastIndexQuestion, setLastIndexQuestion] = useState(-1);
 
-    const createGoToQuestionWithoutAnswer = (fromIndexQuestion) => (toIndexQuestion) => {
-        if (fromIndexQuestion != toIndexQuestion)
+    const createGoToQuestionWithoutAnswer = (toIndexQuestion) => {
+        // console.log(indexQuestion)
+        // console.log(toIndexQuestion)
+        if (indexQuestion != toIndexQuestion)
         {
-            setLastIndexQuestion(fromIndexQuestion);
+            // setLastIndexQuestion(fromIndexQuestion);
             setIndexQuestion(toIndexQuestion);
         }
     }
@@ -101,6 +103,22 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                 header={
                     <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
                 }>
+                <Group>
+                    <List>
+                    {
+                        arrQuestions.map((question, i, arr) => (
+                            <SimpleCell 
+                                key={i}
+                                onClick={() => {createGoToQuestionWithoutAnswer(i); changeModal()}}
+                                className="ListQuestions__modal-el">
+                                <div className="ListQuestions__modal-el__text">
+                                    {question.questionText}
+                                </div>
+                            </SimpleCell>
+                        ))
+                    }
+                    </List>
+                </Group>
             </ModalPage>
 
         </ModalRoot>
@@ -125,7 +143,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         lastIndexQuestion={lastIndexQuestion}
                         currentIndexQuestion={i}
                         goToLastQuestion={goToLastQuestion}
-                        goToQuestionWithoutAnswer={createGoToQuestionWithoutAnswer(i)}
+                        // goToQuestionWithoutAnswer={createGoToQuestionWithoutAnswer(i)}
 
                         goToNextQuestion={createGoToNextQuestion(i, arr.length)}
                         goToPrevQuestion={createGoToPrevQuestion(i)}
