@@ -44,18 +44,21 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
 
     // логика переключения вопросов
     const [indexQuestion, setIndexQuestion] = useState(0);
+    const setIndexQuestionAndHistory = (newIndex) => {
+        setIndexQuestion(newIndex)
+        changeHistory(newIndex)
+    }
 
     const resetData = () => {
         resetStateAnswers();
-        setIndexQuestion(0);
+        setIndexQuestionAndHistory(0);
     }
 
     const createGoToNextQuestion = (indexQuestion, maxLength) => (indexAnswer) => {
         giveAnswer(indexQuestion, indexAnswer);
 
         if (indexQuestion < maxLength - 1) {
-            setIndexQuestion(indexQuestion + 1);
-            changeHistory(indexQuestion + 1)
+            setIndexQuestionAndHistory(indexQuestion + 1);
         } else {
             onFinish(calculateScore(), stateAnswers.map(answer => answer.indexAnswer));
             resetData();
@@ -64,8 +67,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
 
     const createGoToPrevQuestion = (indexQuestion) => () => {
         if (indexQuestion > 0) {
-            setIndexQuestion(indexQuestion - 1);
-            changeHistory(indexQuestion-1)
+            setIndexQuestionAndHistory(indexQuestion - 1);
         } else {
             onBack();
             resetData();
@@ -81,12 +83,12 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         if (indexQuestion != toIndexQuestion)
         {
             // setLastIndexQuestion(fromIndexQuestion);
-            setIndexQuestion(toIndexQuestion);
-        }
+            setIndexQuestionAndHistory(toIndexQuestion);
+        }   
     }
 
     const goToLastQuestion = () => {
-        setIndexQuestion(lastIndexQuestion);
+        setIndexQuestionAndHistory(lastIndexQuestion);
         setLastIndexQuestion(-1);
     }
 
@@ -132,7 +134,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
 	// }
 
     const modal = (
-        <ModalRoot activeModal={isModalOpen}>
+        <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
             <ModalPage 
                 id={MODAL_ID}
                 settlingHeight={100}

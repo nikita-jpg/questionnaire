@@ -8,9 +8,7 @@ const ModalPageHead = ({text, curWidth, onClose = () => {}}) => {
 
     let textAlign = isTitleCentre(curWidth).text;
     const { viewWidth } = useAdaptivity();
-    const isDesktop = !(viewWidth >= ViewWidth.SMALL_TABLET);
-    console.log(viewWidth)
-    
+    const isDesktop = !(viewWidth >= ViewWidth.SMALL_TABLET);    
     return(
         <ModalPageHeader
             // separator={false}
