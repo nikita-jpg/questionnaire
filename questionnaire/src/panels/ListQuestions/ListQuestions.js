@@ -1,14 +1,19 @@
-import { View,ModalRoot,ModalPage,List, SimpleCell, PanelHeaderClose, useAdaptivity, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
+import { View,ModalRoot,ModalPage,List, SimpleCell, Div, useAdaptivity, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
+import vkBridge from '@vkontakte/vk-bridge'
 import './ListQuestions.css'
 
 const MODAL_ID = "MODAL_ID"
+const PANEL_FIRST_ID="IteamListQuestion-0"
 
 
-const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}}) => {
+
+const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}, test=() => {}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
+    const [history, setHistory] = useState([PANEL_FIRST_ID]);
+
 
     // логика хранения ответов
     const getInitStateAnswers = () => [
@@ -50,6 +55,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
 
         if (indexQuestion < maxLength - 1) {
             setIndexQuestion(indexQuestion + 1);
+            changeHistory(indexQuestion + 1)
         } else {
             onFinish(calculateScore(), stateAnswers.map(answer => answer.indexAnswer));
             resetData();
@@ -59,6 +65,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
     const createGoToPrevQuestion = (indexQuestion) => () => {
         if (indexQuestion > 0) {
             setIndexQuestion(indexQuestion - 1);
+            changeHistory(indexQuestion-1)
         } else {
             onBack();
             resetData();
@@ -84,7 +91,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
     }
 
     // Работа с модальным окном
-
     const [isModalOpen, setModalOpen] = useState(null)
     const changeModal = () => {
         if(isModalOpen === MODAL_ID){
@@ -95,30 +101,79 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         }
     }
 
+    // История
+    const changeHistory = (nextIndex) => { 
+        setHistory()
+		let his = [];
+        for(let i=0;i<nextIndex+1;i++){
+            his.push(createIdActivePanel(i))
+        }
+        setHistory(his)
+
+		if (createIdActivePanel(nextIndex) === PANEL_FIRST_ID) {
+			vkBridge.send('VKWebAppDisableSwipeBack');
+		  }
+        else{
+            vkBridge.send('VKWebAppEnableSwipeBack');
+        }
+        console.log(his)
+	}
+
+
+    // const goBack = () => {
+	// 	let his = history;
+	// 	his.pop()
+	// 	if (activePanel === PANEL_FIRST_ID) {
+	// 		vkBridge.send('VKWebAppEnableSwipeBack');
+	// 	  }
+	// 	setHistory(his)
+	// 	setActivePanel(history[history.length - 1])
+	// 	console.log(history)
+	// }
+
     const modal = (
-        <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
+        <ModalRoot activeModal={isModalOpen}>
             <ModalPage 
                 id={MODAL_ID}
                 settlingHeight={100}
                 header={
-                    <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
+                    <ModalPageHead text="Вопросы" curWidth={curWidth}></ModalPageHead>
                 }>
-                <Group>
-                    <List>
-                    {
-                        arrQuestions.map((question, i, arr) => (
-                            <SimpleCell 
-                                key={i}
-                                onClick={() => {createGoToQuestionWithoutAnswer(i); changeModal()}}
-                                className="ListQuestions__modal-el">
-                                <div className="ListQuestions__modal-el__text">
-                                    {question.questionText}
-                                </div>
-                            </SimpleCell>
-                        ))
-                    }
-                    </List>
-                </Group>
+                {/* <Div>
+                <SimpleCell 
+                    onClick={() => {createGoToQuestionWithoutAnswer(1); changeModal()}}
+                    className={`ListQuestions__modal-el`}>
+                    <div className="ListQuestions__modal-el__text">
+                        {"questionText"}
+                    </div>
+                </SimpleCell>
+                <SimpleCell 
+                    onClick={() => {createGoToQuestionWithoutAnswer(1); changeModal()}}
+                    className={`ListQuestions__modal-el`}>
+                    <div className="ListQuestions__modal-el__text">
+                        {"questionText"}
+                    </div>
+                </SimpleCell>
+                <SimpleCell 
+                    onClick={() => {createGoToQuestionWithoutAnswer(); changeModal()}}
+                    className={`ListQuestions__modal-el`}>
+                    <div className="ListQuestions__modal-el__text">
+                        {"questionText"}
+                    </div>
+                </SimpleCell>
+                </Div> */}
+                {
+                    arrQuestions.map(({questionText, indexAnswer}, i, arr) => (
+                        <SimpleCell 
+                            key={i}
+                            onClick={() => {createGoToQuestionWithoutAnswer(i); changeModal()}}
+                            className={`ListQuestions__modal-el`}>
+                            <div className="ListQuestions__modal-el__text">
+                                {questionText}
+                            </div>
+                        </SimpleCell>
+                    ))
+                }
             </ModalPage>
 
         </ModalRoot>
@@ -151,6 +206,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         onFinish={() => onFinish(calculateScore())}
                         
                         changeModal={changeModal}
+                        changeHistory={changeHistory}
                     />
                 ))
             }

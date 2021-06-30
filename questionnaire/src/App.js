@@ -140,8 +140,7 @@ const App = ({ eras, results, MAX_SCORE,
 			vkBridge.send('VKWebAppEnableSwipeBack');
 		  }
 		setHistory(his)
-		setActivePanel(history[history.length - 1])
-		console.log(history)
+		setActivePanel(history[history.length - 1])	
 	}
 
 	const goForward = (view) => { 
@@ -177,11 +176,12 @@ const App = ({ eras, results, MAX_SCORE,
             <ModalPage 
                 id={MODAL_ID}
                 settlingHeight={100}
-                header={
-                    <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
-                }>
+                // header={
+                //     <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
+                // }
+				>
+					26+56
             </ModalPage>
-
         </ModalRoot>
     )
 
@@ -190,8 +190,8 @@ const App = ({ eras, results, MAX_SCORE,
 	<ConfigProvider isWebView={true}>
 		<AdaptivityProvider>
 			<AppRoot>
-				<SplitLayout header={null} modal={modal}>
-					<SplitCol animate={true} >
+				<SplitLayout header={null}>
+					<SplitCol>
 						<Root activeView={activeView}>
 
 							<View id="TEST_ID">
@@ -234,6 +234,7 @@ const App = ({ eras, results, MAX_SCORE,
 								arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
 								onBack={onBackListQuestions}
 								onFinish={onFinishListQuestions}
+								test={changeModal}
 							/>
 
 							<Result

@@ -31,15 +31,14 @@ const IteamListQuestion = ({ id, curWidth, question,
 
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
 
-
-
     return (
         <Panel id={id} separator={false}>
             <div className="IteamListQuestion">
 
                 <Header
                     curWidth={curWidth}
-                    isClose={true}
+                    isClose={numberCurrentQuestion === 1 ? true : false}
+                    leftBtnFunc={numberCurrentQuestion !== 1 ? goToPrevQuestion : undefined}
                     text={numberCurrentQuestion + " из " + countQuestions} 
                     icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isContextOpen ? '180deg' : '0'})` }} />}
                     click={changeModal}

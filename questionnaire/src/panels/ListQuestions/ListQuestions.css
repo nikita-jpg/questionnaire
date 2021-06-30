@@ -3,6 +3,9 @@
     border-radius: 10px;
     margin-top: 8px;
 }
+.ListQuestions__modal-el_answered{
+    background-color: var(--main-second-bg-color);
+}
 .ListQuestions__modal-el__text{
     color: var(--main-white-color);
 }

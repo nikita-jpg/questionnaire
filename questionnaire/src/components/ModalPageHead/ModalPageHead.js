@@ -13,9 +13,9 @@ const ModalPageHead = ({text, curWidth, onClose = () => {}}) => {
     
     return(
         <ModalPageHeader
-            separator={false}
-            visor={true}
-            transparent={true}
+            // separator={false}
+            // visor={true}
+            // transparent={true}
             left={isDesktop && <PanelHeaderClose className="ModalPageHead__button-close" onClick={onClose}/>}
             right={isDesktop && <PanelHeaderClose className="ModalPageHead__button-pug"/>}
         >
