@@ -1,4 +1,4 @@
-import { View,ModalRoot,ModalPage,List, SimpleCell, Div, useAdaptivity, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
+import { View,ModalRoot,ModalPage,List, SimpleCell, Div, Alert, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
@@ -13,6 +13,7 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}, test=() => {}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
     const [history, setHistory] = useState([PANEL_FIRST_ID]);
+    const [finishAlert, setFinishAlert] = useState(null);
 
 
     // логика хранения ответов
@@ -122,18 +123,38 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         console.log(his)
 	}
 
+    //Alert
+    const isAllAnswered = () => {
+        for (let i=0;i<stateAnswers.length;i++){
+            if(stateAnswers[i].indexAnswer === -1) return false;
+        }
+        return true
+    }
 
-    // const goBack = () => {
-	// 	let his = history;
-	// 	his.pop()
-	// 	if (activePanel === PANEL_FIRST_ID) {
-	// 		vkBridge.send('VKWebAppEnableSwipeBack');
-	// 	  }
-	// 	setHistory(his)
-	// 	setActivePanel(history[history.length - 1])
-	// 	console.log(history)
-	// }
+    const openFinishAlert = () => {
+        setFinishAlert(
+        <Alert         
+            header="Вы ответили не на все вопросы?"
+            actionsLayout="horizontal"
+            onClose={closeFinishAlert}
+            actions={[{
+                title: 'Отмена',
+                autoclose: true,
+                mode: 'cancel'
+              }, {
+                title: 'Завершить',
+                autoclose: true,
+                mode: 'destructive',
+                action: () => onFinish(calculateScore()),
+              }]}
+            >
+        </Alert>);
+    }
+    const closeFinishAlert = () => {
+        setFinishAlert(null)
+    }
 
+    //Модальное окно
     const modal = (
         <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
             <ModalPage 
@@ -157,7 +178,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                     
                 }
                 <SimpleCell
-                    onClick={() => onFinish(calculateScore())}
+                    onClick={ () => {isAllAnswered() ? onFinish(calculateScore()) : openFinishAlert()}}
                     className="ListQuestions__modal-el">
                     <div className="ListQuestions__modal-el__finish-btn">
                        Завершить
@@ -174,7 +195,8 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
             activePanel={createIdActivePanel(indexQuestion)} 
             modal={modal} 
             history={history} 
-            onSwipeBack={createGoToPrevQuestion(indexQuestion)}>
+            onSwipeBack={createGoToPrevQuestion(indexQuestion)}
+            popout={finishAlert}>
             {
                 arrQuestions.map((question, i, arr) =>(
                     <IteamListQuestion
