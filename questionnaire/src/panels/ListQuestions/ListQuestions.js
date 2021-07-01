@@ -13,8 +13,7 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}, test=() => {}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
     const [history, setHistory] = useState([PANEL_FIRST_ID]);
-    const [finishAlert, setFinishAlert] = useState(null);
-
+    const [alert, setAlert] = useState(null);
 
     // логика хранения ответов
     const getInitStateAnswers = () => [
@@ -71,8 +70,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         if (indexQuestion > 0) {
             setIndexQuestionAndHistory(indexQuestion - 1);
         } else {
-            onBack();
-            resetData();
+            openCloseListQuestionsAleret();
         }
     }
 
@@ -124,19 +122,42 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
 	}
 
     //Alert
+    const onFinishWithAlert = () => {
+        isAllAnswered() ? onFinish(calculateScore()) : openFinishAlert()
+    }
     const isAllAnswered = () => {
         for (let i=0;i<stateAnswers.length;i++){
             if(stateAnswers[i].indexAnswer === -1) return false;
         }
         return true
     }
-
+    const openCloseListQuestionsAleret = () => {
+        setAlert(
+            <Alert         
+                header="Уверены, что хотите выйти?"
+                actionsLayout="horizontal"
+                onClose={closeAlert}
+                actions={[{
+                    title: 'Отмена',
+                    autoclose: true,
+                    mode: 'cancel'
+                  }, {
+                    title: 'Выйти',
+                    autoclose: true,
+                    mode: 'destructive',
+                    action: () => {
+                        onBack();
+                        resetData();},
+                  }]}
+                >
+            </Alert>);
+    }
     const openFinishAlert = () => {
-        setFinishAlert(
+        setAlert(
         <Alert         
             header="Вы ответили не на все вопросы?"
             actionsLayout="horizontal"
-            onClose={closeFinishAlert}
+            onClose={closeAlert}
             actions={[{
                 title: 'Отмена',
                 autoclose: true,
@@ -150,8 +171,8 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
             >
         </Alert>);
     }
-    const closeFinishAlert = () => {
-        setFinishAlert(null)
+    const closeAlert = () => {
+        setAlert(null)
     }
 
     //Модальное окно
@@ -178,7 +199,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                     
                 }
                 <SimpleCell
-                    onClick={ () => {isAllAnswered() ? onFinish(calculateScore()) : openFinishAlert()}}
+                    onClick={ () => {onFinishWithAlert()}}
                     className="ListQuestions__modal-el">
                     <div className="ListQuestions__modal-el__finish-btn">
                        Завершить
@@ -196,7 +217,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
             modal={modal} 
             history={history} 
             onSwipeBack={createGoToPrevQuestion(indexQuestion)}
-            popout={finishAlert}>
+            popout={alert}>
             {
                 arrQuestions.map((question, i, arr) =>(
                     <IteamListQuestion
@@ -219,7 +240,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         goToNextQuestion={createGoToNextQuestion(i, arr.length)}
                         goToPrevQuestion={createGoToPrevQuestion(i)}
 
-                        onFinish={() => onFinish(calculateScore())}
+                        onFinish={() => onFinishWithAlert()}
                         
                         changeModal={changeModal}
                         changeHistory={changeHistory}

@@ -36,7 +36,7 @@ const IteamListQuestion = ({ id, curWidth, question,
                 <Header
                     curWidth={curWidth}
                     isClose={numberCurrentQuestion === 1 ? true : false}
-                    leftBtnFunc={numberCurrentQuestion !== 1 ? goToPrevQuestion : undefined}
+                    leftBtnFunc={goToPrevQuestion}
                     text={numberCurrentQuestion + " из " + countQuestions} 
                     icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
                     click={changeModal}
