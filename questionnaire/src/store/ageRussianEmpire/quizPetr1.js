@@ -86,6 +86,82 @@ const quizPetr1 = {
                     score: 0
                 }
             ]
+        },
+        {
+            imageSrc: imgExample,
+            overSideImg: null,
+            questionText: "Вопрос 5",
+            answerOptions: [
+                {
+                    text: "1",
+                    score: 1
+                },
+                {
+                    text: "2",
+                    score: 0
+                },
+                {
+                    text: "3",
+                    score: 0
+                }
+            ]
+        },
+        {
+            imageSrc: imgExample,
+            overSideImg: null,
+            questionText: "Вопрос 6",
+            answerOptions: [
+                {
+                    text: "1",
+                    score: 1
+                },
+                {
+                    text: "2",
+                    score: 0
+                },
+                {
+                    text: "3",
+                    score: 0
+                }
+            ]
+        },
+        {
+            imageSrc: imgExample,
+            overSideImg: null,
+            questionText: "Вопрос 7",
+            answerOptions: [
+                {
+                    text: "1",
+                    score: 1
+                },
+                {
+                    text: "2",
+                    score: 0
+                },
+                {
+                    text: "3",
+                    score: 0
+                }
+            ]
+        },
+        {
+            imageSrc: imgExample,
+            overSideImg: null,
+            questionText: "Вопрос 8",
+            answerOptions: [
+                {
+                    text: "1",
+                    score: 1
+                },
+                {
+                    text: "2",
+                    score: 0
+                },
+                {
+                    text: "3",
+                    score: 0
+                }
+            ]
         }
     ]
 }

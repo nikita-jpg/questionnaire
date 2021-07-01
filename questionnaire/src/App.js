@@ -191,7 +191,7 @@ const App = ({ eras, results, MAX_SCORE,
 		<AdaptivityProvider>
 			<AppRoot>
 				<SplitLayout header={null}>
-					<SplitCol>
+					<SplitCol animate={true}>
 						<Root activeView={activeView}>
 
 							<View id="TEST_ID">

@@ -66,6 +66,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
     }
 
     const createGoToPrevQuestion = (indexQuestion) => () => {
+        console.log(indexQuestion)
         if (indexQuestion > 0) {
             setIndexQuestionAndHistory(indexQuestion - 1);
         } else {
@@ -137,9 +138,9 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
             <ModalPage 
                 id={MODAL_ID}
-                settlingHeight={100}
+                settlingHeight={75}
                 header={
-                    <ModalPageHead text="Вопросы" curWidth={curWidth}></ModalPageHead>
+                    <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
                 }>
                 {/* <Div>
                 <SimpleCell 
@@ -176,6 +177,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                             </div>
                         </SimpleCell>
                     ))
+                    
                 }
                 </Div>
             </ModalPage>
@@ -188,7 +190,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
             activePanel={createIdActivePanel(indexQuestion)} 
             modal={modal} 
             history={history} 
-            onSwipeBack={() =>  {changeHistory(indexQuestion-1)}}>
+            onSwipeBack={createGoToPrevQuestion(indexQuestion)}>
             {
                 arrQuestions.map((question, i, arr) =>(
                     <IteamListQuestion
