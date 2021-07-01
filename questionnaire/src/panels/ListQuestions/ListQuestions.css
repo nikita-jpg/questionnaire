@@ -4,7 +4,7 @@
     margin-top: 8px;
 }
 .ListQuestions__modal-el_answered{
-    background-color: var(--main-second-bg-color);
+    background-color: var(--main-therd-bg-color);
 }
 .ListQuestions__modal-el__text{
     color: var(--main-white-color);

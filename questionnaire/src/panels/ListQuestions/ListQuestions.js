@@ -142,36 +142,13 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                 header={
                     <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
                 }>
-                {/* <Div>
-                <SimpleCell 
-                    onClick={() => {createGoToQuestionWithoutAnswer(1); changeModal()}}
-                    className={`ListQuestions__modal-el`}>
-                    <div className="ListQuestions__modal-el__text">
-                        {"questionText"}
-                    </div>
-                </SimpleCell>
-                <SimpleCell 
-                    onClick={() => {createGoToQuestionWithoutAnswer(1); changeModal()}}
-                    className={`ListQuestions__modal-el`}>
-                    <div className="ListQuestions__modal-el__text">
-                        {"questionText"}
-                    </div>
-                </SimpleCell>
-                <SimpleCell 
-                    onClick={() => {createGoToQuestionWithoutAnswer(); changeModal()}}
-                    className={`ListQuestions__modal-el`}>
-                    <div className="ListQuestions__modal-el__text">
-                        {"questionText"}
-                    </div>
-                </SimpleCell>
-                </Div> */}
                 <Div>
                 {
                     arrQuestions.map(({questionText, indexAnswer}, i, arr) => (
                         <SimpleCell 
                             key={i}
                             onClick={() => {createGoToQuestionWithoutAnswer(i); changeModal()}}
-                            className={`ListQuestions__modal-el`}>
+                            className={`ListQuestions__modal-el ${stateAnswers[i].indexAnswer !== -1 ? 'ListQuestions__modal-el_answered':''}`}>
                             <div className="ListQuestions__modal-el__text">
                                 {questionText}
                             </div>
