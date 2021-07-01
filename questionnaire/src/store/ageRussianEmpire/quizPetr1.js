@@ -14,7 +14,7 @@ const quizPetr1 = {
         {
             imageSrc: imgExample,
             overSideImg: imgExample,
-            questionText: "Основная причина дефолта 98-го года?",
+            questionText: "Основная причина дефолта 98-го года?3156156566644684684",
             answerOptions: [
                 {
                     text: "Лопнул пузырь ГКО (Государственные краткосрочные облигации)",

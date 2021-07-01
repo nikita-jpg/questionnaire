@@ -8,4 +8,10 @@
 }
 .ListQuestions__modal-el__text{
     color: var(--main-white-color);
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+}
+.ListQuestions__modal-el__finish-btn{
+    color: var(--main-red-color);
 }

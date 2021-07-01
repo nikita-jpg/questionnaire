@@ -156,6 +156,13 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                     ))
                     
                 }
+                <SimpleCell
+                    onClick={() => onFinish(calculateScore())}
+                    className="ListQuestions__modal-el">
+                    <div className="ListQuestions__modal-el__finish-btn">
+                       Завершить
+                    </div>
+                </SimpleCell>
                 </Div>
             </ModalPage>
 
