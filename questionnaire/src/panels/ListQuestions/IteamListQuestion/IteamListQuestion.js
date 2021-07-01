@@ -16,14 +16,12 @@ const IteamListQuestion = ({ id, curWidth, question,
     stateAnswers, indexAnswer,
     lastIndexQuestion, currentIndexQuestion,
     goToLastQuestion, goToQuestionWithoutAnswer,
-    goToPrevQuestion, goToNextQuestion,
+    goToPrevQuestion, goToNextQuestion,isModalOpen,
     onFinish = () => { }, changeModal = () => {} }) => {
 
-    const [isRotated, setRotate] = useState(false);
+    // const [isRotated, setRotate] = useState(false);
 
-    const [isContextOpen, setOpenContext] = useState(false)
-
-    const rotateImage = () => setRotate(!isRotated);
+    // const rotateImage = () => setRotate(!isRotated);
 
     const [isOpenList, setOpenList] = useState(false);
     const openModal = () => setOpenList(!isOpenList);
@@ -40,7 +38,7 @@ const IteamListQuestion = ({ id, curWidth, question,
                     isClose={numberCurrentQuestion === 1 ? true : false}
                     leftBtnFunc={numberCurrentQuestion !== 1 ? goToPrevQuestion : undefined}
                     text={numberCurrentQuestion + " из " + countQuestions} 
-                    icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isContextOpen ? '180deg' : '0'})` }} />}
+                    icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
                     click={changeModal}
                     // leftBtnFunc={}
                 >              
@@ -57,7 +55,7 @@ const IteamListQuestion = ({ id, curWidth, question,
                     
                 </Header>
 
-            <PanelHeaderContext opened={isContextOpen}>
+            {/* <PanelHeaderContext opened={isContextOpen}>
                 <List>
                   <Cell
                     before={<Icon28UsersOutline />}
@@ -76,7 +74,7 @@ const IteamListQuestion = ({ id, curWidth, question,
                     Managed Communities
                   </Cell>
                 </List>
-              </PanelHeaderContext>
+              </PanelHeaderContext> */}
                 
                 <Div className="IteamListQuestion__content">
 

@@ -12,7 +12,6 @@ const ListQuizes = ({ id, curWidth, title, quizes, onBack = () => { }, createOnC
             <div className="ListQuizes">
 
                 <Header
-                    curWidth={curWidth}
                     leftBtnFunc={onBack}
                     text={title}
                 >

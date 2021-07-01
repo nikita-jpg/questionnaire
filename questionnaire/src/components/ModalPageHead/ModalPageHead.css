@@ -4,9 +4,9 @@
 
     font-size: 20px;
     font-weight: 500;
-    color: black;}
+    color: var(--main-white-color);}
 .ModalPageHead__button-close{
-    color: black;
+    /* color: black; */
 }
 .ModalPageHead__button-pug{
     color: var(--background_content);

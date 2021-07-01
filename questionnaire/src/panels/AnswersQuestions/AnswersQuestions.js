@@ -1,6 +1,7 @@
 import { Icon24Back } from '@vkontakte/icons';
 import { Panel, PanelHeader, PanelHeaderButton, View } from '@vkontakte/vkui';
 import React, { useState } from 'react';
+import Header from '../../components/Header/Header';
 
 import "./AnswersQuestions.css";
 import ItemAnswerQuestion from './ItemAnswerQuestion/ItemAnswerQuestion';
@@ -11,7 +12,11 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
     return (
         <View id={id} activePanel="PANEL_ANSWERS_QUESTIONS">
             <Panel id="PANEL_ANSWERS_QUESTIONS">
-                <PanelHeader
+                <Header
+                text="Вопросы"
+                leftBtnFunc={onBack}>
+                </Header>
+                {/* <PanelHeader
                     left={
                         <>
                             <PanelHeaderButton onClick={onBack}>
@@ -24,7 +29,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                     separator={false}
                     transparent={false}
                     visor={false}
-                ></PanelHeader>
+                ></PanelHeader> */}
 
                 <div className="AnswersQuestions">
                     {

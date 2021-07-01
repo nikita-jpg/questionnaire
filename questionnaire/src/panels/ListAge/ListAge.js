@@ -17,7 +17,6 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
             <div className="ListAge">
 
                 <Header
-                    curWidth={curWidth}
                     text="Выбирете эпоху"
                 ></Header> 
                 <ListCard

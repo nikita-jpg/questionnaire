@@ -10,10 +10,10 @@ const Header = ({curWidth, leftBtnFunc, isClose, text, icon, click}) => {
     let cursor = "inherit";
 
     if (isClose) {
-        left = isTitleCentre(curWidth,<PanelHeaderClose  onClick={leftBtnFunc} className="Header__button-back" ></PanelHeaderClose>).stub 
+        left = isTitleCentre(<PanelHeaderClose  onClick={leftBtnFunc} className="Header__button-back" ></PanelHeaderClose>).stub 
     }
     else if (leftBtnFunc !== undefined ){
-        left = isTitleCentre(curWidth,<PanelHeaderBack onClick={leftBtnFunc} className="Header__button-back" ></PanelHeaderBack>).stub
+        left = isTitleCentre(<PanelHeaderBack onClick={leftBtnFunc} className="Header__button-back" ></PanelHeaderBack>).stub
     }
     else{
         left = isTitleCentre(curWidth).stub

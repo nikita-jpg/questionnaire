@@ -1,5 +1,6 @@
 import React from 'react';
-export function isTitleCentre (curWidth, element) {
+export function isTitleCentre ( element) {
+    let curWidth = document.getElementById('root').scrollWidth;
     return({
     stub:curWidth >= 370 ? <div style={{width:"90px"}}>{element} </div> :element,
     text:curWidth >= 370 ? "center" : "start"

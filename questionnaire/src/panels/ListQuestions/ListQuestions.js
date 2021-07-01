@@ -164,6 +164,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                     </div>
                 </SimpleCell>
                 </Div> */}
+                <Div>
                 {
                     arrQuestions.map(({questionText, indexAnswer}, i, arr) => (
                         <SimpleCell 
@@ -176,13 +177,18 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         </SimpleCell>
                     ))
                 }
+                </Div>
             </ModalPage>
 
         </ModalRoot>
     )
 
     return (
-        <View id={id} activePanel={createIdActivePanel(indexQuestion)} modal={modal}>
+        <View id={id} 
+            activePanel={createIdActivePanel(indexQuestion)} 
+            modal={modal} 
+            history={history} 
+            onSwipeBack={() =>  {changeHistory(indexQuestion-1)}}>
             {
                 arrQuestions.map((question, i, arr) =>(
                     <IteamListQuestion
@@ -209,6 +215,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         
                         changeModal={changeModal}
                         changeHistory={changeHistory}
+                        isModalOpen={isModalOpen}
                     />
                 ))
             }

@@ -1,6 +1,7 @@
 import { Icon24Back } from "@vkontakte/icons";
 import { Panel, PanelHeader, PanelHeaderButton, View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
+import Header from "../../components/Header/Header";
 
 import "./Result.css";
 import animate from "../../anime/animate";
@@ -163,7 +164,8 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
     return (
         <View id={id} activePanel="PANEL_RESULT">
             <Panel id="PANEL_RESULT">
-                <PanelHeader
+                <Header></Header>
+                {/* <PanelHeader
                     className="Result__PanelHeader"
                     left={
                         <>
@@ -177,7 +179,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
                     visor={false}
                     transparent={false}
                 >
-                </PanelHeader>
+                </PanelHeader> */}
 
                 <div className="Result" style={styleResult}>
                     <div style={styleYear} className="Result__year">
