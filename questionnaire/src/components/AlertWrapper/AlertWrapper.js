@@ -1,10 +1,11 @@
 import { Alert } from "@vkontakte/vkui"
 import React from 'react';
+import './AlertWrapper.css'
 
 const AlertWrapper = ({header, description, leftText, leftFunc = () => { }, rightText, rightFunc = () => { }, onClose = () => { }}) => {
   // console.log(leftText)
   return(
-    <Alert         
+    <Alert       
       header={header}
       description={description}
       actionsLayout="horizontal"
@@ -13,12 +14,12 @@ const AlertWrapper = ({header, description, leftText, leftFunc = () => { }, righ
           title: `${leftText}`,
           autoclose: true,
           mode: 'cancel',
-          action: () => {leftFunc()}
+          action: () => leftFunc()
         }, {
           title: `${rightText}`,
           autoclose: true,
           mode: 'destructive',
-          action: () => {rightFunc()},
+          action: () => rightFunc(),
         }]}
       >
     </Alert>

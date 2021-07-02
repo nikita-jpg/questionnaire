@@ -13,6 +13,13 @@
     --header_text:white;
   }
   /* Переопределено */
+  body{
+    background-color: var(--background_content);
+  }
+  html{
+    background-color: var(--background_content);
+  }
+
   .vkui__root{
     --font-tt: "Lato", "TT Commons", -apple-system, Helvetica Neue, Roboto, sans-serif;
   }
@@ -23,18 +30,23 @@
     font-weight: 500;
     height: 100%;
   } */
+
   .PanelHeader__content{
     height: 100%;
   }
  .Panel.Panel--regular{
    background-color: var(--background_content);
  }
- body{
-   background-color: var(--background_content);
- }
- html{
-   background-color: var(--background_content);
- }
 .Panel::after { 
   position: fixed; 
+}
+
+.vkuiAlert{
+  color: var(--main-white-color);
+}
+.vkuiAlert::before{
+  background-color: var(--main-second-bg-color);
+}
+.vkuiAlert__button{
+  color: var(--main-white-color);
 }

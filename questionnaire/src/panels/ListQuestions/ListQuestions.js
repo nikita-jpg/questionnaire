@@ -143,47 +143,21 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                 onClose={closeAlert}
             >
             </AlertWrapper>
-        )
+        )}
+    const openFinishAlert = () => {        
+        setAlert(
 
-        // setAlert(
-        //     <Alert         
-        //         header="Уверены, что хотите выйти?"
-        //         actionsLayout="horizontal"
-        //         onClose={closeAlert}
-        //         actions={[{
-        //             title: 'Отмена',
-        //             autoclose: true,
-        //             mode: 'cancel'
-        //           }, {
-        //             title: 'Выйти',
-        //             autoclose: true,
-        //             mode: 'destructive',
-        //             action: () => {
-        //                 onBack();
-        //                 resetData();},
-        //           }]}
-        //         >
-        //     </Alert>);
-    }
-    const openFinishAlert = () => {
-        // setAlert(
-        // <Alert         
-        //     header="Вы ответили не на все вопросы?"
-        //     actionsLayout="horizontal"
-        //     onClose={closeAlert}
-        //     actions={[{
-        //         title: 'Отмена',
-        //         autoclose: true,
-        //         mode: 'cancel'
-        //       }, {
-        //         title: 'Завершить',
-        //         autoclose: true,
-        //         mode: 'destructive',
-        //         action: () => onFinish(calculateScore()),
-        //       }]}
-        //     >
-        // </Alert>);
-    }
+            <AlertWrapper
+                header="Вы ответили не на все вопросы"
+                leftText={"Отмена"}
+                rightText={"Завершить"}
+                rightFunc={ () => {onFinish(calculateScore())}}
+                onClose={closeAlert}
+            >
+            </AlertWrapper>
+
+        )}
+        
     const closeAlert = () => {
         setAlert(null)
     }
