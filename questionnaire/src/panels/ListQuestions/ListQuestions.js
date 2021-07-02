@@ -1,8 +1,9 @@
-import { View,ModalRoot,ModalPage,List, SimpleCell, Div, Alert, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
+import { View,ModalRoot,ModalPage,List, SimpleCell, Div, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
 import vkBridge from '@vkontakte/vk-bridge'
+import AlertWrapper from '../../components/AlertWrapper/AlertWrapper';
 import './ListQuestions.css'
 
 const MODAL_ID = "MODAL_ID"
@@ -132,44 +133,56 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         return true
     }
     const openCloseListQuestionsAleret = () => {
+
         setAlert(
-            <Alert         
+            <AlertWrapper
                 header="Уверены, что хотите выйти?"
-                actionsLayout="horizontal"
+                leftText={"Отмена"}
+                rightText={"Выйти"}
+                rightFunc={ () =>  {onBack(); resetData()}}
                 onClose={closeAlert}
-                actions={[{
-                    title: 'Отмена',
-                    autoclose: true,
-                    mode: 'cancel'
-                  }, {
-                    title: 'Выйти',
-                    autoclose: true,
-                    mode: 'destructive',
-                    action: () => {
-                        onBack();
-                        resetData();},
-                  }]}
-                >
-            </Alert>);
+            >
+            </AlertWrapper>
+        )
+
+        // setAlert(
+        //     <Alert         
+        //         header="Уверены, что хотите выйти?"
+        //         actionsLayout="horizontal"
+        //         onClose={closeAlert}
+        //         actions={[{
+        //             title: 'Отмена',
+        //             autoclose: true,
+        //             mode: 'cancel'
+        //           }, {
+        //             title: 'Выйти',
+        //             autoclose: true,
+        //             mode: 'destructive',
+        //             action: () => {
+        //                 onBack();
+        //                 resetData();},
+        //           }]}
+        //         >
+        //     </Alert>);
     }
     const openFinishAlert = () => {
-        setAlert(
-        <Alert         
-            header="Вы ответили не на все вопросы?"
-            actionsLayout="horizontal"
-            onClose={closeAlert}
-            actions={[{
-                title: 'Отмена',
-                autoclose: true,
-                mode: 'cancel'
-              }, {
-                title: 'Завершить',
-                autoclose: true,
-                mode: 'destructive',
-                action: () => onFinish(calculateScore()),
-              }]}
-            >
-        </Alert>);
+        // setAlert(
+        // <Alert         
+        //     header="Вы ответили не на все вопросы?"
+        //     actionsLayout="horizontal"
+        //     onClose={closeAlert}
+        //     actions={[{
+        //         title: 'Отмена',
+        //         autoclose: true,
+        //         mode: 'cancel'
+        //       }, {
+        //         title: 'Завершить',
+        //         autoclose: true,
+        //         mode: 'destructive',
+        //         action: () => onFinish(calculateScore()),
+        //       }]}
+        //     >
+        // </Alert>);
     }
     const closeAlert = () => {
         setAlert(null)

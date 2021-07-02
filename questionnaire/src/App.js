@@ -51,7 +51,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE_AND_QUIZES);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
@@ -134,6 +134,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// история
 	const goBack = () => {
+		console.log(history)
 		let his = history;
 		his.pop()
 		if (activePanel === PANEL_ID_LIST_AGE) {
@@ -155,37 +156,6 @@ const App = ({ eras, results, MAX_SCORE,
 		}
 	}
 
-
-	// Модальное окно
-
-	const MODAL_ID = "MODAL_ID"
-	const platform = usePlatform()
-	const [isModalOpen, setModalOpen] = useState(null)
-    const changeModal = () => {
-		console.log(platform)
-        if(isModalOpen === MODAL_ID){
-            setModalOpen(null)
-        }
-        else{
-            setModalOpen(MODAL_ID)
-        }
-    }
-
-    const modal = (
-        <ModalRoot activeModal={isModalOpen} onClose={changeModal} onClick={() => {console.log("6+56")}}>
-            <ModalPage 
-                id={MODAL_ID}
-                settlingHeight={100}
-                // header={
-                //     <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
-                // }
-				>
-					26+56
-            </ModalPage>
-        </ModalRoot>
-    )
-
-
 	return (
 	<ConfigProvider isWebView={true}>
 		<AdaptivityProvider>
@@ -193,10 +163,6 @@ const App = ({ eras, results, MAX_SCORE,
 				<SplitLayout header={null}>
 					<SplitCol animate={true}>
 						<Root activeView={activeView}>
-
-							<View id="TEST_ID">
-								<button onClick={changeModal}></button>
-							</View>
 
 							<StartWindow 
 								id={VIEW_ID_START_WINDOW} 
@@ -234,7 +200,6 @@ const App = ({ eras, results, MAX_SCORE,
 								arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
 								onBack={onBackListQuestions}
 								onFinish={onFinishListQuestions}
-								test={changeModal}
 							/>
 
 							<Result
