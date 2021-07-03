@@ -6,13 +6,13 @@
     --main-second-bg-color:#2C2C2E;
     --main-therd-bg-color:#636366;
     --main-white-color:#ffff;
-    --main-white-grey-color:rgba(235, 235, 235, 0.6);;
     --main-red-color:#FF453A;
     --main-blue-color:#0A84FF;
-
+ 
     /* Переопределено */
     --background_content:#1C1C1E;
     --header_text:white;
+    --text_secondary:rgba(235, 235, 235, 0.6);
     --background_hover: rgba(0,0,0,0.16)
   }
   /* Переопределено */

@@ -42,39 +42,9 @@ const IteamListQuestion = ({ id, curWidth, question,
                     click={changeModal}
                     // leftBtnFunc={}
                 >              
-                {/* <div>
-                    
-                </div> */}
-                    {/* <PanelHeaderContent
-                        aside={<Icon16Dropdown style={{ transform: `rotate(${isContextOpen ? '180deg' : '0'})` }} />}
-                        onClick={ () => {setOpenContext(!isContextOpen)}}
-                        style={{textAlign:"center"}}
-                    >
-                        
-                    </PanelHeaderContent> */}
                     
                 </Header>
 
-            {/* <PanelHeaderContext opened={isContextOpen}>
-                <List>
-                  <Cell
-                    before={<Icon28UsersOutline />}
-                    // after={this.state.mode === 'all' ? <Icon24Done fill="var(--accent)" /> : null}
-                    // onClick={this.select}
-                    data-mode="all"
-                  >
-                    Communities
-                  </Cell>
-                  <Cell
-                    before={<Icon28UsersOutline />}
-                    // after={this.state.mode === 'managed' ? <Icon24Done fill="var(--accent)" /> : null}
-                    // onClick={this.select}
-                    data-mode="managed"
-                  >
-                    Managed Communities
-                  </Cell>
-                </List>
-              </PanelHeaderContext> */}
                 
                 <Div className="IteamListQuestion__content">
 
@@ -87,11 +57,15 @@ const IteamListQuestion = ({ id, curWidth, question,
                         
                         <CSSTransition 
                             in={isImgInfoOpen} 
-                            timeout={200} 
+                            timeout={200}   
                             classNames="IteamListQuestion__image-info"
                             onEnter={() => {setisImgInfoOpen(true)}}
                             onExited={() => {setisImgInfoOpen(false)}}>
-                            <div className="IteamListQuestion__image-info"/>
+                            <div className="IteamListQuestion__image-info">
+                                <Div className="IteamListQuestion__image-description">
+                                    Илья Репин.<br/>"Осенний букет"
+                                </Div>
+                            </div>
                         </CSSTransition>
 
                     </div>
@@ -111,74 +85,7 @@ const IteamListQuestion = ({ id, curWidth, question,
                             ))
                         }
                     </div>
-
-                        {/* <div
-                            className={`IteamListQuestion__image-wrap ${isRotated && "IteamListQuestion__image-wrap_rotated"}`}
-                        >
-                            <img
-                                className="IteamListQuestion__image IteamListQuestion__image_hidden"
-                                src={question.questionImg}
-                                alt={`image_hidden_${id}`}
-                            />
-
-                            <div className="IteamListQuestion__image-side-wrap IteamListQuestion__image-side-wrap_front">
-                                <img className="IteamListQuestion__image" src={question.questionImg} alt={`image_front_${id}`} />
-
-                                <button
-                                    onClick={rotateImage}
-                                    className="IteamListQuestion__rotate-button IteamListQuestion__rotate-button_front"
-                                ></button>
-                            </div>
-
-                            <div className={`IteamListQuestion__image-side-wrap 
-                                IteamListQuestion__image-side-wrap_back 
-                                ${!isRotated ? "IteamListQuestion__image-side-wrap_disable" : ""}`}
-                            >
-                                <img className="IteamListQuestion__image" src={question.overSideImg} alt={`image_back_${id}`} />
-
-                                <button
-                                    onClick={rotateImage}
-                                    className="IteamListQuestion__rotate-button IteamListQuestion__rotate-button_back"
-                                ></button>
-                            </div>
-                        </div> */}
-                    
-
-                    {/* <p className="IteamListQuestion__question-text">{question.questionText}</p>
-
-                    <div className="IteamListQuestion__answer-options">
-                        {
-                            question.answerOptions.map((answer, i) => (
-                                <button
-                                    key={i}
-                                    className={
-                                        `IteamListQuestion__answer 
-                                        ${indexAnswer === i && "IteamListQuestion__answer_marked"}`
-                                    }
-                                    onClick={() => goToNextQuestion(i)}
-                                >
-                                    {answer.text}
-                                </button>
-                            ))
-                        }
-                    </div> */}
                 </Div>
-
-                {/* {
-                    lastIndexQuestion !== -1 &&
-                    <div
-                        onClick={goToLastQuestion}
-                        className={
-                            `IteamListQuestion__go-to-last-question 
-                                ${lastIndexQuestion > currentIndexQuestion
-                                ? "IteamListQuestion__go-to-last-question_right"
-                                : "IteamListQuestion__go-to-last-question_left"
-                            }`
-                        }
-                    >
-                        к вопросу {lastIndexQuestion + 1}
-                    </div>
-                } */}
             </div>
         </Panel>
     )

@@ -10,6 +10,6 @@
     color: var(--main-white-color);
 }
 .ModalPageHead__button-pug{
-    color: var(--background_content);
+    color: var(--main-second-bg-color);
     cursor: inherit;
 }
