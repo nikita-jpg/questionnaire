@@ -76,3 +76,6 @@
     display: grid;
     grid-template-columns: 1fr;
 }
+.IteamListQuestion__answer{
+  margin-top: 10px; 
+}

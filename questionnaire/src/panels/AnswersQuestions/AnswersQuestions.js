@@ -16,20 +16,6 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                 text="Вопросы"
                 leftBtnFunc={onBack}>
                 </Header>
-                {/* <PanelHeader
-                    left={
-                        <>
-                            <PanelHeaderButton onClick={onBack}>
-                                <Icon24Back fill="white" />
-                            </PanelHeaderButton>
-                            <h1 className="AnswersQuestions__title">Вопросы</h1>
-                        </>
-                    }
-                    className="AnswersQuestions__PanelHeader"
-                    separator={false}
-                    transparent={false}
-                    visor={false}
-                ></PanelHeader> */}
 
                 <div className="AnswersQuestions">
                     {

@@ -3,6 +3,7 @@ import { ModalRoot, Panel, PanelHeaderContext, PanelHeaderContent, platform, Tex
 import React, { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import AnswerOption from '../../../components/AnswerOption/AnswerOption';
+import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
 import ListCard from '../../../components/ListCard/ListCard';
 import BottomSheet from './BottomSheet/BottomSheet';
@@ -34,13 +35,11 @@ const IteamListQuestion = ({ id, curWidth, question,
             <div className="IteamListQuestion">
 
                 <Header
-                    curWidth={curWidth}
                     isClose={numberCurrentQuestion === 1 ? true : false}
                     leftBtnFunc={goToPrevQuestion}
                     text={numberCurrentQuestion + " из " + countQuestions} 
                     icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
                     click={changeModal}
-                    // leftBtnFunc={}
                 >              
                     
                 </Header>
@@ -75,13 +74,13 @@ const IteamListQuestion = ({ id, curWidth, question,
                     <div className="IteamListQuestion__answer-options">
                         {
                             question.answerOptions.map((answer, i) => (
-                                <AnswerOption
+                                <ButtonWrapper
                                     click={() => goToNextQuestion(i)}
                                     isActived={indexAnswer === i}
                                     text={answer.text}
-                                    style={{marginTop:"10px"}}
+                                    className="IteamListQuestion__answer"
                                 >
-                                </AnswerOption>
+                                </ButtonWrapper>
                             ))
                         }
                     </div>

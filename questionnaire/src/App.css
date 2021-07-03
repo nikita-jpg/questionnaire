@@ -7,7 +7,9 @@
     --main-therd-bg-color:#636366;
     --main-white-color:#ffff;
     --main-red-color:#FF453A;
+    --main-second-red-color:#fd392f;
     --main-blue-color:#0A84FF;
+    --main-yellow-color:#FFCC00;
  
     /* Переопределено */
     --background_content:#1C1C1E;
@@ -65,3 +67,6 @@
   background-color: var(--main-second-bg-color);
 }
 
+.vkuiButton__content{
+  padding-top: 0;
+}

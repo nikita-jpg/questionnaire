@@ -97,7 +97,9 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
 
     const styleContent = {
         opacity: styles.opacityContent,
-        transform: `translateY(${styles.transitionContentY}px)`
+        transform: `translateY(${styles.transitionContentY}px)`,
+        width: "100%",
+        maxWidth:"370px"
     }
 
     const styleResult = {
@@ -114,7 +116,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
         setTimeout(() => animate({
             timing: easeOut,
 
-            duration: 3000,
+            duration: 0,
 
             draw(progress) {
                 const newStyles = { ...styles };
@@ -164,24 +166,13 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
     return (
         <View id={id} activePanel="PANEL_RESULT">
             <Panel id="PANEL_RESULT">
-                <Header></Header>
-                {/* <PanelHeader
-                    className="Result__PanelHeader"
-                    left={
-                        <>
-                            <PanelHeaderButton onClick={modifyIsFirstOpenResult(onBack)}>
-                                <Icon24Back fill="white" />
-                            </PanelHeaderButton>
-                            <h1 className="Result__title">Результаты</h1>
-                        </>
-                    }
-                    separator={false}
-                    visor={false}
-                    transparent={false}
-                >
-                </PanelHeader> */}
-
                 <div className="Result" style={styleResult}>
+
+                    <Header
+                        // text={""}
+                    >
+                    </Header>
+
                     <div style={styleYear} className="Result__year">
                         <span style={stylePrefixYear} className="Result__year-prefix">{stringPrefix}</span>
                         <span className={getClassNameForPercent(percent)}>
@@ -192,11 +183,24 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
 
                     <div style={styleHistoricalEvent} className="Result__historical-event">{historicalEvent}</div>
 
+                    {/* <ResultButtons 
+                            onAgain={modifyIsFirstOpenResult(onAgain)}
+                            onGoToAnswersQuestion={onGoToAnswersQuestion}
+                        /> */}
+
                     <div style={styleContent} className="Result__content">
                         <ResultButtons 
                             onAgain={modifyIsFirstOpenResult(onAgain)}
                             onGoToAnswersQuestion={onGoToAnswersQuestion}
                         />
+                    </div>
+                </div>
+            </Panel>
+        </View>
+    )
+}
+
+export default Result;
 
                         {/* <ListQuizes
                             quizes={quizes}
@@ -207,11 +211,3 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
                                 }
                             }
                         /> */}
-                    </div>
-                </div>
-            </Panel>
-        </View>
-    )
-}
-
-export default Result;
