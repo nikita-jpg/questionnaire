@@ -61,8 +61,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         if (indexQuestion < maxLength - 1) {
             setIndexQuestionAndHistory(indexQuestion + 1);
         } else {
-            onFinish(calculateScore(), stateAnswers.map(answer => answer.indexAnswer));
-            resetData();
+            onFinishWithAlert(calculateScore(), stateAnswers.map(answer => answer.indexAnswer));
         }
     }
 
@@ -123,8 +122,8 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
 	}
 
     //Alert
-    const onFinishWithAlert = () => {
-        isAllAnswered() ? onFinish(calculateScore()) : openFinishAlert()
+    const onFinishWithAlert = (totalScore, indexesAnswers) => {
+        isAllAnswered() ? onFinish(totalScore, indexesAnswers) : openFinishAlert()
     }
     const isAllAnswered = () => {
         for (let i=0;i<stateAnswers.length;i++){
@@ -186,7 +185,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                     
                 }
                 <SimpleCell
-                    onClick={ () => {onFinishWithAlert()}}
+                    onClick={ () => {onFinishWithAlert(calculateScore())}}
                     className="ListQuestions__modal-el">
                     <div className="ListQuestions__modal-el__finish-btn">
                        Завершить
@@ -227,7 +226,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         goToNextQuestion={createGoToNextQuestion(i, arr.length)}
                         goToPrevQuestion={createGoToPrevQuestion(i)}
 
-                        onFinish={() => onFinishWithAlert()}
+                        onFinish={() => onFinishWithAlert(calculateScore())}
                         
                         changeModal={changeModal}
                         changeHistory={changeHistory}

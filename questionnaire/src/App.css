@@ -13,7 +13,8 @@
     --background_content:#1C1C1E;
     --header_text:white;
     --text_secondary:rgba(235, 235, 235, 0.6);
-    --background_hover: rgba(0,0,0,0.16)
+    --background_hover: rgba(0,0,0,0.16);
+    --action_sheet_separator:#1C1C1E;
   }
   /* Переопределено */
   body{
