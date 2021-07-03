@@ -2,15 +2,18 @@
     text-align: left;
 }
 :root {
-    --main-zero-bg-color:rgb(29,29,31);
-    --main-second-bg-color:rgb(37,37,39);
-    --main-therd-bg-color:rgb(47,47,49);
-    --main-white-color:rgb(226,226,226);
-    --main-red-color:#F03932;
+    --main-zero-bg-color:#1C1C1E;
+    --main-second-bg-color:#2C2C2E;
+    --main-therd-bg-color:#636366;
+    --main-white-color:#ffff;
+    --main-white-grey-color:rgba(235, 235, 235, 0.6);;
+    --main-red-color:#FF453A;
+    --main-blue-color:#0A84FF;
 
     /* Переопределено */
-    --background_content:rgb(32,32,34);
+    --background_content:#1C1C1E;
     --header_text:white;
+    --background_hover: rgba(0,0,0,0.16)
   }
   /* Переопределено */
   body{
@@ -48,5 +51,16 @@
   background-color: var(--main-second-bg-color);
 }
 .vkuiAlert__button{
-  color: var(--main-white-color);
+  color: var(--main-blue-color);
 }
+.vkuiAlert__button--destructive{
+  color: var(--main-red-color);
+}
+.vkuiAlert__button--cancel{
+  color: var(--main-blue-color);
+}
+
+.vkuiModalPage__in{
+  background-color: var(--main-second-bg-color);
+}
+
