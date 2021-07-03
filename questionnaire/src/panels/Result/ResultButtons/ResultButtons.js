@@ -9,7 +9,10 @@ import { Icon28AddAwardOutline } from "@vkontakte/icons";
 import { Icon56LikeOutline } from '@vkontakte/icons';
 import { Icon36ArticleOutline } from '@vkontakte/icons';
 import { Icon36Article } from '@vkontakte/icons';
+import { Icon28RefreshOutline } from '@vkontakte/icons';
 import { Icon56ArticleOutline } from '@vkontakte/icons';
+import { Icon24List } from '@vkontakte/icons';
+import { Icon28ShareExternalOutline } from '@vkontakte/icons';
 import ButtonWrapper from "../../../components/ButtonWrapper/ButtonWrapper";
 
 const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
@@ -28,14 +31,23 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
 
     return (
         <div className="Result__buttons-container">
-            <Div>
+            {/* <Div> */}
 
                 <ButtonWrapper
                     size="l"
                     text="К вопросам"
                     className="Result__button"
                     classNameText="Result__button-text"
-                    before={<Icon56ArticleOutline width={36} height={36} style={{color:"var(--main-yellow-color)"}}/>}
+                    before={<Icon24List width={36} height={36} style={{color:"var(--main-yellow-color)"}}/>}
+                >
+                </ButtonWrapper>
+
+                <ButtonWrapper
+                    size="l"
+                    text="Ещё раз"
+                    className="Result__button"
+                    classNameText="Result__button-text"
+                    before={<Icon28RefreshOutline width={36} height={36} style={{color:"var(--main-yellow-color)"}}/>}
                 >
                 </ButtonWrapper>
 
@@ -50,19 +62,10 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
 
                 <ButtonWrapper
                     size="l"
-                    text="К вопросам"
+                    text="Поделиться"
                     className="Result__button"
                     classNameText="Result__button-text"
-                    before={<Icon56ArticleOutline width={36} height={36} style={{color:"var(--main-yellow-color)"}}/>}
-                >
-                </ButtonWrapper>
-
-                <ButtonWrapper
-                    size="l"
-                    text="К вопросам"
-                    className="Result__button"
-                    classNameText="Result__button-text"
-                    before={<Icon56ArticleOutline width={36} height={36} style={{color:"var(--main-yellow-color)"}}/>}
+                    before={<Icon28ShareExternalOutline width={36} height={36} style={{color:"var(--main-yellow-color)"}}/>}
                 >
                 </ButtonWrapper>
 
@@ -78,7 +81,7 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
                     className="Result__button Result__button_format-list-bulleted">
                     К вопросам
                 </button> */}
-            </Div>
+            {/* </Div> */}
         </div>
     )
 }

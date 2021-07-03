@@ -59,27 +59,19 @@
     max-width: 370px;
     width: 100%;
 
-    display: grid;
-    grid-template-columns: 1fr;
+    padding: 15px;
+    box-sizing: border-box;
+
+    /* display: grid;
+    grid-template-columns: 1fr; */
 }
 
 .Result__button {
     background: var(--background_content);
-    margin-top: 10px;
-    /* border-radius: 8px;
-    margin-top: 10px;
-    width: 100%;
-    justify-content: start; */
-    /* display: flex;
-    align-items: center; */
-    /* max-width: 163px;
-    width: 100%; */
-    /* box-sizing: border-box; */
-    /* font-size: 16px;
-    margin: 7px; */
+    margin-top: 15px;
 }
-.Result__button:last-child{
-    margin-bottom: 10px;
+.Result__button:first-child{
+    margin-top: 0;
 }
 
 .Result__button::before {

@@ -3,11 +3,11 @@ import React from "react"
 
 import './ButtonWrapper.css'
 
-const ButtonWrapper = ({isActived, text, click, size, before, className, classNameText}) => {
+const ButtonWrapper = ({isActived, text, onClick, size, before, className, classNameText}) => {
     return(
         <CellButton 
             activeEffectDelay={10}
-            onClick={click} 
+            onClick={onClick} 
             mode="secondary" 
             size={size}
             before={before}

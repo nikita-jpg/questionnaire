@@ -116,7 +116,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
         setTimeout(() => animate({
             timing: easeOut,
 
-            duration: 0,
+            duration: 3000,
 
             draw(progress) {
                 const newStyles = { ...styles };
