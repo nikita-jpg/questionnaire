@@ -39,6 +39,7 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
                     className="Result__button"
                     classNameText="Result__button-text"
                     before={<Icon24List width={iconSize} height={iconSize} style={{color:"var(--main-yellow-color)"}}/>}
+                    onClick={onGoToAnswersQuestion}
                 >
                 </ButtonWrapper>
 
@@ -47,25 +48,26 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
                     text="Ещё раз"
                     className="Result__button"
                     classNameText="Result__button-text"
-                    before={<Icon28RefreshOutline width={iconSize} height={iconSize} style={{color:"var(--main-yellow-color)"}}/>}
+                    before={<Icon28RefreshOutline width={iconSize} height={iconSize} style={{color:"var(--main-green-color)"}}/>}
+                    onClick={onAgain}
                 >
                 </ButtonWrapper>
 
-                <ButtonWrapper
+                {/* <ButtonWrapper
                     size="l"
                     text="К вопросам"
                     className="Result__button"
                     classNameText="Result__button-text"
                     before={<Icon24List width={iconSize} height={iconSize} style={{color:"var(--main-yellow-color)"}}/>}
                 >
-                </ButtonWrapper>
+                </ButtonWrapper> */}
 
                 <ButtonWrapper
                     size="l"
                     text="Поделиться"
                     className="Result__button"
                     classNameText="Result__button-text"
-                    before={<Icon28ShareExternalOutline width={iconSize} height={iconSize} style={{color:"var(--main-yellow-color)"}}/>}
+                    before={<Icon28ShareExternalOutline width={iconSize} height={iconSize} style={{color:"var(--main-blue-color)"}}/>}
                 >
                 </ButtonWrapper>
 

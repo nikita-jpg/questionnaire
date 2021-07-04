@@ -1,5 +1,5 @@
 import { Icon24Back } from "@vkontakte/icons";
-import { Panel, PanelHeader, PanelHeaderButton, View } from "@vkontakte/vkui";
+import { Panel, PanelHeader, PanelHeaderButton, useAdaptivity, View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 
@@ -54,11 +54,12 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
         initialTransitionYearX = WIDTH_PRETFIX / 2;
     }
 
+    // const { viewHeight } = useAdaptivity();
     const initialStyles = {
         overflowResult: "hidden",
         opacityPercent: 1,
         opacityPrefixYear: 0,
-        transitionYearY: document.documentElement.clientHeight / 2 - HEIGHT_YEAR / 2 - HEIGHT_HEADER,
+        transitionYearY: document.documentElement.clientHeight / 2 - HEIGHT_YEAR - HEIGHT_HEADER,
         transitionYearX: -initialTransitionYearX,
         opacityHistoricalEvent: 0,
         transitionContentY: document.documentElement.clientHeight / 2 + HEIGHT_YEAR / 2,

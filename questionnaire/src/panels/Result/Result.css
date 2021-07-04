@@ -9,7 +9,7 @@
     flex-direction: column;
     background: var(--background_content);
     min-height: 100vh;
-    padding: 60px 10px 10px 10px;
+    padding: 0px 10px 0px 10px;
     box-sizing: border-box;
 }
 
