@@ -55,12 +55,11 @@
     margin: 24px -7px 24px -7px; */
     margin-top: 10px;
     background-color: var(--main-second-bg-color);
-    border-radius: 16px;
+    border-radius: 15px;
     max-width: 370px;
     width: 100%;
 
-    padding: 0px;
-    overflow: hidden;
+    padding: 10px;
     box-sizing: border-box;
 
     /* display: grid;
@@ -68,9 +67,9 @@
 }
 
 .Result__button {
-    /* background: var(--background_content); */
-    /* margin-top: 10px; */
-    border-radius: 0px;
+    background: var(--background_content);
+    margin-top: 10px;
+    border-radius: 10px;
 }
 .Result__button:first-child{
     margin-top: 0;
@@ -107,7 +106,7 @@
 
 .Result__button-text{
     /* margin-top: 2px; */
-    /* color: var(--main-white-color);
-    font-family: var(--font-tt); */
-    font-size: 19px;
+    /* color: var(--main-white-color); */
+    font-family: var(--font-tt);
+    font-size: 20px;
 }
