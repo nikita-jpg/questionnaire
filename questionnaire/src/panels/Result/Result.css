@@ -55,7 +55,7 @@
     margin: 24px -7px 24px -7px; */
     margin-top: 10px;
     background-color: var(--main-second-bg-color);
-    border-radius: 20px;
+    border-radius: 15px;
     max-width: 370px;
     width: 100%;
 
@@ -69,7 +69,7 @@
 .Result__button {
     background: var(--background_content);
     margin-top: 10px;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 .Result__button:first-child{
     margin-top: 0;
