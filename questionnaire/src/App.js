@@ -51,7 +51,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
+	const [activeView, setActiveView] = useState(VIEW_ID_ANSWERS_QUESTIONS);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
@@ -71,7 +71,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const [indexResuslt, setIndexResult] = useState(0);
 
 	// логика хранения ответов
-	const [indexesAnswers, setIndexesAnswers] = useState([]);
+	const [indexesAnswers, setIndexesAnswers] = useState([-1,-1,-1,-1,-1,-1,-1,-1]);
 
 	// первый раз открываем Result
 	const [isFirstOpenResult, setIsFirstOpenResult] = useState(true);

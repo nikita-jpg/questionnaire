@@ -68,6 +68,7 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
     }
 
     const getAnswerText = (index) => {
+        if (index === -1) return "Вы не ответили"
         return `${question.answerOptions[index].text}`;
     }
 
