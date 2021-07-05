@@ -19,6 +19,7 @@
     --text_secondary:rgba(235, 235, 235, 0.6);
     --background_hover: rgba(0,0,0,0.16);
     --action_sheet_separator:#1C1C1E;
+    --header_background:var(--background_content);
   }
   /* Переопределено */
   body{
@@ -39,6 +40,9 @@
     height: 100%;
   } */
 
+  /* .vkuiPanelHeader {
+    background-color: black;
+  } */
   .PanelHeader__content{
     height: 100%;
   }

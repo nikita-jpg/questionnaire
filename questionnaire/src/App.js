@@ -51,7 +51,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
@@ -223,20 +223,6 @@ const App = ({ eras, results, MAX_SCORE,
 								onBack={onBackAnswersQuestions}
 							/>
 
-							{/* <View activePanel="main" id={TEST}>
-										<Panel id="main">
-										<PanelHeader>VKUI</PanelHeader>
-										<Group header={<Header mode="secondary">Items</Header>}>
-											<SimpleCell>Hello</SimpleCell>
-											<SimpleCell>World</SimpleCell>
-										</Group>
-										</Panel>
-									</View> */}
-
-							{/* <Modal
-								id={MODAL_TEST}
-								idInside={activeModal}
-							/> */}
 						</Root>
 					</SplitCol>
 				</SplitLayout>

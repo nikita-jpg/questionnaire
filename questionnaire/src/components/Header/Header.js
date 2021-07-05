@@ -27,8 +27,8 @@ const Header = ({curWidth, leftBtnFunc, isClose, text, icon, click}) => {
         <PanelHeader                     
             separator={false}
             visor={true}
-            transparent={true}
-            fixed={false}
+            // transparent={true}
+            fixed={true}
             left={ left }
             >
 

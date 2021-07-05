@@ -9,6 +9,8 @@ import ItemAnswerQuestion from './ItemAnswerQuestion/ItemAnswerQuestion';
 const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
     const [isAllGrey, setIsAllGrey] = useState(false);
 
+    console.log(questions)
+
     return (
         <View id={id} activePanel="PANEL_ANSWERS_QUESTIONS">
             <Panel id="PANEL_ANSWERS_QUESTIONS">
