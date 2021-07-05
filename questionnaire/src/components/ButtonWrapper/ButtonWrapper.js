@@ -3,12 +3,13 @@ import React from "react"
 
 import './ButtonWrapper.css'
 
-const ButtonWrapper = ({isActived, text, onClick, before, className, classNameText}) => {
+const ButtonWrapper = ({isActived, text, onClick, before, className, classNameText, isCentered}) => {
     return(
         <CellButton 
             activeEffectDelay={10}
             onClick={onClick} 
-            mode="secondary" 
+            mode="secondary"
+            centered={isCentered} 
             before={before}
             className={`ButtonWrapper ${isActived && "ButtonWrapper_active"} ${className}`}
         >

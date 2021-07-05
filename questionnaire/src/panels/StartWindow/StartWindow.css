@@ -7,9 +7,9 @@
     padding: 0;
     width: 100%;
     height: 100%;
-    color: white;
-    font-weight: 500;
-    line-height: 16px;
+    color: var(--main-white-color);
+    /* font-weight: 500;
+    line-height: 16px; */
 }
 
 .StartWindow__container {
@@ -19,22 +19,35 @@
 
 .StartWindow__title {
     text-transform: uppercase;
-    font-weight: 500;
+    color: var(--main-white-color);
+    margin:0;
+    /* font-weight: 500; */
     font-size: 20px;
-    line-height: 16px;
+    /* line-height: 16px; */
 }
 
 .StartWindow__text {
     font-size: 13px;
+    margin-top: 2px;
 }
 
 .StartWindow__button {
-    text-transform: uppercase;
+    background: none;
+    border: 2px solid var(--main-oliveOil-color);
+    border-radius: 8px;
+    height: 20px;
+    min-height: 35px;
+    /* text-transform: uppercase;
     font-size: 14px;
     background: none;
-    border: 1px solid #BAAB8F;
-    border-radius: 16px;
-    padding: 8px 16px;
-    color: #BAAB8F;
-    outline: none;
+    border: 2px solid var(--main-oliveOil-color);
+    border-radius: 8px;
+    height: 30px;
+    color: var(--main-oliveOil-color);
+    outline: none; */
+}
+.StartWindow__button-text{
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--main-oliveOil-color);
 }

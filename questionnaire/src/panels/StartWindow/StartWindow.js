@@ -1,5 +1,6 @@
 import { Card, CardScroll, Panel, PanelHeader, View, CardGrid, ContentCard, Button} from '@vkontakte/vkui';
 import React from 'react';
+import ButtonWrapper from '../../components/ButtonWrapper/ButtonWrapper';
 import test from '../../img/ageRussianEmpire/quizPetr1/petr.png'
 
 import svgContacts from './contacts.svg';
@@ -15,11 +16,11 @@ const StartWindow = ({id, onClick}) => {
             <div className="StartWindow">
                 <div className="StartWindow__container">
                     <img width="50" height="50" src={svgContacts} alt="contacts"/>
-                    <h1 className="StartWindow__title">Привет, друг!1</h1>
+                    <h1 className="StartWindow__title">Привет, друг!</h1>
                     <p className="StartWindow__text">
                         Это приложение поможет тебе проверить свои знания в области истори родной страны. Удачи!
                     </p>
-                    <button className="StartWindow__button" onClick={onClick}>Поехали!</button>
+                    <ButtonWrapper className="StartWindow__button" classNameText="StartWindow__button-text" isCentered={true} onClick={onClick} text="Поехали!"></ButtonWrapper>
                 </div>
             </div>
         </Panel>
