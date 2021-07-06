@@ -189,6 +189,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                     
                 }
                 <SimpleCell
+                    hasActive={false}
                     onClick={ () => {onFinishWithAlert()}}
                     className="ListQuestions__modal-el">
                     <div className="ListQuestions__modal-el__finish-btn">

@@ -60,26 +60,26 @@
     z-index: 2;
 }
 .AnswersQuestions__alert__title-answer-wrap_good::before {
-    background: #79C52D;
+    background: var(--main-second-green-color);
 }
 
 .AnswersQuestions__alert__title-answer-wrap_normal::before {
-    background: #858585;
+    background: var(--main-gray-color);
 }
 
 .AnswersQuestions__alert__title-answer-wrap_bad::before {
-    background: #E81919;
+    background: var(--main-second-red-color);
 }
 .AnswersQuestions__alert__title-answer_good {
-    color: #79C52D;
+    color: var(--main-second-green-color);
 }
 
 .AnswersQuestions__alert__title-answer_normal {
-    color: #858585;
+    color: var(--main-gray-color);
 }
 
 .AnswersQuestions__alert__title-answer_bad {
-    color: #E81919;
+    color: var(--main-second-red-color);
 }
 
 .AnswersQuestions__alert__text-answer {
