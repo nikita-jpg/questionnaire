@@ -15,6 +15,7 @@ import ListQuizes from './panels/ListQuizes/ListQuizes';
 import AnswersQuestions from './panels/AnswersQuestions/AnswersQuestions';
 import Modal from './panels/ListQuestions/IteamListQuestion/Modal/Modal';
 import ModalPageHead from './components/ModalPageHead/ModalPageHead';
+import TestView from './panels/TestView/TestView';
 
 const App = ({ eras, results, MAX_SCORE, 
 	savePercentQuiz = (indexAge, indexQuiz, percentProgress) => {}}) => {
@@ -51,7 +52,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_ANSWERS_QUESTIONS);
+	const [activeView, setActiveView] = useState(VIEW_ID_RESULT);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
@@ -222,6 +223,12 @@ const App = ({ eras, results, MAX_SCORE,
 								indexesAnswers={indexesAnswers}
 								onBack={onBackAnswersQuestions}
 							/>
+
+							<TestView
+								id={"VIEW_TEST"}
+							>
+
+							</TestView>
 
 						</Root>
 					</SplitCol>

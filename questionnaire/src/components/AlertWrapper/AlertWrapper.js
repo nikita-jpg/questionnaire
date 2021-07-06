@@ -2,7 +2,7 @@ import { Alert } from "@vkontakte/vkui"
 import React from 'react';
 import './AlertWrapper.css'
 
-const AlertWrapper = ({header, description, leftText, leftFunc = () => { }, rightText, rightFunc = () => { }, onClose = () => { }}) => {
+const AlertWrapper = ({header, description, leftText, children, leftFunc = () => { }, rightText, rightFunc = () => { }, onClose = () => { }}) => {
   // console.log(leftText)
   return(
     <Alert       
@@ -22,6 +22,7 @@ const AlertWrapper = ({header, description, leftText, leftFunc = () => { }, righ
           action: () => rightFunc(),
         }]}
       >
+        {children}
     </Alert>
   )
 }

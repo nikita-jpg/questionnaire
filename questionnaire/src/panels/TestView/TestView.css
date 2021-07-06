@@ -1,0 +1,15 @@
+.container{
+    margin-top: 20px;
+    /* max-height: 50px; */
+    overflow: hidden;
+    max-width: 120px;
+    background-color: black;
+}
+.title{
+    height: 50px;
+    background-color: gray;
+}
+.content{
+    background-color: blue;
+    height: 0;
+}

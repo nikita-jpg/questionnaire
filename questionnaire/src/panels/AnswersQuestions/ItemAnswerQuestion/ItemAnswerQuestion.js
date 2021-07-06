@@ -1,3 +1,4 @@
+import { FixedLayout } from '@vkontakte/vkui';
 import React, { createRef, useEffect, useState } from 'react';
 import animate from '../../../anime/animate';
 import easeOut from '../../../anime/easeOut';
@@ -6,13 +7,15 @@ import Arrow, { colorsArrow, directionArrow } from './Arrow';
 
 import "./ItemAnswerQuestion.css";
 
-const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, isGrey, setIsAllGrey }) => {
+const ItemAnswerQuestion = ({ id, indexQuestion, question, indexRightAnswer, indexUserAnswer, isGrey, setIsAllGrey, openAlert = () => {} }) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     const [isOpen, setIsOpen] = useState(false);
     const [typeColor, setTypeColor] = useState(indexRightAnswer === indexUserAnswer ?colorsArrow.GREEN :colorsArrow.RED);
 
     const [isDisabledClick, setIsDisabledClick] = useState(false);
+
+    const [isOpenUp, setIsOpenUp] = useState(false);
 
 
     // работа с текстом вопроса
@@ -62,7 +65,9 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
         }
     }, [isOpen]);
 
-    const onClick = () => {
+    const onClick = (e) => {
+        // console.log(heightWrapContent)
+        // setIsOpenUp(!isOpenUp)
         setIsOpen(!isOpen);
         setIsAllGrey(!isGrey);
     }
@@ -78,8 +83,8 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
     const refWrapContent = createRef();
 
     useEffect(() => {
-        setIsFirstRender(false);
-        setHeightWrapContent(refWrapContent.current.offsetHeight)
+        // setIsFirstRender(false);
+        // setHeightWrapContent(refWrapContent.current.offsetHeight)
     }, []);
 
     const PADDING_ITEM_ANSWER_QUESTION = 16;
@@ -94,17 +99,17 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
                 boxSizing: "border-box"
             }
         }
-
         return {
             height: isOpen ? heightWrapContent : 0
         }
     }
 
-    const styleWrapAnswers = getStyleWrapAnswers(isFirstRender, isOpen);
+    // const styleWrapAnswers = getStyleWrapAnswers(isFirstRender, isOpen);
 
     const styleItemAnswerQuestion = {
+        // maxHeight: isOpenUp ? 400 : 50,
         padding: `0 ${PADDING_ITEM_ANSWER_QUESTION}px`,
-        zIndex: isOpen ?10 :0
+        zIndex: isOpen ? 10 : 0
     }
 
     // логика закрытия по щелчку вне ItemAnswerQuestion
@@ -114,25 +119,27 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
         }
     }
 
-    useEffect(() => {
-        if (isOpen) {
-            window.addEventListener("click", handlerClickWithouItemAnswerQuestion);
-        } else {
-            window.removeEventListener("click", handlerClickWithouItemAnswerQuestion);
-        }
+    // useEffect(() => {
+    //     if (isOpen) {
+    //         window.addEventListener("click", handlerClickWithouItemAnswerQuestion);
+    //     } else {
+    //         window.removeEventListener("click", handlerClickWithouItemAnswerQuestion);
+    //     }
 
-        return () => {
-            window.removeEventListener("click", handlerClickWithouItemAnswerQuestion);
-        }
-    }, [isOpen]);
+    //     return () => {
+    //         window.removeEventListener("click", handlerClickWithouItemAnswerQuestion);
+    //     }
+    // }, [isOpen]);
+
 
     return (
         <>
-            {isOpen && <BlackBackground />}
 
-            <div style={styleItemAnswerQuestion} className="ItemAnswerQuestion" id={id}>
-                <div
-                    onClick={!isDisabledClick && onClick}
+            <div style={{backgroundColor:"black",width:"100px",height:"100px"}} className="ItemAnswerQuestion" id={id} 
+            // onClick={!isDisabledClick && onClick}
+            onClick={ () => {openAlert(indexQuestion)}}
+            >
+                {/* <div
                     className="ItemAnswerQuestion__question-wrap"
                 >
                     <p className="ItemAnswerQuestion__question-text">
@@ -145,9 +152,9 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
                             typeColor={isGrey ?colorsArrow.GREY :typeColor}
                         />
                     </span>
-                </div>
+                </div> */}
 
-                <div ref={refWrapContent} style={styleWrapAnswers} className="ItemAnswerQuestion__wrap-answers">
+                {/* <div ref={refWrapContent} style={styleWrapAnswers} className="ItemAnswerQuestion__wrap-answers">
                     {
                         indexUserAnswer !== indexRightAnswer &&
                         <div className="ItemAnswerQuestion__answer">
@@ -160,9 +167,8 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
                             <p className="ItemAnswerQuestion__text-answer">
                                 {getAnswerText(indexUserAnswer)}
                             </p>
-                        </div>
-                    }
-
+                        </div> */}
+{/* 
                     <div className="ItemAnswerQuestion__answer">
                         <div className="ItemAnswerQuestion__title-answer-wrap ItemAnswerQuestion__title-answer-wrap_good">
                             <h2
@@ -181,14 +187,14 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
                         </p>
                     </div>
 
-                    <div className="ItemAnswerQuestion__answer">
-                        <div className="ItemAnswerQuestion__title-answer-wrap ItemAnswerQuestion__title-answer-wrap_normal">
+                    <div className="ItemAnswerQuestion__answer"> */}
+                        {/* <div className="ItemAnswerQuestion__title-answer-wrap ItemAnswerQuestion__title-answer-wrap_normal">
                             <h2
                                 className="ItemAnswerQuestion__title-answer ItemAnswerQuestion__title-answer_normal"
                             >Остальные варианты</h2>
-                        </div>
+                        </div> */}
 
-                        {
+                        {/* {
                             question.answerOptions.map((answer, i) => {
                                 if (i === indexRightAnswer || i === indexUserAnswer) {
                                     return null;
@@ -200,10 +206,8 @@ const ItemAnswerQuestion = ({ id, question, indexRightAnswer, indexUserAnswer, i
                                     </p>
                                 )
                             })
-                        }
+                        } */}
                     </div>
-                </div>
-            </div>
         </>
     )
 }
