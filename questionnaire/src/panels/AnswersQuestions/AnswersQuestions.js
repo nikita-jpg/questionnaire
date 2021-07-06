@@ -7,6 +7,7 @@ import Arrow from './ItemAnswerQuestion/Arrow';
 
 import "./AnswersQuestions.css";
 import ItemAnswerQuestion from './ItemAnswerQuestion/ItemAnswerQuestion';
+import ButtonWrapper from '../../components/ButtonWrapper/ButtonWrapper';
 
 const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
     const [isAllGrey, setIsAllGrey] = useState(false);
@@ -23,9 +24,13 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
     const openAlert = (indexQuestion) => {
         const indexRightAnswer = questions[indexQuestion].answerOptions.findIndex(a => a.score === 1);
         const indexUserAnswer = indexesAnswers[indexQuestion];
+
         setAlert(
+            <div className="testClass">
             <Alert
-                onClose={() => {setAlert(null)}}
+                // style={{width:"710px"}}   
+                actionsLayout={"horizontal"}
+                onClose={() => {console.log(document.getElementsByClassName("vkuiAlert--ios")); setAlert(null)}}
                 actions={[{
                     title:"Закрыть",
                     autoclose:true,
@@ -39,20 +44,26 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                             indexUserAnswer !== indexRightAnswer &&
                             <div className="AnswersQuestions__alert__answer">
                                 <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_bad">
-                                    <h2
+                                    <div
                                         className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_bad"
-                                    >Ваш ответ</h2>
+                                        >Ваш ответ
+                                    </div>
                                 </div>
 
-                                <p className="AnswersQuestions__alert__text-answer">
+                                <div
+                                    className="AnswersQuestions__alert__text-answer"
+                                >
                                     {getAnswerText(indexQuestion)}
-                                </p>
+                                </div>
+                                {/* <div className="AnswersQuestions__alert__text-answer">
+                                    {getAnswerText(indexQuestion)}
+                                </div> */}
                             </div>
                         }
                     
                         <div className="AnswersQuestions__alert__answer">
                             <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_good">
-                                <h2
+                                <div
                                     className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_good"
                                 >
                                     {
@@ -60,19 +71,21 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                                             ? "Ваш ответ верен"
                                             : "Правильный ответ"
                                     }
-                                </h2>
+                                </div>
                             </div>
 
-                            <p className="AnswersQuestions__alert__text-answer">
-                                123
-                            </p>
+                            <div
+                                className="AnswersQuestions__alert__text-answer"
+                            >
+                                {getAnswerText(indexQuestion)}
+                            </div>
                         </div>
                             
                         <div className="AnswersQuestions__alert__answer"> 
                             <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_normal">
-                                <h2
+                                <div
                                     className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_normal"
-                                >Остальные варианты</h2>
+                                >Остальные варианты</div>
                             </div> 
 
                             {
@@ -82,9 +95,14 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                                     }
 
                                     return (
-                                        <p key={i} className="AnswersQuestions__alert__text-answer">
-                                            {answer.text}
-                                        </p>
+                                    <div
+                                        className="AnswersQuestions__alert__text-answer"
+                                    >
+                                        {answer.text}   
+                                    </div>
+                                        // <p key={i} className="AnswersQuestions__alert__text-answer">
+                                        //     {answer.text}
+                                        // </p>
                                     )
                                 })
                             }
@@ -93,6 +111,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                     </div>
                 </div>
             </Alert>
+            </div>
         )
     }
 

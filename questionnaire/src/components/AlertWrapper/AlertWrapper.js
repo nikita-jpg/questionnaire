@@ -5,7 +5,7 @@ import './AlertWrapper.css'
 const AlertWrapper = ({header, description, leftText, children, leftFunc = () => { }, rightText, rightFunc = () => { }, onClose = () => { }}) => {
   // console.log(leftText)
   return(
-    <Alert       
+    <Alert    
       header={header}
       description={description}
       actionsLayout="horizontal"

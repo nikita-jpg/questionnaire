@@ -70,6 +70,23 @@
 .vkuiAlert__button--cancel{
   color: var(--main-blue-color);
 }
+/* .vkuiAlert {
+  max-width: 500px;
+} */
+/* .vkuiAlert--desktop{
+  width: 500px;
+}
+.vkuiAlert--android{
+  width: 500px;
+} */
+
+/* .vkuiAlert--desktop.vkuiAlert--android{
+  width: 500px;
+} */
+
+/* .vkuiAlert--ios{
+  width: 500px;
+} */
 
 .vkuiModalPage__in{
   background-color: var(--main-second-bg-color);
@@ -78,3 +95,13 @@
 .vkuiButton__content{
   padding-top: 0;
 }
+
+.testClass .vkuiAlert--ios{
+  width: 90%;
+}
+
+/* @supports (-webkit-touch-callout: none) {
+    .vkuiAlert--ios{
+    width: 500px;
+  }
+} */
