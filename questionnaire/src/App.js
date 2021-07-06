@@ -107,7 +107,7 @@ const App = ({ eras, results, MAX_SCORE,
 	}
 
 	const onFinishListQuestions = (indexesAnswers) => {
-		console.log(indexesAnswers)
+		// console.log(indexesAnswers)
 		setIndexesAnswers(indexesAnswers);
 
 		// const percent = Math.round(totalScore / MAX_SCORE * 100);

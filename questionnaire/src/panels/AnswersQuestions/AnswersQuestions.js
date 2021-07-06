@@ -17,8 +17,8 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
         return `${questions[indexQuestion].answerOptions[indexesAnswers[indexQuestion]].text}`;
     }
 
-    console.log(questions)
-    console.log(indexesAnswers)
+    // console.log(questions)
+    // console.log(indexesAnswers)
 
     const openAlert = (indexQuestion) => {
         const indexRightAnswer = questions[indexQuestion].answerOptions.findIndex(a => a.score === 1);

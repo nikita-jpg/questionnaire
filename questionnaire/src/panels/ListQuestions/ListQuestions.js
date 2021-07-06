@@ -67,7 +67,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         if (indexQuestion < maxLength - 1) {
             setIndexQuestionAndHistory(indexQuestion + 1);
         } else {
-            onFinishWithAlert(stateAnswers);
+            onFinishWithAlert();
         }
     }
 
@@ -124,12 +124,13 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
 	}
 
     //Alert
-    const onFinishWithAlert = (totalScore, indexesAnswers) => {
-        isAllAnswered() ? onFinish(totalScore, indexesAnswers) : openFinishAlert()
+    const onFinishWithAlert = () => {
+        isAllAnswered() ? onFinish(stateAnswers) : openFinishAlert()
     }
     const isAllAnswered = () => {
+        // console.log(stateAnswers)
         for (let i=0;i<stateAnswers.length;i++){
-            if(stateAnswers[i].indexAnswer === -1) return false;
+            if(stateAnswers[i] === -1) return false;
         }
         return true
     }
@@ -145,7 +146,8 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
             >
             </AlertWrapper>
     )}
-    const openFinishAlert = () => {        
+    const openFinishAlert = () => {  
+        // console.log(stateAnswers)      
         setAlert(
 
             <AlertWrapper
@@ -187,7 +189,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                     
                 }
                 <SimpleCell
-                    onClick={ () => {onFinishWithAlert(calculateScore())}}
+                    onClick={ () => {onFinishWithAlert()}}
                     className="ListQuestions__modal-el">
                     <div className="ListQuestions__modal-el__finish-btn">
                        Завершить
@@ -228,7 +230,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         goToNextQuestion={createGoToNextQuestion(i, arr.length)}
                         goToPrevQuestion={createGoToPrevQuestion(i)}
 
-                        onFinish={() => onFinishWithAlert(calculateScore())}
+                        onFinish={() => onFinishWithAlert()}
                         
                         changeModal={changeModal}
                         changeHistory={changeHistory}
