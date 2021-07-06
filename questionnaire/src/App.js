@@ -52,7 +52,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_RESULT);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
@@ -106,12 +106,13 @@ const App = ({ eras, results, MAX_SCORE,
 		goToPanelListQuizes();
 	}
 
-	const onFinishListQuestions = (totalScore, indexesAnswers) => {
+	const onFinishListQuestions = (indexesAnswers) => {
+		console.log(indexesAnswers)
 		setIndexesAnswers(indexesAnswers);
 
-		const percent = Math.round(totalScore / MAX_SCORE * 100);
-		savePercentQuiz(indexAge, indexQuiz, percent);
-		setIndexResult(results.findIndex(res => res.percent === percent));
+		// const percent = Math.round(totalScore / MAX_SCORE * 100);
+		// savePercentQuiz(indexAge, indexQuiz, percent);
+		// setIndexResult(results.findIndex(res => res.percent === percent));
 		goToViewResult();
 	}
 
@@ -135,7 +136,6 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// история
 	const goBack = () => {
-		console.log(history)
 		let his = history;
 		his.pop()
 		if (activePanel === PANEL_ID_LIST_AGE) {

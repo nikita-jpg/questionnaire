@@ -1,9 +1,9 @@
 import { CellButton } from "@vkontakte/vkui"
 import React from "react"
 
-import './ButtonWrapper.css'
+import './ButtonWrapper.css'  
 
-const ButtonWrapper = ({isActived, text, onClick, before, className, classNameText, isCentered}) => {
+const ButtonWrapper = ({isActived, text, onClick, before, className, classNameText, isCentered, hasActive}) => {
     return(
         <CellButton 
             activeEffectDelay={10}
@@ -11,6 +11,7 @@ const ButtonWrapper = ({isActived, text, onClick, before, className, classNameTe
             mode="secondary"
             centered={isCentered} 
             before={before}
+            hasActive={hasActive}
             className={`ButtonWrapper ${isActived && "ButtonWrapper_active"} ${className}`}
         >
             <div className={`ButtonWrapper__text ${classNameText}`}>

@@ -1,5 +1,5 @@
 import { Icon24Back } from '@vkontakte/icons';
-import { Alert, Panel, PanelHeader, PanelHeaderButton, View } from '@vkontakte/vkui';
+import { Alert, Div, Panel, PanelHeader, PanelHeaderButton, View } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import Arrow from './ItemAnswerQuestion/Arrow';
@@ -14,10 +14,15 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
 
     const getAnswerText = (indexQuestion) => {
         if (indexesAnswers[indexQuestion] === -1) return "Вы не ответили"
-        return `${questions[indexQuestion].answerOptions.indexesAnswers[indexQuestion].text}`;
+        return `${questions[indexQuestion].answerOptions[indexesAnswers[indexQuestion]].text}`;
     }
 
+    console.log(questions)
+    console.log(indexesAnswers)
+
     const openAlert = (indexQuestion) => {
+        const indexRightAnswer = questions[indexQuestion].answerOptions.findIndex(a => a.score === 1);
+        const indexUserAnswer = indexesAnswers[indexQuestion];
         setAlert(
             <Alert
                 onClose={() => {setAlert(null)}}
@@ -31,7 +36,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                     <div className="AnswersQuestions__alert__answers">
 
                         {
-                            questions[indexQuestion].answerOptions.findIndex(a => a.score === 1) !== indexesAnswers[indexQuestion] &&
+                            indexUserAnswer !== indexRightAnswer &&
                             <div className="AnswersQuestions__alert__answer">
                                 <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_bad">
                                     <h2
@@ -51,7 +56,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                                     className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_good"
                                 >
                                     {
-                                        questions[indexQuestion].answerOptions.findIndex(a => a.score === 1) !== indexesAnswers[indexQuestion]
+                                        indexUserAnswer === indexRightAnswer
                                             ? "Ваш ответ верен"
                                             : "Правильный ответ"
                                     }
@@ -91,7 +96,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
         )
     }
 
-    console.log(questions)
+    // console.log(questions)
 
     return (
         <View id={id} 
@@ -105,7 +110,8 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                 leftBtnFunc={onBack}>
                 </Header>
 
-                <div className="AnswersQuestions">
+                <div style={{display:"flex",justifyContent:"center"}}>
+                    <div className="AnswersQuestions">
                     {
                         questions.map((q, i) => (
                             <ItemAnswerQuestion
@@ -120,6 +126,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                             />
                         ))
                     }
+                    </div>
                 </div>
             </Panel>
         </View>

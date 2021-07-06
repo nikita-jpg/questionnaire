@@ -1,5 +1,7 @@
 .AnswersQuestions {
-    margin: 0;
+    max-width: var(--main-max-width);
+    width: 100%;
+    /* margin: 0;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -12,7 +14,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: center;
+    align-items: center; */
 }
 
 .AnswersQuestions__PanelHeader .PanelHeader__fixed {

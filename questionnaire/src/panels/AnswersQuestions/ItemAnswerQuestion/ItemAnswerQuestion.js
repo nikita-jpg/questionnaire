@@ -1,8 +1,9 @@
-import { FixedLayout } from '@vkontakte/vkui';
+import { Div, FixedLayout } from '@vkontakte/vkui';
 import React, { createRef, useEffect, useState } from 'react';
 import animate from '../../../anime/animate';
 import easeOut from '../../../anime/easeOut';
 import BlackBackground from '../../../components/BlackBackground/BlackBackground';
+import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Arrow, { colorsArrow, directionArrow } from './Arrow';
 
 import "./ItemAnswerQuestion.css";
@@ -131,14 +132,22 @@ const ItemAnswerQuestion = ({ id, indexQuestion, question, indexRightAnswer, ind
     //     }
     // }, [isOpen]);
 
-
+    // console.log(questionText)
     return (
         <>
-
-            <div style={{backgroundColor:"black",width:"100px",height:"100px"}} className="ItemAnswerQuestion" id={id} 
+            {/* <div style={{backgroundColor:"black",width:"100px",height:"100px"}} className="ItemAnswerQuestion" id={id} 
             // onClick={!isDisabledClick && onClick}
             onClick={ () => {openAlert(indexQuestion)}}
-            >
+            > */}
+                <Div>
+                    <ButtonWrapper
+                        onClick={ () => {openAlert(indexQuestion)}}
+                        text={question.questionText}
+                        classNameText="ItemAnswerQuestion__button-text"
+                        hasActive={false}
+                    >
+                    </ButtonWrapper>
+                </Div>
                 {/* <div
                     className="ItemAnswerQuestion__question-wrap"
                 >
@@ -207,7 +216,7 @@ const ItemAnswerQuestion = ({ id, indexQuestion, question, indexRightAnswer, ind
                                 )
                             })
                         } */}
-                    </div>
+                    {/* </div> */}
         </>
     )
 }

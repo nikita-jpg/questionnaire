@@ -11,34 +11,40 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 
 
 
-const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}, test=() => {}}) => {
+const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=totalScore=>{}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
     const [history, setHistory] = useState([PANEL_FIRST_ID]);
     const [alert, setAlert] = useState(null);
 
     // логика хранения ответов
     const getInitStateAnswers = () => [
-        ...arrQuestions.map(question => ({
-            questionText: question.questionText.substring(0, 15),
-            indexAnswer: -1
-        }))
+        // ...arrQuestions.map(question => (
+        //     // questionText: question.questionText.substring(0, 15),
+        //     // indexAnswer: -1
+        //     -1
+        // ))
+        -1,-1,-1,-1,-1,-1,-1,-1
     ];
 
-    const [stateAnswers, setStateAnswers] = useState(getInitStateAnswers());
+    const [stateAnswers, setStateAnswers] = useState( getInitStateAnswers());
 
     const giveAnswer = (indexQuestion, indexAnswer) => {
-        stateAnswers[indexQuestion].indexAnswer = indexAnswer;
+        stateAnswers[indexQuestion] = indexAnswer;
         setStateAnswers([...stateAnswers]);
     }
 
     const calculateScore = () => { 
-        return stateAnswers.reduce((sum, dataAnswer, indexQuestion) => {
-            if (dataAnswer.indexAnswer === -1) {
-                return sum;
-            }
+        // let score = 0;
+        // stateAnswers.map((answer)
 
-            return sum + arrQuestions[indexQuestion].answerOptions[dataAnswer.indexAnswer].score;
-        }, 0);
+        // )
+        // return stateAnswers.reduce((sum, dataAnswer, indexQuestion) => {
+        //     if (dataAnswer === -1) {
+        //         return sum;
+        //     }
+
+        //     return sum + arrQuestions[indexQuestion].answerOptions[dataAnswer.indexAnswer].score;
+        // }, 0);
     }
 
     const resetStateAnswers = () => setStateAnswers(getInitStateAnswers());
@@ -61,12 +67,11 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         if (indexQuestion < maxLength - 1) {
             setIndexQuestionAndHistory(indexQuestion + 1);
         } else {
-            onFinishWithAlert(calculateScore(), stateAnswers.map(answer => answer.indexAnswer));
+            onFinishWithAlert(stateAnswers);
         }
     }
 
     const createGoToPrevQuestion = (indexQuestion) => () => {
-        console.log(indexQuestion)
         if (indexQuestion > 0) {
             setIndexQuestionAndHistory(indexQuestion - 1);
         } else {
@@ -78,8 +83,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
     const [lastIndexQuestion, setLastIndexQuestion] = useState(-1);
 
     const createGoToQuestionWithoutAnswer = (toIndexQuestion) => {
-        // console.log(indexQuestion)
-        // console.log(toIndexQuestion)
         if (indexQuestion != toIndexQuestion)
         {
             // setLastIndexQuestion(fromIndexQuestion);
@@ -118,7 +121,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         else{
             vkBridge.send('VKWebAppEnableSwipeBack');
         }
-        console.log(his)
 	}
 
     //Alert
@@ -139,10 +141,10 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                 leftText={"Отмена"}
                 rightText={"Выйти"}
                 rightFunc={ () =>  {onBack(); resetData()}}
-                onClose={closeAlert}
+                onClose={()=>{setAlert(null)}}
             >
             </AlertWrapper>
-        )}
+    )}
     const openFinishAlert = () => {        
         setAlert(
 
@@ -150,16 +152,16 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                 header="Вы ответили не на все вопросы"
                 leftText={"Отмена"}
                 rightText={"Завершить"}
-                rightFunc={ () => {onFinish(calculateScore())}}
-                onClose={closeAlert}
+                rightFunc={ () => {onFinish(stateAnswers)}}
+                onClose={()=>{setAlert(null)}}
             >
             </AlertWrapper>
 
-        )}
+    )}
         
-    const closeAlert = () => {
-        setAlert(null)
-    }
+    // const closeAlert = () => {
+    //     setAlert(null)
+    // }
 
     //Модальное окно
     const modal = (
@@ -176,7 +178,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         <SimpleCell 
                             key={i}
                             onClick={() => {createGoToQuestionWithoutAnswer(i); changeModal()}}
-                            className={`ListQuestions__modal-el ${stateAnswers[i].indexAnswer !== -1 ? 'ListQuestions__modal-el_answered':''}`}>
+                            className={`ListQuestions__modal-el ${stateAnswers[i] !== -1 ? 'ListQuestions__modal-el_answered':''}`}>
                             <div className="ListQuestions__modal-el__text">
                                 {questionText}
                             </div>
@@ -215,8 +217,8 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         numberCurrentQuestion={i+1}
                         countQuestions={arr.length}
 
-                        stateAnswers={stateAnswers}
-                        indexAnswer={stateAnswers[i].indexAnswer}
+                        // stateAnswers={stateAnswers}
+                        indexAnswer={stateAnswers[i]}
 
                         lastIndexQuestion={lastIndexQuestion}
                         currentIndexQuestion={i}
