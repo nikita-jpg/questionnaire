@@ -52,7 +52,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_ANSWERS_QUESTIONS);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
@@ -110,6 +110,13 @@ const App = ({ eras, results, MAX_SCORE,
 		// console.log(indexesAnswers)
 		setIndexesAnswers(indexesAnswers);
 
+		let sum = 0;
+		for(let i=0;i<indexesAnswers.length;i++){
+			if(indexesAnswers[i] !== -1){
+				sum+=eras[indexAge].quizzes[indexQuiz].questions[i].answerOptions[indexesAnswers[i]].score;
+			}
+		}
+		setIndexResult(sum)
 		// const percent = Math.round(totalScore / MAX_SCORE * 100);
 		// savePercentQuiz(indexAge, indexQuiz, percent);
 		// setIndexResult(results.findIndex(res => res.percent === percent));

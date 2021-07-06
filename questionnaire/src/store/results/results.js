@@ -5,43 +5,43 @@ const results = [
         historicalEvent: "Начало Северной войны со Швецией"
     },
     {
-        percent: 13,
-        year: "1013",
+        percent: 1,
+        year: "1011",
         historicalEvent: "Какое-то событие"
     },
     {
-        percent: 25,
-        year: "1025",
+        percent: 2,
+        year: "1022",
         historicalEvent: "Какое-то событие"
     },
     {
-        percent: 38,
-        year: "1038",
+        percent: 3,
+        year: "1033",
         historicalEvent: "Какое-то событие"
     },
     {
-        percent: 50,
-        year: "1050",
+        percent: 4,
+        year: "1054",
         historicalEvent: "Какое-то событие"
     },
     {
-        percent: 63,
-        year: "1063",
+        percent: 5,
+        year: "1065",
         historicalEvent: "Какое-то событие"
     },
     {
-        percent: 75,
-        year: "1075",
+        percent: 6,
+        year: "1076",
         historicalEvent: "Какое-то событие"
     },
     {
-        percent: 88,
-        year: "1088",
+        percent: 7,
+        year: "1087",
         historicalEvent: "Какое-то событие"
     },
     {
-        percent: 100,
-        year: "1100",
+        percent: 8,
+        year: "1108",
         historicalEvent: "в Витичеве прошёл 2-й съезд князей Киевской Рус"
     }
 ]

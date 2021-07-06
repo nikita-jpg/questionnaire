@@ -19,11 +19,11 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
 	}
 
     const getClassNameForPercent = (percent) => {
-        if (percent <= 39) {
+        if (percent <= 4) {
             return "Result__year-postfix_bad";
         }
 
-        if (percent <= 69) {
+        if (percent <= 6) {
             return "Result__year-postfix_normal";
         }
 
@@ -167,33 +167,37 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
     return (
         <View id={id} activePanel="PANEL_RESULT">
             <Panel id="PANEL_RESULT">
-                <div className="Result" style={styleResult}>
 
+                <div>
                     <Header
                         // text={""}
+                        // isClose={true}
+                        // leftBtnFunc={()=>{}}
                     >
                     </Header>
+                    <div className="Result" style={styleResult}>
 
-                    <div style={styleYear} className="Result__year">
-                        <span style={stylePrefixYear} className="Result__year-prefix">{stringPrefix}</span>
-                        <span className={getClassNameForPercent(percent)}>
-                            {percent}
-                            <span style={stylePercent}>%</span>
-                        </span>
-                    </div>
+                        <div style={styleYear} className="Result__year">
+                            <span style={stylePrefixYear} className="Result__year-prefix">{stringPrefix}</span>
+                            <span className={getClassNameForPercent(percent)}>
+                                {percent}
+                                <span style={stylePercent}>/8</span>
+                            </span>
+                        </div>
 
-                    <div style={styleHistoricalEvent} className="Result__historical-event">{historicalEvent}</div>
+                        <div style={styleHistoricalEvent} className="Result__historical-event">{historicalEvent}</div>
 
-                    {/* <ResultButtons 
-                            onAgain={modifyIsFirstOpenResult(onAgain)}
-                            onGoToAnswersQuestion={onGoToAnswersQuestion}
-                        /> */}
+                        {/* <ResultButtons 
+                                onAgain={modifyIsFirstOpenResult(onAgain)}
+                                onGoToAnswersQuestion={onGoToAnswersQuestion}
+                            /> */}
 
-                    <div style={styleContent} className="Result__content">
-                        <ResultButtons 
-                            onAgain={modifyIsFirstOpenResult(onAgain)}
-                            onGoToAnswersQuestion={onGoToAnswersQuestion}
-                        />
+                        <div style={styleContent} className="Result__content">
+                            <ResultButtons 
+                                onAgain={modifyIsFirstOpenResult(onAgain)}
+                                onGoToAnswersQuestion={onGoToAnswersQuestion}
+                            />
+                        </div>
                     </div>
                 </div>
             </Panel>

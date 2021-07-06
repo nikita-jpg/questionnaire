@@ -5,6 +5,8 @@ import easeOut from '../../../anime/easeOut';
 import BlackBackground from '../../../components/BlackBackground/BlackBackground';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Arrow, { colorsArrow, directionArrow } from './Arrow';
+import { Icon16CheckCircleOutline } from '@vkontakte/icons';
+import { Icon16CancelCircleOutline } from '@vkontakte/icons';
 
 import "./ItemAnswerQuestion.css";
 
@@ -26,99 +28,101 @@ const ItemAnswerQuestion = ({ id, indexQuestion, question, indexRightAnswer, ind
 
     const [questionText, setQuestionText] = useState(question.questionText.substring(0, MAX_LENGTH_QUESTION_TEXT) + "...");
 
-    useEffect(() => {
-        if (isFirstRender) {
-            return;
-        }
+    const ICON_SIZE = 24;
 
-        setIsDisabledClick(true);
+    // useEffect(() => {
+    //     if (isFirstRender) {
+    //         return;
+    //     }
 
-        if (isOpen) {
-            animate({
-                timing: easeOut,
-                duration: 1000,
-                draw(progress) {
-                    if (progress < 1) {
-                        const length = MAX_LENGTH_QUESTION_TEXT + 
-                            Math.floor((question.questionText.length - MAX_LENGTH_QUESTION_TEXT) * progress);
-                        setQuestionText(question.questionText.substring(0, length));
-                    } else {
-                        setQuestionText(question.questionText);
-                        setIsDisabledClick(false);
-                    }
-                }
-            });
-        } else {
-            animate({
-                timing: easeOut,
-                duration: 1000,
-                draw(progress) {
-                    if (progress < 1) {
-                        const length = MAX_LENGTH_QUESTION_TEXT + 
-                            Math.floor((question.questionText.length - MAX_LENGTH_QUESTION_TEXT) * (1 - progress));
-                        setQuestionText(question.questionText.substring(0, length));
-                    } else {
-                        setQuestionText(question.questionText.substring(0, MAX_LENGTH_QUESTION_TEXT) + "...");
-                        setIsDisabledClick(false);
-                    }
-                }
-            });
-        }
-    }, [isOpen]);
+    //     setIsDisabledClick(true);
 
-    const onClick = (e) => {
-        // console.log(heightWrapContent)
-        // setIsOpenUp(!isOpenUp)
-        setIsOpen(!isOpen);
-        setIsAllGrey(!isGrey);
-    }
+    //     if (isOpen) {
+    //         animate({
+    //             timing: easeOut,
+    //             duration: 1000,
+    //             draw(progress) {
+    //                 if (progress < 1) {
+    //                     const length = MAX_LENGTH_QUESTION_TEXT + 
+    //                         Math.floor((question.questionText.length - MAX_LENGTH_QUESTION_TEXT) * progress);
+    //                     setQuestionText(question.questionText.substring(0, length));
+    //                 } else {
+    //                     setQuestionText(question.questionText);
+    //                     setIsDisabledClick(false);
+    //                 }
+    //             }
+    //         });
+    //     } else {
+    //         animate({
+    //             timing: easeOut,
+    //             duration: 1000,
+    //             draw(progress) {
+    //                 if (progress < 1) {
+    //                     const length = MAX_LENGTH_QUESTION_TEXT + 
+    //                         Math.floor((question.questionText.length - MAX_LENGTH_QUESTION_TEXT) * (1 - progress));
+    //                     setQuestionText(question.questionText.substring(0, length));
+    //                 } else {
+    //                     setQuestionText(question.questionText.substring(0, MAX_LENGTH_QUESTION_TEXT) + "...");
+    //                     setIsDisabledClick(false);
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }, [isOpen]);
 
-    const getAnswerText = (index) => {
-        if (index === -1) return "Вы не ответили"
-        return `${question.answerOptions[index].text}`;
-    }
+    // const onClick = (e) => {
+    //     // console.log(heightWrapContent)
+    //     // setIsOpenUp(!isOpenUp)
+    //     setIsOpen(!isOpen);
+    //     setIsAllGrey(!isGrey);
+    // }
+
+    // const getAnswerText = (index) => {
+    //     if (index === -1) return "Вы не ответили"
+    //     return `${question.answerOptions[index].text}`;
+    // }
 
 
-    const [heightWrapContent, setHeightWrapContent] = useState("auto");
+    // const [heightWrapContent, setHeightWrapContent] = useState("auto");
 
-    const refWrapContent = createRef();
+    // const refWrapContent = createRef();
 
-    useEffect(() => {
-        // setIsFirstRender(false);
-        // setHeightWrapContent(refWrapContent.current.offsetHeight)
-    }, []);
+    // useEffect(() => {
+    //     // setIsFirstRender(false);
+    //     // setHeightWrapContent(refWrapContent.current.offsetHeight)
+    // }, []);
 
-    const PADDING_ITEM_ANSWER_QUESTION = 16;
+    // const PADDING_ITEM_ANSWER_QUESTION = 16;
 
-    const getStyleWrapAnswers = (isFirstRender, isOpen) => {
-        if (isFirstRender) {
-            return {
-                position: "absolute",
-                visibility: "hidden",
-                width: "100%",
-                padding: `0 ${PADDING_ITEM_ANSWER_QUESTION}px`,
-                boxSizing: "border-box"
-            }
-        }
-        return {
-            height: isOpen ? heightWrapContent : 0
-        }
-    }
+    // const getStyleWrapAnswers = (isFirstRender, isOpen) => {
+    //     if (isFirstRender) {
+    //         return {
+    //             position: "absolute",
+    //             visibility: "hidden",
+    //             width: "100%",
+    //             padding: `0 ${PADDING_ITEM_ANSWER_QUESTION}px`,
+    //             boxSizing: "border-box"
+    //         }
+    //     }
+    //     return {
+    //         height: isOpen ? heightWrapContent : 0
+    //     }
+    // }
 
     // const styleWrapAnswers = getStyleWrapAnswers(isFirstRender, isOpen);
 
-    const styleItemAnswerQuestion = {
-        // maxHeight: isOpenUp ? 400 : 50,
-        padding: `0 ${PADDING_ITEM_ANSWER_QUESTION}px`,
-        zIndex: isOpen ? 10 : 0
-    }
+    // const styleItemAnswerQuestion = {
+    //     // maxHeight: isOpenUp ? 400 : 50,
+    //     padding: `0 ${PADDING_ITEM_ANSWER_QUESTION}px`,
+    //     zIndex: isOpen ? 10 : 0
+    // }
 
-    // логика закрытия по щелчку вне ItemAnswerQuestion
-    const handlerClickWithouItemAnswerQuestion = (e) => {
-        if (!e.target.closest(`.${id}`)) {
-            setIsOpen(false);
-        }
-    }
+    // // логика закрытия по щелчку вне ItemAnswerQuestion
+    // const handlerClickWithouItemAnswerQuestion = (e) => {
+    //     if (!e.target.closest(`.${id}`)) {
+    //         setIsOpen(false);
+    //     }
+    // }
 
     // useEffect(() => {
     //     if (isOpen) {
@@ -145,6 +149,9 @@ const ItemAnswerQuestion = ({ id, indexQuestion, question, indexRightAnswer, ind
                         text={question.questionText}
                         classNameText="ItemAnswerQuestion__button-text"
                         hasActive={false}
+                        before={indexRightAnswer === indexUserAnswer 
+                            ? <Icon16CheckCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-green-color)"}}/> 
+                            : <Icon16CancelCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-red-color)"}}/> }
                     >
                     </ButtonWrapper>
                 </Div>

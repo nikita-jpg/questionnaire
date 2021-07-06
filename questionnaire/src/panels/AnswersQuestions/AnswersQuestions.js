@@ -13,9 +13,9 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
     const [isAllGrey, setIsAllGrey] = useState(false);
     const [alert, setAlert] = useState(null)
 
-    const getAnswerText = (indexQuestion) => {
+    const getAnswerText = (indexQuestion, indexInAnswer) => {
         if (indexesAnswers[indexQuestion] === -1) return "Вы не ответили"
-        return `${questions[indexQuestion].answerOptions[indexesAnswers[indexQuestion]].text}`;
+        return `${questions[indexQuestion].answerOptions[indexInAnswer].text}`;
     }
 
     // console.log(questions)
@@ -26,7 +26,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
         const indexUserAnswer = indexesAnswers[indexQuestion];
 
         setAlert(
-            <div className="testClass">
+        <div className="AnswersQuestions__alert_big">
             <Alert
                 // style={{width:"710px"}}   
                 actionsLayout={"horizontal"}
@@ -53,7 +53,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                                 <div
                                     className="AnswersQuestions__alert__text-answer"
                                 >
-                                    {getAnswerText(indexQuestion)}
+                                    {getAnswerText(indexQuestion, indexUserAnswer)}
                                 </div>
                                 {/* <div className="AnswersQuestions__alert__text-answer">
                                     {getAnswerText(indexQuestion)}
@@ -77,7 +77,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
                             <div
                                 className="AnswersQuestions__alert__text-answer"
                             >
-                                {getAnswerText(indexQuestion)}
+                                {getAnswerText(indexQuestion, indexRightAnswer)}
                             </div>
                         </div>
                             
@@ -125,8 +125,9 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}}) => {
 
             <Panel id="PANEL_ANSWERS_QUESTIONS">
                 <Header
-                text="Вопросы"
-                leftBtnFunc={onBack}>
+                    text="Вопросы"
+                    leftBtnFunc={onBack}
+                >
                 </Header>
 
                 <div style={{display:"flex",justifyContent:"center"}}>
