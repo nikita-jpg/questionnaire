@@ -110,3 +110,8 @@
     font-family: var(--font-tt);
     font-size: 20px;
 }
+
+/* Реклама */
+.Result__adds{
+    margin-top: 20px;
+}

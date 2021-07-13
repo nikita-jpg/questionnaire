@@ -1,7 +1,8 @@
 import { Icon24Back } from "@vkontakte/icons";
-import { Panel, PanelHeader, PanelHeaderButton, useAdaptivity, View } from "@vkontakte/vkui";
+import { Panel, PanelHeader, PanelHeaderButton, PromoBanner, useAdaptivity, View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
+import bridge from '@vkontakte/vk-bridge';
 
 import "./Result.css";
 import animate from "../../anime/animate";
@@ -12,6 +13,24 @@ import ResultButtons from "./ResultButtons/ResultButtons";
 const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult, setIsFirstOpenResult,
     onBack = () => { }, createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, onGoToAnswersQuestion=()=>{} }) => {
+
+        // const promoBannerProps = {
+        //     title: 'Заголовок',
+        //     domain: 'vk.com',
+        //     trackingLink: 'https://vk.com',
+        //     ctaText: 'Перейти',
+        //     advertisingLabel: 'Реклама',
+        //     iconLink: 'https://sun9-7.userapi.com/c846420/v846420985/1526c3/ISX7VF8NjZk.jpg',
+        //     description: 'Описание рекламы',
+        //     ageRestrictions: "14+",
+        //     statistics: [
+        //       { url: '', type: 'playbackStarted' },
+        //       { url: '', type: 'click' }
+        //     ]
+        //   };
+
+    const [isAdVisible, setAdVisible] = useState(false)
+    const [adDate,setAdDate] = useState(null)
 
 	const modifyIsFirstOpenResult = (f) => (...args) => {
 		setIsFirstOpenResult(true);
@@ -164,6 +183,25 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
         }), 1000);
     }, []);
 
+
+    const getAdData = () => {
+        bridge.send('VKWebAppGetAds')
+            .then((promoBannerProps) => {
+                setAdDate(promoBannerProps)
+                setAdVisible(true);
+            })
+            .catch(error => console.log(error))
+            .finally(()=>{
+                console.log("final")
+            })
+        // setAdDate(promoBannerProps)
+        // setAdVisible(true);
+        // console.log(adDate)
+
+        // { this.state.promoBannerProps && <PromoBanner bannerData={ this.state.promoBannerProps } /> }
+    }
+    getAdData();
+
     return (
         <View id={id} activePanel="PANEL_RESULT">
             <Panel id="PANEL_RESULT">
@@ -193,11 +231,22 @@ const Result = ({ id, year, percent, historicalEvent, quizes, isFirstOpenResult,
                             /> */}
 
                         <div style={styleContent} className="Result__content">
+
                             <ResultButtons 
                                 onAgain={modifyIsFirstOpenResult(onAgain)}
                                 onGoToAnswersQuestion={onGoToAnswersQuestion}
                             />
+
+                            <div className="Result__adds">
+                            {
+                                isAdVisible &&
+                                <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
+                                // getAdData()
+                            }
+
                         </div>
+                        </div>
+
                     </div>
                 </div>
             </Panel>

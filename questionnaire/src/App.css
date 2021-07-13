@@ -94,7 +94,7 @@
   background-color: var(--main-second-bg-color);
 }
 
-.vkuiButton__content{
+.vkuiButton__content :not(.Result__adds){
   padding-top: 0;
 }
 
@@ -107,3 +107,12 @@
     width: 500px;
   }
 } */
+
+/* Реклама */
+.Result__adds .vkuiSimpleCell__children{
+  color: var(--main-white-color);
+}
+.Result__adds .vkuiPromoBanner{
+  border-radius: 16px;
+  background-color: var(--main-second-bg-color);
+}

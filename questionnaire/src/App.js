@@ -52,7 +52,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
+	const [activeView, setActiveView] = useState(VIEW_ID_RESULT);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
@@ -163,6 +163,11 @@ const App = ({ eras, results, MAX_SCORE,
 			setHistory(his)
 		}
 	}
+
+	// bridge.send("VKWebAppShowNativeAds", {ad_format:"preloader"})
+	// .then(data => console.log(data.result))
+	// .catch(error => console.log(error));
+	
 
 	return (
 	<ConfigProvider isWebView={true}>
