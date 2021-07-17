@@ -1,11 +1,11 @@
 .ListCard{
     padding: 0;
     width: 100%;
-    height: 20px;
+    height: fit-content;
     color: var(--main-white-color);
 }
 .ListCard__Card{
-    background-color: var(--main-second-bg-color)
+    background-color: var(--main-second-bg-color);
 }
 .ListCard__title{
     display: flex;

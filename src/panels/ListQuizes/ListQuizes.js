@@ -19,7 +19,6 @@ const ListQuizes = ({ id, curWidth, title, quizes, onBack = () => { }, createOnC
 
                 <ListCard
                     info={quizes}
-                    curWidth={curWidth}
                     cardClick={createOnClickItemQuizes}
                 />
 

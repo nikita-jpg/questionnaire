@@ -1,4 +1,5 @@
 import React from 'react';
+
 export function isTitleCentre ( element) {
     let curWidth = document.getElementById('root').scrollWidth;
     return({
@@ -8,6 +9,9 @@ export function isTitleCentre ( element) {
 }
 
 export function getColNumber(curWidth) {
+    if(curWidth === undefined){
+        curWidth = document.getElementById('root').scrollWidth;
+    }
     if(curWidth>1280){
         return "s"
     }

@@ -8,12 +8,13 @@
     --main-white-color:#ffff;
     --main-red-color:#FF453A;
     --main-second-red-color:#fd392f;
-    --main-blue-color:#0A84FF;
-    --main-yellow-color:#FFCC00;
-    --main-green-color:#32D74B;
+    --main-blue-color:#0a84fe;
+    --main-yellow-color:#ffd60a;
+    --main-green-color:#30d158;
     --main-second-green-color:#76B900;
     --main-gray-color:#8f909b;
     --main-oliveOil-color: #BAAB8F;
+    --main-purple-color:#64d2ff;
 
     --main-max-width:370px;
  
@@ -116,3 +117,6 @@
   border-radius: 16px;
   background-color: var(--main-second-bg-color);
 }
+/* .vkuiCard:not(:first-child){
+  margin-top: 20px;
+} */

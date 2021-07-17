@@ -54,11 +54,10 @@ const App = ({ eras, results, MAX_SCORE,
 
 	const [activeView, setActiveView] = useState(VIEW_ID_RESULT);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
-	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
 	const [curWidth, setCurWidth] = useState(0)
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
-	const goToViewListAndQuizes = () => setActiveView(VIEW_ID_LIST_AGE_AND_QUIZES)
+	const goToViewListAgeAndQuizes = () => setActiveView(VIEW_ID_LIST_AGE_AND_QUIZES)
 	const goToViewListQuestions = () => setActiveView(VIEW_ID_LIST_QUESTIONES);
 	const goToViewResult = () => setActiveView(VIEW_ID_RESULT);
 	const goToViewAnswersQuestions = () => setActiveView(VIEW_ID_ANSWERS_QUESTIONS);
@@ -77,32 +76,77 @@ const App = ({ eras, results, MAX_SCORE,
 	// первый раз открываем Result
 	const [isFirstOpenResult, setIsFirstOpenResult] = useState(true);
 
-	// функции для StartWindowY
-	const onClickStartWindow = () => {
-		goToViewListAndQuizes();
-	}
 
-	// функции для ListAge
-	const createOnClickItemAge = (index) => () => {
-		goForward(PANEL_ID_LIST_QUIZES);
-		setIndexAge(index);
-		goToPanelListQuizes();
-	}
 
-	// функции для ListQuizes
-	const onBackListQuizes = () => {
-		setIsFirstOpenResult(true);
-		goBack(PANEL_ID_LIST_AGE)
-	}
+	// функции для StartWindow
+		const onClickStartWindow = () => {
+			goToViewListAgeAndQuizes();
+		}
 
-	const createOnClickItemQuizes = (index) => () => {
-		setIndexQuiz(index);
-		goToViewListQuestions();
-	}
+
+
+	// Функции для ListAgeAndQuizes
+
+		// Выбор эпохи
+		const createOnClickItemAge = (index) => () => {
+			goForwardInHistory(PANEL_ID_LIST_QUIZES);
+			setIndexAge(index);
+			goToPanelListQuizes();
+		}
+
+		// Выбор опроса
+		const createOnClickItemQuizes = (index) => () => {
+			setIndexQuiz(index);
+			goToViewListQuestions();
+		}
+
+		// Возврат от выбранной эпохи к выбору эпохи
+		const onBackListQuizes = () => {
+			setIsFirstOpenResult(true);
+			goBackInHistory(PANEL_ID_LIST_AGE)
+		}
+
+		//Возврат от результатов к выбору эпохи
+		const goToViewListAgeAndQuizesFromResult = () => {
+			goBackInHistory()
+			goToViewListAgeAndQuizes()
+		}
+
+
+
+	// История для ListAgeAndQuizes
+
+		const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
+		const goBackInHistory = () => {
+			let his = history;
+			his.pop()
+			if (activePanel === PANEL_ID_LIST_AGE) {
+				vkBridge.send('VKWebAppEnableSwipeBack');
+			}
+			setHistory(his)
+			setActivePanel(history[history.length - 1])	
+		}
+
+		const goForwardInHistory = (view) => { 
+			let his = history;
+			his.push(view);
+			if (activePanel === PANEL_ID_LIST_AGE) {
+				vkBridge.send('VKWebAppDisableSwipeBack');
+				setHistory(his)
+			}
+			else{
+				setHistory(his)
+			}
+		}
+
+
+
+
+
 
 	// функции для ListQuestions
 	const onBackListQuestions = () => {
-		goToViewListAndQuizes();
+		goToViewListAgeAndQuizes();
 		goToPanelListQuizes();
 	}
 
@@ -117,15 +161,12 @@ const App = ({ eras, results, MAX_SCORE,
 			}
 		}
 		setIndexResult(sum)
-		// const percent = Math.round(totalScore / MAX_SCORE * 100);
-		// savePercentQuiz(indexAge, indexQuiz, percent);
-		// setIndexResult(results.findIndex(res => res.percent === percent));
 		goToViewResult();
 	}
 
 	// функции для Result
 	const onBackResult = () => {
-		goToViewListAndQuizes();
+		goToViewListAgeAndQuizes();
 	}
 
 	const onAgainResult = () => {
@@ -141,32 +182,16 @@ const App = ({ eras, results, MAX_SCORE,
 		goToViewResult();
 	}
 
-	// история
-	const goBack = () => {
-		let his = history;
-		his.pop()
-		if (activePanel === PANEL_ID_LIST_AGE) {
-			vkBridge.send('VKWebAppEnableSwipeBack');
-		  }
-		setHistory(his)
-		setActivePanel(history[history.length - 1])	
-	}
 
-	const goForward = (view) => { 
-		let his = history;
-		his.push(view);
-		if (activePanel === PANEL_ID_LIST_AGE) {
-			vkBridge.send('VKWebAppDisableSwipeBack');
-			setHistory(his)
-		  }
-		else{
-			setHistory(his)
-		}
-	}
 
 	// bridge.send("VKWebAppShowNativeAds", {ad_format:"preloader"})
 	// .then(data => console.log(data.result))
 	// .catch(error => console.log(error));
+
+	const onBackListAge = () => {
+		goBackInHistory(PANEL_ID_LIST_AGE)
+		goToViewListAgeAndQuizes()
+	}
 	
 
 	return (
@@ -184,7 +209,7 @@ const App = ({ eras, results, MAX_SCORE,
 							<View 
 								id={VIEW_ID_LIST_AGE_AND_QUIZES}
 								activePanel={activePanel}
-								onSwipeBack={goBack}
+								onSwipeBack={goBackInHistory}
 								history={history}>
 
 								<ListAge 
@@ -221,20 +246,25 @@ const App = ({ eras, results, MAX_SCORE,
 								year={results[indexResuslt].year}
 								historicalEvent={results[indexResuslt].historicalEvent}
 								quizes={eras[indexAge].quizzes.filter(quiz => quiz.percentProgress !== 100)}
+								questions={eras[indexAge].quizzes[indexQuiz].questions}
+								indexesAnswers={indexesAnswers}
 								onBack={onBackResult}
 								createOnClickItemQuizes={createOnClickItemQuizes}
+
 								onAgain={onAgainResult}
 								onGoToAnswersQuestion={onGoToAnswersQuestionResult}
+								goToViewListAndQuizes={goToViewListAgeAndQuizesFromResult}
+
 								isFirstOpenResult={isFirstOpenResult}
 								setIsFirstOpenResult={setIsFirstOpenResult}
 							/>
 
-							<AnswersQuestions
+							{/* <AnswersQuestions
 								id={VIEW_ID_ANSWERS_QUESTIONS}
 								questions={eras[indexAge].quizzes[indexQuiz].questions}
 								indexesAnswers={indexesAnswers}
 								onBack={onBackAnswersQuestions}
-							/>
+							/> */}
 
 							<TestView
 								id={"VIEW_TEST"}

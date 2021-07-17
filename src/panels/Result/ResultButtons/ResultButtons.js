@@ -11,10 +11,11 @@ import { Icon28ArticleOutline } from '@vkontakte/icons';
 import { Icon24List } from '@vkontakte/icons';
 import { Icon28RefreshOutline } from '@vkontakte/icons';
 import { Icon56ArticleOutline } from '@vkontakte/icons';
+import { Icon24Globe } from '@vkontakte/icons';
 import { Icon28ShareExternalOutline } from '@vkontakte/icons';
 import ButtonWrapper from "../../../components/ButtonWrapper/ButtonWrapper";
 
-const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
+const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{},onBack = () => { }}) => {
     const sendToHistory = (image) => {
         console.log(image);
 
@@ -45,6 +46,16 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
 
                 <ButtonWrapper
                     size="l"
+                    text="К эпохам"
+                    className="Result__button"
+                    classNameText="Result__button-text"
+                    before={<Icon24Globe width={iconSize} height={iconSize} style={{color:"var(--main-purple-color)"}}/>}
+                    onClick={goToViewListAndQuizes}
+                >
+                </ButtonWrapper>
+
+                <ButtonWrapper
+                    size="l"
                     text="Ещё раз"
                     className="Result__button"
                     classNameText="Result__button-text"
@@ -70,6 +81,7 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}}) => {
                     before={<Icon28ShareExternalOutline width={iconSize} height={iconSize} style={{color:"var(--main-blue-color)"}}/>}
                 >
                 </ButtonWrapper>
+
 
                 {/* <button className="Result__button Result__button_favorite">Поддержать</button>
                 <button 
