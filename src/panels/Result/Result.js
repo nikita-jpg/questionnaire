@@ -216,7 +216,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                         setTestAnim(true)
                     }
 
-                    setStyles(newStyles);
+                    // setStyles(newStyles);
                 }
             }), 1000);
         }, []);
@@ -343,7 +343,10 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             )
         }
 
+        let test = document.documentElement.clientHeight;
+        // test=200;
     
+        // style={{marginTop:test}}
 
     return (
         <View 
@@ -359,30 +362,52 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
 
                     <Header></Header>
 
-                    <div className="Result" style={styleResult}>
+                    <div className="Result">
+                        <div className="Result__container" style={{height:test}}>
 
-                        <div style={styleYear} className="Result__year">
-                            <span style={stylePrefixYear} className="Result__year-prefix">{stringPrefix}</span>
-                            <span className={getClassNameForPercent(percent)}>
-                                {percent}
-                                <span style={stylePercent}>/8</span>
-                            </span>
+                            <CSSTransition
+                                in={testAnim}
+                                timeout={2000}
+                                classNames="Result__year"
+                                unmountOnExit
+                                >
+                                    <div className="Result__year" >
+                                        <span className="Result__year-prefix">{stringPrefix}</span>
+                                            <span className={getClassNameForPercent(percent)}>
+                                                {percent}
+                                            <span>/8</span>
+                                        </span>
+                                    </div>
+                            </CSSTransition>
+
                         </div>
 
-                        <div style={styleHistoricalEvent} className="Result__historical-event">{historicalEvent}</div>
+                    {/* <div style={{height:test}}>
+                    <CSSTransition
+                            in={testAnim}
+                            timeout={2000}
+                            classNames="Result__year"
+                            unmountOnExit>
+                        <div style={{marginTop: testAnim ? 0 : test}} className="Result__year" >
+                            <span className="Result__year-prefix">{stringPrefix}</span>
+                            <span className={getClassNameForPercent(percent)}>
+                                {percent}
+                                <span>/8</span>
+                            </span>
+                        </div>
+                    </CSSTransition>
+                    </div> */}
+
+                        {/* <div className="Result__historical-event">{historicalEvent}</div> */}
 
                         {/* <div style={styleContent} className="Result__content"></div> */}
 
 
-                        <CSSTransition
+                        {/* <CSSTransition
                             in={testAnim}
                             timeout={300}
                             classNames="Result__buttons"
                             unmountOnExit
-                            // addEndListener={(node, done) => {
-                            //     node.addEventListener("transitionend", done, false);
-                            //   }}
-                            // onEnter={() => {setTestAnim(true)}}
                         >
                             <div className="Result__buttons">
                                 <ResultButtons 
@@ -392,7 +417,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                                     // onBack={onBack}
                                 />
                             </div>
-                        </CSSTransition>
+                        </CSSTransition> */}
 
                             {/* <div className="Result__adds">
                             {
