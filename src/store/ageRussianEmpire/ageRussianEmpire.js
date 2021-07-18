@@ -11,6 +11,11 @@ const ageRussianEmpire = {
     numberOfQuestions:10,
     quizzes: [
         quizPetr1,
+        quizPetr1,
+        quizPetr1,
+        quizPetr1,
+        quizPetr1,
+        quizPetr1,
         quizTheEraOfPalaceCoups
     ]
 }

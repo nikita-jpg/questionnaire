@@ -75,7 +75,10 @@ const IteamListQuestion = ({ id, curWidth, question,
                         {
                             question.answerOptions.map((answer, i) => (
                                 <ButtonWrapper
-                                    onClick={() => goToNextQuestion(i)}
+                                    onClick={() => {
+                                        // let elem = this.getElementsByClassName('');
+                                        // elem.setAttribute('background-color ', 'red'); 
+                                        goToNextQuestion(i)}}
                                     isActived={indexAnswer === i}
                                     text={answer.text}
                                     className="IteamListQuestion__answer"

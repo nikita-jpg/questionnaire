@@ -2,12 +2,12 @@
     padding: 0;
     width: 100%;
     height: fit-content;
-    color: var(--main-white-color);
 }
 .ListCard__Card{
     background-color: var(--main-second-bg-color);
 }
 .ListCard__title{
+    color: var(--main-white-color);
     display: flex;
     justify-content: space-between;
     flex-direction: row;

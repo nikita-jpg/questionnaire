@@ -4,9 +4,10 @@ import React from "react"
 import './ButtonWrapper.css'  
 
 const ButtonWrapper = ({isActived, text, onClick, before, className, classNameText, isCentered, hasActive}) => {
+
     return(
         <CellButton 
-            activeEffectDelay={10}
+            activeEffectDelay={0}
             onClick={onClick} 
             mode="secondary"
             centered={isCentered} 

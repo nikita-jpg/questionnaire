@@ -1,10 +1,11 @@
 import { Icon24Back } from "@vkontakte/icons";
-import { Alert, Panel, PanelHeader, PanelHeaderButton, PromoBanner, useAdaptivity, View } from "@vkontakte/vkui";
+import { Alert, ContentCard, Panel, PanelHeader, PanelHeaderButton, PromoBanner, useAdaptivity, View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import bridge from '@vkontakte/vk-bridge';
 
 import "./Result.css";
+import "../../components/ListCard/ListCard.css"
 import animate from "../../anime/animate";
 import easeOut from "../../anime/easeOut";
 // import ListQuizes from "../../components/ListQuizes/ListQuizes";
@@ -75,101 +76,41 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
     //Анимация 
         const getClassNameForPercent = (percent) => {
             if (percent <= 4) {
-                return "Result__year-postfix_bad";
+                return "Result__points-postfix_bad";
             }
 
             if (percent <= 6) {
-                return "Result__year-postfix_normal";
+                return "Result__points-postfix_normal";
             }
 
-            return "Result__year-postfix_good";
+            return "Result__points-postfix_good";
         }
 
-        const HEIGHT_HEADER = 60;
-        const HEIGHT_YEAR = 76;
-        const WIDTH_CHAR_IN_YEAR = 58;
-        const WIDTH_PERCENT = 78;
-        const WIDTH_YEAR = WIDTH_CHAR_IN_YEAR * year.length;
-        const WIDTH_POSTFIX = WIDTH_CHAR_IN_YEAR * String(percent).length;
-        const WIDTH_PRETFIX = WIDTH_YEAR - WIDTH_POSTFIX;
-        const PADDING_LEFT_AND_RIGHT = 10;
+        // const HEIGHT_HEADER = 60;
+        // const HEIGHT_YEAR = 76;
+        // const WIDTH_CHAR_IN_YEAR = 58;
+        // const WIDTH_PERCENT = 78;
+        // const WIDTH_YEAR = WIDTH_CHAR_IN_YEAR * year.length;
+        // const WIDTH_POSTFIX = WIDTH_CHAR_IN_YEAR * String(percent).length;
+        // const WIDTH_PRETFIX = WIDTH_YEAR - WIDTH_POSTFIX;
+        // const PADDING_LEFT_AND_RIGHT = 10;
 
         
-        const stringPrefix = String(year).replace(String(percent), "");
-        const widthContent = document.documentElement.clientWidth - PADDING_LEFT_AND_RIGHT * 2;
+        // const stringPrefix = String(year).replace(String(percent), "");
+        // const widthContent = document.documentElement.clientWidth - PADDING_LEFT_AND_RIGHT * 2;
 
-        const shiftX = WIDTH_YEAR + WIDTH_PERCENT > widthContent
-            ?(widthContent - WIDTH_YEAR) / 2
-            :WIDTH_PERCENT / 2;
+        // const shiftX = WIDTH_YEAR + WIDTH_PERCENT > widthContent
+        //     ?(widthContent - WIDTH_YEAR) / 2
+        //     :WIDTH_PERCENT / 2;
 
-        let initialTransitionYearX;
+        // let initialTransitionYearX;
 
-        if (WIDTH_YEAR + WIDTH_PERCENT > widthContent) {
-            initialTransitionYearX = (widthContent - WIDTH_POSTFIX - WIDTH_PERCENT) / 2 + (WIDTH_YEAR + WIDTH_PERCENT - widthContent);
-        } else {
-            initialTransitionYearX = WIDTH_PRETFIX / 2;
-        }
+        // if (WIDTH_YEAR + WIDTH_PERCENT > widthContent) {
+        //     initialTransitionYearX = (widthContent - WIDTH_POSTFIX - WIDTH_PERCENT) / 2 + (WIDTH_YEAR + WIDTH_PERCENT - widthContent);
+        // } else {
+        //     initialTransitionYearX = WIDTH_PRETFIX / 2;
+        // }
 
-    
-        const initialStyles = {
-            overflowResult: "hidden",
-            opacityPercent: 1,
-            opacityPrefixYear: 0,
-            transitionYearY: document.documentElement.clientHeight / 2 - HEIGHT_YEAR - HEIGHT_HEADER,
-            transitionYearX: -initialTransitionYearX,
-            opacityHistoricalEvent: 0,
-            transitionContentY: document.documentElement.clientHeight / 2 + HEIGHT_YEAR / 2,
-            opacityContent: 0
-        };
-
-        const finishStyles = {
-            overflowResult: "",
-            opacityPercent: 0,
-            opacityPrefixYear: 1,
-            transitionYearY: 0,
-            transitionYearX: shiftX,
-            opacityHistoricalEvent: 1,
-            transitionContentY: 0,
-            opacityContent: 1
-        }
-
-        const [styles, setStyles] = useState(isFirstOpenResult ?initialStyles :finishStyles);
-
-        const stylePercent = {
-            opacity: styles.opacityPercent
-        }
-
-        const stylePrefixYear = {
-            opacity: styles.opacityPrefixYear
-        }
-
-        const styleYear = {
-            transform: `translate(${styles.transitionYearX}px, ${styles.transitionYearY}px)`
-        }
-
-        const styleHistoricalEvent = {
-            opacity: styles.opacityHistoricalEvent,
-            transform: `translateY(${styles.transitionYearY}px)`
-        }
-
-        const styleContent = {
-            opacity: styles.opacityContent,
-            transform: `translateY(${styles.transitionContentY}px)`,
-            width: "100%",
-            maxWidth:"370px"
-        }
-
-        const styleResult = {
-            overflow: styles.overflowResult
-        }
-
-        // useEffect(() => {
-        //     if (isFirstOpenResult) {
-        //         setIsFirstOpenResult(false);
-        //     } else {
-        //         return;
-        //     }
-        // });
 
 
 
@@ -306,10 +247,8 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             )
         }
 
-        let test = document.documentElement.clientHeight;
-        // test=200;
-    
-        // style={{marginTop:test}}
+        const startAnimDealyForCard = 3;
+        const stepAnimDealyForCard = 0.5;
 
     return (
         <View 
@@ -320,107 +259,53 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             history={history}>
 
             <Panel id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}}>
-
                 <div>
-
                     <Header></Header>
 
                     <div className="Result">
-                        <div className="Result__container" style={{height:test}}>
 
-                            <div className={`Result__year ${isFirstOpenResult ? "Result__fade-anim":""}`} >
-                                {/* <span className="Result__year-prefix">{stringPrefix}</span> */}
-                                    <span className={getClassNameForPercent(percent)}>
-                                        {percent}
-                                    <span>/8</span>
-                                </span>
-                            </div>
-
-                            <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`}>
-                                <ResultButtons 
-                                    onAgain={modifyIsFirstOpenResult(onAgain)}
-                                    onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
-                                    goToViewListAndQuizes={goToViewListAndQuizesWrapper}
-                                    // onBack={onBack}
-                                />
-                            </div>
-
-                            <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`}>
-                            {
-                                isAdVisible &&
-                                <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
-                                // getAdData()
-                            }
-                            </div>
-{/* 
-                            <CSSTransition
-                                in={testAnim}
-                                timeout={2000}
-                                classNames="Result__year"
-                                unmountOnExit
-                                >
-
-                            </CSSTransition> */}
-
-                        </div>
-
-                    {/* <div style={{height:test}}>
-                    <CSSTransition
-                            in={testAnim}
-                            timeout={2000}
-                            classNames="Result__year"
-                            unmountOnExit>
-                        <div style={{marginTop: testAnim ? 0 : test}} className="Result__year" >
-                            <span className="Result__year-prefix">{stringPrefix}</span>
-                            <span className={getClassNameForPercent(percent)}>
-                                {percent}
+                        {/* <div className={`Result__year ${isFirstOpenResult ? "Result__fade-anim":""}`} > */}
+                            <span className={`Result__points ${getClassNameForPercent(percent)} ${isFirstOpenResult ? "Result__fade-anim":""}`} >
+                                    {percent}
                                 <span>/8</span>
                             </span>
+                        {/* </div> */}
+
+                        <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`}>
+                            <ResultButtons 
+                                onAgain={modifyIsFirstOpenResult(onAgain)}
+                                onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
+                                goToViewListAndQuizes={goToViewListAndQuizesWrapper}
+                            />
                         </div>
-                    </CSSTransition>
-                    </div> */}
 
-                        {/* <div className="Result__historical-event">{historicalEvent}</div> */}
+                        <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`}>
+                        {
+                            isAdVisible &&
+                            <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
+                        }
+                        </div>
 
-                        {/* <div style={styleContent} className="Result__content"></div> */}
-
-
-                        {/* <CSSTransition
-                            in={testAnim}
-                            timeout={300}
-                            classNames="Result__buttons"
-                            unmountOnExit
-                        >
-                            <div className="Result__buttons">
-                                <ResultButtons 
-                                    onAgain={modifyIsFirstOpenResult(onAgain)}
-                                    onGoToAnswersQuestion={goToPanelAnswers}
-                                    goToViewListAndQuizes={goToViewListAndQuizesWrapper}
-                                    // onBack={onBack}
-                                />
-                            </div>
-                        </CSSTransition> */}
-
-                            {/* <div className="Result__adds">
-                            {
-                                isAdVisible &&
-                                <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
-                                // getAdData()
-                            }
-                            </div>
-
-                            <div className="Result__cards">
-                            {
-                                <ListCard
-                                    curWidth={375}
-                                    info={quizes}
-                                >  
-                                </ListCard>
-                            }
-                            </div> */}
+                        {
+                            quizes.map((record,i) => (
+                                <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+i*stepAnimDealyForCard)+"*var(--main-delay-anim-result))"}}>
+                                    <ContentCard
+                                        header={
+                                            <div className="ListCard__title">
+                                                <div>{record.title}</div>
+                                                <div>{record.percentProgress}/{record.numberOfQuestions}</div>
+                                            </div>
+                                        }
+                                        mode={"tint"}
+                                        // onClick={cardClick(i)}
+                                        image={record.imageSrc}
+                                        caption={record.description}
+                                        className="ListCard__Card"
+                                    />
+                                </div>
+                            ))
+                        }
                         
-                        
-
                     </div>
                 </div>
             </Panel>
