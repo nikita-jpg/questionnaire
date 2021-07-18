@@ -17,6 +17,7 @@
     --main-purple-color:#64d2ff;
 
     --main-max-width:370px;
+    --main-delay-anim-result: .3s;
  
     /* Переопределено */
     --background_content:#1C1C1E;
@@ -25,6 +26,7 @@
     --background_hover: rgba(0,0,0,0.16);
     --action_sheet_separator:#1C1C1E;
     --header_background:var(--background_content);
+
   }
   /* Переопределено */
   body{

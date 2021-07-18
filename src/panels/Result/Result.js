@@ -163,82 +163,45 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             overflow: styles.overflowResult
         }
 
-        useEffect(() => {
-            if (isFirstOpenResult) {
-                setIsFirstOpenResult(false);
-            } else {
-                return;
-            }
-
-            setTimeout(() => animate({
-                timing: easeOut,
-
-                duration: 3000,
-
-                draw(progress) {
-                    const newStyles = { ...styles };
-
-                    const getProgressStyle = (min, max) => (progress - min) / (max - min);
-
-                    if (progress < 0.33) {
-                        const progressStyles = getProgressStyle(0, 0.33);
-
-                        let newTransition = (initialStyles.transitionYearX - shiftX) * (1 - progressStyles) + shiftX;
-
-                        newStyles.opacityPercent = 1 - progressStyles;
-                        newStyles.opacityPrefixYear = progressStyles;
-                        newStyles.transitionYearX = newTransition;
-                    } else {
-                        newStyles.opacityPrefixYear = finishStyles.opacityPrefixYear;
-                        newStyles.transitionYearX = finishStyles.transitionYearX;
-                        newStyles.opacityPercent = finishStyles.opacityPercent;
-                    }
-
-                    if (progress >= 0.33 && progress < 0.66) {
-                        const progressStyles = getProgressStyle(0.33, 0.66);
-
-                        newStyles.opacityHistoricalEvent = progressStyles;
-                    } else if (progress >= 0.66) {
-                        newStyles.opacityHistoricalEvent = finishStyles.opacityHistoricalEvent;
-                    }
-
-                    if (progress >= 0.66 && progress < 1) {
-                        const progressStyles = getProgressStyle(0.66, 1);
-
-                        newStyles.transitionContentY = initialStyles.transitionContentY * (1 - progressStyles);
-                        newStyles.transitionYearY = initialStyles.transitionYearY * (1 - progressStyles);
-                        newStyles.opacityContent = progressStyles;
-                    } else if (progress >= 1) {
-                        newStyles.transitionContentY = finishStyles.transitionContentY;
-                        newStyles.transitionYearY = finishStyles.transitionYearY;
-                        newStyles.opacityContent = finishStyles.opacityContent;
-                        newStyles.overflowResult = finishStyles.overflowResult;
-                        setTestAnim(true)
-                    }
-
-                    // setStyles(newStyles);
-                }
-            }), 1000);
-        }, []);
+        // useEffect(() => {
+        //     if (isFirstOpenResult) {
+        //         setIsFirstOpenResult(false);
+        //     } else {
+        //         return;
+        //     }
+        // });
 
 
 
     //Реклама
-        const [isAdVisible, setAdVisible] = useState(false)
-        const [adDate,setAdDate] = useState(null)
+        const [isAdVisible, setAdVisible] = useState(true)
+        const [adDate,setAdDate] = useState({
+            title: 'Заголовок',
+            domain: 'vk.com',
+            trackingLink: 'https://vk.com',
+            ctaText: 'Перейти',
+            advertisingLabel: 'Реклама',
+            iconLink: 'https://sun9-7.userapi.com/c846420/v846420985/1526c3/ISX7VF8NjZk.jpg',
+            description: 'Описание рекламы',
+            ageRestrictions: "14+",
+            statistics: [
+              { url: '', type: 'playbackStarted' },
+              { url: '', type: 'click' }
+            ]
+          })
 
-        const getAdData = () => {
-            bridge.send('VKWebAppGetAds')
-                .then((promoBannerProps) => {
-                    setAdDate(promoBannerProps)
-                    setAdVisible(true);
-                })
-                .catch(error => console.log(error))
-                .finally(()=>{
-                    console.log("final")
-                })
-        }
-        getAdData();
+        // const getAdData = () => {
+        //     bridge.send('VKWebAppGetAds')
+        //         .then((promoBannerProps) => {
+        //             setAdDate(promoBannerProps)
+        //             setAdVisible(true);
+        //         })
+        //         .catch(error => console.log(error))
+        //         .finally(()=>{
+        //             console.log("final")
+        //         })
+        // }
+        // getAdData();
 
     
 
@@ -356,7 +319,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             onSwipeBack={goBackInHistory}
             history={history}>
 
-            <Panel id={PANEL_RESULT}>
+            <Panel id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}}>
 
                 <div>
 
@@ -365,20 +328,39 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                     <div className="Result">
                         <div className="Result__container" style={{height:test}}>
 
+                            <div className={`Result__year ${isFirstOpenResult ? "Result__fade-anim":""}`} >
+                                {/* <span className="Result__year-prefix">{stringPrefix}</span> */}
+                                    <span className={getClassNameForPercent(percent)}>
+                                        {percent}
+                                    <span>/8</span>
+                                </span>
+                            </div>
+
+                            <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`}>
+                                <ResultButtons 
+                                    onAgain={modifyIsFirstOpenResult(onAgain)}
+                                    onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
+                                    goToViewListAndQuizes={goToViewListAndQuizesWrapper}
+                                    // onBack={onBack}
+                                />
+                            </div>
+
+                            <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`}>
+                            {
+                                isAdVisible &&
+                                <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
+                                // getAdData()
+                            }
+                            </div>
+{/* 
                             <CSSTransition
                                 in={testAnim}
                                 timeout={2000}
                                 classNames="Result__year"
                                 unmountOnExit
                                 >
-                                    <div className="Result__year" >
-                                        <span className="Result__year-prefix">{stringPrefix}</span>
-                                            <span className={getClassNameForPercent(percent)}>
-                                                {percent}
-                                            <span>/8</span>
-                                        </span>
-                                    </div>
-                            </CSSTransition>
+
+                            </CSSTransition> */}
 
                         </div>
 
