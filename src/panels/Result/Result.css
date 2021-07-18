@@ -49,6 +49,26 @@
     padding-top: 12px;
 }
 
+.Result__buttons{
+    width: 100%;
+    max-width: var(--main-max-width);
+    /* opacity: 0;
+    margin-right: 100px; */
+}
+.Result__buttons-enter{
+    margin-right: 300px;
+    opacity: 0;
+    /* transition: opacity .2s; */
+}
+.Result__buttons-enter-active{
+    margin-right: 0;
+    opacity: 1;
+    transition: opacity .3s, margin-right .3s
+}
+.Result__buttons-exit{
+    margin-right: 0;
+    opacity: 1;
+}
 /* .Result__buttons-container { */
     /* display: grid;
     grid-template-columns: 1fr 1fr;

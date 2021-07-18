@@ -11,6 +11,7 @@ import easeOut from "../../anime/easeOut";
 import ResultButtons from "./ResultButtons/ResultButtons";
 import ListCard from "../../components/ListCard/ListCard";
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult,
     onBack = () => {}, createOnClickItemQuizes = (index) => null,
@@ -70,7 +71,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
         }
 
 
-
+        const [testAnim,setTestAnim] = useState(false)
     //Анимация 
         const getClassNameForPercent = (percent) => {
             if (percent <= 4) {
@@ -212,6 +213,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                         newStyles.transitionYearY = finishStyles.transitionYearY;
                         newStyles.opacityContent = finishStyles.opacityContent;
                         newStyles.overflowResult = finishStyles.overflowResult;
+                        setTestAnim(true)
                     }
 
                     setStyles(newStyles);
@@ -341,6 +343,8 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             )
         }
 
+    
+
     return (
         <View 
             id={id} 
@@ -367,16 +371,30 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
 
                         <div style={styleHistoricalEvent} className="Result__historical-event">{historicalEvent}</div>
 
-                        <div style={styleContent} className="Result__content">
+                        {/* <div style={styleContent} className="Result__content"></div> */}
 
-                            <ResultButtons 
-                                onAgain={modifyIsFirstOpenResult(onAgain)}
-                                onGoToAnswersQuestion={goToPanelAnswers}
-                                goToViewListAndQuizes={goToViewListAndQuizesWrapper}
-                                // onBack={onBack}
-                            />
 
-                            <div className="Result__adds">
+                        <CSSTransition
+                            in={testAnim}
+                            timeout={300}
+                            classNames="Result__buttons"
+                            unmountOnExit
+                            // addEndListener={(node, done) => {
+                            //     node.addEventListener("transitionend", done, false);
+                            //   }}
+                            // onEnter={() => {setTestAnim(true)}}
+                        >
+                            <div className="Result__buttons">
+                                <ResultButtons 
+                                    onAgain={modifyIsFirstOpenResult(onAgain)}
+                                    onGoToAnswersQuestion={goToPanelAnswers}
+                                    goToViewListAndQuizes={goToViewListAndQuizesWrapper}
+                                    // onBack={onBack}
+                                />
+                            </div>
+                        </CSSTransition>
+
+                            {/* <div className="Result__adds">
                             {
                                 isAdVisible &&
                                 <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
@@ -392,9 +410,9 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                                 >  
                                 </ListCard>
                             }
-                            </div>
+                            </div> */}
                         
-                        </div>
+                        
 
                     </div>
                 </div>
