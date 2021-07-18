@@ -4,7 +4,7 @@ import bridge from '@vkontakte/vk-bridge';
 
 import { Button, CellButton, Div } from "@vkontakte/vkui";
 
-import '../Result.css';
+import './ResultButtons.css';
 import { Icon28AddAwardOutline } from "@vkontakte/icons";
 import { Icon56LikeOutline } from '@vkontakte/icons';
 import { Icon28ArticleOutline } from '@vkontakte/icons';
@@ -32,13 +32,13 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewLi
     const iconSize = 28;
 
     return (
-        <div className="Result__buttons-container">
+        <div className="Result-buttons__container">
             {/* <Div> */}
 
                 <ButtonWrapper
                     text="К вопросам"
-                    className="Result__button"
-                    classNameText="Result__button-text"
+                    className="Result-buttons__button"
+                    classNameText="Result-buttons__text"
                     before={<Icon24List width={iconSize} height={iconSize} style={{color:"var(--main-yellow-color)"}}/>}
                     onClick={onGoToAnswersQuestion}
                 >
@@ -47,8 +47,8 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewLi
                 <ButtonWrapper
                     size="l"
                     text="К эпохам"
-                    className="Result__button"
-                    classNameText="Result__button-text"
+                    className="Result-buttons__button"
+                    classNameText="Result-buttons__text"
                     before={<Icon24Globe width={iconSize} height={iconSize} style={{color:"var(--main-purple-color)"}}/>}
                     onClick={goToViewListAndQuizes}
                 >
@@ -57,8 +57,8 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewLi
                 <ButtonWrapper
                     size="l"
                     text="Ещё раз"
-                    className="Result__button"
-                    classNameText="Result__button-text"
+                    className="Result-buttons__button"
+                    classNameText="Result-buttons__text"
                     before={<Icon28RefreshOutline width={iconSize} height={iconSize} style={{color:"var(--main-green-color)"}}/>}
                     onClick={onAgain}
                 >
@@ -67,8 +67,8 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewLi
                 {/* <ButtonWrapper
                     size="l"
                     text="К вопросам"
-                    className="Result__button"
-                    classNameText="Result__button-text"
+                    className="Result-buttons"
+                    classNameText="Result-buttons__text"
                     before={<Icon24List width={iconSize} height={iconSize} style={{color:"var(--main-yellow-color)"}}/>}
                 >
                 </ButtonWrapper> */}
@@ -76,23 +76,23 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewLi
                 <ButtonWrapper
                     size="l"
                     text="Поделиться"
-                    className="Result__button"
-                    classNameText="Result__button-text"
+                    className="Result-buttons__button"
+                    classNameText="Result-buttons__text"
                     before={<Icon28ShareExternalOutline width={iconSize} height={iconSize} style={{color:"var(--main-blue-color)"}}/>}
                 >
                 </ButtonWrapper>
 
 
-                {/* <button className="Result__button Result__button_favorite">Поддержать</button>
+                {/* <button className="Result-buttons Result-buttons_favorite">Поддержать</button>
                 <button 
                     onClick={onAgain} 
-                    className="Result__button Result__button_refresh">
+                    className="Result-buttons Result-buttons_refresh">
                     Ещё раз
                 </button>
-                <button className="Result__button Result__button_share">Поделиться</button>
+                <button className="Result-buttons Result-buttons_share">Поделиться</button>
                 <button 
                     onClick={onGoToAnswersQuestion} 
-                    className="Result__button Result__button_format-list-bulleted">
+                    className="Result-buttons Result-buttons_format-list-bulleted">
                     К вопросам
                 </button> */}
             {/* </Div> */}
@@ -105,10 +105,10 @@ export default ResultButtons;
 {/* 
             <Button
                 size="l"
-                className="Result__button"
+                className="Result-buttons"
                 before={<Icon56ArticleOutline width={28} height={28} style={{color:"var(--main-yellow-color)"}} />}
             >
-                <div className="Result__button-text">
+                <div className="Result-buttons__text">
                     К вопросам
                 </div>
             </Button> */}
