@@ -267,7 +267,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                         {/* <div className={`Result__year ${isFirstOpenResult ? "Result__fade-anim":""}`} > */}
                             <span className={`Result__points ${getClassNameForPercent(percent)} ${isFirstOpenResult ? "Result__fade-anim":""}`} >
                                     {percent}
-                                <span>/8</span>
+                                <span>/{questions.length}</span>
                             </span>
                         {/* </div> */}
 

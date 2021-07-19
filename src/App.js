@@ -245,7 +245,7 @@ const App = ({ eras, results, MAX_SCORE,
 								percent={results[indexResuslt].percent}
 								year={results[indexResuslt].year}
 								historicalEvent={results[indexResuslt].historicalEvent}
-								quizes={eras[indexAge].quizzes.filter(quiz => quiz.percentProgress !== 100)}
+								quizes={eras[indexAge].quizzes.filter(quiz => quiz.percentProgress !== quiz.questions.length)}
 								questions={eras[indexAge].quizzes[indexQuiz].questions}
 								indexesAnswers={indexesAnswers}
 								onBack={onBackResult}
