@@ -12,26 +12,15 @@ import "./IteamListQuestion.css";
 
 const osName = platform();
 
-const IteamListQuestion = ({ id, curWidth, question,
-    numberCurrentQuestion, countQuestions,
-    stateAnswers, indexAnswer,
-    lastIndexQuestion, currentIndexQuestion,
-    goToLastQuestion, goToQuestionWithoutAnswer,
-    goToPrevQuestion, goToNextQuestion,isModalOpen,
-    onFinish = () => { }, changeModal = () => {} }) => {
-
-    // const [isRotated, setRotate] = useState(false);
-
-    // const rotateImage = () => setRotate(!isRotated);
-
-    const [isOpenList, setOpenList] = useState(false);
-    const openModal = () => setOpenList(!isOpenList);
-    // caption={<div style={{width:"100%",height:"100%",backgroundColor:"black"}}></div>}
+const IteamListQuestion = ({ id, question,
+    numberCurrentQuestion, countQuestions, indexAnswer,name,
+    goToPrevQuestion, goToNextQuestion,isModalOpen,isClicked,
+    changeModal = () => {}, setNotActiveBackgoundToAnswerButton = () => {} }) => {
 
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
 
     return (
-        <Panel id={id} separator={false}>
+        <Panel id={id} separator={false} name={name}>
             <div className="IteamListQuestion">
 
                 <Header
@@ -76,12 +65,13 @@ const IteamListQuestion = ({ id, curWidth, question,
                             question.answerOptions.map((answer, i) => (
                                 <ButtonWrapper
                                     onClick={() => {
-                                        // let elem = this.getElementsByClassName('');
-                                        // elem.setAttribute('background-color ', 'red'); 
-                                        goToNextQuestion(i)}}
+                                        setNotActiveBackgoundToAnswerButton();
+                                        goToNextQuestion(i);
+                                    }}
                                     isActived={indexAnswer === i}
                                     text={answer.text}
-                                    className="IteamListQuestion__answer"
+                                    className={`IteamListQuestion__answer ${isClicked?"IteamListQuestion__answer-active":""}` }
+                                    // style={testStyle}
                                 >
                                 </ButtonWrapper>
                             ))

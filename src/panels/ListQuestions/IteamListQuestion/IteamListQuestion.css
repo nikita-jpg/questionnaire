@@ -77,5 +77,8 @@
     grid-template-columns: 1fr;
 }
 .IteamListQuestion__answer{
-  margin-top: 10px; 
+    margin-top: 10px; 
+}
+.IteamListQuestion__answer-active{
+    background-color: var(--main-second-bg-color);
 }

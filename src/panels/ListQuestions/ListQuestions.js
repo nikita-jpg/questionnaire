@@ -69,6 +69,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         } else {
             onFinishWithAlert();
         }
+        // setIsClicked(false);
     }
 
     const createGoToPrevQuestion = (indexQuestion) => () => {
@@ -83,6 +84,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
     const [lastIndexQuestion, setLastIndexQuestion] = useState(-1);
 
     const createGoToQuestionWithoutAnswer = (toIndexQuestion) => {
+        setNotActiveBackgoundToAnswerButton()
         if (indexQuestion != toIndexQuestion)
         {
             // setLastIndexQuestion(fromIndexQuestion);
@@ -202,6 +204,15 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         </ModalRoot>
     )
 
+    const setNotActiveBackgoundToAnswerButton = () =>{
+        let panel = document.getElementsByName(createIdActivePanel(indexQuestion));
+        const buttons = panel[0].getElementsByClassName("IteamListQuestion__answer");
+
+        for(let i=0;i<buttons.length;i++){
+            console.log(buttons[i])
+            buttons[i].style.backgroundColor = "var(--main-second-bg-color)"
+        }
+    }
     return (
         <View id={id} 
             activePanel={createIdActivePanel(indexQuestion)} 
@@ -214,6 +225,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                     <IteamListQuestion
                         key={i}
                         id={createIdActivePanel(i)}
+                        name={createIdActivePanel(i)}
                         curWidth={curWidth}
 
                         question={question}
@@ -236,6 +248,8 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         changeModal={changeModal}
                         changeHistory={changeHistory}
                         isModalOpen={isModalOpen}
+
+                        setNotActiveBackgoundToAnswerButton={setNotActiveBackgoundToAnswerButton}
                     />
                 ))
             }

@@ -3,7 +3,7 @@ import React from "react"
 
 import './ButtonWrapper.css'  
 
-const ButtonWrapper = ({isActived, text, onClick, before, className, classNameText, isCentered, hasActive}) => {
+const ButtonWrapper = ({isActived, text, onClick, before, className, classNameText, isCentered, hasActive, style}) => {
 
     return(
         <CellButton 
@@ -14,6 +14,8 @@ const ButtonWrapper = ({isActived, text, onClick, before, className, classNameTe
             before={before}
             hasActive={hasActive}
             className={`ButtonWrapper ${isActived && "ButtonWrapper_active"} ${className}`}
+            style={style}
+            
         >
             <div className={`ButtonWrapper__text ${classNameText}`}>
                 {text}
