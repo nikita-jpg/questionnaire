@@ -160,6 +160,7 @@ const App = ({ eras, results, MAX_SCORE,
 				sum+=eras[indexAge].quizzes[indexQuiz].questions[i].answerOptions[indexesAnswers[i]].score;
 			}
 		}
+		eras[indexAge].quizzes[indexQuiz].percentProgress = sum;
 		setIndexResult(sum)
 		goToViewResult();
 	}
