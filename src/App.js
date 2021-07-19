@@ -246,8 +246,9 @@ const App = ({ eras, results, MAX_SCORE,
 								percent={results[indexResuslt].percent}
 								year={results[indexResuslt].year}
 								historicalEvent={results[indexResuslt].historicalEvent}
-								quizes={eras[indexAge].quizzes.filter((quiz,i) => (quiz.percentProgress !== quiz.questions.length) && (i!==indexQuiz)) }
+								quizes={eras[indexAge].quizzes}
 								questions={eras[indexAge].quizzes[indexQuiz].questions}
+								indexQuiz={indexQuiz}
 								indexesAnswers={indexesAnswers}
 								onBack={onBackResult}
 								createOnClickItemQuizes={createOnClickItemQuizes}

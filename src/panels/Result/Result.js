@@ -14,7 +14,7 @@ import ListCard from "../../components/ListCard/ListCard";
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
-const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult,
+const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     onBack = () => {}, createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
@@ -247,8 +247,8 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             )
         }
 
-        const startAnimDealyForCard = 3;
-        const stepAnimDealyForCard = 0.5;
+        let startAnimDealyForCard = 2.5;
+        let stepAnimDealyForCard = -0.5;
 
     return (
         <View 
@@ -287,23 +287,30 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                         </div>
 
                         {
-                            quizes.map((record,i) => (
-                                <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+i*stepAnimDealyForCard)+"*var(--main-delay-anim-result))"}}>
-                                    <ContentCard
-                                        header={
-                                            <div className="ListCard__title">
-                                                <div>{record.title}</div>
-                                                <div>{record.percentProgress}/{record.numberOfQuestions}</div>
-                                            </div>
-                                        }
-                                        mode={"tint"}
-                                        // onClick={cardClick(i)}
-                                        image={record.imageSrc}
-                                        caption={record.description}
-                                        className="ListCard__Card"
-                                    />
-                                </div>
-                            ))
+                            quizes.map((record,i) => {
+
+                                if((record.percentProgress !== record.questions.length) && (i!==indexQuiz))
+                                {
+                                    stepAnimDealyForCard+=0.5;
+                                    return(
+                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+stepAnimDealyForCard)+"*var(--main-delay-anim-result))"}}>
+                                        <ContentCard
+                                            header={
+                                                <div className="ListCard__title">
+                                                    <div>{record.title}</div>
+                                                    <div>{record.percentProgress}/{record.numberOfQuestions}</div>
+                                                </div>
+                                            }
+                                            mode={"tint"}
+                                            onClick={createOnClickItemQuizes(i)}
+                                            image={record.imageSrc}
+                                            caption={record.description}
+                                            className="ListCard__Card"
+                                        />
+                                    </div>
+                                    )
+                                }
+                            })
                         }
                         
                     </div>

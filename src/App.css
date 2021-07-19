@@ -118,6 +118,7 @@
 .Result__adds .vkuiPromoBanner{
   border-radius: 16px;
   background-color: var(--main-second-bg-color);
+  outline: none;
 }
 /* .vkuiCard:not(:first-child){
   margin-top: 20px;
