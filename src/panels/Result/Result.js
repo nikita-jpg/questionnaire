@@ -115,34 +115,35 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
 
 
     //Реклама
-        const [isAdVisible, setAdVisible] = useState(true)
-        const [adDate,setAdDate] = useState({
-            title: 'Заголовок',
-            domain: 'vk.com',
-            trackingLink: 'https://vk.com',
-            ctaText: 'Перейти',
-            advertisingLabel: 'Реклама',
-            iconLink: 'https://sun9-7.userapi.com/c846420/v846420985/1526c3/ISX7VF8NjZk.jpg',
-            description: 'Описание рекламы',
-            ageRestrictions: "14+",
-            statistics: [
-              { url: '', type: 'playbackStarted' },
-              { url: '', type: 'click' }
-            ]
-          })
+        const [isAdVisible, setAdVisible] = useState(false)
+        const [adDate,setAdDate] = useState(null)
+        // const [adDate,setAdDate] = useState({
+        //     title: 'Заголовок',
+        //     domain: 'vk.com',
+        //     trackingLink: 'https://vk.com',
+        //     ctaText: 'Перейти',
+        //     advertisingLabel: 'Реклама',
+        //     iconLink: 'https://sun9-7.userapi.com/c846420/v846420985/1526c3/ISX7VF8NjZk.jpg',
+        //     description: 'Описание рекламы',
+        //     ageRestrictions: "14+",
+        //     statistics: [
+        //       { url: '', type: 'playbackStarted' },
+        //       { url: '', type: 'click' }
+        //     ]
+        //   })
 
-        // const getAdData = () => {
-        //     bridge.send('VKWebAppGetAds')
-        //         .then((promoBannerProps) => {
-        //             setAdDate(promoBannerProps)
-        //             setAdVisible(true);
-        //         })
-        //         .catch(error => console.log(error))
-        //         .finally(()=>{
-        //             console.log("final")
-        //         })
-        // }
-        // getAdData();
+        const getAdData = () => {
+            bridge.send('VKWebAppGetAds')
+                .then((promoBannerProps) => {
+                    setAdDate(promoBannerProps)
+                    setAdVisible(true);
+                })
+                .catch(error => console.log(error))
+                .finally(()=>{
+                    console.log("final")
+                })
+        }
+        getAdData();
 
     
 
@@ -247,8 +248,13 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             )
         }
 
-        let startAnimDealyForCard = 2.5;
+        let startAnimDealyForCard = 1;
         let stepAnimDealyForCard = -0.5;
+
+        const makeStepAnimDealyForCard = () =>{
+            stepAnimDealyForCard+=0.5;
+            return stepAnimDealyForCard;
+        }
 
     return (
         <View 
@@ -265,13 +271,13 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                     <div className="Result">
 
                         {/* <div className={`Result__year ${isFirstOpenResult ? "Result__fade-anim":""}`} > */}
-                            <span className={`Result__points ${getClassNameForPercent(percent)} ${isFirstOpenResult ? "Result__fade-anim":""}`} >
+                            <span className={`Result__points ${getClassNameForPercent(percent)} ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+makeStepAnimDealyForCard())+"*var(--main-delay-anim-result))"}}>
                                     {percent}
                                 <span>/{questions.length}</span>
                             </span>
                         {/* </div> */}
 
-                        <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`}>
+                        <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+makeStepAnimDealyForCard())+"*var(--main-delay-anim-result))"}}>
                             <ResultButtons 
                                 onAgain={modifyIsFirstOpenResult(onAgain)}
                                 onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
@@ -279,21 +285,22 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             />
                         </div>
 
-                        <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`}>
+
                         {
                             isAdVisible &&
-                            <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
+                            <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+makeStepAnimDealyForCard())+"*var(--main-delay-anim-result))"}}>
+                                <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
+                            </div>
                         }
-                        </div>
+
 
                         {
                             quizes.map((record,i) => {
 
                                 if((record.percentProgress !== record.questions.length) && (i!==indexQuiz))
                                 {
-                                    stepAnimDealyForCard+=0.5;
                                     return(
-                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+stepAnimDealyForCard)+"*var(--main-delay-anim-result))"}}>
+                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+makeStepAnimDealyForCard())+"*var(--main-delay-anim-result))"}}>
                                         <ContentCard
                                             header={
                                                 <div className="ListCard__title">
