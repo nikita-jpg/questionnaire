@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/questionnaire/static/css/main.40ed0e26.chunk.css",
-    "main.js": "/questionnaire/static/js/main.9873403f.chunk.js",
-    "main.js.map": "/questionnaire/static/js/main.9873403f.chunk.js.map",
-    "runtime-main.js": "/questionnaire/static/js/runtime-main.8e8575e0.js",
-    "runtime-main.js.map": "/questionnaire/static/js/runtime-main.8e8575e0.js.map",
+    "main.js": "/questionnaire/static/js/main.f899e15e.chunk.js",
+    "main.js.map": "/questionnaire/static/js/main.f899e15e.chunk.js.map",
+    "runtime-main.js": "/questionnaire/static/js/runtime-main.f8eb702b.js",
+    "runtime-main.js.map": "/questionnaire/static/js/runtime-main.f8eb702b.js.map",
     "static/css/2.18f36260.chunk.css": "/questionnaire/static/css/2.18f36260.chunk.css",
-    "static/js/2.535d269c.chunk.js": "/questionnaire/static/js/2.535d269c.chunk.js",
-    "static/js/2.535d269c.chunk.js.map": "/questionnaire/static/js/2.535d269c.chunk.js.map",
-    "static/js/3.01e6f687.chunk.js": "/questionnaire/static/js/3.01e6f687.chunk.js",
-    "static/js/3.01e6f687.chunk.js.map": "/questionnaire/static/js/3.01e6f687.chunk.js.map",
-    "static/js/4.09dd5f10.chunk.js": "/questionnaire/static/js/4.09dd5f10.chunk.js",
-    "static/js/4.09dd5f10.chunk.js.map": "/questionnaire/static/js/4.09dd5f10.chunk.js.map",
+    "static/js/2.f0ec556f.chunk.js": "/questionnaire/static/js/2.f0ec556f.chunk.js",
+    "static/js/2.f0ec556f.chunk.js.map": "/questionnaire/static/js/2.f0ec556f.chunk.js.map",
+    "static/js/3.6b0b5dc7.chunk.js": "/questionnaire/static/js/3.6b0b5dc7.chunk.js",
+    "static/js/3.6b0b5dc7.chunk.js.map": "/questionnaire/static/js/3.6b0b5dc7.chunk.js.map",
+    "static/js/4.d82c2b22.chunk.js": "/questionnaire/static/js/4.d82c2b22.chunk.js",
+    "static/js/4.d82c2b22.chunk.js.map": "/questionnaire/static/js/4.d82c2b22.chunk.js.map",
     "index.html": "/questionnaire/index.html",
-    "precache-manifest.b75c73a67f455012e06d14628dcf0f32.js": "/questionnaire/precache-manifest.b75c73a67f455012e06d14628dcf0f32.js",
+    "precache-manifest.836212ac6fe780dcdf62ed6e6d1dd950.js": "/questionnaire/precache-manifest.836212ac6fe780dcdf62ed6e6d1dd950.js",
     "service-worker.js": "/questionnaire/service-worker.js",
     "static/css/2.18f36260.chunk.css.map": "/questionnaire/static/css/2.18f36260.chunk.css.map",
     "static/css/main.40ed0e26.chunk.css.map": "/questionnaire/static/css/main.40ed0e26.chunk.css.map",
-    "static/js/2.535d269c.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.535d269c.chunk.js.LICENSE.txt",
-    "static/js/3.01e6f687.chunk.js.LICENSE.txt": "/questionnaire/static/js/3.01e6f687.chunk.js.LICENSE.txt",
+    "static/js/2.f0ec556f.chunk.js.LICENSE.txt": "/questionnaire/static/js/2.f0ec556f.chunk.js.LICENSE.txt",
+    "static/js/3.6b0b5dc7.chunk.js.LICENSE.txt": "/questionnaire/static/js/3.6b0b5dc7.chunk.js.LICENSE.txt",
     "static/media/The era of palace coups.png": "/questionnaire/static/media/The era of palace coups.42e7310b.png",
     "static/media/candelabrum.svg": "/questionnaire/static/media/candelabrum.0d4d7bb2.svg",
     "static/media/contacts.svg": "/questionnaire/static/media/contacts.da748c82.svg",
@@ -28,10 +28,10 @@
     "static/media/Картинка.png": "/questionnaire/static/media/Картинка.f17bd5e3.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.8e8575e0.js",
+    "static/js/runtime-main.f8eb702b.js",
     "static/css/2.18f36260.chunk.css",
-    "static/js/2.535d269c.chunk.js",
+    "static/js/2.f0ec556f.chunk.js",
     "static/css/main.40ed0e26.chunk.css",
-    "static/js/main.9873403f.chunk.js"
+    "static/js/main.f899e15e.chunk.js"
   ]
 }
