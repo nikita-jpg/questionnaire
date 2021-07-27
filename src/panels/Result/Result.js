@@ -72,7 +72,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
         }
 
 
-        const [testAnim,setTestAnim] = useState(false)
+        // const [testAnim,setTestAnim] = useState(false)
     //Анимация 
         const getClassNameForPercent = (percent) => {
             if (percent <= 4) {
@@ -115,35 +115,35 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
 
 
     //Реклама
-        const [isAdVisible, setAdVisible] = useState(false)
-        const [adDate,setAdDate] = useState(null)
-        // const [adDate,setAdDate] = useState({
-        //     title: 'Заголовок',
-        //     domain: 'vk.com',
-        //     trackingLink: 'https://vk.com',
-        //     ctaText: 'Перейти',
-        //     advertisingLabel: 'Реклама',
-        //     iconLink: 'https://sun9-7.userapi.com/c846420/v846420985/1526c3/ISX7VF8NjZk.jpg',
-        //     description: 'Описание рекламы',
-        //     ageRestrictions: "14+",
-        //     statistics: [
-        //       { url: '', type: 'playbackStarted' },
-        //       { url: '', type: 'click' }
-        //     ]
-        //   })
+        const [isAdVisible, setAdVisible] = useState(true)
+        const [adDate,setAdDate] = useState({
+            title: 'Заголовок',
+            domain: 'vk.com',
+            trackingLink: 'https://vk.com',
+            ctaText: 'Перейти',
+            advertisingLabel: 'Реклама',
+            iconLink: 'https://sun9-7.userapi.com/c846420/v846420985/1526c3/ISX7VF8NjZk.jpg',
+            description: 'Описание рекламы',
+            ageRestrictions: "14+",
+            statistics: [
+              { url: '', type: 'playbackStarted' },
+              { url: '', type: 'click' }
+            ]
+          })
 
-        const getAdData = () => {
-            bridge.send('VKWebAppGetAds')
-                .then((promoBannerProps) => {
-                    setAdDate(promoBannerProps)
-                    setAdVisible(true);
-                })
-                .catch(error => console.log(error))
-                .finally(()=>{
-                    console.log("final")
-                })
-        }
-        getAdData();
+        // const [adDate,setAdDate] = useState(null)
+        // const getAdData = () => {
+        //     bridge.send('VKWebAppGetAds')
+        //         .then((promoBannerProps) => {
+        //             setAdDate(promoBannerProps)
+        //             setAdVisible(true);
+        //         })
+        //         .catch(error => console.log(error))
+        //         .finally(()=>{
+        //             console.log("final")
+        //         })
+        // }
+        // getAdData();
 
     
 

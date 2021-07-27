@@ -1,11 +1,31 @@
-import { CardGrid, ContentCard, Div } from '@vkontakte/vkui';
-import React from 'react';
+import { CardGrid, ContentCard, Div, Spinner } from '@vkontakte/vkui';
+import React, { useState } from 'react';
 import './ListCard.css'
 import { getColNumber } from '../../help';
 
 const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
+
+    // console.log(info)
+
+    // const [spinner,setSpinner] = useState(false)
+
+    // const downloadImagesArr = (arr) => {
+	// 	for(let i=0;i<arr.length;i++){
+	// 		const img = new Image();
+	// 		img.src = arr[i].imageSrc;
+	// 		console.log(img.src)
+	// 	}
+    // }
+
+    // setSpinner(<Spinner></Spinner>)
+    // downloadImagesArr(info)
+    // setSpinner(false)
+
+
     return (
         <Div>
+            {
+            // spinner ||
             <div className="ListCard">
                 <CardGrid size={getColNumber(curWidth)}>
                 {
@@ -27,6 +47,7 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
                 }
                 </CardGrid>
             </div>
+            }
         </Div>
     )
 }

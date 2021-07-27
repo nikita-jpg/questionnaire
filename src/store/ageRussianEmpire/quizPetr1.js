@@ -1,6 +1,6 @@
-import imagePetr1 from "../../img/ageRussianEmpire/quizPetr1/petr.png";
+import imagePetr1 from "../../img/ageRussianEmpire/Petr1/Petr1.png";
 
-import imgExample from "../../img/ageRussianEmpire/quizPetr1/Картинка.png";
+import imgExample from "../../img/ageRussianEmpire/Petr1/img1.png";
 
 import ababa from "../../img/ageRussianEmpire/main.png"
 
@@ -9,6 +9,7 @@ const quizPetr1 = {
     description:"Росси́йская импе́рия (рус. дореф. Россійская имперія; также Всеросси́йская импе́рия, ца́рская Росси́я) — государство, существовавшее в период с 22 октября (2 ноября) 1721 года до Февральской революции и провозглашения республики в сентябре 1917 года Временным правительством.",
     percentProgress: 0,
     numberOfQuestions: 8,
+    isImageDownloaded: false,
     imageSrc: imagePetr1,
     questions: [
         {

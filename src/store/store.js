@@ -1,17 +1,20 @@
 import ageRussianEmpire from "./ageRussianEmpire/ageRussianEmpire";
+import ageRF from "./ageRF/ageRF";
 
 import results from "./results/results";
 
 const store = {
     eras: [
         ageRussianEmpire,
-        ageRussianEmpire,
+        ageRF,
         ageRussianEmpire,
         ageRussianEmpire,
         ageRussianEmpire
     ],
 
     results,
+
+    // isAgeAndQuizesDownloaded:false,
 
     MAX_SCORE: 8
 }

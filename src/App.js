@@ -15,26 +15,36 @@ import ListQuizes from './panels/ListQuizes/ListQuizes';
 import AnswersQuestions from './panels/AnswersQuestions/AnswersQuestions';
 import Modal from './panels/ListQuestions/IteamListQuestion/Modal/Modal';
 import ModalPageHead from './components/ModalPageHead/ModalPageHead';
-import TestView from './panels/TestView/TestView';
+import SpinnerView from './panels/SpinnerView/SpinnerView';
+import testClass from './panels/StartWindow/StartWindow';
+import axios from 'axios';
 
+import svgContacts from './panels/StartWindow/contacts.svg';
+
+// setActiveView(null)
 const App = ({ eras, results, MAX_SCORE, 
 	savePercentQuiz = (indexAge, indexQuiz, percentProgress) => {}}) => {
+	
+	const [isNeedDateLoaded,setIsNeedDateLoaded] = useState(false)
 
 	useEffect(() => {
+		if(!isNeedDateLoaded)
+			firstDownload()
+		// console.log("1454623")
 		//Стилизуем компоненты интерфейса клиента
-		bridge
-			.send("VKWebAppGetClientVersion")
-			.then(data => {
-				if(data.platform === Platform.IOS){
-					bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light"});
-				}
-				else if (data.platform === Platform.ANDROID){
-					bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light", "action_bar_color": "#000","navigation_bar_color":"#000000"});
-				}
-			})
-			.catch(error =>{
-				console.log(error)
-			})
+		// bridge
+		// 	.send("VKWebAppGetClientVersion")
+		// 	.then(data => {
+		// 		if(data.platform === Platform.IOS){
+		// 			bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light"});
+		// 		}
+		// 		else if (data.platform === Platform.ANDROID){
+		// 			bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light", "action_bar_color": "#000","navigation_bar_color":"#000000"});
+		// 		}
+		// 	})
+		// 	.catch(error =>{
+		// 		console.log(error)
+		// 	})
 		
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
@@ -46,21 +56,23 @@ const App = ({ eras, results, MAX_SCORE,
 	const VIEW_ID_LIST_QUESTIONES = "VIEW_ID_LIST_QUESTIONES";
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 	const VIEW_ID_ANSWERS_QUESTIONS = "VIEW_ID_ANSWERS_QUESTIONS";
+	const VIEW_ID_SPINNER = "VIEW_ID_SPINNER";
 
 	// логика переключения между Панелями
 	const PANEL_ID_LIST_AGE = "PANEL_ID_LIST_AGE";
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_RESULT);
+	const [activeView, setActiveView] = useState(VIEW_ID_SPINNER);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
 	const goToViewStartWindow = () => setActiveView(VIEW_ID_START_WINDOW);
-	const goToViewListAgeAndQuizes = () => setActiveView(VIEW_ID_LIST_AGE_AND_QUIZES)
+	const goToViewListAgeAndQuizes = () =>setActiveView(VIEW_ID_LIST_AGE_AND_QUIZES)
 	const goToViewListQuestions = () => setActiveView(VIEW_ID_LIST_QUESTIONES);
 	const goToViewResult = () => setActiveView(VIEW_ID_RESULT);
 	const goToViewAnswersQuestions = () => setActiveView(VIEW_ID_ANSWERS_QUESTIONS);
+	const goToViewSpinner = () => setActiveView(VIEW_ID_SPINNER);
 
 	const goToPanelListAge = () => setActivePanel(PANEL_ID_LIST_AGE);
 	const goToPanelListQuizes = () => setActivePanel(PANEL_ID_LIST_QUIZES);
@@ -87,6 +99,28 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// Функции для ListAgeAndQuizes
 
+		// const goToViewListAgeAndQuizes = () => {
+		// 	if(!isImageDownloaded)
+		// 	{
+		// 		firstDownload()
+		// 	}
+		// }
+
+
+		const firstDownload = async () => {	
+			// console.log(svgContacts)
+			await downloadImagesArr([{imageSrc:svgContacts}]);
+			await downloadImagesArr(eras);
+			for(let i=0;i<eras.length;i++)
+			{
+				await downloadImagesArr(eras[i].quizzes)
+			}
+			setIsNeedDateLoaded(true);
+			goToViewStartWindow();
+		}
+		// firstDownload()
+
+
 		// Выбор эпохи
 		const createOnClickItemAge = (index) => () => {
 			goForwardInHistory(PANEL_ID_LIST_QUIZES);
@@ -111,6 +145,9 @@ const App = ({ eras, results, MAX_SCORE,
 			goBackInHistory()
 			goToViewListAgeAndQuizes()
 		}
+
+		//Загружены ли в кеш картинки эпох и опросов (не картинки внутри опросов, их загружают отдельно)
+		const [isImageDownloaded, setIsImageDownloaded] = useState(false)
 
 
 
@@ -141,59 +178,64 @@ const App = ({ eras, results, MAX_SCORE,
 
 
 
-
-
-
 	// функции для ListQuestions
-	const onBackListQuestions = () => {
-		goToViewListAgeAndQuizes();
-		goToPanelListQuizes();
-	}
-
-	const onFinishListQuestions = (indexesAnswers) => {
-		// console.log(indexesAnswers)
-		setIndexesAnswers(indexesAnswers);
-
-		let sum = 0;
-		for(let i=0;i<indexesAnswers.length;i++){
-			if(indexesAnswers[i] !== -1){
-				sum+=eras[indexAge].quizzes[indexQuiz].questions[i].answerOptions[indexesAnswers[i]].score;
-			}
+		const onBackListQuestions = () => {
+			goToViewListAgeAndQuizes();
+			goToPanelListQuizes();
 		}
-		eras[indexAge].quizzes[indexQuiz].percentProgress = sum;
-		setIndexResult(sum)
-		goToViewResult();
-	}
+
+		const onFinishListQuestions = (indexesAnswers) => {
+			setIndexesAnswers(indexesAnswers);
+
+			let sum = 0;
+			for(let i=0;i<indexesAnswers.length;i++){
+				if(indexesAnswers[i] !== -1){
+					sum+=eras[indexAge].quizzes[indexQuiz].questions[i].answerOptions[indexesAnswers[i]].score;
+				}
+			}
+
+			eras[indexAge].quizzes[indexQuiz].percentProgress = sum;
+			setIndexResult(sum)
+			goToViewResult();
+		}
 
 	// функции для Result
-	const onBackResult = () => {
-		goToViewListAgeAndQuizes();
-	}
+		const onBackResult = () => {
+			goToViewListAgeAndQuizes();
+		}
 
-	const onAgainResult = () => {
-		goToViewListQuestions();
-	}
-	
-	const onGoToAnswersQuestionResult = () => {
-		goToViewAnswersQuestions()
-	}
+		const onAgainResult = () => {
+			goToViewListQuestions();
+		}
+		
+		const onGoToAnswersQuestionResult = () => {
+			goToViewAnswersQuestions()
+		}
 
 	// функции для AnswersQuestions
-	const onBackAnswersQuestions = () => {
-		goToViewResult();
-	}
+		const onBackAnswersQuestions = () => {
+			goToViewResult();
+		}
 
 
-
-	// bridge.send("VKWebAppShowNativeAds", {ad_format:"preloader"})
-	// .then(data => console.log(data.result))
-	// .catch(error => console.log(error));
 
 	const onBackListAge = () => {
 		goBackInHistory(PANEL_ID_LIST_AGE)
 		goToViewListAgeAndQuizes()
 	}
-	
+
+	const downloadImagesArr = async(arr) => {
+		for(let i=0;i<arr.length;i++){
+			await new Promise((resolve, reject) => {
+				const img = new Image();
+				img.src = arr[i].imageSrc;
+				console.log(img.src);
+				img.onload = () => {
+					resolve()
+				}
+			});
+		}
+	}
 
 	return (
 	<ConfigProvider isWebView={true}>
@@ -204,6 +246,7 @@ const App = ({ eras, results, MAX_SCORE,
 						<Root activeView={activeView}>
 
 							<StartWindow 
+								arrForPreDownload={eras}
 								id={VIEW_ID_START_WINDOW} 
 								onClick={onClickStartWindow}/>
 
@@ -226,7 +269,7 @@ const App = ({ eras, results, MAX_SCORE,
 									// title={eras[indexAge].title} 
 									// quizes={eras[indexAge].quizzes} 
 									title={eras[0].title} 
-									quizes={eras[0].quizzes} 
+									quizes={eras[indexAge].quizzes} 
 									onBack={onBackListQuizes} 
 									createOnClickItemQuizes={createOnClickItemQuizes}
 								/>
@@ -268,11 +311,10 @@ const App = ({ eras, results, MAX_SCORE,
 								onBack={onBackAnswersQuestions}
 							/> */}
 
-							<TestView
-								id={"VIEW_TEST"}
+							<SpinnerView
+								id={"VIEW_ID_SPINNER"}
 							>
-
-							</TestView>
+							</SpinnerView>
 
 						</Root>
 					</SplitCol>

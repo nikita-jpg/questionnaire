@@ -6,7 +6,7 @@ import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
 
 
-const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
+const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>null}) => {
 
     const ID_ACTIVE_PANEL = "ID_ACTIVE_PANEL";
 
@@ -14,17 +14,23 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
     return (
         <Panel id={ID_ACTIVE_PANEL}>
             
+            {
+            // screenSpinner ||
+
             <div className="ListAge">
 
                 <Header
                     text="Выбирете эпоху"
                 ></Header> 
+
                 <ListCard
                     info={eras}
                     curWidth={curWidth}
                     cardClick={createOnClickItemAge}>
                 </ListCard>
+
             </div>
+            }
 
         </Panel>
     )
