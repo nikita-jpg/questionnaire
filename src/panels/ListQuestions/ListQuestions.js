@@ -172,7 +172,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
             <ModalPage 
                 id={MODAL_ID}
-                settlingHeight={75}
+                settlingHeight={100}
                 header={
                     <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
                 }>
@@ -184,7 +184,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                             onClick={() => {createGoToQuestionWithoutAnswer(i); changeModal()}}
                             className={`ListQuestions__modal-el ${stateAnswers[i] !== -1 ? 'ListQuestions__modal-el_answered':''}`}>
                             <div className="ListQuestions__modal-el__text">
-                                {questionText}
+                                {i+1}) {questionText}
                             </div>
                         </SimpleCell>
                     ))

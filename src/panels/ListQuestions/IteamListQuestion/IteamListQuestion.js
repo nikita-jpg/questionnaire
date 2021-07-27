@@ -51,7 +51,7 @@ const IteamListQuestion = ({ id, question,
                             onExited={() => {setisImgInfoOpen(false)}}>
                             <div className="IteamListQuestion__image-info">
                                 <Div className="IteamListQuestion__image-description">
-                                    Илья Репин.<br/>"Осенний букет"
+                                    Источник: <a href={question.linkOriginPhoto} className="IteamListQuestion__image-link">Клик :)</a>
                                 </Div>
                             </div>
                         </CSSTransition>
