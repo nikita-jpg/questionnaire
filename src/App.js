@@ -99,16 +99,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 	// Функции для ListAgeAndQuizes
 
-		// const goToViewListAgeAndQuizes = () => {
-		// 	if(!isImageDownloaded)
-		// 	{
-		// 		firstDownload()
-		// 	}
-		// }
-
-
 		const firstDownload = async () => {	
-			// console.log(svgContacts)
 			await downloadImagesArr([{imageSrc:svgContacts}]);
 			await downloadImagesArr(eras);
 			for(let i=0;i<eras.length;i++)
@@ -118,7 +109,6 @@ const App = ({ eras, results, MAX_SCORE,
 			setIsNeedDateLoaded(true);
 			goToViewStartWindow();
 		}
-		// firstDownload()
 
 
 		// Выбор эпохи
@@ -131,7 +121,20 @@ const App = ({ eras, results, MAX_SCORE,
 		// Выбор опроса
 		const createOnClickItemQuizes = (index) => () => {
 			setIndexQuiz(index);
-			goToViewListQuestions();
+			if(!eras[indexAge].quizzes[index].isImageDownloaded)
+			{
+				goToViewSpinner();
+				downloadQuizeImage(index)
+				eras[indexAge].quizzes[index].isImageDownloaded = true;
+			}
+				
+			else
+				goToViewListQuestions();
+		}
+
+		const downloadQuizeImage = async (index) => {
+			await downloadImagesArr(eras[indexAge].quizzes[index].questions)
+			await goToViewListQuestions()
 		}
 
 		// Возврат от выбранной эпохи к выбору эпохи
@@ -229,7 +232,7 @@ const App = ({ eras, results, MAX_SCORE,
 			await new Promise((resolve, reject) => {
 				const img = new Image();
 				img.src = arr[i].imageSrc;
-				console.log(img.src);
+				// console.log(img.src);
 				img.onload = () => {
 					resolve()
 				}
