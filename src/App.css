@@ -42,6 +42,9 @@
   .vkuiModalPageHeader__content-in{
     width: 100%;
   }
+  .vkuiPanel.vkuiPanel--regular .vkuiPanel__in, .vkuiPanel.vkuiPanel--regular::after{
+    background-color: var(--background_content);
+  }
   /* .vkuiPanelHeader__content-in{
     font-weight: 500;
     height: 100%;
