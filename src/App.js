@@ -315,7 +315,7 @@ const App = ({ eras, results, MAX_SCORE,
 							/> */}
 
 							<SpinnerView
-								id={"VIEW_ID_SPINNER"}
+								id={VIEW_ID_SPINNER}
 							>
 							</SpinnerView>
 
