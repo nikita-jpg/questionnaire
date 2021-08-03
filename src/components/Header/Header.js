@@ -3,7 +3,7 @@ import React from 'react';
 import { isTitleCentre } from '../../help';
 import './Header.css'
 
-const Header = ({curWidth, leftBtnFunc, isClose, text, icon, click}) => {
+const Header = ({curWidth, leftBtnFunc, isClose, fixed, text, icon, click}) => {
     
     let left 
     let justifyContent = isTitleCentre(curWidth).text;
@@ -23,12 +23,16 @@ const Header = ({curWidth, leftBtnFunc, isClose, text, icon, click}) => {
         cursor="pointer"
     }
 
+    if(fixed == undefined){
+        fixed = true
+    }
+
     return(
         <PanelHeader                     
             separator={false}
             visor={true}
             // transparent={true}
-            fixed={true}
+            fixed={fixed}
             left={ left }
             >
 

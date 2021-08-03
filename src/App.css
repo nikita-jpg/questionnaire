@@ -43,7 +43,7 @@
     width: 100%;
   }
   .vkuiPanel.vkuiPanel--regular::after{
-    background-color: var(--background_content);
+    /* background-color: var(--background_content); */
   }
   /* .vkuiPanelHeader__content-in{
     font-weight: 500;
@@ -57,10 +57,57 @@
     height: 100%;
   }
  .Panel.Panel--regular{
-   background-color: var(--background_content);
+   /* background-color: var(--background_content); */
  }
 .Panel::after { 
-  position: fixed; 
+  /* position: fixed;  */
+  /* background-color: var(--background_content); */
+}
+
+
+.fixedBackground{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: var(--background_content);
+}
+.fixedBackground__anim{
+  -webkit-animation: changeBackColor 0.1s linear;
+  animation: changeBackColor 0.1s linear;
+  -webkit-animation-delay: 0;
+  animation-delay: 0;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.fixedBackground__anim--long{
+  -webkit-animation: changeBackColor 0.7s linear;
+  animation: changeBackColor 0.7s linear;
+  -webkit-animation-delay: 0;
+  animation-delay: 0;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+@keyframes changeBackColor {
+  0%{
+    background-color: transparent;
+  }
+  25%{
+    background-color: transparent;
+  }
+  50%{
+    background-color: transparent;
+  }
+  75%{
+    background-color: transparent;
+  }
+  99%{
+    background-color: transparent;
+  }
+  100%{
+    background-color: var(--background_content);
+  }
 }
 
 .vkuiAlert{
@@ -123,6 +170,3 @@
   background-color: var(--main-second-bg-color);
   outline: none;
 }
-/* .vkuiCard:not(:first-child){
-  margin-top: 20px;
-} */

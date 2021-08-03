@@ -18,8 +18,10 @@ import ModalPageHead from './components/ModalPageHead/ModalPageHead';
 import SpinnerView from './panels/SpinnerView/SpinnerView';
 import testClass from './panels/StartWindow/StartWindow';
 import axios from 'axios';
+// import '@vkontakte/vkui/components.css';
 
 import svgContacts from './panels/StartWindow/contacts.svg';
+import { MainBackground } from './components/MainBaclground/MainBackground';
 
 // setActiveView(null)
 const App = ({ eras, results, MAX_SCORE, 
@@ -47,7 +49,7 @@ const App = ({ eras, results, MAX_SCORE,
 		// 	})
 		
 		//Обновляем текущую ширину
-		setCurWidth(document.getElementById('root').scrollWidth)
+		// setCurWidth(document.getElementById('root').scrollWidth)
 	}, []);
 
 	// логика переключения между View
@@ -112,7 +114,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 
 		// Выбор эпохи
-		const createOnClickItemAge = (index) => () => {
+		const createOnClickItemAge = (index) => {
 			goForwardInHistory(PANEL_ID_LIST_QUIZES);
 			setIndexAge(index);
 			goToPanelListQuizes();
@@ -240,11 +242,19 @@ const App = ({ eras, results, MAX_SCORE,
 		}
 	}
 
+	// const testFunc = async () => {
+	// await document.getElementsByClassName("fixedBackground")[0].style.backgroundColor = "transparent";
+	// await onBackListQuizes();
+	// await document.getElementsByClassName("fixedBackground")[0].classList.add("fixedBackground__anim--long");
+	// }
+
+	let curHeight = document.getElementById('root').scrollHeight;
 	return (
 	<ConfigProvider isWebView={true}>
+		<div className="fixedBackground"></div>
 		<AdaptivityProvider>
 			<AppRoot>
-				<SplitLayout header={null}>
+				<SplitLayout>
 					<SplitCol animate={true}>
 						<Root activeView={activeView}>
 
@@ -256,24 +266,33 @@ const App = ({ eras, results, MAX_SCORE,
 							<View 
 								id={VIEW_ID_LIST_AGE_AND_QUIZES}
 								activePanel={activePanel}
-								onSwipeBack={goBackInHistory}
+								onSwipeBack={()=>{
+									document.getElementsByClassName("fixedBackground")[0].classList.add("fixedBackground__anim");
+									goBackInHistory()}}
 								history={history}>
 
 								<ListAge 
 									id={PANEL_ID_LIST_AGE} 
 									eras={eras} 
 									curWidth={curWidth}
-									createOnClickItemAge={createOnClickItemAge}
+									createOnClickItemAge={(i)=>()=>{
+										document.getElementsByClassName("fixedBackground")[0].classList.remove("fixedBackground__anim");
+										document.getElementsByClassName("fixedBackground")[0].classList.remove("fixedBackground__anim--long");
+										createOnClickItemAge(i)
+									}}
 								/>
 
 								<ListQuizes 
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
-									// title={eras[indexAge].title} 
-									// quizes={eras[indexAge].quizzes} 
 									title={eras[indexAge].title} 
 									quizes={eras[indexAge].quizzes} 
-									onBack={onBackListQuizes} 
+									title={eras[indexAge].title} 
+									quizes={eras[indexAge].quizzes} 
+									onBack={()=>{
+										onBackListQuizes();
+										document.getElementsByClassName("fixedBackground")[0].classList.add("fixedBackground__anim--long");
+									}} 
 									createOnClickItemQuizes={createOnClickItemQuizes}
 								/>
 
@@ -306,13 +325,6 @@ const App = ({ eras, results, MAX_SCORE,
 								isFirstOpenResult={isFirstOpenResult}
 								setIsFirstOpenResult={setIsFirstOpenResult}
 							/>
-
-							{/* <AnswersQuestions
-								id={VIEW_ID_ANSWERS_QUESTIONS}
-								questions={eras[indexAge].quizzes[indexQuiz].questions}
-								indexesAnswers={indexesAnswers}
-								onBack={onBackAnswersQuestions}
-							/> */}
 
 							<SpinnerView
 								id={VIEW_ID_SPINNER}
