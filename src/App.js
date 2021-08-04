@@ -29,22 +29,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 	useEffect(() => {
 		if(!isNeedDateLoaded)
-			firstDownload()
-		// console.log("1454623")
-		//Стилизуем компоненты интерфейса клиента
-		// bridge
-		// 	.send("VKWebAppGetClientVersion")
-		// 	.then(data => {
-		// 		if(data.platform === Platform.IOS){
-		// 			bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light"});
-		// 		}
-		// 		else if (data.platform === Platform.ANDROID){
-		// 			bridge.send("VKWebAppSetViewSettings", {"status_bar_style": "light", "action_bar_color": "#000","navigation_bar_color":"#000000"});
-		// 		}
-		// 	})
-		// 	.catch(error =>{
-		// 		console.log(error)
-		// 	})
+			// firstDownload()
 		
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
@@ -63,7 +48,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_SPINNER);
+	const [activeView, setActiveView] = useState(VIEW_ID_RESULT);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
@@ -315,7 +300,7 @@ const App = ({ eras, results, MAX_SCORE,
 							/> */}
 
 							<SpinnerView
-								id={VIEW_ID_SPINNER}
+								id={"VIEW_ID_SPINNER"}
 							>
 							</SpinnerView>
 

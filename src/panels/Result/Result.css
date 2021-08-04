@@ -8,26 +8,34 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    background: var(--background_content);
-    min-height: 100vh;
-    padding: 0px 10px 0px 10px;
-    box-sizing: border-box;
 }
 .Result__title {
-    color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+ 
 }
-
+.Result__content{
+    width: 100%;
+    max-width: var(--main-max-width);
+    background: var(--background_content);
+    /* min-height: 100vh;
+    padding: 0px 10px 0px 10px;
+    box-sizing: border-box; */
+}
 
 
 /* Ответ */
 .Result__points {
+    width: 100%;
+
     font-weight: 500;
     text-align: center;
     font-size: 100px;
     line-height: 76px;
     font-family: 'Lato';
     color: var(--main-white-color);
-    white-space: nowrap;
+    /* white-space: nowrap; */
 
     /* animation-delay: calc(1*var(--main-delay-anim-result)); */
 }
@@ -71,7 +79,7 @@
 .Result__fade-anim{
     opacity: 0;
     animation-name: fade-left;
-    animation-duration: .5s;
+    animation-duration: .4s;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
 }
@@ -95,7 +103,7 @@
     width: 100%;
     max-width: var(--main-max-width);
 
-    animation-delay: calc(2*var(--main-delay-anim-result));
+    /* animation-delay: calc(2*var(--main-delay-anim-result)); */
     /* border: none; */
 }
 

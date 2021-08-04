@@ -248,12 +248,13 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             )
         }
 
-        let startAnimDealyForCard = 1;
-        let stepAnimDealyForCard = -0.5;
+        let startAnimDealyForCard = 0.2;
+        let stepAnimDealyForCard = 0.1;
+        let curAnimDealyForCard = -stepAnimDealyForCard;
 
-        const makeStepAnimDealyForCard = () =>{
-            stepAnimDealyForCard+=0.5;
-            return stepAnimDealyForCard;
+        const makeStepAnimDealyForCard = () => {
+            curAnimDealyForCard = curAnimDealyForCard + stepAnimDealyForCard;
+            return startAnimDealyForCard + curAnimDealyForCard + "s";
         }
 
     return (
@@ -265,19 +266,20 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             history={history}>
 
             <Panel id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}}>
-                <div>
+                <div className="Result">
+
                     <Header fixed={false}></Header>
 
-                    <div className="Result">
+                    <Div className="Result__content">
 
-                        {/* <div className={`Result__year ${isFirstOpenResult ? "Result__fade-anim":""}`} > */}
-                            <span className={`Result__points ${getClassNameForPercent(percent)} ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+makeStepAnimDealyForCard())+"*var(--main-delay-anim-result))"}}>
+                        <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
+                            <span className={`Result__points ${getClassNameForPercent(percent)}`}>
                                     {percent}
                                 <span>/{questions.length}</span>
                             </span>
-                        {/* </div> */}
+                        </div>
 
-                        <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+makeStepAnimDealyForCard())+"*var(--main-delay-anim-result))"}}>
+                        <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <ResultButtons 
                                 onAgain={modifyIsFirstOpenResult(onAgain)}
                                 onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
@@ -288,7 +290,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
 
                         {
                             isAdVisible &&
-                            <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+makeStepAnimDealyForCard())+"*var(--main-delay-anim-result))"}}>
+                            <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                                 <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
                             </div>
                         }
@@ -300,7 +302,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                                 if((record.percentProgress !== record.questions.length) && (i!==indexQuiz))
                                 {
                                     return(
-                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:"calc("+(startAnimDealyForCard+makeStepAnimDealyForCard())+"*var(--main-delay-anim-result))"}}>
+                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                                         <ContentCard
                                             header={
                                                 <div className="ListCard__title">
@@ -320,7 +322,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             })
                         }
                         
-                    </div>
+                    </Div>
                 </div>
             </Panel>
 
