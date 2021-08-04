@@ -38,7 +38,7 @@ const Header = ({curWidth, leftBtnFunc, isClose, fixed, text, icon, click}) => {
 
             <div className="Header__inside" style={{justifyContent, cursor:cursor}} onClick={click}>
                 {text}
-                {/* {icon} */}
+                {icon}
             </div>
 
         </PanelHeader>
