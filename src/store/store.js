@@ -9,7 +9,17 @@ const store = {
         ageRF,
         ageRussianEmpire,
         ageRussianEmpire,
-        ageRussianEmpire
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
+        ageRussianEmpire,
     ],
 
     results,

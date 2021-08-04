@@ -1,7 +1,7 @@
 .ListCard{
     padding: 0;
     width: 100%;
-    height: fit-content;
+    /* height: auto; */
 }
 .ListCard__Card{
     background-color: var(--main-second-bg-color);

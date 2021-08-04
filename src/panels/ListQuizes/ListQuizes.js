@@ -14,6 +14,7 @@ const ListQuizes = ({ id, curWidth, title, quizes, onBack = () => { }, createOnC
                 <Header
                     leftBtnFunc={onBack}
                     text={title}
+                    fixed={false}
                 >
                 </Header>
 
