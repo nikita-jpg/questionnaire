@@ -58,16 +58,14 @@
 /* Панель с кнопками */
 .Result__buttons{
     width: 100%;
-    max-width: var(--main-max-width);
     /* animation-delay: calc(1.5*var(--main-delay-anim-result)); */
 }
 
 
 /* Карточки */
 .Result__card{
-    margin-top: 20px;
+    margin-top: 8px;
     width: 100%;
-    max-width: var(--main-max-width);
     /* animation-delay: calc(2.5*var(--main-delay-anim-result)); */
 
     color: var(--main-white-color);
@@ -100,6 +98,7 @@
 /* Реклама */
 .Result__adds{
     margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
     max-width: var(--main-max-width);
 

@@ -29,7 +29,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 	useEffect(() => {
 		if(!isNeedDateLoaded)
-			// firstDownload()
+			firstDownload()
 		
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
@@ -41,6 +41,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const VIEW_ID_LIST_QUESTIONES = "VIEW_ID_LIST_QUESTIONES";
 	const VIEW_ID_RESULT = "VIEW_ID_RESULT";
 	const VIEW_ID_ANSWERS_QUESTIONS = "VIEW_ID_ANSWERS_QUESTIONS";
+
 	const VIEW_ID_SPINNER = "VIEW_ID_SPINNER";
 
 	// логика переключения между Панелями
@@ -48,7 +49,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_RESULT);
+	const [activeView, setActiveView] = useState(VIEW_ID_SPINNER);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 

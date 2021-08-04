@@ -302,7 +302,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                                 if((record.percentProgress !== record.questions.length) && (i!==indexQuiz))
                                 {
                                     return(
-                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
+                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
                                         <ContentCard
                                             header={
                                                 <div className="ListCard__title">
