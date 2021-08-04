@@ -26,8 +26,8 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
         <Div>
             {
             // spinner ||
-            // <div className="ListCard">
-                <CardGrid size={getColNumber()}>
+            <div className="ListCard">
+                <CardGrid size={getColNumber(curWidth)}>
                 {
                     info.map((record,i) => (
                         <ContentCard
@@ -46,7 +46,7 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
                     ))
                 }
                 </CardGrid>
-            // </div>
+            </div>
             }
         </Div>
     )

@@ -4,13 +4,11 @@ import './ListAge.css'
 import { isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
-import { MainBackground } from '../../components/MainBaclground/MainBackground';
 
 
-const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
+const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>null}) => {
 
     const ID_ACTIVE_PANEL = "ID_ACTIVE_PANEL";
-    // const testArr = [eras[0],eras[1],eras[2],eras[0],eras[0],eras[0],eras[0],eras[0],eras[0],eras[0],eras[0],eras[0],];
 
 
     return (
@@ -23,7 +21,6 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
 
                 <Header
                     text="Выбирете эпоху"
-                    fixed={false}
                 ></Header> 
 
                 <ListCard
