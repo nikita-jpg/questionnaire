@@ -1,5 +1,5 @@
 import { Icon24Back } from "@vkontakte/icons";
-import { Alert, ContentCard, Panel, PanelHeader, PanelHeaderButton, PromoBanner, useAdaptivity, View } from "@vkontakte/vkui";
+import { Alert, ContentCard, Div, Panel, PanelHeader, PanelHeaderButton, PromoBanner, useAdaptivity, View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import bridge from '@vkontakte/vk-bridge';
@@ -266,7 +266,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
 
             <Panel id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}}>
                 <div>
-                    <Header></Header>
+                    <Header fixed={false}></Header>
 
                     <div className="Result">
 
