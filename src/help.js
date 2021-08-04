@@ -9,17 +9,14 @@ export function isTitleCentre ( element) {
     })
 }
 
-export function getColNumber() {
-    if(curWidth === undefined){
-        curWidth = document.getElementById('root').scrollWidth;
-    }
+export function getwidthInfo() {
     if(curWidth>1280){
-        return "s"
+        return {colNumber:"s", maxWidth:"1500px"}
     }
     else if (curWidth>560){
-        return "m"
+        return {colNumber:"m", maxWidth:"1280px"}
     }
     else {
-        return "l"
+        return {colNumber:"l", maxWidth:"560px"}
     } 
 }

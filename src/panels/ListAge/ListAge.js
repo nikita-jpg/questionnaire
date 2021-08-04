@@ -13,9 +13,6 @@ const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>
 
     return (
         <Panel id={ID_ACTIVE_PANEL}>
-            
-            {
-            // screenSpinner ||
 
             <div className="ListAge">
 
@@ -23,14 +20,15 @@ const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>
                     text="Выбирете эпоху"
                 ></Header> 
 
-                <ListCard
-                    info={eras}
-                    curWidth={curWidth}
-                    cardClick={createOnClickItemAge}>
-                </ListCard>
+                <div className="ListAge__content">
+                    <ListCard
+                        info={eras}
+                        curWidth={curWidth}
+                        cardClick={createOnClickItemAge}>
+                    </ListCard>
+                </div>
 
             </div>
-            }
 
         </Panel>
     )

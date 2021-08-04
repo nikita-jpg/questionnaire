@@ -1,15 +1,27 @@
 import { CardGrid, ContentCard, Div, Spinner } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import './ListCard.css'
-import { getColNumber } from '../../help';
+import { getColNumber, getwidthInfo } from '../../help';
 
 const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
+
+    const getWidthInfo = () => {
+        if(curWidth>1280){
+            return {colNumber:"s", maxWidth:"1220px"}
+        }
+        else if (curWidth>560){
+            return {colNumber:"m", maxWidth:"820px"}
+        }
+        else {
+            return {colNumber:"l", maxWidth:"420px"}
+        } 
+    }
 
     return (
         <Div>
             {
-            <div className="ListCard">
-                <CardGrid size={getColNumber()}>
+            <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
+                <CardGrid size={getWidthInfo().colNumber}>
                 {
                     info.map((record,i) => (
                         <ContentCard

@@ -17,7 +17,7 @@
 }
 .Result__content{
     width: 100%;
-    max-width: var(--main-max-width);
+    max-width: var(--main-max-one-column-width);
     background: var(--background_content);
     /* min-height: 100vh;
     padding: 0px 10px 0px 10px;

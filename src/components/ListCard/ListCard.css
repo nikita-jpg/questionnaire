@@ -1,9 +1,10 @@
 .ListCard{
-    padding: 0;
+    /* padding: 0; */
     width: 100%;
     height: fit-content;
 }
 .ListCard__Card{
+    max-width: var(--main-max-card-width);
     background-color: var(--main-second-bg-color);
 }
 .ListCard__title{
