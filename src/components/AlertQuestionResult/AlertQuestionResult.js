@@ -3,7 +3,8 @@ import React from "react";
 
 const AlertQuestionResult = ({
     onClose, indexUserAnswer, indexRightAnswer, 
-    getAnswerText, indexQuestion, answerOptions
+    getAnswerText, indexQuestion, answerOptions,
+    questionText
 }) => {
     return (
         <div className="AnswersQuestions__alert_big">
@@ -17,6 +18,8 @@ const AlertQuestionResult = ({
                 }]}
             >
                 <div className="AnswersQuestions__alert">
+                    <h3>{questionText}</h3>
+
                     <div className="AnswersQuestions__alert__answers">
 
                         {
