@@ -132,8 +132,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                     indexUserAnswer={calcIndexUserAnswer(indexQuestion)}
                     indexRightAnswer={calcIndexRightAnswer(indexQuestion)}
                     getAnswerText={getAnswerText}
-                    questions={questions}
-                    indexesAnswers={indexesAnswers}
+                    answerOptions={questions[indexQuestion].answerOptions}
                 />
                 :null
             } 

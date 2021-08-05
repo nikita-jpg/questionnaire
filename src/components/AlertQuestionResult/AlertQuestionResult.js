@@ -3,8 +3,7 @@ import React from "react";
 
 const AlertQuestionResult = ({
     onClose, indexUserAnswer, indexRightAnswer, 
-    getAnswerText, indexQuestion, questions,
-    indexesAnswers
+    getAnswerText, indexQuestion, answerOptions
 }) => {
     return (
         <div className="AnswersQuestions__alert_big">
@@ -66,8 +65,8 @@ const AlertQuestionResult = ({
                             </div>
 
                             {
-                                questions[indexQuestion].answerOptions.map((answer, i) => {
-                                    if (i === questions[indexQuestion].answerOptions.findIndex(a => a.score === 1) || i === indexesAnswers[indexQuestion]) {
+                                answerOptions.map((answer, i) => {
+                                    if (i === indexRightAnswer || i === indexUserAnswer) {
                                         return null;
                                     }
 
