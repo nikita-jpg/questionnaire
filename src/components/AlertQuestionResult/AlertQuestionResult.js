@@ -1,5 +1,6 @@
 import { Alert } from "@vkontakte/vkui";
 import React from "react";
+import "./AlertQuestionResult.css";
 
 const AlertQuestionResult = ({
     onClose, indexUserAnswer, indexRightAnswer, 
@@ -18,7 +19,7 @@ const AlertQuestionResult = ({
                 }]}
             >
                 <div className="AnswersQuestions__alert">
-                    <h3>{questionText}</h3>
+                    <h3 className={"AlertQuestionResult__text-question"}>{questionText}</h3>
 
                     <div className="AnswersQuestions__alert__answers">
 
