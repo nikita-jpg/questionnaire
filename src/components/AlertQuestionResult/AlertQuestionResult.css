@@ -1,0 +1,73 @@
+.AnswersQuestions__alert{
+    background-color: var( --main-second-bg-color);
+}
+
+/* Текст вопроса */
+.AlertQuestionResult__text-question {
+    font-weight: 400;
+    font-size: 16px;
+
+    padding-left: 8px; 
+    padding-right: 8px;
+}
+
+/* Заголовок варианта ответа */
+.AnswersQuestions__alert__title-answer-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.AnswersQuestions__alert__title-answer-wrap::before {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transform: translateY(-50%);
+    content: "";
+    width: 100%;
+    height: 2px;
+    z-index: 2;
+}
+.AnswersQuestions__alert__title-answer{
+    font-size: 16px;
+    background: var(--main-second-bg-color);
+    position: relative;
+    padding: 0 8px;
+    margin: 0;
+}
+
+/* Текст ответа */
+.AnswersQuestions__alert__text-answer {
+    background: var(--main-therd-bg-color);
+    margin-top: 10px;
+    padding: 8px; 
+    border-radius: 8px;
+
+    font-size: 16px;
+    text-align: start;
+}
+
+
+/* Цвета вариантов ответа */
+.AnswersQuestions__alert__title-answer-wrap_good::before {
+    background: var(--main-green-color);
+}
+
+.AnswersQuestions__alert__title-answer-wrap_normal::before {
+    background: var(--main-gray-color);
+}
+
+.AnswersQuestions__alert__title-answer-wrap_bad::before {
+    background: var(--main-red-color);
+}
+
+.AnswersQuestions__alert__title-answer_good {
+    color: var(--main-green-color);
+}
+
+.AnswersQuestions__alert__title-answer_normal {
+    color: var(--main-gray-color);
+}
+
+.AnswersQuestions__alert__title-answer_bad {
+    color: var(--main-red-color);
+}

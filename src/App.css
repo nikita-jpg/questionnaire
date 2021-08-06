@@ -49,14 +49,6 @@
   .vkuiPanel.vkuiPanel--regular::after{
     background-color: var(--background_content);
   }
-  /* .vkuiPanelHeader__content-in{
-    font-weight: 500;
-    height: 100%;
-  } */
-
-  /* .vkuiPanelHeader {
-    background-color: black;
-  } */
   .PanelHeader__content{
     height: 100%;
   }
@@ -65,6 +57,27 @@
  }
 .Panel::after { 
   position: fixed; 
+}
+
+.vkuiModalPage__in{
+  background-color: var(--main-second-bg-color);
+}
+
+.vkuiButton__content :not(.Result__adds){
+  padding-top: 0;
+}
+
+/* Алерт */
+.AnswersQuestions__alert_big .vkuiAlert--ios{
+  width: 90%;
+}
+.AnswersQuestions__alert_big .vkuiAlert--android .vkuiAlert__content{
+  padding-top: 0px;
+  padding-bottom: 4px;
+}
+.AnswersQuestions__alert_big .vkuiAlert--android .vkuiAlert__actions{
+  padding-top: 8px;
+  padding-bottom: 12px;
 }
 
 .vkuiAlert{
@@ -80,43 +93,15 @@
   color: var(--main-red-color);
 }
 .vkuiAlert__button--cancel{
-  color: var(--main-blue-color);
-}
-/* .vkuiAlert {
-  max-width: 500px;
-} */
-/* .vkuiAlert--desktop{
-  width: 500px;
-}
-.vkuiAlert--android{
-  width: 500px;
-} */
-
-/* .vkuiAlert--desktop.vkuiAlert--android{
-  width: 500px;
-} */
-
-/* .vkuiAlert--ios{
-  width: 500px;
-} */
-
-.vkuiModalPage__in{
-  background-color: var(--main-second-bg-color);
+  color: var(--main-therd-bg-color);
 }
 
-.vkuiButton__content :not(.Result__adds){
-  padding-top: 0;
-}
-
-.AnswersQuestions__alert_big .vkuiAlert--ios{
-  width: 90%;
-}
-
-/* @supports (-webkit-touch-callout: none) {
-    .vkuiAlert--ios{
-    width: 500px;
-  }
+/* .vkuiAlert--android.vkuiAlert--h .vkuiAlert__button, .vkuiAlert--vkcom.vkuiAlert--h .vkuiAlert__button{
+  background-color: var(--main-zero-bg-color);
 } */
+.vkuiAlert__button--cancel{
+  color: var(--main-gray-color);
+}
 
 /* Реклама */
 .Result__adds .vkuiSimpleCell__children{
