@@ -16,9 +16,12 @@
     --main-oliveOil-color: #BAAB8F;
     --main-purple-color:#64d2ff;
 
-    --main-max-one-column-width:340px;
+    /* Колонки карточек и карточка*/
+    --main-one-col-max-width:380px;
+    --main-two-col-max-width:720px;
+    --main-three-col-max-width:1100px;
+
     --main-max-card-width:400px;
-    /* --main-delay-anim-result: .3s; */
  
     /* Переопределено */
     --background_content:#1C1C1E;
@@ -131,3 +134,5 @@
   display: flex;
   justify-content: center;
 }
+
+

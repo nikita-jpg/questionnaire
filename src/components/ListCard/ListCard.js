@@ -7,13 +7,13 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
 
     const getWidthInfo = () => {
         if(curWidth>1280){
-            return {colNumber:"s", maxWidth:"1220px"}
+            return {colNumber:"s", maxWidth:"--main-three-col-max-width"}
         }
         else if (curWidth>560){
-            return {colNumber:"m", maxWidth:"820px"}
+            return {colNumber:"m", maxWidth:"--main-two-col-max-width"}
         }
         else {
-            return {colNumber:"l", maxWidth:"420px"}
+            return {colNumber:"l", maxWidth:"--main-one-col-max-width"}
         } 
     }
 

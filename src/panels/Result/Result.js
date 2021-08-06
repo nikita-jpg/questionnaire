@@ -270,7 +270,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
 
                     <Header fixed={false}></Header>
 
-                    <Div className="Result__content">
+                    <div className="Result__content">
 
                         <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <span className={`Result__points ${getClassNameForPercent(percent)}`}>
@@ -322,7 +322,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             })
                         }
                         
-                    </Div>
+                    </div>
                 </div>
             </Panel>
 
