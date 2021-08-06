@@ -227,7 +227,7 @@ const App = ({ eras, results, MAX_SCORE,
 	}
 
 	return (
-	<ConfigProvider isWebView={true}>
+	<ConfigProvider isWebView={true} scheme="android">
 		<AdaptivityProvider>
 			<AppRoot>
 				<SplitLayout header={null}>

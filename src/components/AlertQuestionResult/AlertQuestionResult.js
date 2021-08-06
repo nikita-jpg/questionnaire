@@ -19,13 +19,12 @@ const AlertQuestionResult = ({
                 }]}
             >
                 <div className="AnswersQuestions__alert">
-                    <h3 className={"AlertQuestionResult__text-question"}>{questionText}</h3>
 
-                    <div className="AnswersQuestions__alert__answers">
+                    <h3 className={"AlertQuestionResult__text-question"}>{questionText}</h3>
 
                         {
                             indexUserAnswer !== indexRightAnswer &&
-                            <div className="AnswersQuestions__alert__answer">
+                            <div>
                                 <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_bad">
                                     <div
                                         className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_bad"
@@ -41,7 +40,7 @@ const AlertQuestionResult = ({
                             </div>
                         }
 
-                        <div className="AnswersQuestions__alert__answer">
+                        <div>
                             <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_good">
                                 <div
                                     className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_good"
@@ -61,7 +60,7 @@ const AlertQuestionResult = ({
                             </div>
                         </div>
 
-                        <div className="AnswersQuestions__alert__answer">
+                        <div>
                             <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_normal">
                                 <div
                                     className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_normal"
@@ -86,7 +85,6 @@ const AlertQuestionResult = ({
                             }
                         </div>
 
-                    </div>
                 </div>
             </Alert>
         </div>
