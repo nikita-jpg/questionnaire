@@ -22,10 +22,10 @@ const isTitleCentre = (text, icon, curWidth, hasLeftBtn) => {
 
     let textWidth = getTextWidth(text);
     let marginLeft = 0
-    
+    console.log(curWidth)
     if( (curWidth - textWidth)/2 > RIGHT_STUB_WIDTH )
     {
-        console.log("1")
+        // console.log("1")
         marginLeft = RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH;
         marginLeft+="px"
 
@@ -37,10 +37,9 @@ const isTitleCentre = (text, icon, curWidth, hasLeftBtn) => {
         )
         
     }else{
-        console.log("2")
+        // console.log("2")
         marginLeft="0px"
         let maxWidth = curWidth - RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH;
-        console.log(curWidth)
 
         if(textWidth > maxWidth)
         {
@@ -53,7 +52,7 @@ const isTitleCentre = (text, icon, curWidth, hasLeftBtn) => {
                 </div>
             ) 
         }else{
-            console.log(hasLeftBtn)
+            // console.log(hasLeftBtn)
             return(
                 <div className="Header__title" style={{marginLeft:marginLeft, maxWidth:maxWidth, textAlign:"start"}}>
                     {text}
