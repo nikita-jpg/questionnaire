@@ -4,18 +4,19 @@ import ListCard from '../../components/ListCard/ListCard'
 
 import './ListQuizes.css';
 import Header from '../../components/Header/Header';
+import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
 const ListQuizes = ({ id, curWidth, title, quizes, onBack = () => { }, createOnClickItemQuizes = (index) => null }) => {
 
     return (
-        <Panel id={id}>
+        <PanelWrapper id={id} headerText={title} onHeaderBack={onBack}>
             <div className="ListQuizes">
 
-                <Header
+                {/* <Header
                     leftBtnFunc={onBack}
                     text={title}
                 >
-                </Header>
+                </Header> */}
 
                 <ListCard
                     info={quizes}
@@ -23,7 +24,7 @@ const ListQuizes = ({ id, curWidth, title, quizes, onBack = () => { }, createOnC
                 />
 
             </div>
-        </Panel>
+        </PanelWrapper>
     );
 }
 

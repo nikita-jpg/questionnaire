@@ -4,6 +4,7 @@ import './ListAge.css'
 import { isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
+import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
 
 const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>null}) => {
@@ -12,13 +13,11 @@ const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>
 
 
     return (
-        <Panel id={ID_ACTIVE_PANEL}>
+        <PanelWrapper id={ID_ACTIVE_PANEL} headerText="Выбирете эпоху">
 
-            <div className="ListAge">
-
-                <Header
+                {/* <Header
                     text="Выбирете эпоху"
-                ></Header> 
+                ></Header>  */}
 
                 <div className="ListAge__content">
                     <ListCard
@@ -28,9 +27,7 @@ const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>
                     </ListCard>
                 </div>
 
-            </div>
-
-        </Panel>
+        </PanelWrapper>
     )
 }
 

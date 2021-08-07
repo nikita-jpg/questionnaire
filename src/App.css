@@ -40,8 +40,62 @@
   .vkui__root{
     --font-tt: "Lato", "TT Commons", -apple-system, Helvetica Neue, Roboto, sans-serif;
   }
-  .vkuiModalPageHeader__content-in{
+  .vkuiPanelHeader {
     width: 100%;
+  }
+  /* .vkuiModalPageHeader__content-in{
+    width: 100%;
+  } */
+
+  /* Хедер */
+  /* ios */
+  .vkuiPanelHeader--ios .vkuiPanelHeader__left{
+    padding: 0;
+    width: 0;
+    flex-grow: 0;
+  }
+  .vkuiPanelHeader--ios .vkuiPanelHeader__content>*{
+    padding: 0;
+  }
+  .vkuiPanelHeader--ios.vkuiPanelHeader--no-right .vkuiPanelHeader__content{
+    padding-right: 0;
+  }
+  .vkuiPanelHeader--ios.vkuiPanelHeader--no-left .vkuiPanelHeader__content{
+    padding: 0;
+  }
+  .vkuiPanelHeader--ios .vkuiPanelHeader__right{
+    min-width: 0;
+    flex-grow: 0;
+    padding: 0;
+  }
+
+  /* Андроид */
+  .vkuiPanelHeader--android .vkuiPanelHeader__left{
+    padding: 0;
+    width: 0;
+    flex-grow: 0;
+  }
+  .vkuiPanelHeader--android .vkuiPanelHeader__content>*{
+    padding: 0;
+  }
+  .vkuiPanelHeader--android.vkuiPanelHeader--no-right .vkuiPanelHeader__content{
+    padding-right: 0;
+  }
+  .vkuiPanelHeader--android.vkuiPanelHeader--no-left .vkuiPanelHeader__content{
+    padding: 0;
+  }
+  .vkuiPanelHeader--android .vkuiPanelHeader__right{
+    min-width: 0;
+    flex-grow: 0;
+    padding: 0;
+  }
+
+
+
+
+
+  .vkuiPanelHeader__content.PanelHeader__content{
+    flex-grow: 1;
   }
   .vkuiPanel.vkuiPanel--regular::after{
     background-color: var(--background_content);
@@ -49,6 +103,9 @@
   .PanelHeader__content{
     height: 100%;
   }
+  /* .vkuiPanelHeader--vkapps .vkuiPanelHeader__right{
+    min-width: 0px;
+  } */
  .Panel.Panel--regular{
    background-color: var(--background_content);
  }
@@ -112,7 +169,7 @@
 /* .vkuiCard:not(:first-child){
   margin-top: 20px;
 } */
-.testPanelClass{
+/* .testPanelClass{
   display: flex;
   justify-content: center;
-}
+} */
