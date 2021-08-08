@@ -54,7 +54,7 @@ const IteamListQuestion = ({ id, question,
                                     {
                                         isImgInfoOpen
                                         ?<a 
-                                            href={question.imageSrc} 
+                                            href={question.linkOriginPhoto} 
                                             className="IteamListQuestion__image-link"
                                             target="_blank"
                                             onClick={onLinkClick}
