@@ -13,7 +13,7 @@ const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>
 
 
     return (
-        <PanelWrapper id={ID_ACTIVE_PANEL} headerText="Выбирете эпоху">
+        <PanelWrapper id={ID_ACTIVE_PANEL} headerText="Выбирете эпоху" isHeaderFixed={true}>
 
                 {/* <Header
                     text="Выбирете эпоху"

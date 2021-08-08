@@ -53,7 +53,7 @@ const getTitle = (text, icon, curWidth, hasLeftBtn) => {
         {
             return(
                 <div className="Header__title" style={{marginLeft:marginLeft, maxWidth:maxWidth}}>
-                    <Marquee childMargin="20" speed="0.08" direction="left">
+                    <Marquee childMargin="20" speed="0.08" direction="left" delay="600">
                         {text}
                         {icon}
                     </Marquee>
