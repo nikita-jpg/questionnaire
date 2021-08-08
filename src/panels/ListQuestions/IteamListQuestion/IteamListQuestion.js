@@ -1,12 +1,9 @@
-import { Icon24Back, Icon28ChevronBack, Icon28UsersOutline, Icon28ChevronDownOutline } from '@vkontakte/icons';
-import { ModalRoot, Panel, PanelHeaderContext, PanelHeaderContent, platform, Text, Div, CardGrid, Cell, List, ModalPage } from '@vkontakte/vkui';
-import React, { useEffect, useState } from 'react';
+import { Icon28ChevronDownOutline } from '@vkontakte/icons';
+import { Panel, platform, Text, Div}  from '@vkontakte/vkui';
+import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import AnswerOption from '../../../components/AnswerOption/AnswerOption';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
-import ListCard from '../../../components/ListCard/ListCard';
-import BottomSheet from './BottomSheet/BottomSheet';
 
 import "./IteamListQuestion.css";
 
@@ -18,6 +15,8 @@ const IteamListQuestion = ({ id, question,
     changeModal = () => {}, setNotActiveBackgoundToAnswerButton = () => {} }) => {
 
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
+
+    const onLinkClick = (e) => e.stopPropagation();
 
     return (
         <Panel id={id} separator={false} name={name}>
@@ -51,7 +50,22 @@ const IteamListQuestion = ({ id, question,
                             onExited={() => {setisImgInfoOpen(false)}}>
                             <div className="IteamListQuestion__image-info">
                                 <Div className="IteamListQuestion__image-description">
-                                    Источник: <a href={question.linkOriginPhoto} className="IteamListQuestion__image-link">Клик :)</a>
+                                    Источник: <br/>
+                                    {
+                                        isImgInfoOpen
+                                        ?<a 
+                                            href={question.imageSrc} 
+                                            className="IteamListQuestion__image-link"
+                                            target="_blank"
+                                            onClick={onLinkClick}
+                                        >
+                                            Клик
+                                        </a>
+                                        :<span className="IteamListQuestion__image-link">
+                                            Клик 
+                                        </span>
+                                    }
+                                    
                                 </Div>
                             </div>
                         </CSSTransition>
