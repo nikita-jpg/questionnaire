@@ -17,7 +17,10 @@ const PanelWrapper = ({id, children,
 	}, []);
 
     const getMaxWidth = () => {
-        return "740px"
+        if(curWidth>1280)
+            return "1256px"
+        else
+            return curWidth + "px"
     }
     return(
 

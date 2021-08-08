@@ -1,11 +1,20 @@
 import { CardGrid, ContentCard, Div, Spinner } from '@vkontakte/vkui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ListCard.css'
 import { getColNumber, getwidthInfo } from '../../help';
 
-const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
+const ListCard = ( { info, cardClick = (index) => null } ) => {
+
+    const [curWidth, setCurWidth] = useState(0);
+    
+    useEffect(() => {
+		
+		//Обновляем текущую ширину
+		setCurWidth(document.getElementById('ListCard__containerId').scrollWidth)
+	}, []);
 
     const getWidthInfo = () => {
+        console.log(curWidth)
         if(curWidth>1280){
             return {colNumber:"s", maxWidth:"1220px"}
         }
@@ -18,10 +27,8 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
     }
 
     return (
-        <Div>
-            {
-            <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
-                <CardGrid size={getWidthInfo().colNumber}>
+            <div className="ListCard" id="ListCard__containerId">
+                <CardGrid size={"m"}>
                 {
                     info.map((record,i) => (
                         <ContentCard
@@ -41,8 +48,6 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
                 }
                 </CardGrid>
             </div>
-            }
-        </Div>
     )
 }
 

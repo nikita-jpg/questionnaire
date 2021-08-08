@@ -22,7 +22,7 @@ const isTitleCentre = (text, icon, curWidth, hasLeftBtn) => {
 
     let textWidth = getTextWidth(text);
     let marginLeft = 0
-    console.log(curWidth)
+    // console.log(curWidth)
     if( (curWidth - textWidth)/2 > RIGHT_STUB_WIDTH )
     {
         // console.log("1")
