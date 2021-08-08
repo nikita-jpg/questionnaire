@@ -60,11 +60,11 @@
       width: 100%;
       text-align: center;
       color: var(--text_secondary);
-      font-size: 24px;
+      font-size: 14px;
   }
   .IteamListQuestion__image-link{
     color: var(--main-white-color);
-    text-decoration: none;
+    font-size: 24px;
   }
 
   /* Текст вопроса */
