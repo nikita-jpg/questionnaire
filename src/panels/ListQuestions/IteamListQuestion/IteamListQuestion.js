@@ -1,5 +1,5 @@
 import { Icon28ChevronDownOutline } from '@vkontakte/icons';
-import { Panel, platform, Text, Div}  from '@vkontakte/vkui';
+import { Panel, platform, Text, Div, Platform, PanelHeaderButton}  from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
@@ -22,9 +22,10 @@ const IteamListQuestion = ({ id, question,
     return (
         <PanelWrapper id={id} name={name}
         
-            onHeaderClose={goToPrevQuestion}
+            onHeaderClose={numberCurrentQuestion === 1 ? goToPrevQuestion:false}
+            onHeaderBack={goToPrevQuestion}
             headerText={numberCurrentQuestion + " из " + countQuestions}
-            icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
+            headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
             headerClick={changeModal}
         >
             <div className="IteamListQuestion">
