@@ -1,4 +1,4 @@
-import { PanelHeader, PanelHeaderBack, PanelHeaderClose, PanelHeaderContent  } from '@vkontakte/vkui';
+import { Div, PanelHeader, PanelHeaderBack, PanelHeaderClose, PanelHeaderContent, Platform, usePlatform  } from '@vkontakte/vkui';
 import React from 'react';
 import Marquee from 'react-double-marquee';
 // import { isTitleCentre } from '../../help';
@@ -6,7 +6,9 @@ import './Header.css'
 
 const WIDTH_HEAD_TEXT_CENTERED = 380;
 const RIGHT_STUB_WIDTH = 95;
-const LEFT_BTN_WIDTH = 42;
+// const ANDROID_MARGIN_LEFT = "16px";
+// const IOS_MARGIN_LEFT = "12px";
+const PLATFORM_MARGIN_LEFT = usePlatform !== Platform.IOS ? 16 : 12
 
 
 const getTextWidth = (text) => {
@@ -18,15 +20,20 @@ const getTextWidth = (text) => {
     return context.measureText(text).width + 25;
   }
   
-const isTitleCentre = (text, icon, curWidth, hasLeftBtn) => {
+const getTitle = (text, icon, curWidth, hasLeftBtn) => {
+    console.log(hasLeftBtn)
+
+    const LEFT_BTN_WIDTH = hasLeftBtn ? 42 : PLATFORM_MARGIN_LEFT;
 
     let textWidth = getTextWidth(text);
     let marginLeft = 0
     // console.log(curWidth)
+
+    //Если можем зацентрить текст
     if( (curWidth - textWidth)/2 > RIGHT_STUB_WIDTH )
     {
         // console.log("1")
-        marginLeft = RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH;
+        marginLeft = hasLeftBtn ? (RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH) : RIGHT_STUB_WIDTH;
         marginLeft+="px"
 
         return(
@@ -38,14 +45,15 @@ const isTitleCentre = (text, icon, curWidth, hasLeftBtn) => {
         
     }else{
         // console.log("2")
-        marginLeft="0px"
-        let maxWidth = curWidth - RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH;
+        marginLeft = hasLeftBtn ? 0 : PLATFORM_MARGIN_LEFT;
+        let maxWidth = curWidth - RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH - 8;
 
+        //Если текст влезает
         if(textWidth > maxWidth)
         {
             return(
                 <div className="Header__title" style={{marginLeft:marginLeft, maxWidth:maxWidth}}>
-                    <Marquee childMargin="20" speed="0.08" direction="left">
+                    <Marquee childMargin="20" speed="0.08" direction="left" delay="600">
                         {text}
                         {icon}
                     </Marquee>
@@ -65,6 +73,7 @@ const isTitleCentre = (text, icon, curWidth, hasLeftBtn) => {
 
 
 const Header = ({curWidth, onBack, onClose, isFixed, text, icon, click}) => {
+    console.log(usePlatform())
 
     let left;
     let cursor = "inherit";
@@ -93,8 +102,8 @@ const Header = ({curWidth, onBack, onClose, isFixed, text, icon, click}) => {
             >
 
             <div className="Header__inside" style={{cursor:cursor}} onClick={click}>
-                <div className="Header__leftBtn">{left}</div>
-                {isTitleCentre(text,icon,curWidth, left === undefined ? false : true)}
+                {left && <div className="Header__leftBtn">{left}</div>}
+                {getTitle(text,icon,curWidth, left)}
                 <div className="Header__rightStub"></div>
             </div>
 
