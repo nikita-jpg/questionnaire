@@ -4,16 +4,18 @@ import Header from "../Header/Header";
 
 import './PanelWrapper.css'
 
-const PanelWrapper = ({id, children, isOneColumn, 
-    isHeaderFixed, onHeaderClose, onHeaderBack, 
-    leftHeaderFunc, headerIcon, headerText, headerClick}) => {
+const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
+    isHeaderHide, isHeaderFixed, onHeaderClose, onHeaderBack, 
+    headerIcon, headerText, headerClick}) => {
 
     const [curWidth, setCurWidth] = useState(0)
+    const [curHeight, setCurHeight] = useState(0)
 
     useEffect(() => {
 		
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
+        setCurHeight(document.getElementById('root').scrollHeight)
 	}, []);
 
     // const getMaxWidth = () => {
@@ -24,11 +26,13 @@ const PanelWrapper = ({id, children, isOneColumn,
     // }
     return(
 
-        <Panel id={id}>
+        <Panel id={id} separator={false} name={name}>
 
-            <div className="PanelWrapper">
-
-                <Header
+            <div className="PanelWrapper" style={{minHeight:curHeight,minWidth:curWidth, 
+                justifyContent:isVerticalCentre?"center":"start"}}>
+                {
+                    !isHeaderHide &&
+                    <Header
                     text={headerText}
                     icon={headerIcon}
                     curWidth={curWidth}
@@ -36,12 +40,13 @@ const PanelWrapper = ({id, children, isOneColumn,
                     onClose={onHeaderClose}
                     onBack={onHeaderBack}
                     click={headerClick}
-                    leftBtnFunc={leftHeaderFunc}
                 ></Header>
+                }
 
                 <Div className="PanelWrapper__container"style={{maxWidth:isOneColumn?"var(--main-max-oneСolumnPanelWrapperMode-width)":"var(--main-max-panelWrapper-width)"}}>
                     {children}
                 </Div>
+
             </div>
 
         </Panel>

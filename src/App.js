@@ -49,7 +49,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_QUESTIONES);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
@@ -255,8 +255,6 @@ const App = ({ eras, results, MAX_SCORE,
 								<ListQuizes 
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
-									// title={eras[indexAge].title} 
-									// quizes={eras[indexAge].quizzes} 
 									title={eras[indexAge].title} 
 									quizes={eras[indexAge].quizzes} 
 									onBack={onBackListQuizes} 
