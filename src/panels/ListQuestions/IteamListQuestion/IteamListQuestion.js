@@ -20,7 +20,7 @@ const IteamListQuestion = ({ id, question,
     const onLinkClick = (e) => e.stopPropagation();
 
     return (
-        <PanelWrapper id={id} name={name}
+        <PanelWrapper id={id} name={name} isOneColumn={true}
         
             onHeaderClose={numberCurrentQuestion === 1 ? goToPrevQuestion:false}
             onHeaderBack={goToPrevQuestion}
@@ -29,20 +29,7 @@ const IteamListQuestion = ({ id, question,
             headerClick={changeModal}
         >
             <div className="IteamListQuestion">
-
-                {/* <Header
-                    isClose={numberCurrentQuestion === 1 ? true : false}
-                    leftBtnFunc={goToPrevQuestion}
-                    text={numberCurrentQuestion + " из " + countQuestions} 
-                    icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
-                    click={changeModal}
-                >              
-                    
-                </Header> */}
-
                 
-                <Div className="IteamListQuestion__content">
-
                     <div className="IteamListQuestion__image-container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
                         <img
@@ -98,7 +85,6 @@ const IteamListQuestion = ({ id, question,
                             ))
                         }
                     </div>
-                </Div>
             </div>
         </PanelWrapper>
     )
