@@ -5,8 +5,8 @@ import Header from "../Header/Header";
 import './PanelWrapper.css'
 
 const PanelWrapper = ({id, children, isOneColumn, 
-    isHeaderFixed, onHeaderClose, onHeaderBack, 
-    leftHeaderFunc, headerIcon, headerText, headerClick}) => {
+    isHeaderHide, isHeaderFixed, onHeaderClose, onHeaderBack, 
+    headerIcon, headerText, headerClick}) => {
 
     const [curWidth, setCurWidth] = useState(0)
 
@@ -24,11 +24,12 @@ const PanelWrapper = ({id, children, isOneColumn,
     // }
     return(
 
-        <Panel id={id}>
+        <Panel id={id} separator={false}>
 
             <div className="PanelWrapper">
-
-                <Header
+                {
+                    !isHeaderHide &&
+                    <Header
                     text={headerText}
                     icon={headerIcon}
                     curWidth={curWidth}
@@ -36,12 +37,13 @@ const PanelWrapper = ({id, children, isOneColumn,
                     onClose={onHeaderClose}
                     onBack={onHeaderBack}
                     click={headerClick}
-                    leftBtnFunc={leftHeaderFunc}
                 ></Header>
+                }
 
                 <Div className="PanelWrapper__container"style={{maxWidth:isOneColumn?"var(--main-max-oneСolumnPanelWrapperMode-width)":"var(--main-max-panelWrapper-width)"}}>
                     {children}
                 </Div>
+
             </div>
 
         </Panel>
