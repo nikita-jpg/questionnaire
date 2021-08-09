@@ -1,4 +1,5 @@
-import { Div, PanelHeader, PanelHeaderBack, PanelHeaderClose, PanelHeaderContent, Platform, usePlatform  } from '@vkontakte/vkui';
+import { Icon28CancelOutline } from '@vkontakte/icons';
+import { Div, PanelHeader, PanelHeaderBack, PanelHeaderClose, PanelHeaderContent, platform, Platform, usePlatform  } from '@vkontakte/vkui';
 import React from 'react';
 import Marquee from 'react-double-marquee';
 // import { isTitleCentre } from '../../help';
@@ -20,8 +21,8 @@ const getTextWidth = (text) => {
     return context.measureText(text).width + 25;
   }
   
-const getTitle = (text, icon, curWidth, hasLeftBtn) => {
-    console.log(hasLeftBtn)
+const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
+    console.log(icon)
 
     const LEFT_BTN_WIDTH = hasLeftBtn ? 42 : PLATFORM_MARGIN_LEFT;
 
@@ -37,9 +38,11 @@ const getTitle = (text, icon, curWidth, hasLeftBtn) => {
         marginLeft+="px"
 
         return(
-            <div className="Header__title" style={{marginLeft:marginLeft}}>
-                {text}
-                {icon}
+            <div onClick={click} style={{width:"100%", maxWidth:"100%", paddingLeft:marginLeft}}>
+                <div className="Header__title">
+                    {text}
+                    {icon}
+                </div>
             </div>
         )
         
@@ -52,19 +55,23 @@ const getTitle = (text, icon, curWidth, hasLeftBtn) => {
         if(textWidth > maxWidth)
         {
             return(
-                <div className="Header__title" style={{marginLeft:marginLeft, maxWidth:maxWidth}}>
-                    <Marquee childMargin="20" speed="0.08" direction="left" delay="600">
-                        {text}
-                        {icon}
-                    </Marquee>
-                </div>
+                // <div onClick={click} style={{width:"100%", maxWidth:"100%", paddingLeft:marginLeft}}>
+                    <div className="Header__title" style={{maxWidth:maxWidth}}>
+                        <Marquee childMargin="20" speed="0.08" direction="left" delay="600">
+                            {text}
+                            {icon}
+                        </Marquee>
+                    </div>
+                // </div>
             ) 
         }else{
             // console.log(hasLeftBtn)
             return(
-                <div className="Header__title" style={{marginLeft:marginLeft, maxWidth:maxWidth, textAlign:"start"}}>
-                    {text}
-                    {icon}
+                <div onClick={click} style={{width:"100%", maxWidth:"100%", paddingLeft:marginLeft}}>
+                    <div className="Header__title" style={{maxWidth:maxWidth, textAlign:"start"}}>
+                        {text}
+                        {icon}
+                    </div>
                 </div>
             ) 
         }
@@ -73,17 +80,17 @@ const getTitle = (text, icon, curWidth, hasLeftBtn) => {
 
 
 const Header = ({curWidth, onBack, onClose, isFixed, text, icon, click}) => {
-    console.log(usePlatform())
+    console.log(icon)
 
     let left;
     let cursor = "inherit";
     let fixed = "true";
 
-    if (onClose !== undefined) {
-        left = <PanelHeaderClose  onClick={onClose} className="Header__button-back" ></PanelHeaderClose>
+    if (onClose) {
+        left = <Icon28CancelOutline onClick={onClose} className="Header__button" ></Icon28CancelOutline>
     }
-    else if (onBack !== undefined){
-        left = <PanelHeaderBack onClick={onBack} className="Header__button-back" ></PanelHeaderBack>
+    else if (onBack){
+        left = <PanelHeaderBack onClick={onBack} className="Header__button" ></PanelHeaderBack>
     }
 
     if(click){
@@ -101,10 +108,10 @@ const Header = ({curWidth, onBack, onClose, isFixed, text, icon, click}) => {
             fixed={fixed}
             >
 
-            <div className="Header__inside" style={{cursor:cursor}} onClick={click}>
+            <div className="Header__inside" style={{cursor:cursor}}>
                 {left && <div className="Header__leftBtn">{left}</div>}
-                {getTitle(text,icon,curWidth, left)}
-                <div className="Header__rightStub"></div>
+                {getTitle(text,icon,curWidth, left, click)}
+                <div className="Header__rightStub" onClick={click}></div>
             </div>
 
         </PanelHeader>
