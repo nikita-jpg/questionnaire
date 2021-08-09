@@ -15,7 +15,7 @@ const StartWindow = ({id, onClick=()=>{}}) => {
     
     return (
         <View id={id}> 
-            <PanelWrapper separator={false} isHeaderHide={true} isVerticalCantre={true}>
+            <PanelWrapper separator={false} isHeaderHide={true} isVerticalCentre={true}>
                 <div className="StartWindow">
                     <div className="StartWindow__container">
                         <img width="50" height="50" src={svgContacts} alt="contacts"/>
