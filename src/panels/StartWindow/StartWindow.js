@@ -1,4 +1,4 @@
-import { Card, CardScroll, Panel, PanelHeader, View, CardGrid, ContentCard, Button, ScreenSpinner} from '@vkontakte/vkui';
+import { Card, CardScroll, Panel, PanelHeader, View, CardGrid, ContentCard, Button, ScreenSpinner, usePlatform, Platform} from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import ButtonWrapper from '../../components/ButtonWrapper/ButtonWrapper';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
@@ -10,6 +10,8 @@ import './StartWindow.css';
 
 
 const StartWindow = ({id, onClick=()=>{}}) => {
+
+    // const marginBottom = usePlatform() === Platform.VKCOM ? "40px" : "0px"
     
     return (
         <View id={id}> 
