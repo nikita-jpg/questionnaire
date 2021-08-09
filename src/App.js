@@ -255,8 +255,6 @@ const App = ({ eras, results, MAX_SCORE,
 								<ListQuizes 
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
-									// title={eras[indexAge].title} 
-									// quizes={eras[indexAge].quizzes} 
 									title={eras[indexAge].title} 
 									quizes={eras[indexAge].quizzes} 
 									onBack={onBackListQuizes} 

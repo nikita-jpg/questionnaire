@@ -6,24 +6,18 @@ import './ListQuizes.css';
 import Header from '../../components/Header/Header';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
-const ListQuizes = ({ id, curWidth, title, quizes, onBack = () => { }, createOnClickItemQuizes = (index) => null }) => {
+const ListQuizes = ({ id, title, quizes, onBack = () => { }, createOnClickItemQuizes = (index) => null }) => {
 
     return (
-        <PanelWrapper id={id} headerText={title} onHeaderBack={onBack}>
+        <PanelWrapper id={id} headerText={title} onHeaderBack={onBack} isHeaderFixed={true}>
+
             <div className="ListQuizes">
-
-                {/* <Header
-                    leftBtnFunc={onBack}
-                    text={title}
-                >
-                </Header> */}
-
                 <ListCard
                     info={quizes}
                     cardClick={createOnClickItemQuizes}
                 />
-
             </div>
+
         </PanelWrapper>
     );
 }
