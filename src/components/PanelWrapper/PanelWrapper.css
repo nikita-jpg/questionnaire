@@ -1,21 +1,18 @@
 .PanelWrapper{
     width: 100%;
     height: 100%;
-    position: absolute;
-    /* min-height: 100%; */
 
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     flex-direction: column;
     align-items: center;
 }
+::-webkit-scrollbar {
+    width: 0;
+  }
 .PanelWrapper__container{
+    position: relative;
     width: 100%;
     height: 100%;
     box-sizing:border-box;
-
-    /* max-width: var(--main-max-panelWrapper-width); */
-
-    /* margin-top: 0;
-    padding-top: 0; */
 }

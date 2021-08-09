@@ -9,11 +9,13 @@ const PanelWrapper = ({id, children, isOneColumn,
     headerIcon, headerText, headerClick}) => {
 
     const [curWidth, setCurWidth] = useState(0)
+    const [curHeight, setCurHeight] = useState(0)
 
     useEffect(() => {
 		
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
+        setCurHeight(document.getElementById('root').scrollHeight)
 	}, []);
 
     // const getMaxWidth = () => {
@@ -26,7 +28,7 @@ const PanelWrapper = ({id, children, isOneColumn,
 
         <Panel id={id} separator={false}>
 
-            <div className="PanelWrapper">
+            <div className="PanelWrapper" style={{minHeight:curHeight,minWidth:curWidth}}>
                 {
                     !isHeaderHide &&
                     <Header
