@@ -91,7 +91,7 @@ const Header = ({curWidth, onBack, onClose, isFixed, text, icon, click}) => {
         leftClick = onClose
     }
     else if (onBack){
-        left = <PanelHeaderBack onClick={onBack} className="Header__button" ></PanelHeaderBack>
+        left = <PanelHeaderBack className="Header__button" ></PanelHeaderBack>
         leftClick = onBack
     }
 

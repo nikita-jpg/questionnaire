@@ -8,17 +8,12 @@ import Arrow from './ItemAnswerQuestion/Arrow';
 import "./AnswersQuestions.css";
 import ItemAnswerQuestion from './ItemAnswerQuestion/ItemAnswerQuestion';
 import ButtonWrapper from '../../components/ButtonWrapper/ButtonWrapper';
+import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
 const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}, openAlert=()=>{}}) => {
 
     return (
-        <Panel id={id}>
-
-            <Header
-                text="Вопросы"
-                leftBtnFunc={onBack}
-            >
-            </Header>
+        <PanelWrapper id={id} headerText="Вопросы" onHeaderBack={onBack} isOneColumn={true}>
 
             <div style={{display:"flex",justifyContent:"center"}}>
                 <div className="AnswersQuestions">
@@ -35,7 +30,7 @@ const AnswersQuestions = ({id, questions, indexesAnswers, onBack=()=>{}, openAle
                 }
                 </div>
             </div>
-        </Panel>
+        </PanelWrapper>
     )
 }
 
