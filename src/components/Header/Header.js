@@ -33,7 +33,6 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
     //Если можем зацентрить текст
     if( (curWidth - textWidth)/2 > RIGHT_STUB_WIDTH )
     {
-        // console.log("1")
         marginLeft = hasLeftBtn ? (RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH) : RIGHT_STUB_WIDTH;
         marginLeft+="px"
 
@@ -47,27 +46,25 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
         )
         
     }else{
-        // console.log("2")
         marginLeft = hasLeftBtn ? 0 : PLATFORM_MARGIN_LEFT;
         let maxWidth = curWidth - RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH - 8;
 
-        //Если текст влезает
+        //Если текст не влезает
         if(textWidth > maxWidth)
         {
             return(
-                // <div onClick={click} style={{width:"100%", maxWidth:"100%", paddingLeft:marginLeft}}>
+                <div onClick={click} style={{width:"100%", paddingLeft:marginLeft}}>
                     <div className="Header__title" style={{maxWidth:maxWidth}}>
                         <Marquee childMargin="20" speed="0.08" direction="left" delay="600">
                             {text}
                             {icon}
                         </Marquee>
                     </div>
-                // </div>
+                </div>
             ) 
         }else{
-            // console.log(hasLeftBtn)
             return(
-                <div onClick={click} style={{width:"100%", maxWidth:"100%", paddingLeft:marginLeft}}>
+                <div onClick={click} style={{maxWidth:"100%", paddingLeft:marginLeft}}>
                     <div className="Header__title" style={{maxWidth:maxWidth, textAlign:"start"}}>
                         {text}
                         {icon}
@@ -85,12 +82,17 @@ const Header = ({curWidth, onBack, onClose, isFixed, text, icon, click}) => {
     let left;
     let cursor = "inherit";
     let fixed = "true";
+    let leftClick;
 
     if (onClose) {
-        left = <Icon28CancelOutline onClick={onClose} className="Header__button" ></Icon28CancelOutline>
+        left = <PanelHeaderClose className="Header__button" >
+            <Icon28CancelOutline></Icon28CancelOutline>
+        </PanelHeaderClose>
+        leftClick = onClose
     }
     else if (onBack){
         left = <PanelHeaderBack onClick={onBack} className="Header__button" ></PanelHeaderBack>
+        leftClick = onBack
     }
 
     if(click){
@@ -109,7 +111,7 @@ const Header = ({curWidth, onBack, onClose, isFixed, text, icon, click}) => {
             >
 
             <div className="Header__inside" style={{cursor:cursor}}>
-                {left && <div className="Header__leftBtn">{left}</div>}
+                {left && <div className="Header__leftBtn" onClick={leftClick}>{left}</div>}
                 {getTitle(text,icon,curWidth, left, click)}
                 <div className="Header__rightStub" onClick={click}></div>
             </div>
