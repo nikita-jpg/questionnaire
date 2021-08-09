@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 
 import './PanelWrapper.css'
 
-const PanelWrapper = ({id, children, isOneColumn, 
+const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCantre,
     isHeaderHide, isHeaderFixed, onHeaderClose, onHeaderBack, 
     headerIcon, headerText, headerClick}) => {
 
@@ -26,9 +26,9 @@ const PanelWrapper = ({id, children, isOneColumn,
     // }
     return(
 
-        <Panel id={id} separator={false}>
+        <Panel id={id} separator={false} name={name}>
 
-            <div className="PanelWrapper" style={{minHeight:curHeight,minWidth:curWidth}}>
+            <div className="PanelWrapper" style={{minHeight:curHeight,minWidth:curWidth, justifyContent:isVerticalCantre?"center":"start"}}>
                 {
                     !isHeaderHide &&
                     <Header

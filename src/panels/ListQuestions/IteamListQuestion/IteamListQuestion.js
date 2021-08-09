@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
+import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
 
 import "./IteamListQuestion.css";
 
@@ -19,10 +20,16 @@ const IteamListQuestion = ({ id, question,
     const onLinkClick = (e) => e.stopPropagation();
 
     return (
-        <Panel id={id} separator={false} name={name}>
+        <PanelWrapper id={id} name={name}
+        
+            onHeaderClose={goToPrevQuestion}
+            headerText={numberCurrentQuestion + " из " + countQuestions}
+            icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
+            headerClick={changeModal}
+        >
             <div className="IteamListQuestion">
 
-                <Header
+                {/* <Header
                     isClose={numberCurrentQuestion === 1 ? true : false}
                     leftBtnFunc={goToPrevQuestion}
                     text={numberCurrentQuestion + " из " + countQuestions} 
@@ -30,7 +37,7 @@ const IteamListQuestion = ({ id, question,
                     click={changeModal}
                 >              
                     
-                </Header>
+                </Header> */}
 
                 
                 <Div className="IteamListQuestion__content">
@@ -85,7 +92,6 @@ const IteamListQuestion = ({ id, question,
                                     isActived={indexAnswer === i}
                                     text={answer.text}
                                     className={`IteamListQuestion__answer ${isClicked?"IteamListQuestion__answer-active":""}` }
-                                    // style={testStyle}
                                 >
                                 </ButtonWrapper>
                             ))
@@ -93,7 +99,7 @@ const IteamListQuestion = ({ id, question,
                     </div>
                 </Div>
             </div>
-        </Panel>
+        </PanelWrapper>
     )
 };
 
