@@ -17,11 +17,15 @@
     overflow: hidden;
     border-radius: 6px; 
     cursor: pointer;
+
+    display: flex;
+    justify-content: center;
 }
 
 .IteamListQuestion__image {
     display: block;
     width: 100%;
+    /* max-width: var(--main-max-imgWidth-In-IteamListQuestion); */
     border-radius: 8px;
 }
 

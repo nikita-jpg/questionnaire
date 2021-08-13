@@ -15,8 +15,7 @@ const ItemAnswerQuestion = ({indexQuestion, question, indexRightAnswer, indexUse
     const ICON_SIZE = 24;
 
     return (
-        
-        <Div>
+        <div className="ItemAnswerQuestion">
             <ButtonWrapper
                 onClick={ () => {openAlert(indexQuestion)}}
                 text={question.questionText}
@@ -27,8 +26,7 @@ const ItemAnswerQuestion = ({indexQuestion, question, indexRightAnswer, indexUse
                     : <Icon16CancelCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-red-color)"}}/> }
             >
             </ButtonWrapper>
-        </Div>
-
+        </div>
     )
 }
 

@@ -19,8 +19,9 @@
 
     --main-min-card-width: 300px;
     --main-max-card-width:400px;
-    --main-max-oneСolumnPanelWrapperMode-width:400px;
+    --main-max-oneСolumnPanelWrapperMode-width:370px;
     --main-max-panelWrapper-width:1280px;
+    --main-max-imgWidth-In-IteamListQuestion:350px;
  
     /* Переопределено */
     --background_content:#1C1C1E;

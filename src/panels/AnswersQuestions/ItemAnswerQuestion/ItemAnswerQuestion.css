@@ -1,7 +1,10 @@
 
 /* Новое */
 .ItemAnswerQuestion{
-    
+    width: 100%;
+}
+.ItemAnswerQuestion:not(:first-child){
+    margin-top: 20px;
 }
 .ItemAnswerQuestion__button-text{
     text-overflow: ellipsis;
