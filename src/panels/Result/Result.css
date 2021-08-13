@@ -19,7 +19,6 @@
     color: var(--main-white-color);
 }
 
-
 .Result__points-postfix_good {
     color: var(--main-green-color);
 }
@@ -32,6 +31,14 @@
     color: var(--main-red-color);
 }
 
+/* Информация об опросе */
+.Result__QuizInfo{
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: var(--main-therd-bg-color);
+    margin-top: 2px;
+}
 
 
 /* Панель с кнопками */

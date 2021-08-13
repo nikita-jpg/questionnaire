@@ -10,7 +10,7 @@ import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
 
 
-const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
+const Result = ({ id, age, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     onBack = () => {}, createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
@@ -121,6 +121,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             return startAnimDealyForCard + curAnimDealyForCard + "s";
         }
 
+    console.log(age)
     return (
         <View 
             id={id} 
@@ -150,6 +151,11 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                                 <span>/{questions.length}</span>
                             </span>
                         </div>
+
+                        {/* Стркока вида "Название эпохи: Название опроса" */}
+                        {/* <div className={`Result__QuizInfo ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
+                                <span>{age.title}: {quizes[indexQuiz].title}</span>
+                        </div> */}
 
                         {/* Панелька с кнопками */}
                         <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
