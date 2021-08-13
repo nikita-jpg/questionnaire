@@ -2,18 +2,9 @@ import { ContentCard, Div } from '@vkontakte/vkui';
 import React from 'react';
 import './ListCard.css';
 
-const ListCard = ( { info, cardClick = (index) => null } ) => {
-
-    const [curWidth, setCurWidth] = useState(0);
-    
-    useEffect(() => {
-		
-		//Обновляем текущую ширину
-		setCurWidth(document.getElementById('ListCard__containerId').scrollWidth)
-	}, []);
+const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
 
     const getWidthInfo = () => {
-        console.log(curWidth)
         if(curWidth>1280){
             return {colNumber:"s", maxWidth:"--main-three-col-max-width"}
         }
@@ -49,6 +40,8 @@ const ListCard = ( { info, cardClick = (index) => null } ) => {
                     ))
                 }
             </div>
+            }
+        </Div>
     )
 }
 
