@@ -143,8 +143,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
 
             <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}>
 
-                    <div className="Result__content">
-
+                        {/* Цифра в виде результата */}
                         <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <span className={`Result__points ${getClassNameForPercent(percent)}`}>
                                     {percent}
@@ -152,6 +151,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             </span>
                         </div>
 
+                        {/* Панелька с кнопками */}
                         <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <ResultButtons 
                                 onAgain={modifyIsFirstOpenResult(onAgain)}
@@ -160,7 +160,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             />
                         </div>
 
-
+                        {/* Реклама */}
                         {
                             isAdVisible &&
                             <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
@@ -168,7 +168,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             </div>
                         }
 
-
+                        {/* Карточки опросов */}
                         {
                             quizes.map((record,i) => {
 
@@ -194,8 +194,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                                 }
                             })
                         }
-                        
-                    </div>
+
             </PanelWrapper>
 
             <AnswersQuestions
