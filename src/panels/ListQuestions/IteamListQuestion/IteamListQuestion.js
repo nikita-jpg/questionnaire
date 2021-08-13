@@ -1,9 +1,10 @@
 import { Icon28ChevronDownOutline } from '@vkontakte/icons';
-import { Panel, platform, Text, Div}  from '@vkontakte/vkui';
+import { Panel, platform, Text, Div, Platform, PanelHeaderButton}  from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
+import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
 
 import "./IteamListQuestion.css";
 
@@ -19,22 +20,16 @@ const IteamListQuestion = ({ id, question,
     const onLinkClick = (e) => e.stopPropagation();
 
     return (
-        <Panel id={id} separator={false} name={name}>
+        <PanelWrapper id={id} name={name} isOneColumn={true}
+        
+            onHeaderClose={numberCurrentQuestion === 1 ? goToPrevQuestion:false}
+            onHeaderBack={goToPrevQuestion}
+            headerText={numberCurrentQuestion + " из " + countQuestions}
+            headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
+            headerClick={changeModal}
+        >
             <div className="IteamListQuestion">
-
-                <Header
-                    isClose={numberCurrentQuestion === 1 ? true : false}
-                    leftBtnFunc={goToPrevQuestion}
-                    text={numberCurrentQuestion + " из " + countQuestions} 
-                    icon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
-                    click={changeModal}
-                >              
-                    
-                </Header>
-
                 
-                <Div className="IteamListQuestion__content">
-
                     <div className="IteamListQuestion__image-container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
                         <img
@@ -85,15 +80,13 @@ const IteamListQuestion = ({ id, question,
                                     isActived={indexAnswer === i}
                                     text={answer.text}
                                     className={`IteamListQuestion__answer ${isClicked?"IteamListQuestion__answer-active":""}` }
-                                    // style={testStyle}
                                 >
                                 </ButtonWrapper>
                             ))
                         }
                     </div>
-                </Div>
             </div>
-        </Panel>
+        </PanelWrapper>
     )
 };
 

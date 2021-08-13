@@ -18,11 +18,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
 
     // логика хранения ответов
     const getInitStateAnswers = () => [
-        // ...arrQuestions.map(question => (
-        //     // questionText: question.questionText.substring(0, 15),
-        //     // indexAnswer: -1
-        //     -1
-        // ))
         -1,-1,-1,-1,-1,-1,-1,-1
     ];
 
@@ -31,20 +26,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
     const giveAnswer = (indexQuestion, indexAnswer) => {
         stateAnswers[indexQuestion] = indexAnswer;
         setStateAnswers([...stateAnswers]);
-    }
-
-    const calculateScore = () => { 
-        // let score = 0;
-        // stateAnswers.map((answer)
-
-        // )
-        // return stateAnswers.reduce((sum, dataAnswer, indexQuestion) => {
-        //     if (dataAnswer === -1) {
-        //         return sum;
-        //     }
-
-        //     return sum + arrQuestions[indexQuestion].answerOptions[dataAnswer.indexAnswer].score;
-        // }, 0);
     }
 
     const resetStateAnswers = () => setStateAnswers(getInitStateAnswers());
@@ -69,7 +50,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         } else {
             onFinishWithAlert();
         }
-        // setIsClicked(false);
     }
 
     const createGoToPrevQuestion = (indexQuestion) => () => {
@@ -87,7 +67,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         setNotActiveBackgoundToAnswerButton()
         if (indexQuestion != toIndexQuestion)
         {
-            // setLastIndexQuestion(fromIndexQuestion);
             setIndexQuestionAndHistory(toIndexQuestion);
         }   
     }
@@ -130,7 +109,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
         isAllAnswered() ? onFinish(stateAnswers) : openFinishAlert()
     }
     const isAllAnswered = () => {
-        // console.log(stateAnswers)
         for (let i=0;i<stateAnswers.length;i++){
             if(stateAnswers[i] === -1) return false;
         }
@@ -148,8 +126,7 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
             >
             </AlertWrapper>
     )}
-    const openFinishAlert = () => {  
-        // console.log(stateAnswers)      
+    const openFinishAlert = () => {       
         setAlert(
 
             <AlertWrapper
@@ -162,10 +139,6 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
             </AlertWrapper>
 
     )}
-        
-    // const closeAlert = () => {
-    //     setAlert(null)
-    // }
 
     //Модальное окно
     const modal = (
@@ -232,13 +205,11 @@ const ListQuestions = ({id, curWidth, arrQuestions, onBack=()=>{}, onFinish=tota
                         numberCurrentQuestion={i+1}
                         countQuestions={arr.length}
 
-                        // stateAnswers={stateAnswers}
                         indexAnswer={stateAnswers[i]}
 
                         lastIndexQuestion={lastIndexQuestion}
                         currentIndexQuestion={i}
                         goToLastQuestion={goToLastQuestion}
-                        // goToQuestionWithoutAnswer={createGoToQuestionWithoutAnswer(i)}
 
                         goToNextQuestion={createGoToNextQuestion(i, arr.length)}
                         goToPrevQuestion={createGoToPrevQuestion(i)}

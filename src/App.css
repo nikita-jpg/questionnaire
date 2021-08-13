@@ -16,12 +16,11 @@
     --main-oliveOil-color: #BAAB8F;
     --main-purple-color:#64d2ff;
 
-    /* Колонки карточек и карточка*/
-    --main-one-col-max-width:380px;
-    --main-two-col-max-width:720px;
-    --main-three-col-max-width:1100px;
 
-    --main-max-card-width:400px;
+    --main-max-oneСolumnPanelWrapperMode-width:400px;
+    --main-max-card-width:300px;
+    --main-max-panelWrapper-width:1280px;
+    /* --main-delay-anim-result: .3s; */
  
     /* Переопределено */
     --background_content:#1C1C1E;
@@ -43,8 +42,62 @@
   .vkui__root{
     --font-tt: "Lato", "TT Commons", -apple-system, Helvetica Neue, Roboto, sans-serif;
   }
-  .vkuiModalPageHeader__content-in{
+  .vkuiPanelHeader {
     width: 100%;
+  }
+  /* .vkuiModalPageHeader__content-in{
+    width: 100%;
+  } */
+
+  /* Хедер */
+  /* ios */
+  .vkuiPanelHeader--ios .vkuiPanelHeader__left{
+    padding: 0;
+    width: 0;
+    flex-grow: 0;
+  }
+  .vkuiPanelHeader--ios .vkuiPanelHeader__content>*{
+    padding: 0;
+  }
+  .vkuiPanelHeader--ios.vkuiPanelHeader--no-right .vkuiPanelHeader__content{
+    padding-right: 0;
+  }
+  .vkuiPanelHeader--ios.vkuiPanelHeader--no-left .vkuiPanelHeader__content{
+    padding: 0;
+  }
+  .vkuiPanelHeader--ios .vkuiPanelHeader__right{
+    min-width: 0;
+    flex-grow: 0;
+    padding: 0;
+  }
+
+  /* Андроид */
+  .vkuiPanelHeader--android .vkuiPanelHeader__left{
+    padding: 0;
+    width: 0;
+    flex-grow: 0;
+  }
+  .vkuiPanelHeader--android .vkuiPanelHeader__content>*{
+    padding: 0;
+  }
+  .vkuiPanelHeader--android.vkuiPanelHeader--no-right .vkuiPanelHeader__content{
+    padding-right: 0;
+  }
+  .vkuiPanelHeader--android.vkuiPanelHeader--no-left .vkuiPanelHeader__content{
+    padding: 0;
+  }
+  .vkuiPanelHeader--android .vkuiPanelHeader__right{
+    min-width: 0;
+    flex-grow: 0;
+    padding: 0;
+  }
+
+
+
+
+
+  .vkuiPanelHeader__content.PanelHeader__content{
+    flex-grow: 1;
   }
   .vkuiPanel.vkuiPanel--regular::after{
     background-color: var(--background_content);
@@ -52,6 +105,9 @@
   .PanelHeader__content{
     height: 100%;
   }
+  /* .vkuiPanelHeader--vkapps .vkuiPanelHeader__right{
+    min-width: 0px;
+  } */
  .Panel.Panel--regular{
    background-color: var(--background_content);
  }
@@ -112,12 +168,3 @@
   background-color: var(--main-second-bg-color);
   outline: none;
 }
-/* .vkuiCard:not(:first-child){
-  margin-top: 20px;
-} */
-.testPanelClass{
-  display: flex;
-  justify-content: center;
-}
-
-

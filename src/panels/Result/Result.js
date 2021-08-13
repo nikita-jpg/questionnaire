@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import AlertQuestionResult from "../../components/AlertQuestionResult/AlertQuestionResult";
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
+import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
@@ -140,10 +141,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             onSwipeBack={goBackInHistory}
             history={history}>
 
-            <Panel id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}}>
-                <div className="Result">
-
-                    <Header fixed={false}></Header>
+            <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}>
 
                     <div className="Result__content">
 
@@ -198,8 +196,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                         }
                         
                     </div>
-                </div>
-            </Panel>
+            </PanelWrapper>
 
             <AnswersQuestions
                 id={PANEL_ANSWERS_QUESTIONS}
