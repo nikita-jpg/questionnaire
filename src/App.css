@@ -17,10 +17,10 @@
     --main-purple-color:#64d2ff;
 
 
+    --main-min-card-width: 250px;
+    --main-max-card-width:400px;
     --main-max-oneСolumnPanelWrapperMode-width:400px;
-    --main-max-card-width:300px;
     --main-max-panelWrapper-width:1280px;
-    /* --main-delay-anim-result: .3s; */
  
     /* Переопределено */
     --background_content:#1C1C1E;
