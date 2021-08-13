@@ -17,8 +17,8 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
     }
 
     return (
-        <Div>
-            {
+        // <Div>
+        //     {
             <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
                 {
                     info.map((record,i) => (
@@ -40,8 +40,8 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
                     ))
                 }
             </div>
-            }
-        </Div>
+        //     }
+        // </Div>
     )
 }
 
