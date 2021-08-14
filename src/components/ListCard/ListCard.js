@@ -31,19 +31,6 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
                                 description={record.description}
                             >
                             </CardWrapper>
-                            {/* <ContentCard
-                                header={
-                                    <div className="ListCard__title">
-                                        <div>{record.title}</div>
-                                        <div>{record.percentProgress}/{record.numberOfQuestions}</div>
-                                    </div>
-                                }
-                                mode={"tint"}
-                                onClick={cardClick(i)}
-                                image={record.imageSrc}
-                                caption={record.description}
-                                className="ListCard__Card"
-                            /> */}
                         </div>
                     ))
                 }
