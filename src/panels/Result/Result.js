@@ -8,10 +8,12 @@ import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
+import ResultCards from './ResultCards/ResultCards';
 
 
-const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
+const Result = ({ id, indexAge, percent, eras, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     onBack = () => {}, createOnClickItemQuizes = (index) => null,
+    createOnClickItemAge = () => {},
     onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
     //Работа с панелями
@@ -168,6 +170,20 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             </div>
                         }
 
+                        {
+                        <ResultCards 
+                            indexAge={indexAge}
+                            indexQuiz={indexQuiz}
+                            eras={eras}
+
+                            isFirstOpenResult={isFirstOpenResult}
+                            makeStepAnimDealyForCard={makeStepAnimDealyForCard}
+                            goToQuiz={createOnClickItemQuizes}
+                            goToEra={createOnClickItemAge}
+                        >
+
+                        </ResultCards>
+                        }
                         {/* Карточки опросов */}
                         {
                             quizes.map((record,i) => {
