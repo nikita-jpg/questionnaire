@@ -169,3 +169,8 @@
   background-color: var(--main-second-bg-color);
   outline: none;
 }
+
+/* Модалка */
+* .vkuiModalPageHeader__content{
+  justify-content: center;
+}
