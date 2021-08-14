@@ -169,23 +169,36 @@ const Result = ({ id, indexAge, percent, eras, quizes, indexesAnswers, questions
                                 <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
                             </div>
                         }
-
+       
                         {
+                            console.log(
+                                <ResultCards 
+                                indexAge={indexAge}
+                                indexQuiz={indexQuiz}
+                                eras={eras}
+                                isFirstOpenResult={isFirstOpenResult}
+    
+                                makeStepAnimDealyForCard={makeStepAnimDealyForCard}
+                                goToQuiz={createOnClickItemQuizes}
+                                goToEra={createOnClickItemAge}
+                            >
+                            </ResultCards>
+                            )
+                        }
                         <ResultCards 
                             indexAge={indexAge}
                             indexQuiz={indexQuiz}
                             eras={eras}
-
                             isFirstOpenResult={isFirstOpenResult}
+
                             makeStepAnimDealyForCard={makeStepAnimDealyForCard}
                             goToQuiz={createOnClickItemQuizes}
                             goToEra={createOnClickItemAge}
                         >
-
                         </ResultCards>
-                        }
+                        
                         {/* Карточки опросов */}
-                        {
+                        {/* {
                             quizes.map((record,i) => {
 
                                 if((record.percentProgress !== record.questions.length) && (i!==indexQuiz))
@@ -209,7 +222,7 @@ const Result = ({ id, indexAge, percent, eras, quizes, indexesAnswers, questions
                                     )
                                 }
                             })
-                        }
+                        } */}
 
             </PanelWrapper>
 

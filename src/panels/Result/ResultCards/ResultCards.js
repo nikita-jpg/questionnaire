@@ -1,41 +1,44 @@
 import React from 'react';
+import CardWrapper from '../../../components/CardWrapper/CardWrapper';
 import './ResultCards.css'
 
-const makeCard = (info, isFirstOpenResult, makeStepAnimDealyForCard=()=>{}) => {
+const makeCard = (info, isFirstOpenResult,cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
     return(
         <div className={`ResultCards__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
-        {/* <ContentCard
-            header={
-                <div className="ListCard__title">
-                    <div>{info.title}</div>
-                    <div>{info.percentProgress}/{info.numberOfQuestions}</div>
-                </div>
-            }
-            mode={"tint"}
-            onClick={createOnClickItemQuizes(i)}
-            image={info.imageSrc}
-            caption={info.description}
-            className="ListCard__Card"
-        /> */}
-    </div>
+            <CardWrapper
+                title={info.title}
+                percentProgress={info.percentProgress}
+                numberOfQuestions={info.numberOfQuestions}
+                cardClick={cardClick}
+                imageSrc={info.imageSrc}
+                description={info.description}
+            >    
+            </CardWrapper>
+        </div>
     )
 }
 
-const quizFilter = (arrQuizes, isFirstOpenResult, makeStepAnimDealyForCard=()=>{}) => {
-    arrQuizes.map((record,i) => {
+const quizFilter = (arrQuizes, indexQuiz, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
 
-        // if((record.percentProgress !== record.questions.length) && (i!==indexQuiz))
-        // {
-        //     makeCard(record,isFirstOpenResult,makeStepAnimDealyForCard)
-        // }
-    })
+    let arr = [];
+    for(let i=0;i<arrQuizes.length;i++){
+        if((arrQuizes[i].percentProgress !== arrQuizes[i].questions.length) && (i!==indexQuiz)){
+            arr.push(makeCard(arrQuizes[i], isFirstOpenResult, cardClick, makeStepAnimDealyForCard))
+        }
+    }
+
+    return(arr)
 }
 
 const ResultCards = ({indexAge,indexQuiz,eras,isFirstOpenResult,
     goToQuiz=()=>{},goToEra=()=>{},
     makeStepAnimDealyForCard=()=>{}}) =>{
 
-        
+    let cardsArr = quizFilter(eras[indexAge].quizzes, indexQuiz, isFirstOpenResult, goToQuiz, makeStepAnimDealyForCard)
+
+    if( cardsArr !== [])
+        return(cardsArr)
+    
 
 }
 export default ResultCards
