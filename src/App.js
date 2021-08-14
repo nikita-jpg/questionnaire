@@ -28,8 +28,8 @@ const App = ({ eras, results, MAX_SCORE,
 	const [isNeedDateLoaded,setIsNeedDateLoaded] = useState(false)
 
 	useEffect(() => {
-		if(!isNeedDateLoaded)
-			firstDownload()
+		// if(!isNeedDateLoaded)
+		// 	firstDownload()
 		
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
@@ -49,7 +49,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_SPINNER);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE_AND_QUIZES);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
@@ -255,8 +255,6 @@ const App = ({ eras, results, MAX_SCORE,
 								<ListQuizes 
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
-									// title={eras[indexAge].title} 
-									// quizes={eras[indexAge].quizzes} 
 									title={eras[indexAge].title} 
 									quizes={eras[indexAge].quizzes} 
 									onBack={onBackListQuizes} 
@@ -280,8 +278,11 @@ const App = ({ eras, results, MAX_SCORE,
 								historicalEvent={results[indexResuslt].historicalEvent}
 								quizes={eras[indexAge].quizzes}
 								questions={eras[indexAge].quizzes[indexQuiz].questions}
+								indexAge={indexAge}
+								eras={eras}
 								indexQuiz={indexQuiz}
 								indexesAnswers={indexesAnswers}
+								createOnClickItemAge={createOnClickItemAge}
 								onBack={onBackResult}
 								createOnClickItemQuizes={createOnClickItemQuizes}
 

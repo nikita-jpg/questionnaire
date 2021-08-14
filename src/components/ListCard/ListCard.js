@@ -1,5 +1,6 @@
 import { ContentCard, Div } from '@vkontakte/vkui';
 import React from 'react';
+import CardWrapper from '../CardWrapper/CardWrapper';
 import './ListCard.css';
 
 const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
@@ -17,13 +18,20 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
     }
 
     return (
-        <Div>
-            {
             <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
                 {
                     info.map((record,i) => (
                         <div key={record.title}>
-                            <ContentCard
+                            <CardWrapper
+                                title={record.title}
+                                percentProgress={record.percentProgress}
+                                numberOfQuestions={record.numberOfQuestions}
+                                cardClick={cardClick(i)}
+                                imageSrc={record.imageSrc}
+                                description={record.description}
+                            >
+                            </CardWrapper>
+                            {/* <ContentCard
                                 header={
                                     <div className="ListCard__title">
                                         <div>{record.title}</div>
@@ -35,13 +43,11 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
                                 image={record.imageSrc}
                                 caption={record.description}
                                 className="ListCard__Card"
-                            />
+                            /> */}
                         </div>
                     ))
                 }
             </div>
-            }
-        </Div>
     )
 }
 

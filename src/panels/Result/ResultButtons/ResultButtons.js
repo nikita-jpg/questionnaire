@@ -73,14 +73,14 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewLi
                 >
                 </ButtonWrapper> */}
 
-                <ButtonWrapper
+                {/* <ButtonWrapper
                     size="l"
                     text="Поделиться"
                     className="Result-buttons__button"
                     classNameText="Result-buttons__text"
                     before={<Icon28ShareExternalOutline width={iconSize} height={iconSize} style={{color:"var(--main-blue-color)"}}/>}
                 >
-                </ButtonWrapper>
+                </ButtonWrapper> */}
 
 
                 {/* <button className="Result-buttons Result-buttons_favorite">Поддержать</button>

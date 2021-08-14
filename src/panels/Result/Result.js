@@ -4,13 +4,16 @@ import React, { useState } from "react";
 import AlertQuestionResult from "../../components/AlertQuestionResult/AlertQuestionResult";
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
+import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
+import ResultCards from './ResultCards/ResultCards';
 
 
-const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
+const Result = ({ id, indexAge, percent, eras, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     onBack = () => {}, createOnClickItemQuizes = (index) => null,
+    createOnClickItemAge = () => {},
     onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
     //Работа с панелями
@@ -140,13 +143,9 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
             onSwipeBack={goBackInHistory}
             history={history}>
 
-            <Panel id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}}>
-                <div className="Result">
+            <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}>
 
-                    <Header fixed={false}></Header>
-
-                    <div className="Result__content">
-
+                        {/* Цифра в виде результата */}
                         <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <span className={`Result__points ${getClassNameForPercent(percent)}`}>
                                     {percent}
@@ -154,6 +153,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             </span>
                         </div>
 
+                        {/* Панелька с кнопками */}
                         <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <ResultButtons 
                                 onAgain={modifyIsFirstOpenResult(onAgain)}
@@ -162,7 +162,7 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             />
                         </div>
 
-
+                        {/* Реклама */}
                         {
                             isAdVisible &&
                             <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
@@ -170,7 +170,21 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                             </div>
                         }
 
+                        {
+                        <ResultCards 
+                            indexAge={indexAge}
+                            indexQuiz={indexQuiz}
+                            eras={eras}
 
+                            isFirstOpenResult={isFirstOpenResult}
+                            makeStepAnimDealyForCard={makeStepAnimDealyForCard}
+                            goToQuiz={createOnClickItemQuizes}
+                            goToEra={createOnClickItemAge}
+                        >
+
+                        </ResultCards>
+                        }
+                        {/* Карточки опросов */}
                         {
                             quizes.map((record,i) => {
 
@@ -196,10 +210,8 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                                 }
                             })
                         }
-                        
-                    </div>
-                </div>
-            </Panel>
+
+            </PanelWrapper>
 
             <AnswersQuestions
                 id={PANEL_ANSWERS_QUESTIONS}

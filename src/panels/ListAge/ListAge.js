@@ -4,21 +4,13 @@ import './ListAge.css'
 import { isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
+import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
 
-const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>null}) => {
-
-    const ID_ACTIVE_PANEL = "ID_ACTIVE_PANEL";
-
+const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
 
     return (
-        <Panel id={ID_ACTIVE_PANEL}>
-
-            <div className="ListAge">
-
-                <Header
-                    text="Выбирете эпоху"
-                ></Header> 
+        <PanelWrapper id={id} headerText="Выбирете эпоху" isHeaderFixed={true}>
 
                 <div className="ListAge__content">
                     <ListCard
@@ -28,9 +20,7 @@ const ListAge = ({id, eras,curWidth, screenSpinner, createOnClickItemAge=index=>
                     </ListCard>
                 </div>
 
-            </div>
-
-        </Panel>
+        </PanelWrapper>
     )
 }
 
