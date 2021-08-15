@@ -169,60 +169,21 @@ const Result = ({ id, indexAge, percent, eras, quizes, indexesAnswers, questions
                                 <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
                             </div>
                         }
-       
-                        {
-                            console.log(
-                                <ResultCards 
-                                indexAge={indexAge}
-                                indexQuiz={indexQuiz}
-                                eras={eras}
-                                isFirstOpenResult={isFirstOpenResult}
-    
-                                makeStepAnimDealyForCard={makeStepAnimDealyForCard}
-                                goToQuiz={createOnClickItemQuizes}
-                                goToEra={createOnClickItemAge}
-                            >
-                            </ResultCards>
-                            )
-                        }
+
+                        {/* Карточки опросов */}
                         <ResultCards 
                             indexAge={indexAge}
                             indexQuiz={indexQuiz}
                             eras={eras}
                             isFirstOpenResult={isFirstOpenResult}
+                            isCompletedQuiz={percent === questions.length ? true : false}
 
                             makeStepAnimDealyForCard={makeStepAnimDealyForCard}
+                            onAgain={modifyIsFirstOpenResult(onAgain)}
                             goToQuiz={createOnClickItemQuizes}
-                            goToEra={createOnClickItemAge}
+                            goToEras={goToViewListAndQuizes}
                         >
                         </ResultCards>
-                        
-                        {/* Карточки опросов */}
-                        {/* {
-                            quizes.map((record,i) => {
-
-                                if((record.percentProgress !== record.questions.length) && (i!==indexQuiz))
-                                {
-                                    return(
-                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
-                                        <ContentCard
-                                            header={
-                                                <div className="ListCard__title">
-                                                    <div>{record.title}</div>
-                                                    <div>{record.percentProgress}/{record.numberOfQuestions}</div>
-                                                </div>
-                                            }
-                                            mode={"tint"}
-                                            onClick={createOnClickItemQuizes(i)}
-                                            image={record.imageSrc}
-                                            caption={record.description}
-                                            className="ListCard__Card"
-                                        />
-                                    </div>
-                                    )
-                                }
-                            })
-                        } */}
 
             </PanelWrapper>
 
