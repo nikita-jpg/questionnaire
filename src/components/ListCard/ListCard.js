@@ -2,7 +2,7 @@ import { ContentCard, Div } from '@vkontakte/vkui';
 import React from 'react';
 import './ListCard.css';
 
-const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
+const ListCard = ( { info, curWidth, gridGap="8px", cardClick = (index) => null } ) => {
 
     const getWidthInfo = () => {
         if(curWidth>1280){
@@ -16,8 +16,13 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null } ) => {
         } 
     }
 
+    const styleListCard = {
+        maxWidth: getWidthInfo().maxWidth,
+        gridGap
+    }
+
     return (
-            <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
+            <div className="ListCard" style={styleListCard}>
                 {
                     info.map((record,i) => (
                         <div key={record.title}>
