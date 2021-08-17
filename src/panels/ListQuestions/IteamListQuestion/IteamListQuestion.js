@@ -77,6 +77,7 @@ const IteamListQuestion = ({ id, question,
                                         setNotActiveBackgoundToAnswerButton();
                                         goToNextQuestion(i);
                                     }}
+                                    isLinkForm={true}
                                     isActived={indexAnswer === i}
                                     text={answer.text}
                                     className={`IteamListQuestion__answer ${isClicked?"IteamListQuestion__answer-active":""}` }
