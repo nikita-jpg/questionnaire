@@ -282,8 +282,11 @@ const App = ({ eras, results, MAX_SCORE,
 								historicalEvent={results[indexResuslt].historicalEvent}
 								quizes={eras[indexAge].quizzes}
 								questions={eras[indexAge].quizzes[indexQuiz].questions}
+								indexAge={indexAge}
+								eras={eras}
 								indexQuiz={indexQuiz}
 								indexesAnswers={indexesAnswers}
+								createOnClickItemAge={createOnClickItemAge}
 								onBack={onBackResult}
 								createOnClickItemQuizes={createOnClickItemQuizes}
 

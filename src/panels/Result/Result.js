@@ -8,10 +8,12 @@ import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
+import ResultCards from './ResultCards/ResultCards';
 
 
-const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
+const Result = ({ id, indexAge, percent, eras, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     onBack = () => {}, createOnClickItemQuizes = (index) => null,
+    createOnClickItemAge = () => {},
     onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
     //Работа с панелями
@@ -169,31 +171,19 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                         }
 
                         {/* Карточки опросов */}
-                        {
-                            quizes.map((record,i) => {
+                        <ResultCards 
+                            indexAge={indexAge}
+                            indexQuiz={indexQuiz}
+                            eras={eras}
+                            isFirstOpenResult={isFirstOpenResult}
+                            isCompletedQuiz={percent === questions.length ? true : false}
 
-                                if((record.percentProgress !== record.questions.length) && (i!==indexQuiz))
-                                {
-                                    return(
-                                        <div className={`Result__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
-                                        <ContentCard
-                                            header={
-                                                <div className="ListCard__title">
-                                                    <div>{record.title}</div>
-                                                    <div>{record.percentProgress}/{record.numberOfQuestions}</div>
-                                                </div>
-                                            }
-                                            mode={"tint"}
-                                            onClick={createOnClickItemQuizes(i)}
-                                            image={record.imageSrc}
-                                            caption={record.description}
-                                            className="ListCard__Card"
-                                        />
-                                    </div>
-                                    )
-                                }
-                            })
-                        }
+                            makeStepAnimDealyForCard={makeStepAnimDealyForCard}
+                            onAgain={modifyIsFirstOpenResult(onAgain)}
+                            goToQuiz={createOnClickItemQuizes}
+                            goToEras={goToViewListAndQuizes}
+                        >
+                        </ResultCards>
 
             </PanelWrapper>
 

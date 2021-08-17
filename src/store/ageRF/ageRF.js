@@ -12,15 +12,14 @@ const ageRF = {
     imageSrc: mainImage,
     description:"Росси́йская федерация",
     percentProgress: 0,
-    numberOfQuestions: 6,
-    // numberOfQuestions:8,
+    numberOfQuestions: 1,
     quizzes: [
         MMM,
-        Privatization,
-        TheChechenWar,
-        TheWhiteHouse,
-        Yeltsin,
-        Zero
+        // Privatization,
+        // TheChechenWar,
+        // TheWhiteHouse,
+        // Yeltsin,
+        // Zero
     ]
 }
 

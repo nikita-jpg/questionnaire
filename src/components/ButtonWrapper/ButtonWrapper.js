@@ -21,7 +21,7 @@ const ButtonWrapper = ({isActived, text, onClick, before, className, classNameTe
             hasActive={hasActive}
             className={`ButtonWrapper ${isActived && "ButtonWrapper_active"} ${className}`}
             style={style}
-            
+
         >
             <div className={`ButtonWrapper__text ${classNameText}`}>
                 {text}

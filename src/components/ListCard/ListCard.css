@@ -5,12 +5,3 @@
     grid-template-columns: repeat(auto-fit, minmax(var(--main-min-card-width), 1fr));
     grid-gap: 8px;
 }
-.ListCard__Card{
-    background-color: var(--main-second-bg-color);
-}
-.ListCard__title{
-    color: var(--main-white-color);
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
