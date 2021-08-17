@@ -80,6 +80,8 @@ const eraFilter = (arrEras, indexAge, isFirstOpenResult, isCompletedQuiz,
                     <div className={`ResultCards__container__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
                         <div className="ResultCards__button">
                             <ButtonWrapper
+                                isLinkForm={true}
+                                style={{color:"var(--main-gray-color)", fontSize:"18px"}}
                                 text={button.text}
                                 onClick={button.click}
                             ></ButtonWrapper>
