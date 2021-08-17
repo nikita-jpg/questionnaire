@@ -19,6 +19,14 @@
     font-family: var(--font-tt);
     font-size: 15px;
 }
-.testButton{
-    background-color: green;
+
+/* linkForm */
+.ButtonWrapper__text_linkForm{
+    text-align: center;
+    color: var(--main-white-color);
+    font-size: 24px;
+    text-decoration: underline;
+}
+.ButtonWrapper__text_linkForm:hover{
+    cursor: pointer;
 }
