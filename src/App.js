@@ -50,7 +50,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE_AND_QUIZES);
+	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
@@ -77,9 +77,20 @@ const App = ({ eras, results, MAX_SCORE,
 
 
 
+	//Тестим Api
+
+	const http = axios.create({
+		headers: {
+		  // Прикрепляем заголовок, отвечающий за параметры запуска.
+		  Authorization: `${window.location.search.slice(1)}`,
+		}
+	  });
 	// функции для StartWindow
 		const onClickStartWindow = () => {
-			goToViewListAgeAndQuizes();
+			http.get("http://127.0.0.1:18301").then(res=>{
+				console.log(res)
+			})
+			// goToViewListAgeAndQuizes();
 		}
 
 
