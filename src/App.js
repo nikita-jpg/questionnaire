@@ -34,6 +34,7 @@ const App = ({ eras, results, MAX_SCORE,
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
 	}, []);
+	
 
 	// логика переключения между View
 	const VIEW_ID_START_WINDOW = "VIEW_ID_START_WINDOW";
