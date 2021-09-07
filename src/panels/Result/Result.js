@@ -2,6 +2,7 @@ import bridge from '@vkontakte/vk-bridge';
 import { ContentCard, Div, Panel, PromoBanner, View } from "@vkontakte/vkui";
 import React, { useState } from "react";
 import AlertQuestionResult from "../../components/AlertQuestionResult/AlertQuestionResult";
+import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
@@ -10,7 +11,7 @@ import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
 
 
-const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
+const Result = ({ id, titleAge, year, percent, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     onBack = () => {}, createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
@@ -146,8 +147,13 @@ const Result = ({ id, year, percent, historicalEvent, quizes, indexesAnswers, qu
                         {/* Цифра в виде результата */}
                         <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <span className={`Result__points ${getClassNameForPercent(percent)}`}>
+                                <CustomTooltip
+                                    text={`${titleAge}: ${quizes[indexQuiz].title}`}
+                                    defaultIsShown={isFirstOpenResult}
+                                >
                                     {percent}
-                                <span>/{questions.length}</span>
+                                    <span>/{questions.length}</span>
+                                </CustomTooltip>
                             </span>
                         </div>
 
