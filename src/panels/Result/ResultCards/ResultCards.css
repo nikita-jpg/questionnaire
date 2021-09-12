@@ -1,0 +1,32 @@
+.ResultCards__card{
+    margin-top: 8px;
+    width: 100%;
+    color: var(--main-white-color);
+}
+
+/* Второй Фильтр */
+.ResultCards__container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.ResultCards__container__text{
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.ResultCards__text{
+    text-align: center;
+    color: var(--main-gray-color);
+}
+
+
+.ResultCards__container__buttons{
+    width: 100%;
+}
+.ResultCards__button{
+    margin-top: 8px;
+    width: 100%;
+}

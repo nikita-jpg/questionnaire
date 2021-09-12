@@ -283,8 +283,11 @@ const App = ({ eras, results, MAX_SCORE,
                                 titleAge={eras[indexAge].title}
 								quizes={eras[indexAge].quizzes}
 								questions={eras[indexAge].quizzes[indexQuiz].questions}
+								indexAge={indexAge}
+								eras={eras}
 								indexQuiz={indexQuiz}
 								indexesAnswers={indexesAnswers}
+								createOnClickItemAge={createOnClickItemAge}
 								onBack={onBackResult}
 								createOnClickItemQuizes={createOnClickItemQuizes}
 
