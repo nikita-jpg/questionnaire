@@ -280,6 +280,7 @@ const App = ({ eras, results, MAX_SCORE,
 								percent={results[indexResuslt].percent}
 								year={results[indexResuslt].year}
 								historicalEvent={results[indexResuslt].historicalEvent}
+                                titleAge={eras[indexAge].title}
 								quizes={eras[indexAge].quizzes}
 								questions={eras[indexAge].quizzes[indexQuiz].questions}
 								indexAge={indexAge}
