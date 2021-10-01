@@ -9,7 +9,7 @@ import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
 const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null, downloadImage=index=>null}) => {
 
-    console.log(eras)
+    // console.log(eras)
     return (
         <PanelWrapper id={id} headerText="Выбирете эпоху" isHeaderFixed={true}>
 

@@ -89,16 +89,74 @@ const App = ({results, MAX_SCORE,
 	// }	
 
 
-	const [eras, setEras] = useState(true);
-	// const [isNewUser, setIsNewUser] = useState(true);
-	const [isNeedDateLoaded,setIsNeedDateLoaded] = useState(false)
+	const [eras, setEras] = useState([
+		[
+			{
+				russianName: "Эра1",
+				description: "Описание Эры1",
+				image: {
+					imageName: "1.jpg",
+					sourceImageLink: "Ссылка на картинку1"
+				},
+				surveys: [
+					{
+						russianName: "Опрос2",
+						description: "ОписаниеОпроса2",
+						image: {
+							imageName: "2.jpg",
+							sourceImageLink: "Ссылка на картинку2"
+						},
+						questions: [
+							{
+								idQuestion: 2,
+								textQuestion: "Вопрос2",
+								image: {
+									imageName: "3.jpg",
+									sourceImageLink: "Ссылка на картинку3"
+								},
+								answerOptions: [
+									{
+										idAnswerOption: 8,
+										idQuestion: 2,
+										text: "Вариант4",
+										score: "0"
+									},
+									{
+										idAnswerOption: 7,
+										idQuestion: 2,
+										text: "Вариант3",
+										score: "0"
+									},
+									{
+										idAnswerOption: 6,
+										idQuestion: 2,
+										text: "Вариант2",
+										score: "1"
+									},
+									{
+										idAnswerOption: 5,
+										idQuestion: 2,
+										text: "Вариант1",
+										score: "0"
+									}
+								],
+								userAnswer: null
+							}
+						]
+					}
+				]
+			}
+		]
+	]);
+	const [isNeedDateLoad,setIsNeedDateLoad] = useState(true)
 
 	useEffect(() => {
-		if(!isNeedDateLoaded){
+		if(isNeedDateLoad){
 
 			firstDownload().then(data=>{
 				setEras(data.eras)
-				
+				console.log(data.eras)
+
 				if(data.isFirstOpen){
 					goToViewStartWindow();
 				}else{
@@ -106,6 +164,7 @@ const App = ({results, MAX_SCORE,
 				}
 			})
 
+			setIsNeedDateLoad(false);
 		}
 
 		//Обновляем текущую ширину
@@ -135,7 +194,6 @@ const App = ({results, MAX_SCORE,
 			await downloadImage(arr[i].image.imageName).then(imageData=>{
 				let img = new Image();
 				img.src = `data:image/jpeg;base64,${imageData}`;
-				console.log(img)
 				img.onload = () => {
 					return
 				}
@@ -302,14 +360,14 @@ const App = ({results, MAX_SCORE,
 									downloadImage={downloadImage}
 								/>
 
-								{/* <ListQuizes 
+								<ListQuizes 
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
-									title={eras[indexAge].title} 
-									quizes={eras[indexAge].quizzes} 
+									title={eras[indexAge].russianName} 
+									quizes={eras[indexAge].surveys} 
 									onBack={onBackListQuizes} 
 									createOnClickItemQuizes={createOnClickItemQuizes}
-								/> */}
+								/>
 
 							</View>
 

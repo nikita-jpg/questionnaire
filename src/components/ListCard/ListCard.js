@@ -21,7 +21,7 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null, downloadImage 
             <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
                 {
                     info.map((record,i) => (
-                        <div key={record.title}>
+                        <div key={record.russianName}>
                             <CardWrapper
                                 title={record.russianName}
                                 percentProgress={record.percentProgress}
