@@ -1,8 +1,16 @@
 import { ContentCard } from "@vkontakte/vkui"
-import React from 'react';
-import './CardWrapper.css'
+import React, { useState } from 'react';
+import './CardWrapper.css';
+import defaultImage from '../../img/defaultImage.jpg'
 
-const CardWrapper = ({title,percentProgress,numberOfQuestions,imageSrc,description,cardClick=()=>{}}) => {
+const CardWrapper = ({title,percentProgress,numberOfQuestions,imageName,description,cardClick=()=>{}, downloadImage=()=>{}}) => {
+
+    //Устанавливаем дефолтую картинку на карточки
+    const [image, setImage] = useState(defaultImage)
+
+    //Загружаем основную картинку
+    downloadImage(imageName).then(imageData=>{setImage(`data:image/jpeg;base64,${imageData}`)})
+
     return(
         <ContentCard
             header={
@@ -13,7 +21,7 @@ const CardWrapper = ({title,percentProgress,numberOfQuestions,imageSrc,descripti
             }
             mode={"tint"}
             onClick={cardClick}
-            image={imageSrc}
+            image={image}
             caption={description}
             className="CardWrapper__Card"
     />

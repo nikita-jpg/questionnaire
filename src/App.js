@@ -22,18 +22,8 @@ import axios from 'axios';
 import svgContacts from './panels/StartWindow/contacts.svg';
 
 // setActiveView(null)
-const App = ({ eras, results, MAX_SCORE, 
+const App = ({results, MAX_SCORE, 
 	savePercentQuiz = (indexAge, indexQuiz, percentProgress) => {}}) => {
-	
-	const [isNeedDateLoaded,setIsNeedDateLoaded] = useState(false)
-
-	useEffect(() => {
-		if(!isNeedDateLoaded)
-			firstDownload()
-		
-		//Обновляем текущую ширину
-		setCurWidth(document.getElementById('root').scrollWidth)
-	}, []);
 	
 
 	// логика переключения между View
@@ -99,37 +89,65 @@ const App = ({ eras, results, MAX_SCORE,
 	// }	
 
 
+	const [eras, setEras] = useState(true);
+	// const [isNewUser, setIsNewUser] = useState(true);
+	const [isNeedDateLoaded,setIsNeedDateLoaded] = useState(false)
 
-	let isNewUser = true;
+	useEffect(() => {
+		if(!isNeedDateLoaded){
+
+			firstDownload().then(data=>{
+				setEras(data.eras)
+				
+				if(data.isFirstOpen){
+					goToViewStartWindow();
+				}else{
+					goToViewListAgeAndQuizes();
+				}
+			})
+
+		}
+
+		//Обновляем текущую ширину
+		setCurWidth(document.getElementById('root').scrollWidth)
+	}, []);
+
+
 	//Загрузка перед входом в основное окно приложения
 	const firstDownload = async () => {	
-		await downloadEras();
-		// await downloadImagesArr([{imageSrc:svgContacts}]);
-		// await downloadImagesArr(eras);
-		// for(let i=0;i<eras.length;i++)
-		// {
-		// 	await downloadImagesArr(eras[i].quizzes)
-		// }
-		setIsNeedDateLoaded(true);
-
-		// console.log(eras)
-		if(isNewUser){
-			goToViewStartWindow();
-		}else{
-			goToViewListAgeAndQuizes();
-		}
-		// goToViewStartWindow();
+		const data = await downloadEras();
+		await downloadImagesArr(data.eras);
+		return data
 	}
 
 	const downloadEras = async() =>{
 		const data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
-		eras = data.eras;
-		isNewUser = data.isFirstOpen;
+		return data;
 	}
 
 	const downloadQuizeImage = async (index) => {
 		await downloadImagesArr(eras[indexAge].quizzes[index].questions)
 		await goToViewListQuestions()
+	}
+
+	const downloadImagesArr = async(arr) => {
+		for(let i=0;i<arr.length;i++){
+			await downloadImage(arr[i].image.imageName).then(imageData=>{
+				let img = new Image();
+				img.src = `data:image/jpeg;base64,${imageData}`;
+				console.log(img)
+				img.onload = () => {
+					return
+				}
+			})
+		}
+	}
+
+	const downloadImage = async(imageName) => {
+		const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
+			responseType: 'arraybuffer'
+		  }).then(response => Buffer.from(response.data, 'binary').toString('base64'))
+		return image;
 	}
 
 
@@ -257,18 +275,6 @@ const App = ({ eras, results, MAX_SCORE,
 		goToViewListAgeAndQuizes()
 	}
 
-	const downloadImagesArr = async(arr) => {
-		for(let i=0;i<arr.length;i++){
-			await new Promise((resolve, reject) => {
-				const img = new Image();
-				img.src = arr[i].imageSrc;
-				// console.log(img.src);
-				img.onload = () => {
-					resolve()
-				}
-			});
-		}
-	}
 
 	return (
 	<ConfigProvider isWebView={true} scheme="android">
@@ -279,7 +285,6 @@ const App = ({ eras, results, MAX_SCORE,
 						<Root activeView={activeView}>
 
 							<StartWindow 
-								arrForPreDownload={eras}
 								id={VIEW_ID_START_WINDOW} 
 								onClick={onClickStartWindow}/>
 
@@ -294,20 +299,21 @@ const App = ({ eras, results, MAX_SCORE,
 									eras={eras} 
 									curWidth={curWidth}
 									createOnClickItemAge={createOnClickItemAge}
+									downloadImage={downloadImage}
 								/>
 
-								<ListQuizes 
+								{/* <ListQuizes 
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
 									title={eras[indexAge].title} 
 									quizes={eras[indexAge].quizzes} 
 									onBack={onBackListQuizes} 
 									createOnClickItemQuizes={createOnClickItemQuizes}
-								/>
+								/> */}
 
 							</View>
 
-							<ListQuestions 
+							{/* <ListQuestions 
 								id={VIEW_ID_LIST_QUESTIONES}
 								curWidth={curWidth}
 								arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
@@ -336,7 +342,7 @@ const App = ({ eras, results, MAX_SCORE,
 
 								isFirstOpenResult={isFirstOpenResult}
 								setIsFirstOpenResult={setIsFirstOpenResult}
-							/>
+							/> */}
 
 							{/* <AnswersQuestions
 								id={VIEW_ID_ANSWERS_QUESTIONS}
