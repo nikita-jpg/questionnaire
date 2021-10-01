@@ -49,6 +49,7 @@ bridge
 //     startRender()
 // })
 
+
 ReactDOM.render(
     <App {...store} savePercentQuiz={savePercentQuiz}/>, 
     document.getElementById("root")

@@ -28,8 +28,8 @@ const App = ({ eras, results, MAX_SCORE,
 	const [isNeedDateLoaded,setIsNeedDateLoaded] = useState(false)
 
 	useEffect(() => {
-		// if(!isNeedDateLoaded)
-		// 	firstDownload()
+		if(!isNeedDateLoaded)
+			firstDownload()
 		
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
@@ -50,7 +50,7 @@ const App = ({ eras, results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_START_WINDOW);
+	const [activeView, setActiveView] = useState(VIEW_ID_SPINNER);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
@@ -75,39 +75,72 @@ const App = ({ eras, results, MAX_SCORE,
 	// первый раз открываем Result
 	const [isFirstOpenResult, setIsFirstOpenResult] = useState(true);
 
-
-
-	//Тестим Api
-
+	//Для запросов на сервер
 	const http = axios.create({
 		headers: {
 		  // Прикрепляем заголовок, отвечающий за параметры запуска.
-		  Authorization: `${window.location.search.slice(1)}`,
+		  Authorization: `${window.location.search.slice(1)}`
 		}
 	  });
-	// функции для StartWindow
-		const onClickStartWindow = () => {
-			http.get("http://127.0.0.1:18301").then(res=>{
-				console.log(res)
-			})
-			// goToViewListAgeAndQuizes();
-		}
 
+	//Тестим Api
+
+	// const http = axios.create({
+	// 	headers: {
+	// 	  // Прикрепляем заголовок, отвечающий за параметры запуска.
+	// 	  Authorization: `${window.location.search.slice(1)}`,
+	// 	}
+	//   });
+	//Функции для StartWindow
+	// const onClickStartWindow = () => {
+	// 	http.get("http://127.0.0.1:18301/").then(res=>{console.log(res)})
+	// const onClickStartWindow = () => {
+	// 	goToViewListAgeAndQuizes();
+	// }	
+
+
+
+	let isNewUser = true;
+	//Загрузка перед входом в основное окно приложения
+	const firstDownload = async () => {	
+		await downloadEras();
+		// await downloadImagesArr([{imageSrc:svgContacts}]);
+		// await downloadImagesArr(eras);
+		// for(let i=0;i<eras.length;i++)
+		// {
+		// 	await downloadImagesArr(eras[i].quizzes)
+		// }
+		setIsNeedDateLoaded(true);
+
+		// console.log(eras)
+		if(isNewUser){
+			goToViewStartWindow();
+		}else{
+			goToViewListAgeAndQuizes();
+		}
+		// goToViewStartWindow();
+	}
+
+	const downloadEras = async() =>{
+		const data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
+		eras = data.eras;
+		isNewUser = data.isFirstOpen;
+	}
+
+	const downloadQuizeImage = async (index) => {
+		await downloadImagesArr(eras[indexAge].quizzes[index].questions)
+		await goToViewListQuestions()
+	}
+
+
+	//Функции для StartWindow
+	
+		const onClickStartWindow = () => {
+			goToViewListAgeAndQuizes();
+		}	
 
 
 	// Функции для ListAgeAndQuizes
-
-		const firstDownload = async () => {	
-			await downloadImagesArr([{imageSrc:svgContacts}]);
-			await downloadImagesArr(eras);
-			for(let i=0;i<eras.length;i++)
-			{
-				await downloadImagesArr(eras[i].quizzes)
-			}
-			setIsNeedDateLoaded(true);
-			goToViewStartWindow();
-		}
-
 
 		// Выбор эпохи
 		const createOnClickItemAge = (index) => () => {
@@ -128,11 +161,6 @@ const App = ({ eras, results, MAX_SCORE,
 				
 			else
 				goToViewListQuestions();
-		}
-
-		const downloadQuizeImage = async (index) => {
-			await downloadImagesArr(eras[indexAge].quizzes[index].questions)
-			await goToViewListQuestions()
 		}
 
 		// Возврат от выбранной эпохи к выбору эпохи
