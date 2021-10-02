@@ -17,15 +17,17 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null, downloadImage 
         } 
     }
 
+    // console.log(info)
+
     return (
             <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
                 {
-                    info.map((record,i) => (
-                        <div key={record.russianName}>
+                    info.map((record,i) => {
+                        return <div key={record.russianName}>
                             <CardWrapper
                                 title={record.russianName}
                                 percentProgress={record.percentProgress}
-                                numberOfQuestions={record.surveys.length}
+                                numberOfQuestions={record.subset.length}
                                 cardClick={cardClick(i)}
                                 downloadImage={downloadImage}
                                 imageName={record.image.imageName}
@@ -33,7 +35,7 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null, downloadImage 
                             >
                             </CardWrapper>
                         </div>
-                    ))
+                    })
                 }
             </div>
     )

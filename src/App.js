@@ -89,64 +89,63 @@ const App = ({results, MAX_SCORE,
 	// }	
 
 
-	const [eras, setEras] = useState([
-		[
-			{
-				russianName: "Эра1",
-				description: "Описание Эры1",
-				image: {
-					imageName: "1.jpg",
-					sourceImageLink: "Ссылка на картинку1"
-				},
-				surveys: [
-					{
-						russianName: "Опрос2",
-						description: "ОписаниеОпроса2",
-						image: {
-							imageName: "2.jpg",
-							sourceImageLink: "Ссылка на картинку2"
-						},
-						questions: [
-							{
-								idQuestion: 2,
-								textQuestion: "Вопрос2",
-								image: {
-									imageName: "3.jpg",
-									sourceImageLink: "Ссылка на картинку3"
+	const [eras, setEras] = useState(
+	[
+		{
+			russianName: "Эра1",
+			description: "Описание Эры1",
+			image: {
+				imageName: "1.jpg",
+				sourceImageLink: "Ссылка на картинку1"
+			},
+			subset: [
+				{
+					russianName: "Опрос2",
+					description: "ОписаниеОпроса2",
+					image: {
+						imageName: "2.jpg",
+						sourceImageLink: "Ссылка на картинку2"
+					},
+					subset: [
+						{
+							idQuestion: 2,
+							textQuestion: "Вопрос2",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 8,
+									idQuestion: 2,
+									text: "Вариант4",
+									score: "0"
 								},
-								answerOptions: [
-									{
-										idAnswerOption: 8,
-										idQuestion: 2,
-										text: "Вариант4",
-										score: "0"
-									},
-									{
-										idAnswerOption: 7,
-										idQuestion: 2,
-										text: "Вариант3",
-										score: "0"
-									},
-									{
-										idAnswerOption: 6,
-										idQuestion: 2,
-										text: "Вариант2",
-										score: "1"
-									},
-									{
-										idAnswerOption: 5,
-										idQuestion: 2,
-										text: "Вариант1",
-										score: "0"
-									}
-								],
-								userAnswer: null
-							}
-						]
-					}
-				]
-			}
-		]
+								{
+									idAnswerOption: 7,
+									idQuestion: 2,
+									text: "Вариант3",
+									score: "0"
+								},
+								{
+									idAnswerOption: 6,
+									idQuestion: 2,
+									text: "Вариант2",
+									score: "1"
+								},
+								{
+									idAnswerOption: 5,
+									idQuestion: 2,
+									text: "Вариант1",
+									score: "0"
+								}
+							],
+							userAnswer: null
+						}
+					]
+				}
+			]
+		}
 	]);
 	const [isNeedDateLoad,setIsNeedDateLoad] = useState(true)
 
@@ -155,7 +154,7 @@ const App = ({results, MAX_SCORE,
 
 			firstDownload().then(data=>{
 				setEras(data.eras)
-				console.log(data.eras)
+				// console.log(data.eras)
 
 				if(data.isFirstOpen){
 					goToViewStartWindow();
@@ -180,7 +179,15 @@ const App = ({results, MAX_SCORE,
 	}
 
 	const downloadEras = async() =>{
-		const data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
+		let data = await http.get("http://127.0.0.1:18301/").then(data=>{console.log(data);return data.data})
+
+		//Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard образается к свойству subset
+		let stringData = JSON.stringify(data)
+		stringData = stringData.replaceAll('"surveys":', '"subset":')
+		stringData = stringData.replaceAll('"questions":', '"subset":')
+		data = JSON.parse(stringData)
+
+		console.log(data)
 		return data;
 	}
 
@@ -364,7 +371,7 @@ const App = ({results, MAX_SCORE,
 									id={PANEL_ID_LIST_QUIZES} 
 									curWidth={curWidth}
 									title={eras[indexAge].russianName} 
-									quizes={eras[indexAge].surveys} 
+									quizes={eras[indexAge].subset} 
 									onBack={onBackListQuizes} 
 									createOnClickItemQuizes={createOnClickItemQuizes}
 								/>
