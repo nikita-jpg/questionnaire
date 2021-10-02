@@ -19,7 +19,9 @@ import SpinnerView from './panels/SpinnerView/SpinnerView';
 import testClass from './panels/StartWindow/StartWindow';
 import axios from 'axios';
 
-const reqSvgs = require.context( './svg', true, /\.svg$/ )
+import * as server from './server.js'
+
+
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
@@ -158,7 +160,7 @@ const App = ({results, MAX_SCORE,
 	useEffect(() => {
 		if(isNeedDateLoad){
 
-			firstDownload().then(data=>{
+			server.firstDownload().then(data=>{
 				setEras(data.eras)
 				// console.log(data.eras)
 
@@ -177,77 +179,11 @@ const App = ({results, MAX_SCORE,
 	}, []);
 
 
-	//Загрузка перед входом в основное окно приложения
-	const firstDownload = async () => {	
-		await downloadDefaultIMG();
-		const data = await downloadData();
-		await downloadImagesArr(data.eras);
-		return data
-	}
 
-
-	// Загрузка изображений, которы должны быть в кэше до запуска
-	const downloadDefaultIMG = async () => {
-		const paths = reqSvgs.keys();
-		for(let i=0;i<paths.length;i++){
-			console.log(paths[i])
-			await downloadImgFromFolder(paths[i])
+		const downloadQuizeImage = async (index) => {
+			await server.downloadImagesArr(eras[indexAge].quizzes[index].questions)
+			goToViewListQuestions()
 		}
-	}
-
-	const downloadImgFromFolder = async (path) => {
-		let img = new Image();
-		img.src = reqSvgs(path);
-
-		img.onerror = () => {
-			console.log(img.src + " error")
-		}
-		img.onload = () => {
-			window[img.src] = img
-			console.log(img.src + " downloaded")
-			return
-		}
-	}
-
-
-	const downloadData = async() =>{
-		let data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
-
-		//Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard образается к свойству subset
-		let stringData = JSON.stringify(data)
-		stringData = stringData.replaceAll('"surveys":', '"subset":')
-		stringData = stringData.replaceAll('"questions":', '"subset":')
-		data = JSON.parse(stringData)
-
-		return data;
-	}
-
-
-
-	const downloadQuizeImage = async (index) => {
-		await downloadImagesArr(eras[indexAge].quizzes[index].questions)
-		await goToViewListQuestions()
-	}
-
-	const downloadImagesArr = async(arr) => {
-		for(let i=0;i<arr.length;i++){
-			await downloadImage(arr[i].image.imageName).then(imageData=>{
-				let img = new Image();
-				img.src = `data:image/jpeg;base64,${imageData}`;
-				img.onload = () => {
-					return
-				}
-			})
-		}
-	}
-
-	const downloadImage = async(imageName) => {
-		const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
-			responseType: 'arraybuffer'
-		  }).then(response => Buffer.from(response.data, 'binary').toString('base64'))
-		  
-		return `data:image/jpeg;base64,${image}`;
-	}
 
 
 	//Функции для StartWindow
@@ -398,7 +334,6 @@ const App = ({results, MAX_SCORE,
 									eras={eras} 
 									curWidth={curWidth}
 									createOnClickItemAge={createOnClickItemAge}
-									downloadImage={downloadImage}
 								/>
 
 								<ListQuizes 

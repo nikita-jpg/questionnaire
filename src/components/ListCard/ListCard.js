@@ -3,7 +3,7 @@ import React from 'react';
 import CardWrapper from '../CardWrapper/CardWrapper';
 import './ListCard.css';
 
-const ListCard = ( { info, curWidth, cardClick = (index) => null, downloadImage = (index) => null }) => {
+const ListCard = ( { info, curWidth, cardClick = (index) => null}) => {
 
     const getWidthInfo = () => {
         if(curWidth>1280){
@@ -29,7 +29,6 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null, downloadImage 
                                 percentProgress={record.percentProgress}
                                 numberOfQuestions={record.subset.length}
                                 cardClick={cardClick(i)}
-                                downloadImage={downloadImage}
                                 imageName={record.image.imageName}
                                 description={record.description}
                             >

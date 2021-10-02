@@ -5,9 +5,10 @@ import { isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
+import downloadImage from '../../server.js'
 
 
-const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null, downloadImage=index=>null}) => {
+const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
 
     // console.log(eras)
     return (
@@ -17,8 +18,7 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null, downloadI
                     <ListCard
                         info={eras}
                         curWidth={curWidth}
-                        cardClick={createOnClickItemAge}
-                        downloadImage={downloadImage}>
+                        cardClick={createOnClickItemAge}>
                     </ListCard>
                 </div>
 
