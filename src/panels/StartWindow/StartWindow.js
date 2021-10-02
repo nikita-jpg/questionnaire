@@ -4,7 +4,7 @@ import ButtonWrapper from '../../components/ButtonWrapper/ButtonWrapper';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
 
-import svgContacts from './contacts.svg';
+import book from '../../svg/book.svg';
 
 import './StartWindow.css';
 
@@ -18,7 +18,7 @@ const StartWindow = ({id, onClick=()=>{}}) => {
             <PanelWrapper separator={false} isHeaderHide={true} isVerticalCentre={true}>
                 <div className="StartWindow">
                     <div className="StartWindow__container">
-                        <img width="50" height="50" src={svgContacts} alt="contacts"/>
+                        <img width="50" height="50" src={book}/>
                         <h1 className="StartWindow__title">Привет, друг!</h1>
                         <p className="StartWindow__text">
                             Это приложение поможет тебе проверить свои знания в области истори родной страны. Удачи!

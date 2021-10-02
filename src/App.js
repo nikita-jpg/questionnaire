@@ -19,7 +19,13 @@ import SpinnerView from './panels/SpinnerView/SpinnerView';
 import testClass from './panels/StartWindow/StartWindow';
 import axios from 'axios';
 
-import svgContacts from './panels/StartWindow/contacts.svg';
+const reqSvgs = require.context( './svg', true, /\.svg$/ )
+
+// import './svg/book.svg'
+// import './svg/imgLoader.svg'
+
+
+// import svgContacts from './panels/StartWindow/contacts.svg';
 
 // setActiveView(null)
 const App = ({results, MAX_SCORE, 
@@ -156,7 +162,7 @@ const App = ({results, MAX_SCORE,
 				setEras(data.eras)
 				// console.log(data.eras)
 
-				if(data.isFirstOpen){
+				if(true){
 					goToViewStartWindow();
 				}else{
 					goToViewListAgeAndQuizes();
@@ -173,13 +179,39 @@ const App = ({results, MAX_SCORE,
 
 	//Загрузка перед входом в основное окно приложения
 	const firstDownload = async () => {	
-		const data = await downloadEras();
+		await downloadDefaultIMG();
+		const data = await downloadData();
 		await downloadImagesArr(data.eras);
 		return data
 	}
 
-	const downloadEras = async() =>{
-		let data = await http.get("http://127.0.0.1:18301/").then(data=>{console.log(data);return data.data})
+
+	// Загрузка изображений, которы должны быть в кэше до запуска
+	const downloadDefaultIMG = async () => {
+		const paths = reqSvgs.keys();
+		for(let i=0;i<paths.length;i++){
+			console.log(paths[i])
+			await downloadImgFromFolder(paths[i])
+		}
+	}
+
+	const downloadImgFromFolder = async (path) => {
+		let img = new Image();
+		img.src = reqSvgs(path);
+
+		img.onerror = () => {
+			console.log(img.src + " error")
+		}
+		img.onload = () => {
+			window[img.src] = img
+			console.log(img.src + " downloaded")
+			return
+		}
+	}
+
+
+	const downloadData = async() =>{
+		let data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
 
 		//Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard образается к свойству subset
 		let stringData = JSON.stringify(data)
@@ -187,9 +219,10 @@ const App = ({results, MAX_SCORE,
 		stringData = stringData.replaceAll('"questions":', '"subset":')
 		data = JSON.parse(stringData)
 
-		console.log(data)
 		return data;
 	}
+
+
 
 	const downloadQuizeImage = async (index) => {
 		await downloadImagesArr(eras[indexAge].quizzes[index].questions)
@@ -212,7 +245,8 @@ const App = ({results, MAX_SCORE,
 		const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
 			responseType: 'arraybuffer'
 		  }).then(response => Buffer.from(response.data, 'binary').toString('base64'))
-		return image;
+		  
+		return `data:image/jpeg;base64,${image}`;
 	}
 
 
