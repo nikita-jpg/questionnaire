@@ -3,8 +3,10 @@ import vkBridge from '@vkontakte/vk-bridge'
 import { View } from "@vkontakte/vkui"
 import ListAge from "../ListAge/ListAge"
 import ListQuizes from "../ListQuizes/ListQuizes"
+import * as selectors from './selector'
+import { useSelector } from 'react-redux';
 
-const PoolView = ({id, eras, curWidth, indexAge}) => {
+const PoolView = ({id, curWidth, indexAge}) => {
 
     // console.log(id)
 
@@ -53,6 +55,8 @@ const PoolView = ({id, eras, curWidth, indexAge}) => {
 			// goToViewListQuestions();
 		}
 
+    const eras = useSelector(selectors.getEras)
+        
     return(
         <View 
             id={id}

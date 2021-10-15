@@ -10,7 +10,7 @@ import book from '../../svg/book.svg';
 import './StartWindow.css';
 
 
-const StartWindow = ({id, goToPollView}) => {
+const StartWindow = ({id, goToPollView=()=>{}}) => {
 
     const dispath = useDispatch()
     
@@ -24,7 +24,7 @@ const StartWindow = ({id, goToPollView}) => {
                         <p className="StartWindow__text">
                             Это приложение поможет тебе проверить свои знания в области истори родной страны. Удачи!
                         </p>
-                        <ButtonWrapper className="StartWindow__button" classNameText="StartWindow__button-text" isCentered={true} onClick={()=>dispath(goToPollView)} text="Поехали!"></ButtonWrapper>
+                        <ButtonWrapper className="StartWindow__button" classNameText="StartWindow__button-text" isCentered={true} onClick={()=>dispath(goToPollView())} text="Поехали!"></ButtonWrapper>
                     </div>
                 </div>
             </PanelWrapper>

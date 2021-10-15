@@ -1,0 +1,1 @@
+export const getEras = state => state.Data.Eras
