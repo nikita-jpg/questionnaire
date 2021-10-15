@@ -17,6 +17,8 @@ const ListCard = ( { info, curWidth, cardClick = (index) => null}) => {
         } 
     }
 
+    
+
     // console.log(info)
 
     return (

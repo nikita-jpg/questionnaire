@@ -79,7 +79,6 @@ const PoolView = ({id, curWidth, indexAge}) => {
             quizes={eras[indexAge].subset} 
             onBack={onBackListQuizes} 
             createOnClickItemQuizes={createOnClickItemQuizes}
-            // goToSurveyView={appNavigate.goToSurveyView}
         />
 
     </View>

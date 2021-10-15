@@ -1,0 +1,1 @@
+export const SET_CUR_WIDTH = "SET_CUR_WIDTH"
