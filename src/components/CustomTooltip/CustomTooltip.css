@@ -1,0 +1,7 @@
+.vkuiTooltip__corner {
+    background-image: url(./arrow.svg);
+}
+
+.vkuiTooltip__content {    
+    background-color: var(--main-therd-bg-color);
+}

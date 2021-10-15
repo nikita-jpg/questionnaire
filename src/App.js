@@ -367,9 +367,21 @@ const App = ({results, MAX_SCORE,
 									onGoToAnswersQuestion={onGoToAnswersQuestionResult}
 									goToViewListAndQuizes={goToViewListAgeAndQuizesFromResult}
 
-									isFirstOpenResult={isFirstOpenResult}
-									setIsFirstOpenResult={setIsFirstOpenResult}
-								/> */}
+							<Result
+								id={VIEW_ID_RESULT}
+								percent={results[indexResuslt].percent}
+								year={results[indexResuslt].year}
+								historicalEvent={results[indexResuslt].historicalEvent}
+                                titleAge={eras[indexAge].title}
+								quizes={eras[indexAge].quizzes}
+								questions={eras[indexAge].quizzes[indexQuiz].questions}
+								indexAge={indexAge}
+								eras={eras}
+								indexQuiz={indexQuiz}
+								indexesAnswers={indexesAnswers}
+								createOnClickItemAge={createOnClickItemAge}
+								onBack={onBackResult}
+								createOnClickItemQuizes={createOnClickItemQuizes}
 
 								{/* <AnswersQuestions
 									id={VIEW_ID_ANSWERS_QUESTIONS}
