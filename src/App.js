@@ -20,8 +20,11 @@ import testClass from './panels/StartWindow/StartWindow';
 import axios from 'axios';
 
 import * as server from './server.js'
+import TestView from './components/TestView/TestView';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-
+import {reducerTestView} from './components/TestView/ReducerTestView'
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
@@ -48,7 +51,7 @@ const App = ({results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_SPINNER);
+	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE_AND_QUIZES);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
@@ -72,29 +75,6 @@ const App = ({results, MAX_SCORE,
 
 	// первый раз открываем Result
 	const [isFirstOpenResult, setIsFirstOpenResult] = useState(true);
-
-	//Для запросов на сервер
-	const http = axios.create({
-		headers: {
-		  // Прикрепляем заголовок, отвечающий за параметры запуска.
-		  Authorization: `${window.location.search.slice(1)}`
-		}
-	  });
-
-	//Тестим Api
-
-	// const http = axios.create({
-	// 	headers: {
-	// 	  // Прикрепляем заголовок, отвечающий за параметры запуска.
-	// 	  Authorization: `${window.location.search.slice(1)}`,
-	// 	}
-	//   });
-	//Функции для StartWindow
-	// const onClickStartWindow = () => {
-	// 	http.get("http://127.0.0.1:18301/").then(res=>{console.log(res)})
-	// const onClickStartWindow = () => {
-	// 	goToViewListAgeAndQuizes();
-	// }	
 
 
 	const [eras, setEras] = useState(
@@ -161,8 +141,7 @@ const App = ({results, MAX_SCORE,
 		if(isNeedDateLoad){
 
 			server.firstDownload().then(data=>{
-				setEras(data.eras)
-				// console.log(data.eras)
+				// setEras(data.eras)
 
 				if(true){
 					goToViewStartWindow();
@@ -181,7 +160,7 @@ const App = ({results, MAX_SCORE,
 
 
 		const downloadQuizeImage = async (index) => {
-			await server.downloadImagesArr(eras[indexAge].quizzes[index].questions)
+			await server.downloadImagesArr(eras[indexAge].subset[index].subset)
 			goToViewListQuestions()
 		}
 
@@ -205,15 +184,17 @@ const App = ({results, MAX_SCORE,
 		// Выбор опроса
 		const createOnClickItemQuizes = (index) => () => {
 			setIndexQuiz(index);
-			if(!eras[indexAge].quizzes[index].isImageDownloaded)
-			{
-				goToViewSpinner();
-				downloadQuizeImage(index)
-				eras[indexAge].quizzes[index].isImageDownloaded = true;
-			}
+			goToViewSpinner();
+			downloadQuizeImage(index)
+			// if(!eras[indexAge].subset[index].isImageDownloaded)
+			// {
+			// 	goToViewSpinner();
+			// 	downloadQuizeImage(index)
+			// 	eras[indexAge].quizzes[index].isImageDownloaded = true;
+			// }
 				
-			else
-				goToViewListQuestions();
+			// else
+			// 	goToViewListQuestions();
 		}
 
 		// Возврат от выбранной эпохи к выбору эпохи
@@ -272,13 +253,13 @@ const App = ({results, MAX_SCORE,
 			let sum = 0;
 			for(let i=0;i<indexesAnswers.length;i++){
 				if(indexesAnswers[i] !== -1){
-					sum+=eras[indexAge].quizzes[indexQuiz].questions[i].answerOptions[indexesAnswers[i]].score;
+					sum+=eras[indexAge].subset[indexQuiz].subset[i].answerOptions[indexesAnswers[i]].score;
 				}
 			}
 
-			eras[indexAge].quizzes[indexQuiz].percentProgress = sum;
-			if(eras[indexAge].quizzes[indexQuiz].numberOfQuestions === sum){
-				eras[indexAge].percentProgress = eras[indexAge].percentProgress + 1;
+			eras[indexAge].subset[indexQuiz].percentProgress = sum;
+			if(eras[indexAge].subset[indexQuiz].numberOfQuestions === sum){
+				eras[indexAge].subset = eras[indexAge].percentProgress + 1;
 			}
 			
 			setIndexResult(sum)
@@ -310,87 +291,100 @@ const App = ({results, MAX_SCORE,
 		goToViewListAgeAndQuizes()
 	}
 
+	const store = createStore(reducerTestView)
 
 	return (
-	<ConfigProvider isWebView={true} scheme="android">
+	<ConfigProvider isWebView={true}>
 		<AdaptivityProvider>
 			<AppRoot>
 				<SplitLayout header={null}>
 					<SplitCol animate={true}>
-						<Root activeView={activeView}>
+						<Provider store={store}>
+							<Root activeView={activeView}>
+								
+								<TestView id={"VIEW_TEST_VIEW"}></TestView>
 
-							<StartWindow 
-								id={VIEW_ID_START_WINDOW} 
-								onClick={onClickStartWindow}/>
+								<StartWindow 
+									id={VIEW_ID_START_WINDOW} 
+									onClick={onClickStartWindow}/>
 
-							<View 
-								id={VIEW_ID_LIST_AGE_AND_QUIZES}
-								activePanel={activePanel}
-								onSwipeBack={goBackInHistory}
-								history={history}>
+								<View 
+									id={VIEW_ID_LIST_AGE_AND_QUIZES}
+									activePanel={activePanel}
+									onSwipeBack={goBackInHistory}
+									history={history}>
 
-								<ListAge 
-									id={PANEL_ID_LIST_AGE} 
-									eras={eras} 
+									<ListAge 
+										id={PANEL_ID_LIST_AGE} 
+										eras={eras} 
+										curWidth={curWidth}
+										createOnClickItemAge={createOnClickItemAge}
+									/>
+
+									<ListQuizes 
+										id={PANEL_ID_LIST_QUIZES} 
+										curWidth={curWidth}
+										title={eras[indexAge].russianName} 
+										quizes={eras[indexAge].subset} 
+										onBack={onBackListQuizes} 
+										createOnClickItemQuizes={createOnClickItemQuizes}
+									/>
+
+								</View>
+
+								<ListQuestions 
+									id={VIEW_ID_LIST_QUESTIONES}
 									curWidth={curWidth}
+									arrQuestions={eras[indexAge].subset[indexQuiz].subset}
+									onBack={onBackListQuestions}
+									onFinish={onFinishListQuestions}
+								/>
+
+								{/* <ListQuestions 
+									id={VIEW_ID_LIST_QUESTIONES}
+									curWidth={curWidth}
+									arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
+									onBack={onBackListQuestions}
+									onFinish={onFinishListQuestions}
+								/>
+
+								<Result
+									id={VIEW_ID_RESULT}
+									percent={results[indexResuslt].percent}
+									year={results[indexResuslt].year}
+									historicalEvent={results[indexResuslt].historicalEvent}
+									quizes={eras[indexAge].quizzes}
+									questions={eras[indexAge].quizzes[indexQuiz].questions}
+									indexAge={indexAge}
+									eras={eras}
+									indexQuiz={indexQuiz}
+									indexesAnswers={indexesAnswers}
 									createOnClickItemAge={createOnClickItemAge}
-								/>
-
-								<ListQuizes 
-									id={PANEL_ID_LIST_QUIZES} 
-									curWidth={curWidth}
-									title={eras[indexAge].russianName} 
-									quizes={eras[indexAge].subset} 
-									onBack={onBackListQuizes} 
+									onBack={onBackResult}
 									createOnClickItemQuizes={createOnClickItemQuizes}
-								/>
 
-							</View>
+									onAgain={onAgainResult}
+									onGoToAnswersQuestion={onGoToAnswersQuestionResult}
+									goToViewListAndQuizes={goToViewListAgeAndQuizesFromResult}
 
-							{/* <ListQuestions 
-								id={VIEW_ID_LIST_QUESTIONES}
-								curWidth={curWidth}
-								arrQuestions={eras[indexAge].quizzes[indexQuiz].questions}
-								onBack={onBackListQuestions}
-								onFinish={onFinishListQuestions}
-							/>
+									isFirstOpenResult={isFirstOpenResult}
+									setIsFirstOpenResult={setIsFirstOpenResult}
+								/> */}
 
-							<Result
-								id={VIEW_ID_RESULT}
-								percent={results[indexResuslt].percent}
-								year={results[indexResuslt].year}
-								historicalEvent={results[indexResuslt].historicalEvent}
-								quizes={eras[indexAge].quizzes}
-								questions={eras[indexAge].quizzes[indexQuiz].questions}
-								indexAge={indexAge}
-								eras={eras}
-								indexQuiz={indexQuiz}
-								indexesAnswers={indexesAnswers}
-								createOnClickItemAge={createOnClickItemAge}
-								onBack={onBackResult}
-								createOnClickItemQuizes={createOnClickItemQuizes}
+								{/* <AnswersQuestions
+									id={VIEW_ID_ANSWERS_QUESTIONS}
+									questions={eras[indexAge].quizzes[indexQuiz].questions}
+									indexesAnswers={indexesAnswers}
+									onBack={onBackAnswersQuestions}
+								/> */}
 
-								onAgain={onAgainResult}
-								onGoToAnswersQuestion={onGoToAnswersQuestionResult}
-								goToViewListAndQuizes={goToViewListAgeAndQuizesFromResult}
+								<SpinnerView
+									id={"VIEW_ID_SPINNER"}
+								>
+								</SpinnerView>
 
-								isFirstOpenResult={isFirstOpenResult}
-								setIsFirstOpenResult={setIsFirstOpenResult}
-							/> */}
-
-							{/* <AnswersQuestions
-								id={VIEW_ID_ANSWERS_QUESTIONS}
-								questions={eras[indexAge].quizzes[indexQuiz].questions}
-								indexesAnswers={indexesAnswers}
-								onBack={onBackAnswersQuestions}
-							/> */}
-
-							<SpinnerView
-								id={"VIEW_ID_SPINNER"}
-							>
-							</SpinnerView>
-
-						</Root>
+							</Root>
+						</Provider>
 					</SplitCol>
 				</SplitLayout>
 			</AppRoot>

@@ -40,7 +40,9 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-double-marquee": "^1.1.0",
-    "react-transition-group": "^4.4.2"
+    "react-redux": "^7.2.5",
+    "react-transition-group": "^4.4.2",
+    "redux": "^4.1.1"
   },
   "browserslist": {
     "production": [
