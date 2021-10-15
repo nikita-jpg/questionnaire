@@ -1,1 +1,2 @@
 export const SET_CUR_WIDTH = "SET_CUR_WIDTH"
+export const SET_CUR_HEIGHT = "SET_CUR_HEIGHT"

@@ -1,9 +1,13 @@
 import { ContentCard, Div } from '@vkontakte/vkui';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { getCurWidth } from '../../Additional/selectors';
 import CardWrapper from '../CardWrapper/CardWrapper';
 import './ListCard.css';
 
-const ListCard = ( { info, curWidth, cardClick = (index) => null}) => {
+const ListCard = ( { info, cardClick = (index) => null}) => {
+
+    const curWidth = useSelector(getCurWidth)
 
     const getWidthInfo = () => {
         if(curWidth>1280){

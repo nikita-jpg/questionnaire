@@ -12,7 +12,7 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 
 
 
-const ListQuestions = ({id, curWidth, arrQuestions,goToPollView, onBack=()=>{}, onFinish=totalScore=>{}}) => {
+const ListQuestions = ({id, arrQuestions,goToPollView, onBack=()=>{}, onFinish=totalScore=>{}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
     const [history, setHistory] = useState([PANEL_FIRST_ID]);
     const [alert, setAlert] = useState(null);
@@ -150,7 +150,7 @@ const ListQuestions = ({id, curWidth, arrQuestions,goToPollView, onBack=()=>{}, 
                 id={MODAL_ID}
                 settlingHeight={100}
                 header={
-                    <ModalPageHead text="Вопросы" curWidth={curWidth} onClose={changeModal}></ModalPageHead>
+                    <ModalPageHead text="Вопросы" onClose={changeModal}></ModalPageHead>
                 }>
                 <Div>
                 {
@@ -202,8 +202,7 @@ const ListQuestions = ({id, curWidth, arrQuestions,goToPollView, onBack=()=>{}, 
                         key={i}
                         id={createIdActivePanel(i)}
                         name={createIdActivePanel(i)}
-                        curWidth={curWidth}
-
+                                        
                         question={question}
                         numberCurrentQuestion={i+1}
                         countQuestions={arr.length}

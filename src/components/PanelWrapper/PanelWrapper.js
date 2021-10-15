@@ -1,5 +1,7 @@
 import { Div, Panel } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getCurHeight, getCurWidth } from "../../Additional/selectors";
 import Header from "../Header/Header";
 
 import './PanelWrapper.css'
@@ -8,22 +10,9 @@ const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
     isHeaderHide, isHeaderFixed, onHeaderClose, onHeaderBack, 
     headerIcon, headerText, headerClick}) => {
 
-    const [curWidth, setCurWidth] = useState(0)
-    const [curHeight, setCurHeight] = useState(0)
+    const curWidth = useSelector(getCurWidth)
+    const curHeight = useSelector(getCurHeight)
 
-    useEffect(() => {
-		
-		//Обновляем текущую ширину
-		setCurWidth(document.getElementById('root').scrollWidth)
-        setCurHeight(document.getElementById('root').scrollHeight)
-	}, []);
-
-    // const getMaxWidth = () => {
-    //     if(curWidth>1280)
-    //         return "1256px"
-    //     else
-    //         return curWidth + "px"
-    // }
     return(
 
         <Panel id={id} separator={false} name={name}>
@@ -35,7 +24,6 @@ const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
                     <Header
                     text={headerText}
                     icon={headerIcon}
-                    curWidth={curWidth}
                     isFixed={isHeaderFixed}
                     onClose={onHeaderClose}
                     onBack={onHeaderBack}

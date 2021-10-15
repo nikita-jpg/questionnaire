@@ -24,6 +24,7 @@ import TestView from '../components/TestView/TestView';
 import { Provider, useSelector } from 'react-redux';
 
 import * as appNavigate from './Actions'
+import * as additionalActions from '../Additional/actions'
 
 import {selectCurrentView} from './Selector'
 import PoolView from '../views/PoolView/PoolView';
@@ -156,7 +157,9 @@ const App = ({results, MAX_SCORE,
 		// }
 
 		//Обновляем текущую ширину
-		setCurWidth(document.getElementById('root').scrollWidth)
+
+		additionalActions.Additional_setCurHeight(document.getElementById('root').scrollHeight)
+		additionalActions.Additional_setCurWidth(document.getElementById('root').scrollWidth)
 	}, []);
 
 

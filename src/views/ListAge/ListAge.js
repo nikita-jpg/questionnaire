@@ -8,7 +8,7 @@ import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import downloadImage from '../../NotUI/Server/server.js'
 
 
-const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
+const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
 
     // console.log(eras)
     return (
@@ -17,7 +17,6 @@ const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
                 <div className="ListAge__content">
                     <ListCard
                         info={eras}
-                        curWidth={curWidth}
                         cardClick={createOnClickItemAge}>
                     </ListCard>
                 </div>

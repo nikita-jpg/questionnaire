@@ -68,13 +68,11 @@ const PoolView = ({id, curWidth, indexAge}) => {
         <ListAge 
             id={PANEL_ID_LIST_AGE} 
             eras={eras} 
-            curWidth={curWidth}
             createOnClickItemAge={createOnClickItemAge}
         />
 
         <ListQuizes 
             id={PANEL_ID_LIST_QUIZES} 
-            curWidth={curWidth}
             title={eras[indexAge].russianName} 
             quizes={eras[indexAge].subset} 
             onBack={onBackListQuizes} 

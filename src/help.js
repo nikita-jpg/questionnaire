@@ -1,15 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { getCurWidth } from './Additional/selectors';
 
-let curWidth = document.getElementById('root').scrollWidth;
-
-export function isTitleCentre ( element) {
+export const isTitleCentre = (curWidth) => {
     return({
-    stub:curWidth >= 370 ? <div style={{width:"90px"}}>{element} </div> :element,
+    // stub:curWidth >= 370 ? <div style={{width:"90px"}}>{element} </div> :element,
     text:curWidth >= 370 ? "center" : "start"
     })
 }
 
-export function getwidthInfo() {
+export const getWidthInfo = (curWidth) => {
+
     if(curWidth>1280){
         return {colNumber:"s", maxWidth:"1500px"}
     }
