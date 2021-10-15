@@ -2,7 +2,7 @@ import { ContentCard } from "@vkontakte/vkui"
 import React, { useState } from 'react';
 import './CardWrapper.css';
 import defaultImage from '../../svg/imgLoader.svg'
-import {downloadImageFromServer as downloadImage} from '../../server.js'
+import {downloadImageFromServer as downloadImage} from '../../NotUI/Server/server'
 
 const CardWrapper = ({title,percentProgress,numberOfQuestions,imageName,description,cardClick=()=>{}}) => {
 

@@ -7,30 +7,30 @@ import vkBridge from '@vkontakte/vk-bridge'
 import { AdaptivityProvider, ModalRoot, AppRoot, ConfigProvider, ModalPage, Header, Panel, PanelHeader, Platform, Root, Scheme, SimpleCell, SplitCol, SplitLayout, View, usePlatform } from '@vkontakte/vkui';
 
 import "./App.css";
-import StartWindow from './panels/StartWindow/StartWindow';
-import ListAge from './panels/ListAge/ListAge';
-import ListQuestions from './panels/ListQuestions/ListQuestions';
-import Result from './panels/Result/Result';
-import ListQuizes from './panels/ListQuizes/ListQuizes';
-import AnswersQuestions from './panels/AnswersQuestions/AnswersQuestions';
-import Modal from './panels/ListQuestions/IteamListQuestion/Modal/Modal';
-import ModalPageHead from './components/ModalPageHead/ModalPageHead';
-import SpinnerView from './panels/SpinnerView/SpinnerView';
-import testClass from './panels/StartWindow/StartWindow';
-import axios from 'axios';
+import StartWindow from '../views/StartWindow/StartWindow';
+import ListAge from '../views/ListAge/ListAge';
+import ListQuestions from '../views/ListQuestions/ListQuestions';
+// import Result from '..//Result/Result';
+import ListQuizes from '../views/ListQuizes/ListQuizes';
+// import AnswersQuestions from '..//AnswersQuestions/AnswersQuestions';
+// import Modal from '..//ListQuestions/IteamListQuestion/Modal/Modal';
+// import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
+import SpinnerView from '../views/SpinnerView/SpinnerView';
+// import testClass from '..//StartWindow/StartWindow';
+// import axios from 'axios';
 
-import * as server from './server.js'
-import TestView from './components/TestView/TestView';
+import * as server from '../NotUI/Server/server'
+import TestView from '../components/TestView/TestView';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import {reducerTestView} from './components/TestView/ReducerTestView'
+import {reducerTestView} from '../components/TestView/ReducerTestView'
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
 
 
-// import svgContacts from './panels/StartWindow/contacts.svg';
+// import svgContacts from '..//StartWindow/contacts.svg';
 
 // setActiveView(null)
 const App = ({results, MAX_SCORE, 

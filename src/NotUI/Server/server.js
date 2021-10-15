@@ -9,7 +9,7 @@ const http = axios.create({
     }
 });
 
-const reqSvgs = require.context( './svg', true, /\.svg$/ )
+const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 
 //Загрузка перед входом в основное окно приложения

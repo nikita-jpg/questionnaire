@@ -5,7 +5,7 @@ import { isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
-import downloadImage from '../../server.js'
+import downloadImage from '../../NotUI/Server/server.js'
 
 
 const ListAge = ({id, eras,curWidth, createOnClickItemAge=index=>null}) => {
