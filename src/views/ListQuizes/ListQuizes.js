@@ -17,7 +17,7 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, crea
             <div className="ListQuizes">
                 <ListCard
                     info={quizes}
-                    cardClick={ ()=>dispath(goToSurveyView)}
+                    cardClick={ ()=>createOnClickItemQuizes}
                 />
             </div>
 

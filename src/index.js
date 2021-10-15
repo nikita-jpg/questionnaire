@@ -8,7 +8,7 @@ import App from "./App/App";
 import store, { savePercentQuiz } from "./store/store.js";
 import { Platform } from "@vkontakte/vkui";
 import { createStore } from "redux";
-import {comboReducer} from './ComboReducer'
+import {comboReducer} from './comboReducer'
 import { Provider } from "react-redux";
 
 // Init VK  Mini App

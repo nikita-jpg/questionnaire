@@ -22,13 +22,11 @@ import SpinnerView from '../views/SpinnerView/SpinnerView';
 import * as server from '../NotUI/Server/server'
 import TestView from '../components/TestView/TestView';
 import { Provider, useSelector } from 'react-redux';
-import { createStore } from 'redux';
-
-import {comboReducer} from '../ComboReducer'
 
 import * as appNavigate from './Actions'
 
 import {selectCurrentView} from './Selector'
+import PoolView from '../views/PoolView/PoolView';
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
@@ -142,20 +140,20 @@ const App = ({results, MAX_SCORE,
 	const [isNeedDateLoad,setIsNeedDateLoad] = useState(true)
 
 	useEffect(() => {
-		if(isNeedDateLoad){
+		// if(isNeedDateLoad){
 
-			server.firstDownload().then(data=>{
-				// setEras(data.eras)
+		// 	server.firstDownload().then(data=>{
+		// 		// setEras(data.eras)
 
-				if(true){
-					goToViewStartWindow();
-				}else{
-					goToViewListAgeAndQuizes();
-				}
-			})
+		// 		if(true){
+		// 			goToViewStartWindow();
+		// 		}else{
+		// 			goToViewListAgeAndQuizes();
+		// 		}
+		// 	})
 
-			setIsNeedDateLoad(false);
-		}
+		// 	setIsNeedDateLoad(false);
+		// }
 
 		//Обновляем текущую ширину
 		setCurWidth(document.getElementById('root').scrollWidth)
@@ -297,6 +295,7 @@ const App = ({results, MAX_SCORE,
 	}
 
 	const activeView = useSelector(selectCurrentView)
+	// console.log(eras)
 
 	return (
 	<ConfigProvider isWebView={true}>
@@ -305,14 +304,19 @@ const App = ({results, MAX_SCORE,
 				<SplitLayout header={null}>
 					<SplitCol animate={true}>
 							<Root activeView={activeView}>
-								
-								<TestView id={"VIEW_TEST_VIEW"}></TestView>
 
 								<StartWindow 
 									id={VIEW_ID_START_WINDOW} 
 									goToPollView={appNavigate.App_goToPollView}/>
 
-								<View 
+								<PoolView
+									id={VIEW_ID_LIST_AGE_AND_QUIZES}
+									eras={eras}
+									curWidth={curWidth}
+									indexAge={indexAge}
+								/>
+
+								{/* <View 
 									id={VIEW_ID_LIST_AGE_AND_QUIZES}
 									activePanel={activePanel}
 									onSwipeBack={goBackInHistory}
@@ -335,7 +339,7 @@ const App = ({results, MAX_SCORE,
 										goToSurveyView={appNavigate.goToSurveyView}
 									/>
 
-								</View>
+								</View> */}
 
 								<ListQuestions 
 									id={VIEW_ID_LIST_QUESTIONES}
