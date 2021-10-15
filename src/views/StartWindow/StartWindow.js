@@ -1,5 +1,6 @@
 import { Card, CardScroll, Panel, PanelHeader, View, CardGrid, ContentCard, Button, ScreenSpinner, usePlatform, Platform} from '@vkontakte/vkui';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import ButtonWrapper from '../../components/ButtonWrapper/ButtonWrapper';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
@@ -9,7 +10,9 @@ import book from '../../svg/book.svg';
 import './StartWindow.css';
 
 
-const StartWindow = ({id, onClick=()=>{}}) => {
+const StartWindow = ({id, goToPollView}) => {
+
+    const dispath = useDispatch()
     
     return (
         <View id={id}> 
@@ -21,7 +24,7 @@ const StartWindow = ({id, onClick=()=>{}}) => {
                         <p className="StartWindow__text">
                             Это приложение поможет тебе проверить свои знания в области истори родной страны. Удачи!
                         </p>
-                        <ButtonWrapper className="StartWindow__button" classNameText="StartWindow__button-text" isCentered={true} onClick={onClick} text="Поехали!"></ButtonWrapper>
+                        <ButtonWrapper className="StartWindow__button" classNameText="StartWindow__button-text" isCentered={true} onClick={()=>dispath(goToPollView)} text="Поехали!"></ButtonWrapper>
                     </div>
                 </div>
             </PanelWrapper>

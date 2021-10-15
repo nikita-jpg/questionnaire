@@ -5,10 +5,11 @@ import ListCard from '../../components/ListCard/ListCard'
 import './ListQuizes.css';
 import Header from '../../components/Header/Header';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
+import { useDispatch } from 'react-redux';
 
-const ListQuizes = ({ id, title, quizes, onBack = () => { }, createOnClickItemQuizes = (index) => null }) => {
+const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, createOnClickItemQuizes = (index) => null }) => {
 
-    console.log(title[0])
+    const dispath = useDispatch()
 
     return (
         <PanelWrapper id={id} headerText={title} onHeaderBack={onBack} isHeaderFixed={true}>
@@ -16,7 +17,7 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { }, createOnClickItemQu
             <div className="ListQuizes">
                 <ListCard
                     info={quizes}
-                    cardClick={createOnClickItemQuizes}
+                    cardClick={ ()=>dispath(goToSurveyView)}
                 />
             </div>
 

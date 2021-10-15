@@ -21,10 +21,14 @@ import SpinnerView from '../views/SpinnerView/SpinnerView';
 
 import * as server from '../NotUI/Server/server'
 import TestView from '../components/TestView/TestView';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { createStore } from 'redux';
 
-import {reducerTestView} from '../components/TestView/ReducerTestView'
+import {comboReducer} from '../ComboReducer'
+
+import * as appNavigate from './Actions'
+
+import {selectCurrentView} from './Selector'
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
@@ -51,7 +55,7 @@ const App = ({results, MAX_SCORE,
 	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
 
-	const [activeView, setActiveView] = useState(VIEW_ID_LIST_AGE_AND_QUIZES);
+	const [activeViewOld, setActiveView] = useState(VIEW_ID_LIST_AGE_AND_QUIZES);
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [curWidth, setCurWidth] = useState(0)
 
@@ -184,8 +188,9 @@ const App = ({results, MAX_SCORE,
 		// Выбор опроса
 		const createOnClickItemQuizes = (index) => () => {
 			setIndexQuiz(index);
-			goToViewSpinner();
-			downloadQuizeImage(index)
+			goToViewListQuestions();
+			// goToViewSpinner();
+			// downloadQuizeImage(index)
 			// if(!eras[indexAge].subset[index].isImageDownloaded)
 			// {
 			// 	goToViewSpinner();
@@ -291,7 +296,7 @@ const App = ({results, MAX_SCORE,
 		goToViewListAgeAndQuizes()
 	}
 
-	const store = createStore(reducerTestView)
+	const activeView = useSelector(selectCurrentView)
 
 	return (
 	<ConfigProvider isWebView={true}>
@@ -299,14 +304,13 @@ const App = ({results, MAX_SCORE,
 			<AppRoot>
 				<SplitLayout header={null}>
 					<SplitCol animate={true}>
-						<Provider store={store}>
 							<Root activeView={activeView}>
 								
 								<TestView id={"VIEW_TEST_VIEW"}></TestView>
 
 								<StartWindow 
 									id={VIEW_ID_START_WINDOW} 
-									onClick={onClickStartWindow}/>
+									goToPollView={appNavigate.App_goToPollView}/>
 
 								<View 
 									id={VIEW_ID_LIST_AGE_AND_QUIZES}
@@ -328,6 +332,7 @@ const App = ({results, MAX_SCORE,
 										quizes={eras[indexAge].subset} 
 										onBack={onBackListQuizes} 
 										createOnClickItemQuizes={createOnClickItemQuizes}
+										goToSurveyView={appNavigate.goToSurveyView}
 									/>
 
 								</View>
@@ -338,6 +343,7 @@ const App = ({results, MAX_SCORE,
 									arrQuestions={eras[indexAge].subset[indexQuiz].subset}
 									onBack={onBackListQuestions}
 									onFinish={onFinishListQuestions}
+									goToPollView={appNavigate.App_goToPollView}
 								/>
 
 								{/* <ListQuestions 
@@ -396,7 +402,7 @@ const App = ({results, MAX_SCORE,
 								</SpinnerView>
 
 							</Root>
-						</Provider>
+						{/* </Provider> */}
 					</SplitCol>
 				</SplitLayout>
 			</AppRoot>
