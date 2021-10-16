@@ -25,7 +25,6 @@ const getTextWidth = (text) => {
   }
   
 const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
-    console.log(icon)
 
     const LEFT_BTN_WIDTH = hasLeftBtn ? 42 : PLATFORM_MARGIN_LEFT;
 
@@ -79,8 +78,8 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
 }
 
 
-const Header = ({onBack, onClose, isFixed, text, icon, click}) => {
-    const curWidth = useSelector(getCurWidth)
+const Header = ({onBack, curWidth, onClose, isFixed, text, icon, click}) => {
+    // const curWidth = useSelector(getCurWidth)
 
     let left;
     let cursor = "inherit";

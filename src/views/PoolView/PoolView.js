@@ -6,54 +6,51 @@ import ListQuizes from "../ListQuizes/ListQuizes"
 import * as selectors from './selector'
 import { useSelector } from 'react-redux';
 
-const PoolView = ({id, curWidth, indexAge}) => {
+// логика переключения между Панелями
+const PANEL_ID_LIST_AGE = "PANEL_ID_LIST_AGE";
+const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
-    // console.log(id)
+const PoolView = ({id, indexAge}) => {
 
-    // логика переключения между Панелями
-	const PANEL_ID_LIST_AGE = "PANEL_ID_LIST_AGE";
-	const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
+	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 
-    const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
+	// История
+	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
+	const goBackInHistory = () => {
+		let his = history;
+		his.pop()
+		if (activePanel === PANEL_ID_LIST_AGE) {
+			vkBridge.send('VKWebAppEnableSwipeBack');
+		}
+		setHistory(his)
+		setActivePanel(history[history.length - 1])	
+	}
 
-    	// История для ListAgeAndQuizes
-
-		const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
-		const goBackInHistory = () => {
-			let his = history;
-			his.pop()
-			if (activePanel === PANEL_ID_LIST_AGE) {
-				vkBridge.send('VKWebAppEnableSwipeBack');
-			}
+	const goForwardInHistory = (view) => { 
+		let his = history;
+		his.push(view);
+		if (activePanel === PANEL_ID_LIST_AGE) {
+			vkBridge.send('VKWebAppDisableSwipeBack');
 			setHistory(his)
-			setActivePanel(history[history.length - 1])	
 		}
+		else{
+			setHistory(his)
+		}
+	}
 
-		const goForwardInHistory = (view) => { 
-			let his = history;
-			his.push(view);
-			if (activePanel === PANEL_ID_LIST_AGE) {
-				vkBridge.send('VKWebAppDisableSwipeBack');
-				setHistory(his)
-			}
-			else{
-				setHistory(his)
-			}
-		}
+	const onBackListQuizes = () => {
+		goBackInHistory(PANEL_ID_LIST_AGE)
+	}
 
-        const onBackListQuizes = () => {
-			goBackInHistory(PANEL_ID_LIST_AGE)
-		}
+	const createOnClickItemAge = (index) => () => {
+		goForwardInHistory(PANEL_ID_LIST_QUIZES);
+		setActivePanel(PANEL_ID_LIST_QUIZES)();
+	}
 
-        const createOnClickItemAge = (index) => () => {
-			goForwardInHistory(PANEL_ID_LIST_QUIZES);
-			setActivePanel(PANEL_ID_LIST_QUIZES)();
-		}
-
-        const createOnClickItemQuizes = (index) => () => {
-            console.log(index)
-			// goToViewListQuestions();
-		}
+	const createOnClickItemQuizes = (index) => () => {
+		console.log(index)
+		// goToViewListQuestions();
+	}
 
     const eras = useSelector(selectors.getEras)
         
