@@ -1,11 +1,13 @@
 import bridge from '@vkontakte/vk-bridge';
 import { ContentCard, Div, Panel, PromoBanner, View } from "@vkontakte/vkui";
 import React, { useState } from "react";
+import { useSelector } from 'react-redux';
 import AlertQuestionResult from "../../components/AlertQuestionResult/AlertQuestionResult";
 import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
+import { getIndexEraAndSurvey } from '../../Selectors/data_selectors';
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
@@ -14,6 +16,9 @@ import ResultCards from './ResultCards/ResultCards';
 const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, goToViewListAndQuizes=()=>{} }) => {
+
+    const indexAgeAndSurvey = useSelector(getIndexEraAndSurvey);
+    const indexAge = 0;
 
     //Работа с панелями
         const PANEL_RESULT = "PANEL_RESULT";

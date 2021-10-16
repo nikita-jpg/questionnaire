@@ -7,18 +7,34 @@ import AlertWrapper from '../../components/AlertWrapper/AlertWrapper';
 import './ListQuestions.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getArrQuestions } from '../../Selectors/data_selectors';
+import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
 
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
 
 
 
-const ListQuestions = ({id, goToPollView=()=>{}, onFinish=totalScore=>{}}) => {
+const ListQuestions = ({id, goToPollView=()=>{}, goToResultView=()=>{}}) => {
+
+    const arrQuestions = useSelector(getArrQuestions)
+    const surveyFinishedGoToResult = useSelector(getSurveyFinishedGoToResult);
+    const dispath = useDispatch()
+
+    const isGoToResult = () => {
+        if((arrQuestions[0].userAnswer !== null) && (surveyFinishedGoToResult)){
+            dispath(goToResultView())
+        }
+    }
+    isGoToResult()
+
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
     const [history, setHistory] = useState([PANEL_FIRST_ID]);
     const [alert, setAlert] = useState(null);
 
-    const dispath = useDispatch()
+
+    const onFinish = () => {
+
+    }
 
     // логика хранения ответов
     const getInitStateAnswers = () => [
@@ -144,7 +160,7 @@ const ListQuestions = ({id, goToPollView=()=>{}, onFinish=totalScore=>{}}) => {
 
     )}
 
-    const arrQuestions = useSelector(getArrQuestions)
+
     //Модальное окно
     const modal = (
         <ModalRoot activeModal={isModalOpen} onClose={changeModal}>

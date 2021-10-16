@@ -315,16 +315,17 @@ const App = ({results, MAX_SCORE,
 								<PoolView
 									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
 									setIndexEraAndSurvey={data.setIndexEraAndSurvey}
-									goToSurveyView={appNavigate.goToSurveyView}
+									goToSurveyView={appNavigate.App_goToSurveyView}
 								/>
 
 								<ListQuestions 
 									id={viewsId.VIEW_ID_LIST_QUESTIONES}
 									onFinish={onFinishListQuestions}
 									goToPollView={appNavigate.App_goToPollView}
+									goToResultView={appNavigate.App_goToResultView}
 								/>
 
-								<Result
+								{/* <Result
 									id={viewsId.VIEW_ID_RESULT}
 									percent={results[indexResuslt].percent}
 									quizes={eras[indexAge].quizzes}
@@ -340,7 +341,7 @@ const App = ({results, MAX_SCORE,
 
 									isFirstOpenResult={isFirstOpenResult}
 									setIsFirstOpenResult={setIsFirstOpenResult}
-								/>
+								/> */}
 
 								{/* <ListQuestions 
 									id={VIEW_ID_LIST_QUESTIONES}

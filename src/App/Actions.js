@@ -6,13 +6,13 @@ export const App_goToPollView = () => {
     }
 }
 
-export const goToSurveyView = () => {
+export const App_goToSurveyView = () => {
     return{
         type:viewsConsts.VIEW_ID_LIST_QUESTIONES
     }
 }
 
-export const goToResultView= () => {
+export const App_goToResultView= () => {
     return{
         type:viewsConsts.VIEW_ID_RESULT
     }
