@@ -15,7 +15,6 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, crea
     const info = quizes.map((quiz)=>(
         {
             russianName: quiz.russianName,
-            title: quiz.russianName,
             percentProgress: getAnswersResultSurvey(quiz).score,
             numberOfQuestions: getAnswersResultSurvey(quiz).total,
             imageName: quiz.image.imageName,

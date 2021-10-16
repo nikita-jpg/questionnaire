@@ -31,7 +31,7 @@ const ListCard = ( { info,percentProgress,numberOfQuestions, cardClick = (index)
                     info.map((record,i) => {
                         return <div key={record.russianName}>
                             <CardWrapper
-                                title={record.title}
+                                title={record.russianName}
                                 percentProgress={record.percentProgress}
                                 numberOfQuestions={record.numberOfQuestions}
                                 cardClick={cardClick(i)}

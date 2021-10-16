@@ -22,8 +22,8 @@ export const getWidthInfo = (curWidth) => {
     } 
 }
 
-export const getAnswersResultSurvey = (arrQuestions) => {
-    arrQuestions = arrQuestions.subset
+export const getAnswersResultSurvey = (survey) => {
+    let arrQuestions = survey.subset
 
     let score = 0;
     const total = arrQuestions.length;
@@ -33,6 +33,26 @@ export const getAnswersResultSurvey = (arrQuestions) => {
             if ((question.userAnswer.idAnswerOption === question.answerOptions[i].idAnswerOption) && (question.answerOptions[i].score === 1)){
                 score++;
             }
+        }
+    })
+
+    return{
+        score:score,
+        total:total
+    }
+}
+
+export const getAnswersResulEra = (era) => {
+    let arrSurveys = era.subset
+
+    let score = 0;
+    const total = arrSurveys.length;
+
+    arrSurveys.map((survey)=>{
+        // console.log(survey.subset)
+        let surveyResult = getAnswersResultSurvey(survey)
+        if(surveyResult.score === surveyResult.total){
+            score++;
         }
     })
 
