@@ -252,13 +252,6 @@ const App = ({results, MAX_SCORE,
 		}
 
 
-
-	// функции для ListQuestions
-		const onBackListQuestions = () => {
-			goToViewListAgeAndQuizes();
-			goToPanelListQuizes();
-		}
-
 		const onFinishListQuestions = (indexesAnswers) => {
 			setIndexesAnswers(indexesAnswers);
 
@@ -353,7 +346,6 @@ const App = ({results, MAX_SCORE,
 									id={viewsId.VIEW_ID_LIST_QUESTIONES}
 									curWidth={curWidth}
 									arrQuestions={eras[indexAge].subset[indexQuiz].subset}
-									onBack={onBackListQuestions}
 									onFinish={onFinishListQuestions}
 									goToPollView={appNavigate.App_goToPollView}
 								/>

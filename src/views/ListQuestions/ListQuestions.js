@@ -13,7 +13,7 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 
 
 
-const ListQuestions = ({id, goToPollView, onBack=()=>{}, onFinish=totalScore=>{}}) => {
+const ListQuestions = ({id, goToPollView=()=>{}, onFinish=totalScore=>{}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
     const [history, setHistory] = useState([PANEL_FIRST_ID]);
     const [alert, setAlert] = useState(null);
@@ -125,7 +125,7 @@ const ListQuestions = ({id, goToPollView, onBack=()=>{}, onFinish=totalScore=>{}
                 header="Уверены, что хотите выйти?"
                 leftText={"Отмена"}
                 rightText={"Выйти"}
-                rightFunc={ () =>  {dispath(goToPollView); resetData()}}
+                rightFunc={ () =>  {dispath(goToPollView()); resetData()}}
                 onClose={()=>{setAlert(null)}}
             >
             </AlertWrapper>
