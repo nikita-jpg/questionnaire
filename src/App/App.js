@@ -9,6 +9,7 @@ import { AdaptivityProvider, ModalRoot, AppRoot, ConfigProvider, ModalPage, Head
 import "./App.css";
 import StartWindow from '../views/StartWindow/StartWindow';
 import ListAge from '../views/ListAge/ListAge';
+import Result from '../views/Result/Result'
 import ListQuestions from '../views/ListQuestions/ListQuestions';
 // import Result from '..//Result/Result';
 import ListQuizes from '../views/ListQuizes/ListQuizes';
@@ -317,35 +318,28 @@ const App = ({results, MAX_SCORE,
 									goToSurveyView={appNavigate.goToSurveyView}
 								/>
 
-								{/* <View 
-									id={VIEW_ID_LIST_AGE_AND_QUIZES}
-									activePanel={activePanel}
-									onSwipeBack={goBackInHistory}
-									history={history}>
-
-									<ListAge 
-										id={PANEL_ID_LIST_AGE} 
-										eras={eras} 
-										curWidth={curWidth}
-										createOnClickItemAge={createOnClickItemAge}
-									/>
-
-									<ListQuizes 
-										id={PANEL_ID_LIST_QUIZES} 
-										curWidth={curWidth}
-										title={eras[indexAge].russianName} 
-										quizes={eras[indexAge].subset} 
-										onBack={onBackListQuizes} 
-										createOnClickItemQuizes={createOnClickItemQuizes}
-										goToSurveyView={appNavigate.goToSurveyView}
-									/>
-
-								</View> */}
-
 								<ListQuestions 
 									id={viewsId.VIEW_ID_LIST_QUESTIONES}
 									onFinish={onFinishListQuestions}
 									goToPollView={appNavigate.App_goToPollView}
+								/>
+
+								<Result
+									id={viewsId.VIEW_ID_RESULT}
+									percent={results[indexResuslt].percent}
+									quizes={eras[indexAge].quizzes}
+									questions={eras[indexAge].quizzes[indexQuiz].questions}
+									indexAge={indexAge}
+									eras={eras}
+									indexQuiz={indexQuiz}
+									indexesAnswers={indexesAnswers}
+									createOnClickItemQuizes={createOnClickItemQuizes}
+
+									onAgain={onAgainResult}
+									goToViewListAndQuizes={goToViewListAgeAndQuizesFromResult}
+
+									isFirstOpenResult={isFirstOpenResult}
+									setIsFirstOpenResult={setIsFirstOpenResult}
 								/>
 
 								{/* <ListQuestions 

@@ -11,10 +11,9 @@ import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
 import ResultCards from './ResultCards/ResultCards';
 
-const Result = ({ id, titleAge, year, percent, eras, historicalEvent, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
-    onBack = () => {}, createOnClickItemQuizes = (index) => null,
-    createOnClickItemAge = () => {},
-    onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{} }) => {
+const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
+    createOnClickItemQuizes = (index) => null,
+    onAgain=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
     //Работа с панелями
         const PANEL_RESULT = "PANEL_RESULT";
