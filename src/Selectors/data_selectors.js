@@ -1,4 +1,4 @@
-export const getEras = state => state.Data.Eras
+export const getEras = (state, test) => state.Data.Eras
 
 export const getIndexEraAndSurvey = (state) => {
     return{
@@ -14,3 +14,9 @@ export const getArrQuestions = (state) => {
         eras[indexEraAndSurvey.indexEra].subset[indexEraAndSurvey.indexSurvey].subset
     )
 }
+
+// export const getSurveyResult = (state) => {
+//     const eras = getEras(state);
+//     const indexAgeAndSurvey = 
+
+// }

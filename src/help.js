@@ -21,3 +21,23 @@ export const getWidthInfo = (curWidth) => {
         return {colNumber:"l", maxWidth:"560px"}
     } 
 }
+
+export const getAnswersResultSurvey = (arrQuestions) => {
+    arrQuestions = arrQuestions.subset
+
+    let score = 0;
+    const total = arrQuestions.length;
+
+    arrQuestions.map((question)=>{
+        for(let i=0;i<question.answerOptions.length;i++){
+            if ((question.userAnswer.idAnswerOption === question.answerOptions[i].idAnswerOption) && (question.answerOptions[i].score === 1)){
+                score++;
+            }
+        }
+    })
+
+    return{
+        score:score,
+        total:total
+    }
+}

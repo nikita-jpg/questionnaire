@@ -5,7 +5,7 @@ import { getCurWidth } from '../../Additional/selectors';
 import CardWrapper from '../CardWrapper/CardWrapper';
 import './ListCard.css';
 
-const ListCard = ( { info, cardClick = (index) => null}) => {
+const ListCard = ( { info,percentProgress,numberOfQuestions, cardClick = (index) => null}) => {
 
     const curWidth = useSelector(getCurWidth)
 
@@ -31,11 +31,11 @@ const ListCard = ( { info, cardClick = (index) => null}) => {
                     info.map((record,i) => {
                         return <div key={record.russianName}>
                             <CardWrapper
-                                title={record.russianName}
+                                title={record.title}
                                 percentProgress={record.percentProgress}
-                                numberOfQuestions={record.subset.length}
+                                numberOfQuestions={record.numberOfQuestions}
                                 cardClick={cardClick(i)}
-                                imageName={record.image.imageName}
+                                imageName={record.imageName}
                                 description={record.description}
                             >
                             </CardWrapper>

@@ -33,28 +33,31 @@ export const initialState = {
 									idAnswerOption: 8,
 									idQuestion: 2,
 									text: "Вариант4",
-									score: "0"
+									score: 1
 								},
 								{
 									idAnswerOption: 7,
 									idQuestion: 2,
 									text: "Вариант3",
-									score: "0"
+									score: 0
 								},
 								{
 									idAnswerOption: 6,
 									idQuestion: 2,
 									text: "Вариант2",
-									score: "1"
+									score: 1
 								},
 								{
 									idAnswerOption: 5,
 									idQuestion: 2,
 									text: "Вариант1",
-									score: "0"
+									score: 0
 								}
 							],
-							userAnswer: null
+							userAnswer: {
+								idAnswerOption: 6
+							}
+							// userAnswer: null
 						}
 					]
 				}

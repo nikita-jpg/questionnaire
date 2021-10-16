@@ -6,17 +6,30 @@ import './ListQuizes.css';
 import Header from '../../components/Header/Header';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { useDispatch } from 'react-redux';
+import { getAnswersResultSurvey } from '../../help';
 
 const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, createOnClickItemQuizes = (index) => null }) => {
 
     const dispath = useDispatch()
+
+    const info = quizes.map((quiz)=>(
+        {
+            russianName: quiz.russianName,
+            title: quiz.russianName,
+            percentProgress: getAnswersResultSurvey(quiz).score,
+            numberOfQuestions: getAnswersResultSurvey(quiz).total,
+            imageName: quiz.image.imageName,
+            description: quiz.description
+        }
+    ))
+
 
     return (
         <PanelWrapper id={id} headerText={title} onHeaderBack={onBack} isHeaderFixed={true}>
 
             <div className="ListQuizes">
                 <ListCard
-                    info={quizes}
+                    info={info}
                     cardClick={createOnClickItemQuizes}
                 />
             </div>
