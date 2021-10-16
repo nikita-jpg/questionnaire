@@ -12,16 +12,22 @@ import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selector
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
 
-
+const resetQuestions = (arrQuestions) =>{
+    return arrQuestions.map((question)=>{
+        question.userAnswer = null;
+    })
+}
 
 const ListQuestions = ({id, goToPollView=()=>{}, goToResultView=()=>{}}) => {
 
-    const arrQuestions = useSelector(getArrQuestions)
+    let arrQuestions = useSelector(getArrQuestions)
+    console.log(arrQuestions)
     const surveyFinishedGoToResult = useSelector(getSurveyFinishedGoToResult);
     const dispath = useDispatch()
 
+    //Если мы уже проходили этот опросник или пользователь не нажал "Заново" в Result, то переходим к Result.
     const isGoToResult = () => {
-        if((arrQuestions[0].userAnswer !== null) && (surveyFinishedGoToResult)){
+        if((arrQuestions[0].userAnswer !== null) && (!surveyFinishedGoToResult)){
             dispath(goToResultView())
         }
     }
