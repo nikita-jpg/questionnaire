@@ -44,7 +44,7 @@ const PoolView = ({id, indexAge}) => {
 
 	const createOnClickItemAge = (index) => () => {
 		goForwardInHistory(PANEL_ID_LIST_QUIZES);
-		setActivePanel(PANEL_ID_LIST_QUIZES)();
+		setActivePanel(PANEL_ID_LIST_QUIZES);
 	}
 
 	const createOnClickItemQuizes = (index) => () => {
