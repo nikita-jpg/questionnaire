@@ -28,7 +28,7 @@ import * as server from '../NotUI/Server/server'
 import * as data from '../NotUI/Data/actions'
 // import * as additionalActions from '../Additional/actions'
 
-import {selectCurrentView} from './Selector'
+import {selectCurrentView} from '../Selectors/app_selectors'
 import PoolView from '../views/PoolView/PoolView';
 
 // import './svg/book.svg'

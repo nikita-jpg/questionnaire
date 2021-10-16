@@ -3,9 +3,8 @@ import vkBridge from '@vkontakte/vk-bridge'
 import { View } from "@vkontakte/vkui"
 import ListAge from "../ListAge/ListAge"
 import ListQuizes from "../ListQuizes/ListQuizes"
-import * as selectors from './selector'
 import { useSelector } from 'react-redux';
-import { getArrQuestions } from '../ListQuestions/selectors';
+import { getEras } from '../../Selectors/data_selectors';
 
 // логика переключения между Панелями
 const PANEL_ID_LIST_AGE = "PANEL_ID_LIST_AGE";
@@ -55,7 +54,7 @@ const PoolView = ({id}) => {
 		// goToViewListQuestions();
 	}
 
-    const eras = useSelector(selectors.getEras)
+    const eras = useSelector(getEras)
 
         
     return(

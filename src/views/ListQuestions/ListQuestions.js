@@ -6,7 +6,7 @@ import vkBridge from '@vkontakte/vk-bridge'
 import AlertWrapper from '../../components/AlertWrapper/AlertWrapper';
 import './ListQuestions.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { getArrQuestions } from './selectors';
+import { getArrQuestions } from '../../Selectors/data_selectors';
 
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"

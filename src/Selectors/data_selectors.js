@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux"
-import { getEras } from "../PoolView/selector"
+export const getEras = state => state.Data.Eras
 
 export const getIndexEraAndSurvey = (state) => {
     return{
@@ -11,7 +10,6 @@ export const getIndexEraAndSurvey = (state) => {
 export const getArrQuestions = (state) => {
     const eras = getEras(state)
     const indexEraAndSurvey = getIndexEraAndSurvey(state)
-    console.log(indexEraAndSurvey)
     return(
         eras[indexEraAndSurvey.indexEra].subset[indexEraAndSurvey.indexSurvey].subset
     )
