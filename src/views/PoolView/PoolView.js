@@ -5,14 +5,16 @@ import ListAge from "../ListAge/ListAge"
 import ListQuizes from "../ListQuizes/ListQuizes"
 import * as selectors from './selector'
 import { useSelector } from 'react-redux';
+import { getArrQuestions } from '../ListQuestions/selectors';
 
 // логика переключения между Панелями
 const PANEL_ID_LIST_AGE = "PANEL_ID_LIST_AGE";
 const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
-const PoolView = ({id, indexAge}) => {
+const PoolView = ({id}) => {
 
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
+	const [indexEra, setIndexEra] = useState(0)
 
 	// История
 	const [history, setHistory] = useState([PANEL_ID_LIST_AGE]);
@@ -42,7 +44,8 @@ const PoolView = ({id, indexAge}) => {
 		goBackInHistory(PANEL_ID_LIST_AGE)
 	}
 
-	const createOnClickItemAge = (index) => () => {
+	const createOnClickItemAge = (indexEra) => () => {
+		setIndexEra(indexEra);
 		goForwardInHistory(PANEL_ID_LIST_QUIZES);
 		setActivePanel(PANEL_ID_LIST_QUIZES);
 	}
@@ -53,6 +56,7 @@ const PoolView = ({id, indexAge}) => {
 	}
 
     const eras = useSelector(selectors.getEras)
+
         
     return(
         <View 
@@ -70,8 +74,8 @@ const PoolView = ({id, indexAge}) => {
 
         <ListQuizes 
             id={PANEL_ID_LIST_QUIZES} 
-            title={eras[indexAge].russianName} 
-            quizes={eras[indexAge].subset} 
+            title={eras[indexEra].russianName} 
+            quizes={eras[indexEra].subset} 
             onBack={onBackListQuizes} 
             createOnClickItemQuizes={createOnClickItemQuizes}
         />

@@ -1,7 +1,7 @@
 export const initialState = {
     indexEraAndSurvey:
         {
-            insexEra:0,
+            indexEra:0,
             indexSurvey:0
         },
     Eras:[

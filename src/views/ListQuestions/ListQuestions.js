@@ -5,14 +5,15 @@ import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
 import vkBridge from '@vkontakte/vk-bridge'
 import AlertWrapper from '../../components/AlertWrapper/AlertWrapper';
 import './ListQuestions.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getArrQuestions } from './selectors';
 
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
 
 
 
-const ListQuestions = ({id, arrQuestions,goToPollView, onBack=()=>{}, onFinish=totalScore=>{}}) => {
+const ListQuestions = ({id, goToPollView, onBack=()=>{}, onFinish=totalScore=>{}}) => {
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
     const [history, setHistory] = useState([PANEL_FIRST_ID]);
     const [alert, setAlert] = useState(null);
@@ -143,6 +144,7 @@ const ListQuestions = ({id, arrQuestions,goToPollView, onBack=()=>{}, onFinish=t
 
     )}
 
+    const arrQuestions = useSelector(getArrQuestions)
     //Модальное окно
     const modal = (
         <ModalRoot activeModal={isModalOpen} onClose={changeModal}>

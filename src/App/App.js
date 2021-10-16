@@ -19,11 +19,13 @@ import SpinnerView from '../views/SpinnerView/SpinnerView';
 // import testClass from '..//StartWindow/StartWindow';
 // import axios from 'axios';
 
-import * as server from '../NotUI/Server/server'
 import TestView from '../components/TestView/TestView';
 import { Provider, useSelector } from 'react-redux';
 
+//Actions
 import * as appNavigate from './Actions'
+import * as server from '../NotUI/Server/server'
+import * as data from '../NotUI/Data/actions'
 // import * as additionalActions from '../Additional/actions'
 
 import {selectCurrentView} from './Selector'
@@ -314,8 +316,7 @@ const App = ({results, MAX_SCORE,
 
 								<PoolView
 									id={VIEW_ID_LIST_AGE_AND_QUIZES}
-									eras={eras}
-									indexAge={indexAge}
+									setIndexEraAndSurvey={data.setIndexEraAndSurvey}
 								/>
 
 								{/* <View 
