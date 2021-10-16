@@ -49,7 +49,6 @@ export const getAnswersResulEra = (era) => {
     const total = arrSurveys.length;
 
     arrSurveys.map((survey)=>{
-        // console.log(survey.subset)
         let surveyResult = getAnswersResultSurvey(survey)
         if(surveyResult.score === surveyResult.total){
             score++;
