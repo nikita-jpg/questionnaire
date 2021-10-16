@@ -187,7 +187,6 @@ const ListQuestions = ({id, goToPollView=()=>{}, onFinish=totalScore=>{}}) => {
         const buttons = panel[0].getElementsByClassName("IteamListQuestion__answer");
 
         for(let i=0;i<buttons.length;i++){
-            console.log(buttons[i])
             buttons[i].style.backgroundColor = "var(--main-second-bg-color)"
         }
     }

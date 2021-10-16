@@ -344,8 +344,6 @@ const App = ({results, MAX_SCORE,
 
 								<ListQuestions 
 									id={viewsId.VIEW_ID_LIST_QUESTIONES}
-									curWidth={curWidth}
-									arrQuestions={eras[indexAge].subset[indexQuiz].subset}
 									onFinish={onFinishListQuestions}
 									goToPollView={appNavigate.App_goToPollView}
 								/>
