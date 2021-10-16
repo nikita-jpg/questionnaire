@@ -26,6 +26,10 @@ import { Provider, useSelector } from 'react-redux';
 import * as appNavigate from './Actions'
 import * as server from '../NotUI/Server/server'
 import * as data from '../NotUI/Data/actions'
+
+//Views id
+import * as viewsId from './Constants'
+
 // import * as additionalActions from '../Additional/actions'
 
 import {selectCurrentView} from '../Selectors/app_selectors'
@@ -311,12 +315,13 @@ const App = ({results, MAX_SCORE,
 							<Root activeView={activeView}>
 
 								<StartWindow 
-									id={VIEW_ID_START_WINDOW} 
+									id={viewsId.VIEW_ID_START_WINDOW} 
 									goToPollView={appNavigate.App_goToPollView}/>
 
 								<PoolView
-									id={VIEW_ID_LIST_AGE_AND_QUIZES}
+									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
 									setIndexEraAndSurvey={data.setIndexEraAndSurvey}
+									goToSurveyView={appNavigate.goToSurveyView}
 								/>
 
 								{/* <View 
@@ -345,7 +350,7 @@ const App = ({results, MAX_SCORE,
 								</View> */}
 
 								<ListQuestions 
-									id={VIEW_ID_LIST_QUESTIONES}
+									id={viewsId.VIEW_ID_LIST_QUESTIONES}
 									curWidth={curWidth}
 									arrQuestions={eras[indexAge].subset[indexQuiz].subset}
 									onBack={onBackListQuestions}

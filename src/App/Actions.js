@@ -6,9 +6,9 @@ export const App_goToPollView = () => {
     }
 }
 
-export const goToSurveyView= () => {
+export const goToSurveyView = () => {
     return{
-        type:viewsConsts.VIEW_ID_ANSWERS_QUESTIONS
+        type:viewsConsts.VIEW_ID_LIST_QUESTIONES
     }
 }
 

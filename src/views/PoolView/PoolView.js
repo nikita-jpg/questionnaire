@@ -3,15 +3,16 @@ import vkBridge from '@vkontakte/vk-bridge'
 import { View } from "@vkontakte/vkui"
 import ListAge from "../ListAge/ListAge"
 import ListQuizes from "../ListQuizes/ListQuizes"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getEras } from '../../Selectors/data_selectors';
 
 // логика переключения между Панелями
 const PANEL_ID_LIST_AGE = "PANEL_ID_LIST_AGE";
 const PANEL_ID_LIST_QUIZES = "PANEL_ID_LIST_QUIZES";
 
-const PoolView = ({id}) => {
+const PoolView = ({id, setIndexEraAndSurvey=()=>{}, goToSurveyView=()=>{}}) => {
 
+	const dispatch = useDispatch()
 	const [activePanel, setActivePanel] = useState(PANEL_ID_LIST_AGE);
 	const [indexEra, setIndexEra] = useState(0)
 
@@ -49,9 +50,9 @@ const PoolView = ({id}) => {
 		setActivePanel(PANEL_ID_LIST_QUIZES);
 	}
 
-	const createOnClickItemQuizes = (index) => () => {
-		console.log(index)
-		// goToViewListQuestions();
+	const createOnClickItemQuizes = (indexSurvey) => () => {
+		dispatch(setIndexEraAndSurvey(indexEra, indexSurvey))
+		dispatch(goToSurveyView())
 	}
 
     const eras = useSelector(getEras)
