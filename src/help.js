@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getCurWidth } from './Additional/selectors';
+import { QUESTION_NOT_ANSWERED } from './NotUI/Data/consts';
 
 export const isTitleCentre = (curWidth) => {
     return({
@@ -30,7 +31,7 @@ export const getAnswersResultSurvey = (survey) => {
 
     arrQuestions.map((question)=>{
         for(let i=0;i<question.answerOptions.length;i++){
-            if ( (question.userAnswer !== null) && (question.userAnswer.idAnswerOption === question.answerOptions[i].idAnswerOption) && (question.answerOptions[i].score === 1)){
+            if ( (question.userAnswer !== QUESTION_NOT_ANSWERED) && (question.userAnswer.idAnswerOption === question.answerOptions[i].idAnswerOption) && (question.answerOptions[i].score === 1)){
                 score++;
             }
         }

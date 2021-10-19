@@ -18,8 +18,7 @@ const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
 
     return (
         <PanelWrapper id={id} isOneColumn={true}
-        
-            // onHeaderClose={numberCurrentQuestion === 1 ? goToPrevQuestion:false}
+            onHeaderClose={id === 0 ? goToPrevQuestion:false}
             onHeaderBack={goToPrevQuestion}
             headerText={id+1 + " из " + countQuestions}
             headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}

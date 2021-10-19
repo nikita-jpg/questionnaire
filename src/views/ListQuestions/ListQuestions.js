@@ -11,6 +11,7 @@ import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selector
 import { saveUserAnswers } from '../../NotUI/Data/actions';
 import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import ModalPageForListQuestions from './ModalPageForListQuestions/ModalPageForListQuestions';
+import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
 
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
@@ -55,7 +56,6 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     // isGoToResult()
 
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
-    const [alert, setAlert] = useState(null);
 
 
     const onFinish = () => {
@@ -88,23 +88,23 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         setIndexQuestionAndHistory(0);
     }
 
-    const createGoToNextQuestion = (indexQuestion, maxLength) => (indexAnswer) => {
-        giveAnswer(indexQuestion, indexAnswer);
+    // const createGoToNextQuestion = (indexQuestion, maxLength) => (indexAnswer) => {
+    //     giveAnswer(indexQuestion, indexAnswer);
 
-        if (indexQuestion < maxLength - 1) {
-            setIndexQuestionAndHistory(indexQuestion + 1);
-        } else {
-            onFinishWithAlert();
-        }
-    }
+    //     if (indexQuestion < maxLength - 1) {
+    //         setIndexQuestionAndHistory(indexQuestion + 1);
+    //     } else {
+    //         onFinishWithAlert();
+    //     }
+    // }
 
-    const createGoToPrevQuestion = (indexQuestion) => () => {
-        if (indexQuestion > 0) {
-            setIndexQuestionAndHistory(indexQuestion - 1);
-        } else {
-            openCloseListQuestionsAleret();
-        }
-    }
+    // const createGoToPrevQuestion = (indexQuestion) => () => {
+    //     if (indexQuestion > 0) {
+    //         setIndexQuestionAndHistory(indexQuestion - 1);
+    //     } else {
+    //         openCloseListQuestionsAleret();
+    //     }
+    // }
 
     // логика перехода к любому вопросу
     const [lastIndexQuestion, setLastIndexQuestion] = useState(-1);
@@ -127,41 +127,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
 
 
 
-    //Alert
-    const onFinishWithAlert = () => {
-        isAllAnswered() ? onFinish(stateAnswers) : openFinishAlert()
-    }
-    const isAllAnswered = () => {
-        for (let i=0;i<stateAnswers.length;i++){
-            if(stateAnswers[i] === -1) return false;
-        }
-        return true
-    }
-    const openCloseListQuestionsAleret = () => {
 
-        setAlert(
-            <AlertWrapper
-                header="Уверены, что хотите выйти?"
-                leftText={"Отмена"}
-                rightText={"Выйти"}
-                rightFunc={ () =>  {dispath(goToPollView()); resetData()}}
-                onClose={()=>{setAlert(null)}}
-            >
-            </AlertWrapper>
-    )}
-    const openFinishAlert = () => {       
-        setAlert(
-
-            <AlertWrapper
-                header="Вы ответили не на все вопросы"
-                leftText={"Отмена"}
-                rightText={"Завершить"}
-                rightFunc={ () => {onFinish(stateAnswers)}}
-                onClose={()=>{setAlert(null)}}
-            >
-            </AlertWrapper>
-
-    )}
 
 
 
@@ -215,8 +181,26 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     const goToPrevQuestion=()=> goToCurrentQuestion(indexQuestion - 1)
     const goToNextQuestion=()=> goToCurrentQuestion(history.length)
 
+
+
     //Окончание опроса
+    const cheakAllAnswered = () => {
+        let ret = true;
+        arrQuestions.map((question)=>{
+            if(question.userAnswer === QUESTION_NOT_ANSWERED){
+                ret = false;
+            }
+        })
+        return ret;
+    }
     const finishSurvey = () => {
+        if(!cheakAllAnswered()){
+            openFinishAlert();
+            return;
+        }
+        finishSurveyWithOutCheck()
+    }
+    const finishSurveyWithOutCheck = () =>{
         saveAnswersToState()
         saveAnswersToServer()
         goToResultView()
@@ -268,13 +252,52 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         </ModalRoot>
     )
 
+        //Alert
+        const [alert, setAlert] = useState(null);
+        // const onFinishWithAlert = () => {
+        //     isAllAnswered() ? onFinish(stateAnswers) : openFinishAlert()
+        // }
+        // const isAllAnswered = () => {
+        //     for (let i=0;i<stateAnswers.length;i++){
+        //         if(stateAnswers[i] === -1) return false;
+        //     }
+        //     return true
+        // }
+        // const openCloseListQuestionsAleret = () => {
+    
+        //     setAlert(
+        //         <AlertWrapper
+        //             header="Уверены, что хотите выйти?"
+        //             leftText={"Отмена"}
+        //             rightText={"Выйти"}
+        //             rightFunc={ () =>  {dispath(goToPollView()); resetData()}}
+        //             onClose={()=>{setAlert(null)}}
+        //         >
+        //         </AlertWrapper>
+        // )}
+        const openFinishAlert = () => {       
+            setAlert(
+    
+                <AlertWrapper
+                    header="Вы ответили не на все вопросы"
+                    leftText={"Отмена"}
+                    rightText={"Завершить"}
+                    rightFunc={ () => {
+                        finishSurveyWithOutCheck();
+                    }}
+                    onClose={()=>{setAlert(null)}}
+                >
+                </AlertWrapper>
+    
+        )}
+
     return (
         <View id={id} 
             activePanel={indexQuestion} 
             modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
-            // popout={alert}
+            popout={alert}
             >
             {
                 arrQuestions.map((question, i) =>(
