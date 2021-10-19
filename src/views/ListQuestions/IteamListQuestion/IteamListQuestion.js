@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
 import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
+import ImageCard from './ImageCard/ImageCard';
 
 import "./IteamListQuestion.css";
 
@@ -29,44 +30,13 @@ const IteamListQuestion = ({ id, question,
             // headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
             // headerClick={changeModal}
         >
+
             <div className="IteamListQuestion">
-                
-                    <div className="IteamListQuestion__image-container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
-                        <img
-                            className="IteamListQuestion__image" 
-                            src={question.imageSrc}
-                        />
-                        
-                        <CSSTransition 
-                            in={isImgInfoOpen} 
-                            timeout={200}   
-                            classNames="IteamListQuestion__image-info"
-                            onEnter={() => {setisImgInfoOpen(true)}}
-                            onExited={() => {setisImgInfoOpen(false)}}>
-                            <div className="IteamListQuestion__image-info">
-                                <Div className="IteamListQuestion__image-description">
-                                    Источник: <br/>
-                                    {
-                                        isImgInfoOpen
-                                        ?<a 
-                                            href={question.linkOriginPhoto} 
-                                            className="IteamListQuestion__image-link"
-                                            target="_blank"
-                                            onClick={onLinkClick}
-                                        >
-                                            Клик
-                                        </a>
-                                        :<span className="IteamListQuestion__image-link">
-                                            Клик 
-                                        </span>
-                                    }
-                                    
-                                </Div>
-                            </div>
-                        </CSSTransition>
-
-                    </div>
+                <ImageCard
+                    imageName={question.imageName}
+                    linkOriginPhoto={question.sourceImageLink}
+                />
 
                     <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
 
