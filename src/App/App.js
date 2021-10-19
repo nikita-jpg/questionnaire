@@ -321,8 +321,8 @@ const App = ({results, MAX_SCORE,
 								<ListQuestions 
 									id={viewsId.VIEW_ID_LIST_QUESTIONES}
 									onFinish={onFinishListQuestions}
-									goToPollView={appNavigate.App_goToPollView}
-									goToResultView={appNavigate.App_goToResultView}
+									goToPollViewAction={appNavigate.App_goToPollView}
+									goToResultViewAction={appNavigate.App_goToResultView}
 								/>
 
 								{/* <Result

@@ -33,12 +33,16 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     const dispath = useDispatch()
 
 
-    
+    //Работа с ответами
     const giveAnswer = (indexQuestion, indexAnswer) => {
         arrQuestions[indexQuestion].userAnswer={idAnswerOption:arrQuestions[indexQuestion].answerOptions[indexAnswer].idAnswerOption}
     }
     const saveAnswersToState = () => dispath(saveUserAnswers(arrQuestions))
+    const saveAnswersToServer= () => sendUserAnswersToServer(arrQuestions)
 
+    //Внешняя навигация
+    const goToResultView = () => dispath(goToResultViewAction())
+    const goToPollView = () => dispath(goToPollViewAction())
 
 
 
@@ -223,12 +227,6 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     //Получение необходимых данных
     // const dispath = useDispatch();
     // let arrQuestions = useSelector(getArrQuestions);
-
-    //Actions
-    const goToPollView = () => dispath(goToPollViewAction())
-    const goToResultView = () => dispath(goToResultViewAction())
-    const sendAnswersToState = () => dispath()
-
     // const sendAnswersToServer = () => dispath(goToPollViewAction())
     // const sendAnswersToState = () => dispath(goToPollViewAction())
 
@@ -247,14 +245,16 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
             //Если мы переходим к этому индексу, значит пользователь ответил на посл вопрос и надо завершать опрос
             if(indexQuestion===arrQuestions.length){
                 saveAnswersToState()
-                sendUserAnswersToServer(arrQuestions)
+                saveAnswersToServer()
+                goToResultView()
                 return false;
             }
-            // //Проверка индекса
-            // if( newIndex<0 || newIndex===arrQuestions.length ){
-            //     console.log("Переход на несуществующий индекс: " + newIndex)
-            //     return false;
-            // }
+
+            if(indexQuestion === -1){
+                goToPollView()
+                return false;
+            }
+
             return true
         }
         const goToCurrentQuestion = (indexQuestion)=>{
