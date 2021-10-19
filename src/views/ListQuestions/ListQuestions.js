@@ -8,6 +8,7 @@ import './ListQuestions.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getArrQuestions } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
+import { saveUserAnswers } from '../../NotUI/Data/actions';
 
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
@@ -34,10 +35,8 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     
     const giveAnswer = (indexQuestion, indexAnswer) => {
         arrQuestions[indexQuestion].userAnswer={idAnswerOption:arrQuestions[indexQuestion].answerOptions[indexAnswer].idAnswerOption}
-        // console.log(arrQuestions)
-        // stateAnswers[indexQuestion] = indexAnswer;
-        // setStateAnswers([...stateAnswers]);
     }
+    const saveAnswersToState = () => dispath(saveUserAnswers(arrQuestions))
 
 
 
@@ -227,6 +226,8 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     //Actions
     const goToPollView = () => dispath(goToPollViewAction())
     const goToResultView = () => dispath(goToResultViewAction())
+    const sendAnswersToState = () => dispath()
+
     // const sendAnswersToServer = () => dispath(goToPollViewAction())
     // const sendAnswersToState = () => dispath(goToPollViewAction())
 
@@ -239,23 +240,41 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
 
     // }
 
+        //Навигация
+        const checkIndex = (indexQuestion) =>{
+
+            //Если мы переходим к этому индексу, значит пользователь ответил на посл вопрос и надо завершать опрос
+            if(indexQuestion===arrQuestions.length){
+                saveAnswersToState()
+                return false;
+            }
+            // //Проверка индекса
+            // if( newIndex<0 || newIndex===arrQuestions.length ){
+            //     console.log("Переход на несуществующий индекс: " + newIndex)
+            //     return false;
+            // }
+            return true
+        }
+        const goToCurrentQuestion = (indexQuestion)=>{
+
+            if(checkIndex(indexQuestion)){
+                changeHistory(indexQuestion)
+                setIndexQuestion(indexQuestion)
+            }
+        }
+        const goToPrevQuestion=()=> goToCurrentQuestion(indexQuestion - 1)
+        const goToNextQuestion=()=> goToCurrentQuestion(history.length)
+
+
         // История
         const [history, setHistory] = useState([0]);
         const changeHistory = (nextIndex) => {
-            
-            //Проверка индекса
-            if( nextIndex<0 || nextIndex===arrQuestions.length ){
-                console.log("Переход на несуществующий индекс: " + nextIndex)
-                return null;
-            }
-    
     
             //Установка истории
             let his = [];
-            for(let i=0;i<nextIndex;i++){
+            for(let i=0;i<nextIndex+1;i++){
                 his.push(i)
             }
-            his.push(indexQuestion)
             setHistory(his)
     
     
@@ -268,18 +287,6 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
             }
         }
 
-        const goToPrevQuestion=()=>{
-            setIndexQuestion(indexQuestion-1)
-            changeHistory(indexQuestion-1)
-        }
-        const goToNextQuestion=()=>{
-            changeHistory(history.length)
-            setIndexQuestion(history.length)
-        }
-        const goToCurrentQuestion = (indexQuestion)=>{
-            changeHistory(indexQuestion)
-            setIndexQuestion(indexQuestion)
-        }
 
     return (
         <View id={id} 
