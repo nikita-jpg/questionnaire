@@ -11,21 +11,17 @@ import "./IteamListQuestion.css";
 
 const osName = platform();
 
-const IteamListQuestion = ({ id, question,
+const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
     numberCurrentQuestion, countQuestions, indexAnswer,name,
     goToPrevQuestion, goToNextQuestion,isModalOpen,isClicked,
     changeModal = () => {}, setNotActiveBackgoundToAnswerButton = () => {} }) => {
 
-    //Картинка
-    const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
-
-    const onLinkClick = (e) => e.stopPropagation();
 
     return (
         <PanelWrapper id={id} isOneColumn={true}
         
             // onHeaderClose={numberCurrentQuestion === 1 ? goToPrevQuestion:false}
-            // onHeaderBack={goToPrevQuestion}
+            onHeaderBack={goToPrevQuestion}
             // headerText={numberCurrentQuestion + " из " + countQuestions}
             // headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
             // headerClick={changeModal}
@@ -38,24 +34,26 @@ const IteamListQuestion = ({ id, question,
                     linkOriginPhoto={question.sourceImageLink}
                 />
 
-                    <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
+                <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
 
-                    <div className="IteamListQuestion__answer-options">
-                        {
-                            question.answerOptions.map((answer, i) => (
-                                <ButtonWrapper
-                                    onClick={() => {
-                                        // setNotActiveBackgoundToAnswerButton();
-                                        // goToNextQuestion(i);
-                                    }}
-                                    // isActived={indexAnswer === i}
-                                    text={answer.text}
-                                    className={`IteamListQuestion__answer ${isClicked?"IteamListQuestion__answer-active":""}` }
-                                >
-                                </ButtonWrapper>
-                            ))
-                        }
-                    </div>
+                <div className="IteamListQuestion__answer-options">
+                    {
+                        question.answerOptions.map((answer, i) => (
+                            <ButtonWrapper
+                                onClick={() => {
+                                    giveAnswer(id, i)
+                                    goToNextQuestion()
+                                    // setNotActiveBackgoundToAnswerButton();
+                                    // goToNextQuestion(i);
+                                }}
+                                // isActived={indexAnswer === i}
+                                text={answer.text}
+                                className={`IteamListQuestion__answer ${isClicked?"IteamListQuestion__answer-active":""}` }
+                            >
+                            </ButtonWrapper>
+                        ))
+                    }
+                </div>
             </div>
         </PanelWrapper>
     )

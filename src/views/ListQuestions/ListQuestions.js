@@ -12,11 +12,11 @@ import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selector
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
 
-const resetQuestions = (arrQuestions) =>{
-    return arrQuestions.map((question)=>{
-        question.userAnswer = null;
-    })
-}
+// const resetQuestions = (arrQuestions) =>{
+//     return arrQuestions.map((question)=>{
+//         question.userAnswer = null;
+//     })
+// }
 
 const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}}) => {
     // const dispath = useDispatch()
@@ -29,6 +29,18 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     //Получаем все данные для работы компонента
     let arrQuestions = useSelector(getArrQuestions)
     const dispath = useDispatch()
+
+
+    
+    const giveAnswer = (indexQuestion, indexAnswer) => {
+        arrQuestions[indexQuestion].userAnswer={idAnswerOption:arrQuestions[indexQuestion].answerOptions[indexAnswer].idAnswerOption}
+        // console.log(arrQuestions)
+        // stateAnswers[indexQuestion] = indexAnswer;
+        // setStateAnswers([...stateAnswers]);
+    }
+
+
+
 
 
     // console.log(arrQuestions)
@@ -44,7 +56,6 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     // isGoToResult()
 
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
-    const [history, setHistory] = useState([PANEL_FIRST_ID]);
     const [alert, setAlert] = useState(null);
 
 
@@ -57,12 +68,12 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         -1,-1,-1,-1,-1,-1,-1,-1
     ];
 
-    const [stateAnswers, setStateAnswers] = useState( getInitStateAnswers());
+    const [stateAnswers, setStateAnswers] = useState(getInitStateAnswers());
 
-    const giveAnswer = (indexQuestion, indexAnswer) => {
-        stateAnswers[indexQuestion] = indexAnswer;
-        setStateAnswers([...stateAnswers]);
-    }
+    // const giveAnswer = (indexQuestion, indexAnswer) => {
+    //     stateAnswers[indexQuestion] = indexAnswer;
+    //     setStateAnswers([...stateAnswers]);
+    // }
 
     const resetStateAnswers = () => setStateAnswers(getInitStateAnswers());
 
@@ -123,22 +134,8 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         }
     }
 
-    // История
-    const changeHistory = (nextIndex) => { 
-        setHistory()
-		let his = [];
-        for(let i=0;i<nextIndex+1;i++){
-            his.push(createIdActivePanel(i))
-        }
-        setHistory(his)
 
-		if (createIdActivePanel(nextIndex) === PANEL_FIRST_ID) {
-			vkBridge.send('VKWebAppDisableSwipeBack');
-		  }
-        else{
-            vkBridge.send('VKWebAppEnableSwipeBack');
-        }
-	}
+
 
     //Alert
     const onFinishWithAlert = () => {
@@ -242,14 +239,54 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
 
     // }
 
+        // История
+        const [history, setHistory] = useState([0]);
+        const changeHistory = (nextIndex) => {
+            
+            //Проверка индекса
+            if( nextIndex<0 || nextIndex===arrQuestions.length ){
+                console.log("Переход на несуществующий индекс: " + nextIndex)
+                return null;
+            }
+    
+    
+            //Установка истории
+            let his = [];
+            for(let i=0;i<nextIndex;i++){
+                his.push(i)
+            }
+            his.push(indexQuestion)
+            setHistory(his)
+    
+    
+            //vkBridge
+            if (createIdActivePanel(nextIndex) === 0) {
+                vkBridge.send('VKWebAppDisableSwipeBack');
+              }
+            else{
+                vkBridge.send('VKWebAppEnableSwipeBack');
+            }
+        }
 
+        const goToPrevQuestion=()=>{
+            setIndexQuestion(indexQuestion-1)
+            changeHistory(indexQuestion-1)
+        }
+        const goToNextQuestion=()=>{
+            changeHistory(history.length)
+            setIndexQuestion(history.length)
+        }
+        const goToCurrentQuestion = (indexQuestion)=>{
+            changeHistory(indexQuestion)
+            setIndexQuestion(indexQuestion)
+        }
 
     return (
         <View id={id} 
             activePanel={indexQuestion} 
             // modal={modal} 
-            // history={history} 
-            // onSwipeBack={createGoToPrevQuestion(indexQuestion)}
+            history={history} 
+            onSwipeBack={goToPrevQuestion}
             // popout={alert}
             >
             {
@@ -260,6 +297,9 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
                         // name={createIdActivePanel(i)}
                                         
                         question={question}
+                        giveAnswer={giveAnswer}
+                        goToNextQuestion={goToNextQuestion}
+                        goToPrevQuestion={goToPrevQuestion}
                         // numberCurrentQuestion={i+1}
                         // countQuestions={arr.length}
 
