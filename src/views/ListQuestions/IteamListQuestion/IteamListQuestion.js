@@ -22,7 +22,7 @@ const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
         
             // onHeaderClose={numberCurrentQuestion === 1 ? goToPrevQuestion:false}
             onHeaderBack={goToPrevQuestion}
-            // headerText={numberCurrentQuestion + " из " + countQuestions}
+            headerText={id+1 + " из " + countQuestions}
             // headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
             // headerClick={changeModal}
         >

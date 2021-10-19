@@ -21,12 +21,6 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 // }
 
 const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}}) => {
-    // const dispath = useDispatch()
-
-    // useEffect(()=>{
-    //     dispath(goToPollView())
-    // },[])
-
 
     //Получаем все данные для работы компонента
     let arrQuestions = useSelector(getArrQuestions)
@@ -281,7 +275,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     
     
             //vkBridge
-            if (createIdActivePanel(nextIndex) === 0) {
+            if (nextIndex === 0) {
                 vkBridge.send('VKWebAppDisableSwipeBack');
               }
             else{
@@ -309,6 +303,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
                         giveAnswer={giveAnswer}
                         goToNextQuestion={goToNextQuestion}
                         goToPrevQuestion={goToPrevQuestion}
+                        countQuestions={arrQuestions.length}
                         // numberCurrentQuestion={i+1}
                         // countQuestions={arr.length}
 
