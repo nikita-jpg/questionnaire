@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getArrQuestions } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
 import { saveUserAnswers } from '../../NotUI/Data/actions';
+import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
@@ -246,6 +247,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
             //Если мы переходим к этому индексу, значит пользователь ответил на посл вопрос и надо завершать опрос
             if(indexQuestion===arrQuestions.length){
                 saveAnswersToState()
+                sendUserAnswersToServer(arrQuestions)
                 return false;
             }
             // //Проверка индекса

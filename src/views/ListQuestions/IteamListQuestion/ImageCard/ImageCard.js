@@ -16,7 +16,7 @@ const ImageCard = (imageName, sourceImageLink) => {
     //Устанавливаем дефолтую картинку на карточки
     const [image, setImage] = useState(defaultImage)
     //Загружаем основную картинку
-    downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
+    // downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
 
 
     return(
