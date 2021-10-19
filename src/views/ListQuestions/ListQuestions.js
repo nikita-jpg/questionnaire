@@ -1,5 +1,5 @@
 import { View,ModalRoot,ModalPage,List, SimpleCell, Div, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
 import vkBridge from '@vkontakte/vk-bridge'
@@ -18,20 +18,30 @@ const resetQuestions = (arrQuestions) =>{
     })
 }
 
-const ListQuestions = ({id, goToPollView=()=>{}, goToResultView=()=>{}}) => {
+const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}}) => {
+    // const dispath = useDispatch()
 
+    // useEffect(()=>{
+    //     dispath(goToPollView())
+    // },[])
+
+
+    //Получаем все данные для работы компонента
     let arrQuestions = useSelector(getArrQuestions)
-    console.log(arrQuestions)
-    const surveyFinishedGoToResult = useSelector(getSurveyFinishedGoToResult);
     const dispath = useDispatch()
 
+
+    // console.log(arrQuestions)
+    // const surveyFinishedGoToResult = useSelector(getSurveyFinishedGoToResult);
+    // const dispath = useDispatch()
+
     //Если мы уже проходили этот опросник или пользователь не нажал "Заново" в Result, то переходим к Result.
-    const isGoToResult = () => {
-        if((arrQuestions[0].userAnswer !== null) && (!surveyFinishedGoToResult)){
-            dispath(goToResultView())
-        }
-    }
-    isGoToResult()
+    // const isGoToResult = () => {
+    //     if((arrQuestions[0].userAnswer !== null) && (!surveyFinishedGoToResult)){
+    //         dispath(goToResultView())
+    //     }
+    // }
+    // isGoToResult()
 
     const createIdActivePanel = index => `IteamListQuestion-${index}`;
     const [history, setHistory] = useState([PANEL_FIRST_ID]);
@@ -212,40 +222,63 @@ const ListQuestions = ({id, goToPollView=()=>{}, goToResultView=()=>{}}) => {
             buttons[i].style.backgroundColor = "var(--main-second-bg-color)"
         }
     }
+
+    //Получение необходимых данных
+    // const dispath = useDispatch();
+    // let arrQuestions = useSelector(getArrQuestions);
+
+    //Actions
+    const goToPollView = () => dispath(goToPollViewAction())
+    const goToResultView = () => dispath(goToResultViewAction())
+    // const sendAnswersToServer = () => dispath(goToPollViewAction())
+    // const sendAnswersToState = () => dispath(goToPollViewAction())
+
+    //Дать ответ
+    // const giveAnswer = (indexQuestion, indexAnswer) => {
+
+    // }
+
+    // const goToQuestion = (indexQuestion) =>{
+
+    // }
+
+
+
     return (
         <View id={id} 
-            activePanel={createIdActivePanel(indexQuestion)} 
-            modal={modal} 
-            history={history} 
-            onSwipeBack={createGoToPrevQuestion(indexQuestion)}
-            popout={alert}>
+            activePanel={indexQuestion} 
+            // modal={modal} 
+            // history={history} 
+            // onSwipeBack={createGoToPrevQuestion(indexQuestion)}
+            // popout={alert}
+            >
             {
                 arrQuestions.map((question, i, arr) =>(
                     <IteamListQuestion
-                        key={i}
-                        id={createIdActivePanel(i)}
-                        name={createIdActivePanel(i)}
+                        // key={i}
+                        id={i}
+                        // name={createIdActivePanel(i)}
                                         
                         question={question}
-                        numberCurrentQuestion={i+1}
-                        countQuestions={arr.length}
+                        // numberCurrentQuestion={i+1}
+                        // countQuestions={arr.length}
 
-                        indexAnswer={stateAnswers[i]}
+                        // indexAnswer={stateAnswers[i]}
 
-                        lastIndexQuestion={lastIndexQuestion}
-                        currentIndexQuestion={i}
-                        goToLastQuestion={goToLastQuestion}
+                        // lastIndexQuestion={lastIndexQuestion}
+                        // currentIndexQuestion={i}
+                        // goToLastQuestion={goToLastQuestion}
 
-                        goToNextQuestion={createGoToNextQuestion(i, arr.length)}
-                        goToPrevQuestion={createGoToPrevQuestion(i)}
+                        // goToNextQuestion={createGoToNextQuestion(i, arr.length)}
+                        // goToPrevQuestion={createGoToPrevQuestion(i)}
 
-                        onFinish={() => onFinishWithAlert()}
+                        // onFinish={() => onFinishWithAlert()}
                         
-                        changeModal={changeModal}
-                        changeHistory={changeHistory}
-                        isModalOpen={isModalOpen}
+                        // changeModal={changeModal}
+                        // changeHistory={changeHistory}
+                        // isModalOpen={isModalOpen}
 
-                        setNotActiveBackgoundToAnswerButton={setNotActiveBackgoundToAnswerButton}
+                        // setNotActiveBackgoundToAnswerButton={setNotActiveBackgoundToAnswerButton}
                     />
                 ))
             }
