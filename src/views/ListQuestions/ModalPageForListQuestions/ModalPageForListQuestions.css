@@ -1,0 +1,17 @@
+.ListQuestions__modal-el{
+    background-color: var(--main-zero-bg-color);
+    border-radius: 10px;
+    margin-top: 12px;
+}
+.ListQuestions__modal-el_answered{
+    background-color: var(--main-therd-bg-color);
+}
+.ListQuestions__modal-el__text{
+    color: var(--main-white-color);
+    /* text-overflow: ellipsis;
+    overflow: hidden;  */
+    white-space: normal;
+}
+.ListQuestions__modal-el__finish-btn{
+    color: var(--main-gray-color);
+}

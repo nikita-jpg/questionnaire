@@ -10,6 +10,7 @@ import { getArrQuestions } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
 import { saveUserAnswers } from '../../NotUI/Data/actions';
 import { sendUserAnswersToServer } from '../../NotUI/Server/server';
+import ModalPageForListQuestions from './ModalPageForListQuestions/ModalPageForListQuestions';
 
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
@@ -121,16 +122,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         setLastIndexQuestion(-1);
     }
 
-    // Работа с модальным окном
-    const [isModalOpen, setModalOpen] = useState(null)
-    const changeModal = () => {
-        if(isModalOpen === MODAL_ID){
-            setModalOpen(null)
-        }
-        else{
-            setModalOpen(MODAL_ID)
-        }
-    }
+    
 
 
 
@@ -172,42 +164,6 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     )}
 
 
-    //Модальное окно
-    const modal = (
-        <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
-            <ModalPage 
-                id={MODAL_ID}
-                settlingHeight={100}
-                header={
-                    <ModalPageHead text="Вопросы" onClose={changeModal}></ModalPageHead>
-                }>
-                <Div>
-                {
-                    arrQuestions.map(({questionText, indexAnswer}, i, arr) => (
-                        <SimpleCell 
-                            key={i}
-                            onClick={() => {createGoToQuestionWithoutAnswer(i); changeModal()}}
-                            className={`ListQuestions__modal-el ${stateAnswers[i] !== -1 ? 'ListQuestions__modal-el_answered':''}`}>
-                            <div className="ListQuestions__modal-el__text">
-                                {i+1}) {questionText}
-                            </div>
-                        </SimpleCell>
-                    ))
-                    
-                }
-                <SimpleCell
-                    hasActive={false}
-                    onClick={ () => {onFinishWithAlert()}}
-                    className="ListQuestions__modal-el">
-                    <div className="ListQuestions__modal-el__finish-btn">
-                       Завершить
-                    </div>
-                </SimpleCell>
-                </Div>
-            </ModalPage>
-
-        </ModalRoot>
-    )
 
     const setNotActiveBackgoundToAnswerButton = () =>{
         let panel = document.getElementsByName(createIdActivePanel(indexQuestion));
@@ -233,67 +189,95 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
 
     // }
 
-        //Навигация
-        const checkIndex = (indexQuestion) =>{
+    //Навигация
+    const checkIndex = (indexQuestion) =>{
 
-            //Если мы переходим к этому индексу, значит пользователь ответил на посл вопрос и надо завершать опрос
-            if(indexQuestion===arrQuestions.length){
-                saveAnswersToState()
-                saveAnswersToServer()
-                goToResultView()
-                return false;
-            }
-
-            if(indexQuestion === -1){
-                goToPollView()
-                return false;
-            }
-
-            return true
-        }
-        const goToCurrentQuestion = (indexQuestion)=>{
-
-            if(checkIndex(indexQuestion)){
-                changeHistory(indexQuestion)
-                setIndexQuestion(indexQuestion)
-            }
-        }
-        const goToPrevQuestion=()=> goToCurrentQuestion(indexQuestion - 1)
-        const goToNextQuestion=()=> goToCurrentQuestion(history.length)
-
-
-        // История
-        const [history, setHistory] = useState([0]);
-        const changeHistory = (nextIndex) => {
-    
-            //Установка истории
-            let his = [];
-            for(let i=0;i<nextIndex+1;i++){
-                his.push(i)
-            }
-            setHistory(his)
-    
-    
-            //vkBridge
-            if (nextIndex === 0) {
-                vkBridge.send('VKWebAppDisableSwipeBack');
-              }
-            else{
-                vkBridge.send('VKWebAppEnableSwipeBack');
-            }
+        //Если мы переходим к этому индексу, значит пользователь ответил на посл вопрос и надо завершать опрос
+        if(indexQuestion===arrQuestions.length){
+            finishSurvey()
+            return false;
         }
 
+        if(indexQuestion === -1){
+            goToPollView()
+            return false;
+        }
+
+        return true
+    }
+    const goToCurrentQuestion = (indexQuestion)=>{
+
+        if(checkIndex(indexQuestion)){
+            changeHistory(indexQuestion)
+            setIndexQuestion(indexQuestion)
+        }
+    }
+    const goToPrevQuestion=()=> goToCurrentQuestion(indexQuestion - 1)
+    const goToNextQuestion=()=> goToCurrentQuestion(history.length)
+
+    //Окончание опроса
+    const finishSurvey = () => {
+        saveAnswersToState()
+        saveAnswersToServer()
+        goToResultView()
+    }
+
+
+    // История
+    const [history, setHistory] = useState([0]);
+    const changeHistory = (nextIndex) => {
+
+        //Установка истории
+        let his = [];
+        for(let i=0;i<nextIndex+1;i++){
+            his.push(i)
+        }
+        setHistory(his)
+
+
+        //vkBridge
+        if (nextIndex === 0) {
+            vkBridge.send('VKWebAppDisableSwipeBack');
+            }
+        else{
+            vkBridge.send('VKWebAppEnableSwipeBack');
+        }
+    }
+
+
+    // Работа с модальным окном
+    const [isModalOpen, setModalOpen] = useState(null)
+    const changeModal = () => {
+        if(isModalOpen === MODAL_ID){
+            setModalOpen(null)
+        }
+        else{
+            setModalOpen(MODAL_ID)
+        }
+    }
+    const modal = (
+        <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
+            <ModalPageForListQuestions
+                id={MODAL_ID}
+                arrQuestions={arrQuestions}
+                changeModal={changeModal}
+                goToCurrentQuestion={goToCurrentQuestion}
+                finishSurvey={finishSurvey}
+            
+            />
+        </ModalRoot>
+    )
 
     return (
         <View id={id} 
             activePanel={indexQuestion} 
-            // modal={modal} 
+            modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
             // popout={alert}
             >
             {
-                arrQuestions.map((question, i, arr) =>(
+                arrQuestions.map((question, i) =>(
                     <IteamListQuestion
                         // key={i}
                         id={i}
@@ -318,7 +302,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
 
                         // onFinish={() => onFinishWithAlert()}
                         
-                        // changeModal={changeModal}
+                        changeModal={changeModal}
                         // changeHistory={changeHistory}
                         // isModalOpen={isModalOpen}
 

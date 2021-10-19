@@ -24,7 +24,7 @@ const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
             onHeaderBack={goToPrevQuestion}
             headerText={id+1 + " из " + countQuestions}
             // headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
-            // headerClick={changeModal}
+            headerClick={changeModal}
         >
 
             <div className="IteamListQuestion">
