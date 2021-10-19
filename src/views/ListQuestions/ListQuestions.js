@@ -288,6 +288,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
                         goToNextQuestion={goToNextQuestion}
                         goToPrevQuestion={goToPrevQuestion}
                         countQuestions={arrQuestions.length}
+                        isModalOpen={isModalOpen}
                         // numberCurrentQuestion={i+1}
                         // countQuestions={arr.length}
 
