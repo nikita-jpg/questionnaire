@@ -314,7 +314,8 @@ const App = ({results, MAX_SCORE,
 
 								<PoolView
 									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
-									setIndexEraAndSurvey={data.setIndexEraAndSurvey}
+									setIndexEraAction={data.setIndexEra}
+									setIndexSurveyAction={data.setIndexSurvey}
 									goToSurveyView={appNavigate.App_goToSurveyView}
 								/>
 

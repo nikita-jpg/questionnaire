@@ -1,11 +1,8 @@
-export const getEras = (state, test) => state.Data.Eras
+export const getEras = (state) => state.Data.Eras
 
-export const getIndexEraAndSurvey = (state) => {
-    return{
-        indexEra: state.Data.indexEraAndSurvey.indexEra,
-        indexSurvey: state.Data.indexEraAndSurvey.indexSurvey
-    }
-}
+export const getIndexEra = (state) => state.Data.indexEra
+
+export const getIndexSurvey = (state) => state.Data.indexSurvey
 
 export const getArrQuestions = (state) => {
     const eras = getEras(state)

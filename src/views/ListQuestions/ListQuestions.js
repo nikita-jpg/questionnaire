@@ -83,10 +83,10 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         changeHistory(newIndex)
     }
 
-    const resetData = () => {
-        resetStateAnswers();
-        setIndexQuestionAndHistory(0);
-    }
+    // const resetData = () => {
+    //     resetStateAnswers();
+    //     setIndexQuestionAndHistory(0);
+    // }
 
     // const createGoToNextQuestion = (indexQuestion, maxLength) => (indexAnswer) => {
     //     giveAnswer(indexQuestion, indexAnswer);
@@ -165,7 +165,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         }
 
         if(indexQuestion === -1){
-            goToPollView()
+            openCloseListQuestionsAleret()
             return false;
         }
 
@@ -263,18 +263,18 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         //     }
         //     return true
         // }
-        // const openCloseListQuestionsAleret = () => {
+        const openCloseListQuestionsAleret = () => {
     
-        //     setAlert(
-        //         <AlertWrapper
-        //             header="Уверены, что хотите выйти?"
-        //             leftText={"Отмена"}
-        //             rightText={"Выйти"}
-        //             rightFunc={ () =>  {dispath(goToPollView()); resetData()}}
-        //             onClose={()=>{setAlert(null)}}
-        //         >
-        //         </AlertWrapper>
-        // )}
+            setAlert(
+                <AlertWrapper
+                    header="Уверены, что хотите выйти?"
+                    leftText={"Отмена"}
+                    rightText={"Выйти"}
+                    rightFunc={()=>{goToPollView()}}
+                    onClose={()=>{setAlert(null)}}
+                >
+                </AlertWrapper>
+        )}
         const openFinishAlert = () => {       
             setAlert(
     

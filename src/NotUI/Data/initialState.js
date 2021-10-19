@@ -1,9 +1,11 @@
 export const initialState = {
-    indexEraAndSurvey:
-        {
-            indexEra:0,
-            indexSurvey:0
-        },
+	indexEra:0,
+	indexSurvey:0,
+    // indexEraAndSurvey:
+    //     {
+    //         indexEra:0,
+    //         indexSurvey:0
+    //     },
     Eras:[
 		{
 			russianName: "Эра1",
