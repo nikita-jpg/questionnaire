@@ -8,9 +8,11 @@ import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { useDispatch } from 'react-redux';
 import { getAnswersResultSurvey } from '../../help';
 
-const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, createOnClickItemQuizes = (index) => null }) => {
-
-    const dispath = useDispatch()
+const ListQuizes = ({ id, title, quizes, 
+    onBack = () => { }, 
+    createOnClickItemQuizesBtn = (index) => null , 
+    createOnClickItemQuizes = (index) => null 
+}) => {
 
     const info = quizes.map((quiz)=>(
         {
@@ -23,12 +25,6 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, crea
         }
     ))
 
-    // getAnswersResultSurvey(quiz).score !== 0 ? true : false
-
-    const btnCardClick = (index) => {
-        console.log(index)
-    }
-
 
     return (
         <PanelWrapper id={id} headerText={title} onHeaderBack={onBack} isHeaderFixed={true}>
@@ -37,7 +33,7 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, crea
                 <ListCard
                     info={info}
                     cardClick={createOnClickItemQuizes}
-                    btnCardClick={btnCardClick}
+                    btnCardClick={createOnClickItemQuizesBtn}
                 />
             </div>
 

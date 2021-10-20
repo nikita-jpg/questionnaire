@@ -318,6 +318,7 @@ const App = ({results, MAX_SCORE,
 									setIndexEraAction={data.setIndexEra}
 									setIndexSurveyAction={data.setIndexSurvey}
 									goToSurveyViewAction={appNavigate.App_goToSurveyView}
+									goToResultViewAction={appNavigate.App_goToResultView}
 								/>
 
 								<ListQuestions 

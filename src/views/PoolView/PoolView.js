@@ -9,7 +9,12 @@ import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
 
 
-const PoolView = ({id, setIndexEraAction=()=>{}, setIndexSurveyAction=()=>{},goToSurveyViewAction=()=>{}}) => {
+const PoolView = ({id, 
+	setIndexEraAction=()=>{}, 
+	setIndexSurveyAction=()=>{}, 
+	goToSurveyViewAction=()=>{},
+	goToResultViewAction=()=>{}
+	}) => {
 
 	const dispatch = useDispatch()
 	const [activePanel, setActivePanel] = useState(LIST_AGE_PANEL);
@@ -23,6 +28,7 @@ const PoolView = ({id, setIndexEraAction=()=>{}, setIndexSurveyAction=()=>{},goT
 	const setIndexEra = (indexEra) => dispatch(setIndexEraAction(indexEra))
 	const setIndexSurvey = (indexSurvey) => dispatch(setIndexSurveyAction(indexSurvey))
 	const goToViewListQuestions = () => dispatch(goToSurveyViewAction())
+	const goToResultView = () => dispatch(goToResultViewAction())
 
 	// История
 	const [history, setHistory] = useState([LIST_AGE_PANEL]);
@@ -78,6 +84,11 @@ const PoolView = ({id, setIndexEraAction=()=>{}, setIndexSurveyAction=()=>{},goT
 		goToViewListQuestions()
 	}
 
+	const createOnClickItemQuizesBtn = (indexSurvey) => {
+		setIndexSurvey(indexSurvey)
+		goToResultView()
+	}
+
 
 
         
@@ -101,6 +112,7 @@ const PoolView = ({id, setIndexEraAction=()=>{}, setIndexSurveyAction=()=>{},goT
             quizes={eras[indexEra].subset} 
             onBack={onBackListQuizes} 
             createOnClickItemQuizes={createOnClickItemQuizes}
+			createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}
         />
 
     </View>

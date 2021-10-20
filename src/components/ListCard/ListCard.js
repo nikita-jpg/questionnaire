@@ -26,9 +26,6 @@ const ListCard = ( { info,percentProgress,numberOfQuestions,
     }
 
     
-
-    console.log(btnCardClick)
-
     return (
             <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
                 {
