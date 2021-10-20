@@ -16,8 +16,11 @@ const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
     numberCurrentQuestion, countQuestions, indexAnswer,name,
     goToPrevQuestion, goToNextQuestion,isModalOpen,
     changeModal = () => {}, setNotActiveBackgoundToAnswerButton = () => {} }) => {
-        
 
+    console.log(question)
+    console.log(question.userAnswer)
+    console.log(question)
+    console.log(question.userAnswer)
     return (
         <PanelWrapper id={id} isOneColumn={true}
             onHeaderClose={id === 0 ? goToPrevQuestion:false}

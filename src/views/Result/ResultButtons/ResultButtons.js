@@ -17,7 +17,6 @@ import ButtonWrapper from "../../../components/ButtonWrapper/ButtonWrapper";
 
 const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{},onBack = () => { }}) => {
     const sendToHistory = (image) => {
-        console.log(image);
 
         bridge.send("VKWebAppShowStoryBox", {
             "background_type": "image",

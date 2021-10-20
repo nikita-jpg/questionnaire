@@ -7,7 +7,6 @@
 
 .PanelResult__points {
     width: 100%;
-
     font-weight: 500;
     text-align: center;
     font-size: 100px;
@@ -27,4 +26,9 @@
 
 .PanelResult__points-postfix_bad {
     color: var(--main-red-color);
+}
+
+/* Панель с кнопками */
+.PanelResult__buttons{
+    width: 100%;
 }

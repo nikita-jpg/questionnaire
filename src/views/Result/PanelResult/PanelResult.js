@@ -2,10 +2,16 @@ import CustomTooltip from "../../../components/CustomTooltip/CustomTooltip"
 import PanelWrapper from "../../../components/PanelWrapper/PanelWrapper"
 import './PanelResult.css'
 import React from "react";
+import ResultButtons from "../ResultButtons/ResultButtons";
 
 
 // onClose={()=>{setIsFirstOpenResult(false)}} 
-const PanelResult = ({id, totalResult}) =>{
+const PanelResult = ({id, totalResult,
+    goSurveyAgain=()=>{},
+    goToPanelAnswers=()=>{},
+    goToPollView=()=>{},
+
+}) =>{
 
 
 //Анимация
@@ -38,7 +44,7 @@ const PanelResult = ({id, totalResult}) =>{
     return(
         <PanelWrapper id={id} isOneColumn={true}>
 
-        {/* <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}> */}
+        {/* <div className={`PanelResult__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}> */}
                     {/* Цифра в виде результата */}
                     <div className={`PanelResult__title`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                         <span className={`PanelResult__points ${getClassNameForPercent(totalResult)}`}>
@@ -53,13 +59,14 @@ const PanelResult = ({id, totalResult}) =>{
                     </div>
 
                     {/* Панелька с кнопками */}
-                    {/* <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
+                    <div className={`Result__buttons`}>
                         <ResultButtons 
-                            onAgain={modifyIsFirstOpenResult(onAgain)}
-                            onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
-                            goToViewListAndQuizes={goToViewListAndQuizesWrapper}
+                            onAgain={goSurveyAgain}
+                            // onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
+                            onGoToAnswersQuestion={goToPanelAnswers}
+                            goToViewListAndQuizes={goToPollView}
                         />
-                    </div> */}
+                    </div>
 
                     {/* Реклама */}
                     {/* {

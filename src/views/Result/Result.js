@@ -1,7 +1,7 @@
 import bridge from '@vkontakte/vk-bridge';
 import { ContentCard, Div, Panel, PromoBanner, View } from "@vkontakte/vkui";
 import React, { useState } from "react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AlertQuestionResult from "../../components/AlertQuestionResult/AlertQuestionResult";
 import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';
 import Header from "../../components/Header/Header";
@@ -18,15 +18,23 @@ import ResultCards from './ResultCards/ResultCards';
 
 const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     createOnClickItemQuizes = (index) => null,
-    onAgain=()=>{}, goToViewListAndQuizes=()=>{} }) => {
+    onAgain=()=>{}, 
+    goToViewListAndQuizes=()=>{},
+    goToSurveyViewAction=()=>{}
+ }) => {
 
     //Получаем необходимые данные
     const curSurvey = useSelector(getCurSurvey)
-    // console.log(curSurvey)
+    const dispatch = useDispatch()
 
 
     // const indexAgeAndSurvey = useSelector(getIndexEraAndSurvey);
     // const indexAge = 0;
+
+//Внешняя навигация
+        const goToSurveyView = () => {
+            dispatch(goToSurveyViewAction())
+        }
 
     //Работа с панелями
         const PANEL_RESULT = "PANEL_RESULT";
@@ -158,6 +166,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             <PanelResult
                 id={PANEL_RESULT}
                 totalResult={getAnswersResultSurvey(curSurvey)}
+                goSurveyAgain={goToSurveyView}
             />
 
             {/* <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}> */}

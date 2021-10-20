@@ -1,5 +1,5 @@
 import { View,ModalRoot,ModalPage,List, SimpleCell, Div, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
 import vkBridge from '@vkontakte/vk-bridge'
@@ -20,19 +20,21 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}, goToListSurveyAction=()=>{}}) => {
 
 
-
-    //Получаем все данные для работы компонента
-    let arrQuestions = useSelector(getArrQuestions)
-    const dispath = useDispatch();
-
-
-
     //Сбрасываем ответы пользователя при первом открытии
     const resetAnswers = (arrQuestions) => {
         arrQuestions.map((question)=>{
             question.userAnswer = QUESTION_NOT_ANSWERED
         })
+        return arrQuestions
     }
+
+    //Получаем все данные для работы компонента
+    const arrQuestions = useSelector(getArrQuestions)
+    const dispath = useDispatch();
+
+
+
+
 	useEffect(() => {
         resetAnswers(arrQuestions)
 	}, []);
@@ -208,7 +210,6 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     //         buttons[i].style.backgroundColor = "var(--main-second-bg-color)"
     //     }
     // }
-
 
 
     return (
