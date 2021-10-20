@@ -16,17 +16,15 @@ import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
 const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
 
-// const resetQuestions = (arrQuestions) =>{
-//     return arrQuestions.map((question)=>{
-//         question.userAnswer = null;
-//     })
-// }
 
 const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}, goToListSurveyAction=()=>{}}) => {
+
+
 
     //Получаем все данные для работы компонента
     let arrQuestions = useSelector(getArrQuestions)
     const dispath = useDispatch();
+
 
 
     //Сбрасываем ответы пользователя при первом открытии
@@ -40,12 +38,14 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
 	}, []);
 
 
+
     //Работа с ответами
     const giveAnswer = (indexQuestion, indexAnswer) => {
         arrQuestions[indexQuestion].userAnswer={idAnswerOption:arrQuestions[indexQuestion].answerOptions[indexAnswer].idAnswerOption}
     }
     const saveAnswersToState = () => dispath(saveUserAnswers(arrQuestions))
     const saveAnswersToServer= () => sendUserAnswersToServer(arrQuestions)
+
 
 
     //Внешняя навигация
@@ -57,119 +57,14 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
 
 
 
-
-
-    // console.log(arrQuestions)
-    // const surveyFinishedGoToResult = useSelector(getSurveyFinishedGoToResult);
-    // const dispath = useDispatch()
-
-    //Если мы уже проходили этот опросник или пользователь не нажал "Заново" в Result, то переходим к Result.
-    // const isGoToResult = () => {
-    //     if((arrQuestions[0].userAnswer !== null) && (!surveyFinishedGoToResult)){
-    //         dispath(goToResultView())
-    //     }
-    // }
-    // isGoToResult()
-
-    const createIdActivePanel = index => `IteamListQuestion-${index}`;
-
-
-    const onFinish = () => {
-
-    }
-
-    // логика хранения ответов
-    const getInitStateAnswers = () => [
-        -1,-1,-1,-1,-1,-1,-1,-1
-    ];
-
-    const [stateAnswers, setStateAnswers] = useState(getInitStateAnswers());
-
-    // const giveAnswer = (indexQuestion, indexAnswer) => {
-    //     stateAnswers[indexQuestion] = indexAnswer;
-    //     setStateAnswers([...stateAnswers]);
-    // }
-
-    const resetStateAnswers = () => setStateAnswers(getInitStateAnswers());
-
-    // логика переключения вопросов
+    //Логика переключения вопросов
     const [indexQuestion, setIndexQuestion] = useState(0);
     const setIndexQuestionAndHistory = (newIndex) => {
         setIndexQuestion(newIndex)
         changeHistory(newIndex)
     }
 
-    // const resetData = () => {
-    //     resetStateAnswers();
-    //     setIndexQuestionAndHistory(0);
-    // }
 
-    // const createGoToNextQuestion = (indexQuestion, maxLength) => (indexAnswer) => {
-    //     giveAnswer(indexQuestion, indexAnswer);
-
-    //     if (indexQuestion < maxLength - 1) {
-    //         setIndexQuestionAndHistory(indexQuestion + 1);
-    //     } else {
-    //         onFinishWithAlert();
-    //     }
-    // }
-
-    // const createGoToPrevQuestion = (indexQuestion) => () => {
-    //     if (indexQuestion > 0) {
-    //         setIndexQuestionAndHistory(indexQuestion - 1);
-    //     } else {
-    //         openCloseListQuestionsAleret();
-    //     }
-    // }
-
-    // логика перехода к любому вопросу
-    const [lastIndexQuestion, setLastIndexQuestion] = useState(-1);
-
-    const createGoToQuestionWithoutAnswer = (toIndexQuestion) => {
-        setNotActiveBackgoundToAnswerButton()
-        if (indexQuestion != toIndexQuestion)
-        {
-            setIndexQuestionAndHistory(toIndexQuestion);
-        }   
-    }
-
-    const goToLastQuestion = () => {
-        setIndexQuestionAndHistory(lastIndexQuestion);
-        setLastIndexQuestion(-1);
-    }
-
-    
-
-
-
-
-
-
-
-
-    const setNotActiveBackgoundToAnswerButton = () =>{
-        let panel = document.getElementsByName(createIdActivePanel(indexQuestion));
-        const buttons = panel[0].getElementsByClassName("IteamListQuestion__answer");
-
-        for(let i=0;i<buttons.length;i++){
-            buttons[i].style.backgroundColor = "var(--main-second-bg-color)"
-        }
-    }
-
-    //Получение необходимых данных
-    // const dispath = useDispatch();
-    // let arrQuestions = useSelector(getArrQuestions);
-    // const sendAnswersToServer = () => dispath(goToPollViewAction())
-    // const sendAnswersToState = () => dispath(goToPollViewAction())
-
-    //Дать ответ
-    // const giveAnswer = (indexQuestion, indexAnswer) => {
-
-    // }
-
-    // const goToQuestion = (indexQuestion) =>{
-
-    // }
 
     //Навигация
     const checkIndex = (indexQuestion) =>{
@@ -223,6 +118,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     }
 
 
+
     // История
     const [history, setHistory] = useState([0]);
     const changeHistory = (nextIndex) => {
@@ -243,6 +139,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
             vkBridge.send('VKWebAppEnableSwipeBack');
         }
     }
+
 
 
     // Работа с модальным окном
@@ -268,44 +165,51 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         </ModalRoot>
     )
 
-        //Alert
-        const [alert, setAlert] = useState(null);
-        // const onFinishWithAlert = () => {
-        //     isAllAnswered() ? onFinish(stateAnswers) : openFinishAlert()
-        // }
-        // const isAllAnswered = () => {
-        //     for (let i=0;i<stateAnswers.length;i++){
-        //         if(stateAnswers[i] === -1) return false;
-        //     }
-        //     return true
-        // }
-        const openCloseListQuestionsAleret = () => {
-    
-            setAlert(
-                <AlertWrapper
-                    header="Уверены, что хотите выйти?"
-                    leftText={"Отмена"}
-                    rightText={"Выйти"}
-                    rightFunc={()=>{goToPollView()}}
-                    onClose={()=>{setAlert(null)}}
-                >
-                </AlertWrapper>
-        )}
-        const openFinishAlert = () => {       
-            setAlert(
-    
-                <AlertWrapper
-                    header="Вы ответили не на все вопросы"
-                    leftText={"Отмена"}
-                    rightText={"Завершить"}
-                    rightFunc={ () => {
-                        finishSurveyWithOutCheck();
-                    }}
-                    onClose={()=>{setAlert(null)}}
-                >
-                </AlertWrapper>
-    
-        )}
+
+
+    //Alert
+    const [alert, setAlert] = useState(null);
+
+    const openCloseListQuestionsAleret = () => {
+
+        setAlert(
+            <AlertWrapper
+                header="Уверены, что хотите выйти?"
+                leftText={"Отмена"}
+                rightText={"Выйти"}
+                rightFunc={()=>{goToPollView()}}
+                onClose={()=>{setAlert(null)}}
+            >
+            </AlertWrapper>
+    )}
+    const openFinishAlert = () => {       
+        setAlert(
+
+            <AlertWrapper
+                header="Вы ответили не на все вопросы"
+                leftText={"Отмена"}
+                rightText={"Завершить"}
+                rightFunc={ () => {
+                    finishSurveyWithOutCheck();
+                }}
+                onClose={()=>{setAlert(null)}}
+            >
+            </AlertWrapper>
+
+    )}
+
+
+
+    // const setNotActiveBackgoundToAnswerButton = () =>{
+    //     let panel = document.getElementsByName(createIdActivePanel(indexQuestion));
+    //     const buttons = panel[0].getElementsByClassName("IteamListQuestion__answer");
+
+    //     for(let i=0;i<buttons.length;i++){
+    //         buttons[i].style.backgroundColor = "var(--main-second-bg-color)"
+    //     }
+    // }
+
+
 
     return (
         <View id={id} 
@@ -318,33 +222,16 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
             {
                 arrQuestions.map((question, i) =>(
                     <IteamListQuestion
-                        // key={i}
-                        id={i}
-                        // name={createIdActivePanel(i)}
-                                        
+                        id={i}            
                         question={question}
+                        countQuestions={arrQuestions.length}
+                        isModalOpen={isModalOpen}
+
                         giveAnswer={giveAnswer}
                         goToNextQuestion={goToNextQuestion}
                         goToPrevQuestion={goToPrevQuestion}
-                        countQuestions={arrQuestions.length}
-                        isModalOpen={isModalOpen}
-                        // numberCurrentQuestion={i+1}
-                        // countQuestions={arr.length}
 
-                        // indexAnswer={stateAnswers[i]}
-
-                        // lastIndexQuestion={lastIndexQuestion}
-                        // currentIndexQuestion={i}
-                        // goToLastQuestion={goToLastQuestion}
-
-                        // goToNextQuestion={createGoToNextQuestion(i, arr.length)}
-                        // goToPrevQuestion={createGoToPrevQuestion(i)}
-
-                        // onFinish={() => onFinishWithAlert()}
-                        
                         changeModal={changeModal}
-                        // changeHistory={changeHistory}
-                        // isModalOpen={isModalOpen}
 
                         // setNotActiveBackgoundToAnswerButton={setNotActiveBackgoundToAnswerButton}
                     />
