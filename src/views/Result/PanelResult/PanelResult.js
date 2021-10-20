@@ -1,9 +1,11 @@
 import CustomTooltip from "../../../components/CustomTooltip/CustomTooltip"
 import PanelWrapper from "../../../components/PanelWrapper/PanelWrapper"
 import './PanelResult.css'
+import React from "react";
+
 
 // onClose={()=>{setIsFirstOpenResult(false)}} 
-const PanelResult = ({id}) =>{
+const PanelResult = ({id, totalResult}) =>{
 
 
 //Анимация
@@ -16,12 +18,17 @@ const PanelResult = ({id}) =>{
         return startAnimDealyForCard + curAnimDealyForCard + "s";
     }
 
-    const getClassNameForPercent = (percent) => {
-        if (percent <= 4) {
+//Получаем цвет для результата
+    const getClassNameForPercent = (totalResult) => {
+
+        const total = totalResult.total;
+        const score = totalResult.score
+
+        if (score <= total/3) {
             return "Result__points-postfix_bad";
         }
 
-        if (percent <= 6) {
+        if (score <= total/2) {
             return "Result__points-postfix_normal";
         }
 
@@ -34,13 +41,13 @@ const PanelResult = ({id}) =>{
         {/* <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}> */}
                     {/* Цифра в виде результата */}
                     <div className={`PanelResult__title`} style={{animationDelay:makeStepAnimDealyForCard()}}>
-                        <span className={`PanelResult__points ${getClassNameForPercent(percent)}`}>
+                        <span className={`PanelResult__points ${getClassNameForPercent(totalResult)}`}>
                             <CustomTooltip
-                                text={`${titleAge}: ${quizes[indexQuiz].title}`}
+                                // text={`${titleAge}: ${quizes[indexQuiz].title}`}
                                 // defaultIsShown={isFirstOpenResult}
                             >
-                                {percent}
-                                <span>/{questions.length}</span>
+                                {totalResult.score}
+                                <span>/{totalResult.total}</span>
                             </CustomTooltip>
                         </span>
                     </div>
@@ -77,7 +84,7 @@ const PanelResult = ({id}) =>{
                     >
                     </ResultCards> */}
 
-        </PanelW>
+        </PanelWrapper>
     )
 }
 

@@ -14,6 +14,16 @@ export const getArrQuestions = (state) => {
     )
 }
 
+export const getCurSurvey = (state) => {
+    const eras = getEras(state)
+    const indexEra = getIndexEra(state)
+    const indexSurvey = getIndexSurvey(state)
+
+    return(
+        eras[indexEra].subset[indexSurvey]
+    )
+}
+
 // export const getSurveyResult = (state) => {
 //     const eras = getEras(state);
 //     const indexAgeAndSurvey = 

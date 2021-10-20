@@ -7,9 +7,11 @@ import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
-import { getArrQuestions } from '../../Selectors/data_selectors';
+import { getAnswersResultSurvey } from '../../help';
+import { getArrQuestions, getCurSurvey } from '../../Selectors/data_selectors';
 // import { getIndexEraAndSurvey } from '../../Selectors/data_selectors';
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
+import PanelResult from './PanelResult/PanelResult';
 import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
 import ResultCards from './ResultCards/ResultCards';
@@ -19,7 +21,8 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
     onAgain=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
     //Получаем необходимые данные
-    const arrQuestions = useSelector(getArrQuestions)
+    const curSurvey = useSelector(getCurSurvey)
+    // console.log(curSurvey)
 
 
     // const indexAgeAndSurvey = useSelector(getIndexEraAndSurvey);
@@ -152,11 +155,16 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             onSwipeBack={goBackInHistory}
             history={history}>
 
-            <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}>
+            <PanelResult
+                id={PANEL_RESULT}
+                totalResult={getAnswersResultSurvey(curSurvey)}
+            />
+
+            {/* <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}> */}
 
             {/* <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}> */}
                         {/* Цифра в виде результата */}
-                        <div className={`Result__title`} style={{animationDelay:makeStepAnimDealyForCard()}}>
+                        {/* <div className={`Result__title`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <span className={`Result__points ${getClassNameForPercent(percent)}`}>
                                 <CustomTooltip
                                     text={`${titleAge}: ${quizes[indexQuiz].title}`}
@@ -166,7 +174,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                                     <span>/{questions.length}</span>
                                 </CustomTooltip>
                             </span>
-                        </div>
+                        </div> */}
 
                         {/* Панелька с кнопками */}
                         {/* <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
@@ -200,7 +208,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                         >
                         </ResultCards> */}
 
-            </PanelWrapper>
+            {/* </PanelWrapper> */}
 
             {/* <AnswersQuestions
                 id={PANEL_ANSWERS_QUESTIONS}
