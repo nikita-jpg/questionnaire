@@ -1,4 +1,4 @@
-
+import * as viewsConsts from './consts'
 
 export const PoolView_goToListAge = () => {
     return{

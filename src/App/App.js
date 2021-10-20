@@ -27,6 +27,7 @@ import { Provider, useSelector } from 'react-redux';
 import * as appNavigate from './Actions'
 import * as server from '../NotUI/Server/server'
 import * as data from '../NotUI/Data/actions'
+import * as poolView from '../views/PoolView/actions'
 
 //Views id
 import * as viewsId from './Constants'
@@ -73,7 +74,7 @@ const App = ({results, MAX_SCORE,
 	const goToViewSpinner = () => setActiveView(VIEW_ID_SPINNER);
 
 	const goToPanelListAge = () => setActivePanel(PANEL_ID_LIST_AGE);
-	const goToPanelListQuizes = () => setActivePanel(PANEL_ID_LIST_QUIZES);
+	// const goToPanelListQuizes = () => setActivePanel(PANEL_ID_LIST_QUIZES);
 
 	// логика хранения индексов
 	const [indexAge, setIndexAge] = useState(0);
@@ -190,7 +191,7 @@ const App = ({results, MAX_SCORE,
 		const createOnClickItemAge = (index) => () => {
 			goForwardInHistory(PANEL_ID_LIST_QUIZES);
 			setIndexAge(index);
-			goToPanelListQuizes();
+			// goToPanelListQuizes();
 		}
 
 		// Выбор опроса
@@ -316,12 +317,13 @@ const App = ({results, MAX_SCORE,
 									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
 									setIndexEraAction={data.setIndexEra}
 									setIndexSurveyAction={data.setIndexSurvey}
-									goToSurveyView={appNavigate.App_goToSurveyView}
+									goToSurveyViewAction={appNavigate.App_goToSurveyView}
 								/>
 
 								<ListQuestions 
 									id={viewsId.VIEW_ID_LIST_QUESTIONES}
 									onFinish={onFinishListQuestions}
+									goToListSurveyAction={poolView.PoolView_goToListSurvey}
 									goToPollViewAction={appNavigate.App_goToPollView}
 									goToResultViewAction={appNavigate.App_goToResultView}
 								/>

@@ -1,5 +1,5 @@
-export const GO_TO_LIST_AGE = "VIEW_ID_START_WINDOW";
-export const GO_TO_LIST_SURVEY = "VIEW_ID_START_WINDOW";
+export const GO_TO_LIST_AGE = "GO_TO_LIST_AGE";
+export const GO_TO_LIST_SURVEY = "GO_TO_LIST_SURVEY";
 
-export const LIST_AGE_PANEL = "LIST_AGE_APNEL";
+export const LIST_AGE_PANEL = "LIST_AGE_PANEL";
 export const LIST_SURVEYS_PANEL = "LIST_SURVEYS_PANEL";

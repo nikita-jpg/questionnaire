@@ -6,9 +6,11 @@ export const getIndexSurvey = (state) => state.Data.indexSurvey
 
 export const getArrQuestions = (state) => {
     const eras = getEras(state)
-    const indexEraAndSurvey = getIndexEraAndSurvey(state)
+    const indexEra = getIndexEra(state)
+    const indexSurvey = getIndexSurvey(state)
+
     return(
-        eras[indexEraAndSurvey.indexEra].subset[indexEraAndSurvey.indexSurvey].subset
+        eras[indexEra].subset[indexSurvey].subset
     )
 }
 

@@ -22,7 +22,7 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 //     })
 // }
 
-const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}}) => {
+const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}, goToListSurveyAction=()=>{}}) => {
 
     //Получаем все данные для работы компонента
     let arrQuestions = useSelector(getArrQuestions)
@@ -38,7 +38,11 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
 
     //Внешняя навигация
     const goToResultView = () => dispath(goToResultViewAction())
-    const goToPollView = () => dispath(goToPollViewAction())
+    const goToPollView = () => {
+        dispath(goToListSurveyAction())
+        dispath(goToPollViewAction())
+    }
+
 
 
 

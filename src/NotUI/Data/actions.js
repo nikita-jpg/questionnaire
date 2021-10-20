@@ -1,4 +1,4 @@
-import {SET_INDEX_ERA, SET_INDEX_SURVEY} from './consts'
+import {SET_INDEX_ERA, SET_INDEX_SURVEY, SAVE_USER_ANSWERS} from './consts'
 
 export const setIndexEra = (indexEra) => {
     return{
