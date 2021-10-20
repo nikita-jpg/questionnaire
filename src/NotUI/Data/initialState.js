@@ -94,10 +94,10 @@ export const initialState = {
 									score: 0
 								}
 							],
-							// userAnswer: {
-							// 	idAnswerOption: 6
-							// }
-							userAnswer: null
+							userAnswer: {
+								idAnswerOption: 9
+							}
+							// userAnswer: null
 						},
 					]
 				}

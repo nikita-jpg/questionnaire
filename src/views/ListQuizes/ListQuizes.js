@@ -19,7 +19,7 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, crea
             numberOfQuestions: getAnswersResultSurvey(quiz).total,
             imageName: quiz.image.imageName,
             description: quiz.description,
-            isBtnNeed: true
+            isBtnNeed: getAnswersResultSurvey(quiz).score !== 0 ? true : false
         }
     ))
 
