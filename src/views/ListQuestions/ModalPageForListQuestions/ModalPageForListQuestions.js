@@ -2,6 +2,7 @@ import { Div, ModalPage, SimpleCell } from "@vkontakte/vkui";
 import './ModalPageForListQuestions.css'
 import React from 'react';
 import ModalPageHead from "../../../components/ModalPageHead/ModalPageHead";
+import { QUESTION_NOT_ANSWERED } from "../../../NotUI/Data/consts";
 
 const ModalPageForListQuestions = ({id,arrQuestions,changeModal=()=>{},goToCurrentQuestion=()=>{}, finishSurvey=()=>{}}) => {
 
@@ -19,8 +20,7 @@ const ModalPageForListQuestions = ({id,arrQuestions,changeModal=()=>{},goToCurre
                         <SimpleCell 
                             key={i}
                             onClick={() => {goToCurrentQuestion(i); changeModal()}}
-                            // className={`ListQuestions__modal-el ${stateAnswers[i] !== -1 ? 'ListQuestions__modal-el_answered':''}`}
-                            className={`ListQuestions__modal-el`}
+                            className={`ListQuestions__modal-el ${question.userAnswer !== QUESTION_NOT_ANSWERED ? 'ListQuestions__modal-el_answered':''}`}
                             >
                             <div className="ListQuestions__modal-el__text">
                                 {i+1}) {question.textQuestion}
