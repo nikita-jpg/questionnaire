@@ -25,6 +25,12 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}, goToListSurveyAction=()=>{}}) => {
 
     //Получаем все данные для работы компонента
+    // const resetAnswers = (arrQuestions) => {
+    //     // arrQuestions.map((question)=>{
+    //     //     question.userAnswer = QUESTION_NOT_ANSWERED
+    //     // })
+    //     return arrQuestions
+    // }
     let arrQuestions = useSelector(getArrQuestions)
     const dispath = useDispatch()
 
@@ -35,6 +41,7 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     }
     const saveAnswersToState = () => dispath(saveUserAnswers(arrQuestions))
     const saveAnswersToServer= () => sendUserAnswersToServer(arrQuestions)
+
 
     //Внешняя навигация
     const goToResultView = () => dispath(goToResultViewAction())
