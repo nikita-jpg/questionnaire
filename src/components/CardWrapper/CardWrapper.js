@@ -1,16 +1,36 @@
-import { ContentCard } from "@vkontakte/vkui"
+import { Button, ContentCard } from "@vkontakte/vkui"
 import React, { useState } from 'react';
 import './CardWrapper.css';
 import defaultImage from '../../svg/imgLoader.svg'
 import {downloadImageFromServer as downloadImage} from '../../NotUI/Server/server'
+import CardWrapperDescription from "./CardWrapperDescription/CardWrapperDescription";
 
-const CardWrapper = ({title,percentProgress,numberOfQuestions,imageName,description,cardClick=()=>{}}) => {
+const CardWrapper = ({title, textBtn, percentProgress,numberOfQuestions,imageName,description,btnCardClickObj,
+    cardClick=()=>{},
+    }) => {
+
 
     //Устанавливаем дефолтую картинку на карточки
     const [image, setImage] = useState(defaultImage)
 
     //Загружаем основную картинку
     downloadImage(imageName).then(imageData=>{setImage(imageData)})
+
+    const down = () =>{
+        return(
+        <div style={{width:"200px",height:"200px"}}>
+            {description}
+            <Button></Button>
+        </div>
+    )}
+
+    const caption = (
+        <CardWrapperDescription
+            btnCardClickObj={btnCardClickObj}
+            text={description}
+            textBtn={textBtn}
+        ></CardWrapperDescription>
+    )
 
     return(
     <ContentCard
@@ -23,9 +43,10 @@ const CardWrapper = ({title,percentProgress,numberOfQuestions,imageName,descript
         mode={"tint"}
         onClick={cardClick}
         image={image}
-        caption={description}
+        caption={caption}
         className="CardWrapper__Card"
-    />
+    >
+        </ContentCard>
 )}
 
 export default CardWrapper

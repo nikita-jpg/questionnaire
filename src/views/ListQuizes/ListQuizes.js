@@ -18,9 +18,16 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, crea
             percentProgress: getAnswersResultSurvey(quiz).score,
             numberOfQuestions: getAnswersResultSurvey(quiz).total,
             imageName: quiz.image.imageName,
-            description: quiz.description
+            description: quiz.description,
+            isBtnNeed: true
         }
     ))
+
+    // getAnswersResultSurvey(quiz).score !== 0 ? true : false
+
+    const btnCardClick = (index) => {
+        console.log(index)
+    }
 
 
     return (
@@ -30,6 +37,7 @@ const ListQuizes = ({ id, title, quizes, onBack = () => { },goToSurveyView, crea
                 <ListCard
                     info={info}
                     cardClick={createOnClickItemQuizes}
+                    btnCardClick={btnCardClick}
                 />
             </div>
 
