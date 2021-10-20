@@ -25,14 +25,19 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}, goToListSurveyAction=()=>{}}) => {
 
     //Получаем все данные для работы компонента
-    // const resetAnswers = (arrQuestions) => {
-    //     // arrQuestions.map((question)=>{
-    //     //     question.userAnswer = QUESTION_NOT_ANSWERED
-    //     // })
-    //     return arrQuestions
-    // }
     let arrQuestions = useSelector(getArrQuestions)
-    const dispath = useDispatch()
+    const dispath = useDispatch();
+
+
+    //Сбрасываем ответы пользователя при первом открытии
+    const resetAnswers = (arrQuestions) => {
+        arrQuestions.map((question)=>{
+            question.userAnswer = QUESTION_NOT_ANSWERED
+        })
+    }
+	useEffect(() => {
+        resetAnswers(arrQuestions)
+	}, []);
 
 
     //Работа с ответами
