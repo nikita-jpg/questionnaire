@@ -329,6 +329,25 @@ const App = ({results, MAX_SCORE,
 									goToResultViewAction={appNavigate.App_goToResultView}
 								/>
 
+								<Result
+									id={VIEW_ID_RESULT}
+									percent={results[indexResuslt].percent}
+									year={results[indexResuslt].year}
+									historicalEvent={results[indexResuslt].historicalEvent}
+									quizes={eras[indexAge].quizzes}
+									questions={eras[indexAge].quizzes[indexQuiz].questions}
+									indexAge={indexAge}
+									eras={eras}
+									indexQuiz={indexQuiz}
+									indexesAnswers={indexesAnswers}
+									createOnClickItemAge={createOnClickItemAge}
+									onBack={onBackResult}
+									createOnClickItemQuizes={createOnClickItemQuizes}
+
+									onAgain={onAgainResult}
+									onGoToAnswersQuestion={onGoToAnswersQuestionResult}
+									goToViewListAndQuizes={goToViewListAgeAndQuizesFromResult}/>
+
 								{/* <Result
 									id={viewsId.VIEW_ID_RESULT}
 									percent={results[indexResuslt].percent}

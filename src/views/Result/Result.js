@@ -7,6 +7,7 @@ import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
+import { getArrQuestions } from '../../Selectors/data_selectors';
 // import { getIndexEraAndSurvey } from '../../Selectors/data_selectors';
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import "./Result.css";
@@ -17,12 +18,16 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
     createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
+    //Получаем необходимые данные
+    const arrQuestions = useSelector(getArrQuestions)
+
+
     // const indexAgeAndSurvey = useSelector(getIndexEraAndSurvey);
-    const indexAge = 0;
+    // const indexAge = 0;
 
     //Работа с панелями
         const PANEL_RESULT = "PANEL_RESULT";
-        const PANEL_ANSWERS_QUESTIONS = "VIEW_ID_ANSWERS_QUESTIONS";
+        const PANEL_ANSWERS_QUESTIONS = "PANEL_ANSWERS_QUESTIONS";
         const [activePanel, setActivePanel] = useState(PANEL_RESULT)
 
         const goToPanelAnswers = () => {
@@ -118,39 +123,40 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             setIsVisibleAlert(true);
         }
 
-        let startAnimDealyForCard = 0.2;
-        let stepAnimDealyForCard = 0.1;
-        let curAnimDealyForCard = -stepAnimDealyForCard;
+        // let startAnimDealyForCard = 0.2;
+        // let stepAnimDealyForCard = 0.1;
+        // let curAnimDealyForCard = -stepAnimDealyForCard;
 
-        const makeStepAnimDealyForCard = () => {
-            curAnimDealyForCard = curAnimDealyForCard + stepAnimDealyForCard;
-            return startAnimDealyForCard + curAnimDealyForCard + "s";
-        }
+        // const makeStepAnimDealyForCard = () => {
+        //     curAnimDealyForCard = curAnimDealyForCard + stepAnimDealyForCard;
+        //     return startAnimDealyForCard + curAnimDealyForCard + "s";
+        // }
 
     return (
         <View 
             id={id} 
             activePanel={activePanel} 
-            popout={
-                isVisibleAlert
-                ?<AlertQuestionResult
-                    onClose={() => { console.log(document.getElementsByClassName("vkuiAlert--ios")); setIsVisibleAlert(false) }}
-                    indexQuestion={indexQuestion}
-                    indexUserAnswer={calcIndexUserAnswer(indexQuestion)}
-                    indexRightAnswer={calcIndexRightAnswer(indexQuestion)}
-                    getAnswerText={getAnswerText}
-                    answerOptions={questions[indexQuestion].answerOptions}
-                    questionText={questions[indexQuestion].questionText}
-                />
-                :null
-            } 
+            // popout={
+            //     isVisibleAlert
+            //     ?<AlertQuestionResult
+            //         onClose={() => { console.log(document.getElementsByClassName("vkuiAlert--ios")); setIsVisibleAlert(false) }}
+            //         indexQuestion={indexQuestion}
+            //         indexUserAnswer={calcIndexUserAnswer(indexQuestion)}
+            //         indexRightAnswer={calcIndexRightAnswer(indexQuestion)}
+            //         getAnswerText={getAnswerText}
+            //         answerOptions={questions[indexQuestion].answerOptions}
+            //         questionText={questions[indexQuestion].questionText}
+            //     />
+            //     :null
+            // } 
             onSwipeBack={goBackInHistory}
             history={history}>
 
             <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}>
 
+            {/* <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}> */}
                         {/* Цифра в виде результата */}
-                        <div className={`Result__title ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
+                        <div className={`Result__title`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <span className={`Result__points ${getClassNameForPercent(percent)}`}>
                                 <CustomTooltip
                                     text={`${titleAge}: ${quizes[indexQuiz].title}`}
@@ -163,24 +169,24 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                         </div>
 
                         {/* Панелька с кнопками */}
-                        <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
+                        {/* <div className={`Result__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                             <ResultButtons 
                                 onAgain={modifyIsFirstOpenResult(onAgain)}
                                 onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
                                 goToViewListAndQuizes={goToViewListAndQuizesWrapper}
                             />
-                        </div>
+                        </div> */}
 
                         {/* Реклама */}
-                        {
+                        {/* {
                             isAdVisible &&
                             <div className={`Result__adds ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                                 <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
                             </div>
-                        }
+                        } */}
 
                         {/* Карточки опросов */}
-                        <ResultCards 
+                        {/* <ResultCards 
                             indexAge={indexAge}
                             indexQuiz={indexQuiz}
                             eras={eras}
@@ -192,18 +198,18 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                             goToQuiz={createOnClickItemQuizes}
                             goToEras={goToViewListAndQuizes}
                         >
-                        </ResultCards>
+                        </ResultCards> */}
 
             </PanelWrapper>
 
-            <AnswersQuestions
+            {/* <AnswersQuestions
                 id={PANEL_ANSWERS_QUESTIONS}
                 questions={questions}
                 indexesAnswers={indexesAnswers}
                 onBack={goBackInHistory}
                 openAlert={openAlert}
             >
-            </AnswersQuestions>
+            </AnswersQuestions> */}
         </View>
     )
 }
