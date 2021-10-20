@@ -1,9 +1,11 @@
 export const initialState = {
-    indexEraAndSurvey:
-        {
-            indexEra:0,
-            indexSurvey:0
-        },
+	indexEra:0,
+	indexSurvey:0,
+    // indexEraAndSurvey:
+    //     {
+    //         indexEra:0,
+    //         indexSurvey:0
+    //     },
     Eras:[
 		{
 			russianName: "Эра1",
@@ -58,7 +60,45 @@ export const initialState = {
 							// 	idAnswerOption: 6
 							// }
 							userAnswer: null
-						}
+						},
+						{
+							idQuestion: 3,
+							textQuestion: "Вопрос3",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 9,
+									idQuestion: 3,
+									text: "Вариант4",
+									score: 1
+								},
+								{
+									idAnswerOption: 10,
+									idQuestion: 3,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 11,
+									idQuestion: 3,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 12,
+									idQuestion: 3,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							// userAnswer: {
+							// 	idAnswerOption: 6
+							// }
+							userAnswer: null
+						},
 					]
 				}
 			]

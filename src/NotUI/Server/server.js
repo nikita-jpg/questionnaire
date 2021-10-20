@@ -80,3 +80,10 @@ export async function downloadImageFromServer(imageName){
     
     return `data:image/jpeg;base64,${image}`;
 }
+
+// Отправка ответа на сервер
+export async function sendUserAnswersToServer(userAnswers){
+    await http.post("http://127.0.0.1:18301/giveAnswers",{
+        userAnswers:userAnswers
+    }).then(data=>{return data.data})
+}

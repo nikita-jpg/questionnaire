@@ -5,87 +5,55 @@ import { CSSTransition } from 'react-transition-group';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
 import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
+import { QUESTION_NOT_ANSWERED } from '../../../NotUI/Data/consts';
+import ImageCard from './ImageCard/ImageCard';
 
 import "./IteamListQuestion.css";
 
 const osName = platform();
 
-const IteamListQuestion = ({ id, question,
+const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
     numberCurrentQuestion, countQuestions, indexAnswer,name,
-    goToPrevQuestion, goToNextQuestion,isModalOpen,isClicked,
+    goToPrevQuestion, goToNextQuestion,isModalOpen,
     changeModal = () => {}, setNotActiveBackgoundToAnswerButton = () => {} }) => {
-
-    //Картинка
-    const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
-
-    const onLinkClick = (e) => e.stopPropagation();
+        
 
     return (
         <PanelWrapper id={id} isOneColumn={true}
-        
-            // onHeaderClose={numberCurrentQuestion === 1 ? goToPrevQuestion:false}
-            // onHeaderBack={goToPrevQuestion}
-            // headerText={numberCurrentQuestion + " из " + countQuestions}
-            // headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
-            // headerClick={changeModal}
+            onHeaderClose={id === 0 ? goToPrevQuestion:false}
+            onHeaderBack={goToPrevQuestion}
+            headerText={id+1 + " из " + countQuestions}
+            headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
+            headerClick={changeModal}
         >
+
             <div className="IteamListQuestion">
-                
-                    <div className="IteamListQuestion__image-container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
-                        <img
-                            className="IteamListQuestion__image" 
-                            src={question.imageSrc}
-                        />
-                        
-                        <CSSTransition 
-                            in={isImgInfoOpen} 
-                            timeout={200}   
-                            classNames="IteamListQuestion__image-info"
-                            onEnter={() => {setisImgInfoOpen(true)}}
-                            onExited={() => {setisImgInfoOpen(false)}}>
-                            <div className="IteamListQuestion__image-info">
-                                <Div className="IteamListQuestion__image-description">
-                                    Источник: <br/>
-                                    {
-                                        isImgInfoOpen
-                                        ?<a 
-                                            href={question.linkOriginPhoto} 
-                                            className="IteamListQuestion__image-link"
-                                            target="_blank"
-                                            onClick={onLinkClick}
-                                        >
-                                            Клик
-                                        </a>
-                                        :<span className="IteamListQuestion__image-link">
-                                            Клик 
-                                        </span>
-                                    }
-                                    
-                                </Div>
-                            </div>
-                        </CSSTransition>
+                <ImageCard
+                    imageName={question.imageName}
+                    linkOriginPhoto={question.sourceImageLink}
+                />
 
-                    </div>
+                <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
 
-                    <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
-
-                    <div className="IteamListQuestion__answer-options">
-                        {
-                            question.answerOptions.map((answer, i) => (
-                                <ButtonWrapper
-                                    onClick={() => {
-                                        // setNotActiveBackgoundToAnswerButton();
-                                        // goToNextQuestion(i);
-                                    }}
-                                    // isActived={indexAnswer === i}
-                                    text={answer.text}
-                                    className={`IteamListQuestion__answer ${isClicked?"IteamListQuestion__answer-active":""}` }
-                                >
-                                </ButtonWrapper>
-                            ))
-                        }
-                    </div>
+                <div className="IteamListQuestion__answer-options">
+                    {
+                        question.answerOptions.map((answer, i) => (
+                            <ButtonWrapper
+                                onClick={() => {
+                                    giveAnswer(id, i)
+                                    goToNextQuestion()
+                                    // setNotActiveBackgoundToAnswerButton();
+                                    // goToNextQuestion(i);
+                                }}
+                                // isActived={indexAnswer === i}
+                                text={answer.text}
+                                className={`IteamListQuestion__answer ${(question.userAnswer !== QUESTION_NOT_ANSWERED) &&  (question.userAnswer.idAnswerOption === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
+                            >
+                            </ButtonWrapper>
+                        ))
+                    }
+                </div>
             </div>
         </PanelWrapper>
     )

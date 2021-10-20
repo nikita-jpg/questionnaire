@@ -7,7 +7,7 @@ import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
-import { getIndexEraAndSurvey } from '../../Selectors/data_selectors';
+// import { getIndexEraAndSurvey } from '../../Selectors/data_selectors';
 import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
@@ -17,7 +17,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
     createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, goToViewListAndQuizes=()=>{} }) => {
 
-    const indexAgeAndSurvey = useSelector(getIndexEraAndSurvey);
+    // const indexAgeAndSurvey = useSelector(getIndexEraAndSurvey);
     const indexAge = 0;
 
     //Работа с панелями
