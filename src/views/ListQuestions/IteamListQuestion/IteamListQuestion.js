@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
 import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
+import { QUESTION_NOT_ANSWERED } from '../../../NotUI/Data/consts';
 import ImageCard from './ImageCard/ImageCard';
 
 import "./IteamListQuestion.css";
@@ -13,8 +14,9 @@ const osName = platform();
 
 const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
     numberCurrentQuestion, countQuestions, indexAnswer,name,
-    goToPrevQuestion, goToNextQuestion,isModalOpen,isClicked,
+    goToPrevQuestion, goToNextQuestion,isModalOpen,
     changeModal = () => {}, setNotActiveBackgoundToAnswerButton = () => {} }) => {
+        
 
     return (
         <PanelWrapper id={id} isOneColumn={true}
@@ -46,7 +48,7 @@ const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
                                 }}
                                 // isActived={indexAnswer === i}
                                 text={answer.text}
-                                className={`IteamListQuestion__answer ${isClicked?"IteamListQuestion__answer-active":""}` }
+                                className={`IteamListQuestion__answer ${(question.userAnswer !== QUESTION_NOT_ANSWERED) &&  (question.userAnswer.idAnswerOption === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
                             >
                             </ButtonWrapper>
                         ))
