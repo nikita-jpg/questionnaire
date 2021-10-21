@@ -35,7 +35,7 @@ export const initialState = {
 									idAnswerOption: 8,
 									idQuestion: 2,
 									text: "Вариант4",
-									score: 1
+									score: 0
 								},
 								{
 									idAnswerOption: 7,
@@ -73,7 +73,7 @@ export const initialState = {
 									idAnswerOption: 9,
 									idQuestion: 3,
 									text: "Вариант4",
-									score: 1
+									score: 0
 								},
 								{
 									idAnswerOption: 10,
@@ -100,7 +100,93 @@ export const initialState = {
 							// userAnswer: null
 						},
 					]
-				}
+				},
+				{
+					russianName: "Опрос3",
+					description: "ОписаниеОпроса2",
+					image: {
+						imageName: "2.jpg",
+						sourceImageLink: "Ссылка на картинку2"
+					},
+					subset: [
+						{
+							idQuestion: 2,
+							textQuestion: "Вопрос2 Опрос3",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 8,
+									idQuestion: 2,
+									text: "Вариант4",
+									score: 0
+								},
+								{
+									idAnswerOption: 7,
+									idQuestion: 2,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 6,
+									idQuestion: 2,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 5,
+									idQuestion: 2,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							userAnswer: {
+								idAnswerOption: 6
+							}
+							// userAnswer: null
+						},
+						{
+							idQuestion: 3,
+							textQuestion: "Вопрос3",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 9,
+									idQuestion: 3,
+									text: "Вариант4",
+									score: 0
+								},
+								{
+									idAnswerOption: 10,
+									idQuestion: 3,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 11,
+									idQuestion: 3,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 12,
+									idQuestion: 3,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							userAnswer: {
+								idAnswerOption: 9
+							}
+							// userAnswer: null
+						},
+					]
+				},
 			]
 		}
 	]

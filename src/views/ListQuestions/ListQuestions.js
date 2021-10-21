@@ -17,27 +17,53 @@ const MODAL_ID = "MODAL_ID"
 const PANEL_FIRST_ID="IteamListQuestion-0"
 
 
-const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>{}, goToListSurveyAction=()=>{}}) => {
+const ListQuestions = ({id, 
+    goToPollViewAction=()=>{}, 
+    goToResultViewAction=()=>{}, 
+    goToListSurveyAction=()=>{}
+}) => {
 
 
     //Сбрасываем ответы пользователя при первом открытии
     const resetAnswers = (arrQuestions) => {
-        arrQuestions.map((question)=>{
+        let newArrQuestions = arrQuestions;
+        newArrQuestions.map((question)=>{
             question.userAnswer = QUESTION_NOT_ANSWERED
         })
-        return arrQuestions
+        return newArrQuestions
     }
 
     //Получаем все данные для работы компонента
+    // const [arrQuestions, setArrQuestions] = useState([])
     const arrQuestions = useSelector(getArrQuestions)
+
+    // const [userAnswers, setUserAnswers] = useState([])
+    // let userAnswers = []
+    // const giveAnswer = (answer) => {
+    //     userAnswers.map((userAnswer)=>{
+
+    //     })
+    // }
+    // const test = (newArr) =>{
+    //     console.log(newArr)
+    //     if(arrQuestions.length === 0){
+            
+    //         let test = Object.assign({},newArr);
+
+    //         console.log(test)
+    //         setArrQuestions(test)
+    //     } 
+    // }
+    // test(useSelector(getArrQuestions))
     const dispath = useDispatch();
 
 
 
-
 	useEffect(() => {
-        resetAnswers(arrQuestions)
-	}, []);
+        console.log("f")
+        // setArrQuestions(startQrrQuestions)
+        // console.log(startQrrQuestions)
+	});
 
 
 
@@ -45,8 +71,8 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     const giveAnswer = (indexQuestion, indexAnswer) => {
         arrQuestions[indexQuestion].userAnswer={idAnswerOption:arrQuestions[indexQuestion].answerOptions[indexAnswer].idAnswerOption}
     }
-    const saveAnswersToState = () => dispath(saveUserAnswers(arrQuestions))
-    const saveAnswersToServer= () => sendUserAnswersToServer(arrQuestions)
+    // const saveAnswersToState = () => dispath(saveUserAnswers(arrQuestions))
+    // const saveAnswersToServer= () => sendUserAnswersToServer(arrQuestions)
 
 
 
@@ -114,8 +140,8 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
         finishSurveyWithOutCheck()
     }
     const finishSurveyWithOutCheck = () =>{
-        saveAnswersToState()
-        saveAnswersToServer()
+        // saveAnswersToState()
+        // saveAnswersToServer()
         goToResultView()
     }
 
@@ -215,10 +241,10 @@ const ListQuestions = ({id, goToPollViewAction=()=>{}, goToResultViewAction=()=>
     return (
         <View id={id} 
             activePanel={indexQuestion} 
-            modal={modal} 
+            // modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
-            popout={alert}
+            // popout={alert}
             >
             {
                 arrQuestions.map((question, i) =>(

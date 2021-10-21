@@ -89,8 +89,6 @@ const PoolView = ({id,
 		goToResultView()
 	}
 
-
-
         
     return(
         <View 

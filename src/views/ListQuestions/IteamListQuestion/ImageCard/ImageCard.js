@@ -22,10 +22,10 @@ const ImageCard = (imageName, sourceImageLink) => {
     return(
         <div className="Image__container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
-        <img
+        {/* <img
             className="Image__image" 
             src={image}
-        />
+        /> */}
         
         <CSSTransition 
             in={isImgInfoOpen} 

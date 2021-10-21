@@ -1,13 +1,20 @@
-export {SURVEY_FINISHED_GO_TO_RESULT_FALSE, SURVEY_FINISHED_GO_TO_RESULT_TRUE} from './consts'
+export * as consts from './consts'
 
-export const SurveyView_setIfSurveyFinishedGoToResultTrue = () =>{
-    return{
-        type: SURVEY_FINISHED_GO_TO_RESULT_TRUE
-    }
-}
+// export const SurveyView_setIfSurveyFinishedGoToResultTrue = () =>{
+//     return{
+//         type: SURVEY_FINISHED_GO_TO_RESULT_TRUE
+//     }
+// }
 
-export const SurveyView_setIfSurveyFinishedGoToResultFalse = () =>{
+// export const SurveyView_setIfSurveyFinishedGoToResultFalse = () =>{
+//     return{
+//         type: SURVEY_FINISHED_GO_TO_RESULT_FALSE
+//     }
+// }
+
+export const SurveyView_giveAnswer = (userAnswer) =>{
     return{
-        type: SURVEY_FINISHED_GO_TO_RESULT_FALSE
+        type: consts.SurveyView_giveAnswer,
+        userAnswer:userAnswer
     }
 }

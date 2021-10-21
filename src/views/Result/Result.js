@@ -1,6 +1,6 @@
 import bridge from '@vkontakte/vk-bridge';
 import { ContentCard, Div, Panel, PromoBanner, View } from "@vkontakte/vkui";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import AlertQuestionResult from "../../components/AlertQuestionResult/AlertQuestionResult";
 import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';

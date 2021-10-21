@@ -1,11 +1,13 @@
 import { Icon28ChevronDownOutline } from '@vkontakte/icons';
 import { Panel, platform, Text, Div, Platform, PanelHeaderButton}  from '@vkontakte/vkui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
 import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
 import { QUESTION_NOT_ANSWERED } from '../../../NotUI/Data/consts';
+import { getArrQuestions } from '../../../Selectors/data_selectors';
 import ImageCard from './ImageCard/ImageCard';
 
 import "./IteamListQuestion.css";
@@ -16,11 +18,9 @@ const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
     numberCurrentQuestion, countQuestions, indexAnswer,name,
     goToPrevQuestion, goToNextQuestion,isModalOpen,
     changeModal = () => {}, setNotActiveBackgoundToAnswerButton = () => {} }) => {
+    
 
-    console.log(question)
-    console.log(question.userAnswer)
-    console.log(question)
-    console.log(question.userAnswer)
+
     return (
         <PanelWrapper id={id} isOneColumn={true}
             onHeaderClose={id === 0 ? goToPrevQuestion:false}
