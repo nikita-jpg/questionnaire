@@ -14,6 +14,10 @@ export const dataReducer = (state = initialState, action) =>{
             let userAnswers = action.userAnswers;
 
             survey.subset.map((question)=>{
+                question.userAnswer = null
+            })
+
+            survey.subset.map((question)=>{
                 for(let i=0;i<userAnswers.length;i++){
                     if(question.idQuestion === userAnswers[i].idQuestion){
                         question.userAnswer = {idAnswerOption:userAnswers[i].idAnswerOption}
@@ -21,11 +25,6 @@ export const dataReducer = (state = initialState, action) =>{
                 }
             })
 
-            // survey.subset.map((answer)=>{
-
-            // })
-
-            // survey.subset = action.userAnswers;
             return {...state, ...{survey}}
         }
         default:{

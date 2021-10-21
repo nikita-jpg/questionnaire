@@ -23,6 +23,8 @@ const ListQuestions = ({id,
     goToListSurveyAction=()=>{}
 }) => {
 
+
+
     //Получение данных
     const arrQuestions = useSelector(getArrQuestions)
     const dispath = useDispatch();
@@ -41,14 +43,13 @@ const ListQuestions = ({id,
         for(let i=0;i<userAnswers.length;i++){
             if(userAnswers[i].idQuestion === idQuestion){
                 isAnswerBe = true
-                newUserAnswers[i].userAnswer.idAnswerOption = idAnswerOption
+                newUserAnswers[i].idAnswerOption = idAnswerOption
             }
         }
 
         if(!isAnswerBe){
             newUserAnswers.push({idQuestion:idQuestion, idAnswerOption:idAnswerOption})
         }
-
         setUserAnswers(newUserAnswers)
     }
     const getUserAnswer = (idQuestion) =>{
@@ -122,16 +123,13 @@ const ListQuestions = ({id,
 
     useEffect(() => {
         if(userAnswersFinishValidator){
-
             if(!cheakAllAnswered()){
                 openFinishAlert();
             }else{
                 finishSurveyWithOutCheck()
             }
-            
         }
 	}, [userAnswersFinishValidator]);
-
 
     const finishSurvey = () => {
         setUserAnswersFinishValidator(true)
@@ -252,7 +250,7 @@ const ListQuestions = ({id,
                 arrQuestions.map((question, i) =>(
                     <IteamListQuestion
                         id={i}            
-                        question={question}
+                        question={Object.assign({},question)}
                         countQuestions={arrQuestions.length}
                         isModalOpen={isModalOpen}
 

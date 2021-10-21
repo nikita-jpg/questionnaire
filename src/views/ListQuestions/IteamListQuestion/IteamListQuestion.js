@@ -15,11 +15,14 @@ import "./IteamListQuestion.css";
 const osName = platform();
 
 const IteamListQuestion = ({ id, question, 
-    numberCurrentQuestion, countQuestions, indexAnswer,name,
-    goToPrevQuestion, goToNextQuestion,isModalOpen,
+    countQuestions,
+    isModalOpen,
+    goToPrevQuestion=()=>{}, 
+    goToNextQuestion=()=>{},
     giveAnswer=()=>{},
     changeModal = () => {}, 
-    getUserAnswer = () => {} }) => {
+    getUserAnswer = () => {} 
+}) => {
     
 
 
@@ -49,9 +52,7 @@ const IteamListQuestion = ({ id, question,
                                     giveAnswer(question.idQuestion, answer.idAnswerOption)
                                     goToNextQuestion()
                                     // setNotActiveBackgoundToAnswerButton();
-                                    // goToNextQuestion(i);
                                 }}
-                                // isActived={indexAnswer === i}
                                 text={answer.text}
                                 className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
                             >
