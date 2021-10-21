@@ -37,13 +37,8 @@ const ListQuestions = ({id,
     // const [arrQuestions, setArrQuestions] = useState([])
     const arrQuestions = useSelector(getArrQuestions)
 
-    // const [userAnswers, setUserAnswers] = useState([])
-    // let userAnswers = []
-    // const giveAnswer = (answer) => {
-    //     userAnswers.map((userAnswer)=>{
 
-    //     })
-    // }
+
     // const test = (newArr) =>{
     //     console.log(newArr)
     //     if(arrQuestions.length === 0){
@@ -59,20 +54,43 @@ const ListQuestions = ({id,
 
 
 
-	useEffect(() => {
-        console.log("f")
-        // setArrQuestions(startQrrQuestions)
-        // console.log(startQrrQuestions)
-	});
-
-
-
     //Работа с ответами
-    const giveAnswer = (indexQuestion, indexAnswer) => {
-        arrQuestions[indexQuestion].userAnswer={idAnswerOption:arrQuestions[indexQuestion].answerOptions[indexAnswer].idAnswerOption}
+    const [userAnswers, setUserAnswers] = useState(Object.assign([],arrQuestions))
+    const [userAnswersFinishValidator, setUserAnswersFinishValidator] = useState(false)
+
+    const giveAnswer = (idQuestion, idAnswerOption) => {
+        let isAnswerBe = false;
+
+        let newUserAnswers = Object.assign([],userAnswers);
+
+        for(let i=0;i<userAnswers.length;i++){
+            if(userAnswers[i].idQuestion === idQuestion){
+                isAnswerBe = true
+                newUserAnswers[i].userAnswer.idAnswerOption = idAnswerOption
+            }
+        }
+
+        // if(!isAnswerBe){
+        //     newUserAnswers.push({idQuestion:idQuestion, idAnswerOption:idAnswerOption})
+        // }
+        // console.log(newUserAnswers)
+        setUserAnswers(newUserAnswers)
     }
-    // const saveAnswersToState = () => dispath(saveUserAnswers(arrQuestions))
-    // const saveAnswersToServer= () => sendUserAnswersToServer(arrQuestions)
+    const getUserAnswer = (idQuestion) =>{
+
+        let idAnswer = QUESTION_NOT_ANSWERED;
+
+        userAnswers.map((userAnswer)=>{
+            if(userAnswer.idQuestion === idQuestion){
+                idAnswer = userAnswer.idAnswerOption
+            }
+        })
+
+        return idAnswer
+    }
+
+    const saveAnswersToState = () => dispath(saveUserAnswers(userAnswers))
+    const saveAnswersToServer= () => sendUserAnswersToServer(arrQuestions)
 
 
 
@@ -124,24 +142,28 @@ const ListQuestions = ({id,
 
     //Окончание опроса
     const cheakAllAnswered = () => {
-        let ret = true;
-        arrQuestions.map((question)=>{
-            if(question.userAnswer === QUESTION_NOT_ANSWERED){
-                ret = false;
+        return arrQuestions.length === userAnswers.length;
+    }
+
+    useEffect(() => {
+        if(userAnswersFinishValidator){
+
+            if(!cheakAllAnswered()){
+                openFinishAlert();
+            }else{
+                finishSurveyWithOutCheck()
             }
-        })
-        return ret;
-    }
-    const finishSurvey = () => {
-        if(!cheakAllAnswered()){
-            openFinishAlert();
-            return;
+            
         }
-        finishSurveyWithOutCheck()
+	}, [userAnswersFinishValidator]);
+
+    const finishSurvey = () => {
+        setUserAnswersFinishValidator(true)
     }
+
     const finishSurveyWithOutCheck = () =>{
-        // saveAnswersToState()
-        // saveAnswersToServer()
+        saveAnswersToState()
+        saveAnswersToServer()
         goToResultView()
     }
 
@@ -185,6 +207,7 @@ const ListQuestions = ({id,
             <ModalPageForListQuestions
                 id={MODAL_ID}
                 arrQuestions={arrQuestions}
+                getUserAnswer={getUserAnswer}
                 changeModal={changeModal}
                 goToCurrentQuestion={goToCurrentQuestion}
                 finishSurvey={finishSurvey}
@@ -220,7 +243,10 @@ const ListQuestions = ({id,
                 rightFunc={ () => {
                     finishSurveyWithOutCheck();
                 }}
-                onClose={()=>{setAlert(null)}}
+                onClose={()=>{ 
+                    setUserAnswersFinishValidator(false)
+                    setAlert(null)
+                }}
             >
             </AlertWrapper>
 
@@ -241,10 +267,10 @@ const ListQuestions = ({id,
     return (
         <View id={id} 
             activePanel={indexQuestion} 
-            // modal={modal} 
+            modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
-            // popout={alert}
+            popout={alert}
             >
             {
                 arrQuestions.map((question, i) =>(
@@ -257,6 +283,7 @@ const ListQuestions = ({id,
                         giveAnswer={giveAnswer}
                         goToNextQuestion={goToNextQuestion}
                         goToPrevQuestion={goToPrevQuestion}
+                        getUserAnswer={getUserAnswer}
 
                         changeModal={changeModal}
 

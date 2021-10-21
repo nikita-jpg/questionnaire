@@ -14,10 +14,12 @@ import "./IteamListQuestion.css";
 
 const osName = platform();
 
-const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
+const IteamListQuestion = ({ id, question, 
     numberCurrentQuestion, countQuestions, indexAnswer,name,
     goToPrevQuestion, goToNextQuestion,isModalOpen,
-    changeModal = () => {}, setNotActiveBackgoundToAnswerButton = () => {} }) => {
+    giveAnswer=()=>{},
+    changeModal = () => {}, 
+    getUserAnswer = () => {} }) => {
     
 
 
@@ -44,14 +46,14 @@ const IteamListQuestion = ({ id, question, giveAnswer=()=>{},
                         question.answerOptions.map((answer, i) => (
                             <ButtonWrapper
                                 onClick={() => {
-                                    giveAnswer(id, i)
+                                    giveAnswer(question.idQuestion, answer.idAnswerOption)
                                     goToNextQuestion()
                                     // setNotActiveBackgoundToAnswerButton();
                                     // goToNextQuestion(i);
                                 }}
                                 // isActived={indexAnswer === i}
                                 text={answer.text}
-                                className={`IteamListQuestion__answer ${(question.userAnswer !== QUESTION_NOT_ANSWERED) &&  (question.userAnswer.idAnswerOption === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
+                                className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
                             >
                             </ButtonWrapper>
                         ))

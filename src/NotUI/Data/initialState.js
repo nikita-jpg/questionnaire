@@ -99,6 +99,44 @@ export const initialState = {
 							}
 							// userAnswer: null
 						},
+						{
+							idQuestion: 4,
+							textQuestion: "Вопрос4",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 13,
+									idQuestion: 3,
+									text: "Вариант4",
+									score: 0
+								},
+								{
+									idAnswerOption: 14,
+									idQuestion: 3,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 15,
+									idQuestion: 3,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 16,
+									idQuestion: 3,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							userAnswer: {
+								idAnswerOption: 9
+							}
+							// userAnswer: null
+						},
 					]
 				},
 				{
