@@ -11,12 +11,21 @@ export const dataReducer = (state = initialState, action) =>{
         }
         case SAVE_USER_ANSWERS:{
             let survey = {...state.Eras[state.indexEra].subset[state.indexSurvey]};
+            let userAnswers = action.userAnswers;
+
+            survey.subset.map((question)=>{
+                for(let i=0;i<userAnswers.length;i++){
+                    if(question.idQuestion === userAnswers[i].idQuestion){
+                        question.userAnswer = {idAnswerOption:userAnswers[i].idAnswerOption}
+                    }
+                }
+            })
 
             // survey.subset.map((answer)=>{
 
             // })
 
-            survey.subset = action.userAnswers;
+            // survey.subset = action.userAnswers;
             return {...state, ...{survey}}
         }
         default:{

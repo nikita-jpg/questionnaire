@@ -23,39 +23,14 @@ const ListQuestions = ({id,
     goToListSurveyAction=()=>{}
 }) => {
 
-
-    //Сбрасываем ответы пользователя при первом открытии
-    const resetAnswers = (arrQuestions) => {
-        let newArrQuestions = arrQuestions;
-        newArrQuestions.map((question)=>{
-            question.userAnswer = QUESTION_NOT_ANSWERED
-        })
-        return newArrQuestions
-    }
-
-    //Получаем все данные для работы компонента
-    // const [arrQuestions, setArrQuestions] = useState([])
+    //Получение данных
     const arrQuestions = useSelector(getArrQuestions)
-
-
-
-    // const test = (newArr) =>{
-    //     console.log(newArr)
-    //     if(arrQuestions.length === 0){
-            
-    //         let test = Object.assign({},newArr);
-
-    //         console.log(test)
-    //         setArrQuestions(test)
-    //     } 
-    // }
-    // test(useSelector(getArrQuestions))
     const dispath = useDispatch();
 
 
 
     //Работа с ответами
-    const [userAnswers, setUserAnswers] = useState(Object.assign([],arrQuestions))
+    const [userAnswers, setUserAnswers] = useState([])
     const [userAnswersFinishValidator, setUserAnswersFinishValidator] = useState(false)
 
     const giveAnswer = (idQuestion, idAnswerOption) => {
@@ -70,10 +45,10 @@ const ListQuestions = ({id,
             }
         }
 
-        // if(!isAnswerBe){
-        //     newUserAnswers.push({idQuestion:idQuestion, idAnswerOption:idAnswerOption})
-        // }
-        // console.log(newUserAnswers)
+        if(!isAnswerBe){
+            newUserAnswers.push({idQuestion:idQuestion, idAnswerOption:idAnswerOption})
+        }
+
         setUserAnswers(newUserAnswers)
     }
     const getUserAnswer = (idQuestion) =>{
@@ -90,7 +65,7 @@ const ListQuestions = ({id,
     }
 
     const saveAnswersToState = () => dispath(saveUserAnswers(userAnswers))
-    const saveAnswersToServer= () => sendUserAnswersToServer(arrQuestions)
+    const saveAnswersToServer= () => sendUserAnswersToServer(userAnswers)
 
 
 
@@ -156,6 +131,7 @@ const ListQuestions = ({id,
             
         }
 	}, [userAnswersFinishValidator]);
+
 
     const finishSurvey = () => {
         setUserAnswersFinishValidator(true)
