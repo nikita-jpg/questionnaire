@@ -23,6 +23,23 @@ export const getCurSurvey = (state) => {
         eras[indexEra].subset[indexSurvey]
     )
 }
+export const getCurSurveys = (state) => {
+    const eras = getEras(state)
+    const indexEra = getIndexEra(state)
+
+    return(
+        eras[indexEra].subset
+    )
+}
+
+export const getCurEra = (state) => {
+    const eras = getEras(state)
+    const indexEra = getIndexEra(state)
+
+    return(
+        eras[indexEra]
+    )
+}
 
 // export const getSurveyResult = (state) => {
 //     const eras = getEras(state);

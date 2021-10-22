@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import ResultButtons from "../ResultButtons/ResultButtons";
 import { PromoBanner } from "@vkontakte/vkui";
 import bridge from '@vkontakte/vk-bridge';
+import ResultCards from "../ResultCards/ResultCards";
 
 
 // onClose={()=>{setIsFirstOpenResult(false)}} 
@@ -80,19 +81,19 @@ const PanelResult = ({id, totalResult,isNeedAnim,adDate,isAdVisible,
             }
 
             {/* Карточки опросов */}
-            {/* <ResultCards 
-                indexAge={indexAge}
-                indexQuiz={indexQuiz}
-                eras={eras}
-                isFirstOpenResult={isFirstOpenResult}
-                isCompletedQuiz={percent === questions.length ? true : false}
+            <ResultCards 
+                // indexAge={indexAge}
+                // indexQuiz={indexQuiz}
+                // eras={eras}
+                isFirstOpenResult={isNeedAnim}
+                // isCompletedQuiz={percent === questions.length ? true : false}
 
                 makeStepAnimDealyForCard={makeStepAnimDealyForCard}
-                onAgain={modifyIsFirstOpenResult(onAgain)}
-                goToQuiz={createOnClickItemQuizes}
-                goToEras={goToViewListAndQuizes}
+                // onAgain={modifyIsFirstOpenResult(onAgain)}
+                // goToQuiz={createOnClickItemQuizes}
+                // goToEras={goToViewListAndQuizes}
             >
-            </ResultCards> */}
+            </ResultCards>
 
         </PanelWrapper>
     )

@@ -3,7 +3,7 @@ import React from 'react';
 import ButtonWrapper from '../../ButtonWrapper/ButtonWrapper';
 import './CardWrapperDescription.css'
 
-const CardWrapperDescription = ({text, textBtn, btnCardClickObj}) => {
+const CardWrapperDescription = ({text, textBtn, btnCardClickObj={}}) => {
 
     const click = (e) => {
         e.stopPropagation()
