@@ -128,7 +128,7 @@ const PanelResult = ({id, total,isNeedAnim,adDate,isAdVisible,
                 goToSurveyView={goToSurveyView}
                 setIndexSurvey={setIndexSurvey}
                 goToPollView={goToPollView}
-                // onAgain={modifyIsFirstOpenResult(onAgain)}
+                onAgain={goToSurveyView}
                 // goToQuiz={createOnClickItemQuizes}
                 // goToEras={goToViewListAndQuizes}
             >

@@ -73,6 +73,7 @@ export async function downloadImagesArr(arr){
 
 // Загрузка изображений с сервера
 export async function downloadImageFromServer(imageName){
+    return ""
     const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
         responseType: 'arraybuffer'
     }).then(response => Buffer.from(response.data, 'binary').toString('base64'))
@@ -82,6 +83,7 @@ export async function downloadImageFromServer(imageName){
 
 // Отправка ответа на сервер
 export async function sendUserAnswersToServer(userAnswers){
+    return ""
     await http.post("http://127.0.0.1:18301/giveAnswers",{
         userAnswers:userAnswers
     }).then(data=>{return data.data})

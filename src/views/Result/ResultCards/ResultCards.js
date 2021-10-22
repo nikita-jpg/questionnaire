@@ -76,6 +76,7 @@ const getCardsFromEraFilter = (arrEras, indexAge, isFirstOpenResult, isCompleted
         }
     }
 
+    //Готово
     if( (isHasNotFinishedEras === true) && (isCompletedQuiz === true)  ){
         retrunMessage = "Поздравляем, вы завершили целую эпоху! Предлагаем перейти к выбору новой эпохи";
         returnButtons = [{text:"К эпохам", click:goToEras}]
@@ -87,6 +88,7 @@ const getCardsFromEraFilter = (arrEras, indexAge, isFirstOpenResult, isCompleted
         returnButtons = []
     }
 
+    //Готово
     if( (isHasNotFinishedEras === true) && (isCompletedQuiz === false)  ){
         retrunMessage = "Поздравляем, вы почти полностью прошли эпоху на 100%. Но, к сожалению, данный орпос не на 100%. Хотите его перепройти или перейти к выбору новой эпохи?";
         returnButtons = [{text:"Ещё раз", click:onAgain}, {text:"К эпохам", click:goToEras}]

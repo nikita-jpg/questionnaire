@@ -44,7 +44,7 @@ export const initialState = {
 									score: 0
 								},
 								{
-									idAnswerOption: 42,
+									idAnswerOption: 90,
 									idQuestion: 40,
 									text: "Вариант2",
 									score: 1
@@ -420,19 +420,19 @@ export const initialState = {
 									score: 0
 								},
 								{
-									idAnswerOption: 85,
+									idAnswerOption: 86,
 									idQuestion: 84,
 									text: "Вариант3",
 									score: 0
 								},
 								{
-									idAnswerOption: 85,
+									idAnswerOption: 87,
 									idQuestion: 84,
 									text: "Вариант2",
 									score: 1
 								},
 								{
-									idAnswerOption: 86,
+									idAnswerOption: 88,
 									idQuestion: 84,
 									text: "Вариант1",
 									score: 0
