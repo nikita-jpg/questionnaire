@@ -6,7 +6,7 @@ const Privatization = {
     title: "Приватизация",
     description:"Описание",
     percentProgress: 0,
-    numberOfQuestions: 8,
+    numberOfQuestions: 1,
     isImageDownloaded: false,
     imageSrc: imgMain,
     questions: [

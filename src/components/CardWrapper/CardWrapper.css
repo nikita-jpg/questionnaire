@@ -1,0 +1,12 @@
+.CardWrapper__Card{
+    background-color: var(--main-second-bg-color);
+    min-width: var(--main-min-card-width);
+    max-width: var(--main-max-card-width);
+}
+.CardWrapper__title{
+    color: var(--main-white-color);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+}

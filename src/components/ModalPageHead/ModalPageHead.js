@@ -3,11 +3,13 @@ import { ANDROID, IOS, ModalPageHeader, useAdaptivity, usePlatform, PanelHeaderB
 import './ModalPageHead.css'
 import { isTitleCentre } from "../../help";
 import { Icon24Dismiss } from "@vkontakte/icons";
+import { useSelector } from "react-redux";
+import { getCurWidth } from "../../Additional/selectors";
 
 
-const ModalPageHead = ({text, curWidth, onClose = () => {}}) => {
+const ModalPageHead = ({text, onClose = () => {}}) => {
 
-    let textAlign = isTitleCentre(curWidth).text;
+    let textAlign = isTitleCentre(useSelector(getCurWidth)).text;
     const { viewWidth } = useAdaptivity();
     const isDesktop = !(viewWidth >= ViewWidth.SMALL_TABLET);    
     return(

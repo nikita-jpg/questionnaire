@@ -1,15 +1,7 @@
 .ListCard{
-    /* padding: 0; */
     width: 100%;
     height: fit-content;
-}
-.ListCard__Card{
-    max-width: var(--main-max-card-width);
-    background-color: var(--main-second-bg-color);
-}
-.ListCard__title{
-    color: var(--main-white-color);
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--main-min-card-width), 1fr));
+    grid-gap: 8px;
 }

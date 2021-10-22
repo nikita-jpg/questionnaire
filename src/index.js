@@ -3,10 +3,13 @@ import "core-js/features/set";
 import React from "react";
 import ReactDOM from "react-dom";
 import bridge from "@vkontakte/vk-bridge";
-import App from "./App";
+import App from "./App/App";
 
 import store, { savePercentQuiz } from "./store/store.js";
 import { Platform } from "@vkontakte/vkui";
+import { createStore } from "redux";
+import {comboReducer} from './comboReducer'
+import { Provider } from "react-redux";
 
 // Init VK  Mini App
 bridge.send("VKWebAppInit");
@@ -49,8 +52,13 @@ bridge
 //     startRender()
 // })
 
+const state = createStore(comboReducer)
+
+
 ReactDOM.render(
-    <App {...store} savePercentQuiz={savePercentQuiz}/>, 
+    <Provider store={state}>
+        <App {...store} savePercentQuiz={savePercentQuiz}/>
+    </Provider>, 
     document.getElementById("root")
 );
 

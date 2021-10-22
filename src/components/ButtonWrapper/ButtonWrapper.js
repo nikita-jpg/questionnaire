@@ -3,8 +3,14 @@ import React from "react"
 
 import './ButtonWrapper.css'  
 
-const ButtonWrapper = ({isActived, text, onClick, before, className, classNameText, isCentered, hasActive, style}) => {
+const ButtonWrapper = ({isActived, text, onClick=()=>{}, before, className, classNameText, isCentered, hasActive, style, isLinkForm}) => {
 
+
+    if(isLinkForm){
+        return(
+            <div className="ButtonWrapper__text_linkForm" style={style} onClick={onClick}>{text}</div>
+        )
+    }
     return(
         <CellButton 
             activeEffectDelay={0}
@@ -15,7 +21,7 @@ const ButtonWrapper = ({isActived, text, onClick, before, className, classNameTe
             hasActive={hasActive}
             className={`ButtonWrapper ${isActived && "ButtonWrapper_active"} ${className}`}
             style={style}
-            
+
         >
             <div className={`ButtonWrapper__text ${classNameText}`}>
                 {text}

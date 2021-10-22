@@ -6,7 +6,7 @@ const TheWhiteHouse = {
     title: "Белый дом",
     description:"Описание",
     percentProgress: 0,
-    numberOfQuestions: 8,
+    numberOfQuestions: 1,
     isImageDownloaded: false,
     imageSrc: imgMain,
     questions: [

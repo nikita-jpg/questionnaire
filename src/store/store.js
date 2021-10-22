@@ -7,9 +7,10 @@ const store = {
     eras: [
         ageRussianEmpire,
         ageRF,
-        ageRussianEmpire,
-        ageRussianEmpire,
-        ageRussianEmpire
+        // ageRF,
+        // ageRussianEmpire,
+        // ageRussianEmpire,
+        // ageRussianEmpire
     ],
 
     results,
