@@ -13,22 +13,25 @@ const PoolView = ({id,
 	setIndexEraAction=()=>{}, 
 	setIndexSurveyAction=()=>{}, 
 	goToSurveyViewAction=()=>{},
-	goToResultViewAction=()=>{}
+	goToResultViewAction=()=>{},
+	goToListAgeAction=()=>{}
 	}) => {
 
 	const dispatch = useDispatch()
-	const [activePanel, setActivePanel] = useState(LIST_AGE_PANEL);
+
 
 	//Получение данных
 	const eras = useSelector(getEras)
 	const indexEra = useSelector(getIndexEra);
 	const mustCurrentPanel = useSelector(getFirstPanel); //Проверяем какая панелька должна быть открыта по приказу извне
 
+	const [activePanel, setActivePanel] = useState(mustCurrentPanel);
 
 	const setIndexEra = (indexEra) => dispatch(setIndexEraAction(indexEra))
 	const setIndexSurvey = (indexSurvey) => dispatch(setIndexSurveyAction(indexSurvey))
 	const goToViewListQuestions = () => dispatch(goToSurveyViewAction())
 	const goToResultView = () => dispatch(goToResultViewAction())
+	const goToListAge = () => dispatch(goToListAgeAction())
 
 	// История
 	const [history, setHistory] = useState([LIST_AGE_PANEL]);
@@ -65,8 +68,11 @@ const PoolView = ({id,
 		if(mustCurrentPanel === LIST_SURVEYS_PANEL){
 			setActivePanel(LIST_SURVEYS_PANEL)
 			setHistory([LIST_AGE_PANEL, LIST_SURVEYS_PANEL])
+
+			//Сбрасываем значение начальное панели на значение по умолчанию (панель эр)
+			goToListAge()
 		}
-	}, mustCurrentPanel);
+	}, []);
 
 	
 	const onBackListQuizes = () => {

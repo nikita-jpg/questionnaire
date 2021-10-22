@@ -12,7 +12,7 @@ export const App_goToSurveyView = () => {
     }
 }
 
-export const App_goToResultView= () => {
+export const App_goToResultView = () => {
     return{
         type:viewsConsts.VIEW_ID_RESULT
     }

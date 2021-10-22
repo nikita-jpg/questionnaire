@@ -8,7 +8,6 @@ import './ListQuestions.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getArrQuestions } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
-import { saveUserAnswers } from '../../NotUI/Data/actions';
 import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import ModalPageForListQuestions from './ModalPageForListQuestions/ModalPageForListQuestions';
 import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
@@ -20,7 +19,8 @@ const PANEL_FIRST_ID="IteamListQuestion-0"
 const ListQuestions = ({id, 
     goToPollViewAction=()=>{}, 
     goToResultViewAction=()=>{}, 
-    goToListSurveyAction=()=>{}
+    goToListSurveyAction=()=>{},
+    saveUserAnswersAction=()=>{}
 }) => {
 
 
@@ -65,7 +65,7 @@ const ListQuestions = ({id,
         return idAnswer
     }
 
-    const saveAnswersToState = () => dispath(saveUserAnswers(userAnswers))
+    const saveAnswersToState = () => dispath(saveUserAnswersAction(userAnswers))
     const saveAnswersToServer= () => sendUserAnswersToServer(userAnswers)
 
 

@@ -43,7 +43,7 @@ export const getAnswersResultSurvey = (survey) => {
     }
 }
 
-export const getAnswersResulEra = (era) => {
+export const getAnswersResultEra = (era) => {
     let arrSurveys = era.subset
 
     let score = 0;

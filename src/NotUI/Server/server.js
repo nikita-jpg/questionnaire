@@ -24,7 +24,7 @@ export async function firstDownload(){
 const downloadData = async() =>{
     let data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
 
-    //Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard образается к свойству subset
+    //Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard обращается к свойству subset
     let stringData = JSON.stringify(data)
     stringData = stringData.replaceAll('"surveys":', '"subset":')
     stringData = stringData.replaceAll('"questions":', '"subset":')

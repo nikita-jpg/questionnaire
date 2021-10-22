@@ -24,7 +24,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
     goToPollViewAction=()=>{},
 
     setIndexEra=()=>{},
-    setIndexSurvey=()=>{},
+    setIndexSurveyAction=()=>{},
 
  }) => {
 
@@ -40,13 +40,11 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
 
 
 //Внешняя навигация
-        const goToSurveyView = () => {
-            dispatch(goToSurveyViewAction())
-        }
+        const goToSurveyView = () => dispatch(goToSurveyViewAction())
+        
+        const goToPollView = () => dispatch(goToPollViewAction())
 
-        const goToPollView = () => {
-            dispatch(goToPollViewAction())
-        }
+        const setIndexSurvey = (indexSurvey) => dispatch(setIndexSurveyAction(indexSurvey))
 
 //Работа с панелями
         const PANEL_RESULT = "PANEL_RESULT";
@@ -197,13 +195,15 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                 isNeedAnim={isNeedAnim}
                 adDate={adDate}
                 isAdVisible={isAdVisible}
-                totalResult={getAnswersResultSurvey(curSurvey)}
+                total={getAnswersResultSurvey(curSurvey)}
 
-                goSurveyView={goToSurveyView}
+                goToSurveyView={goToSurveyView}
                 goToPollView={goToPollView}
                 goToPanelAnswers={goToPanelAnswers}
 
                 setAdVisible={setAdVisible}
+
+                setIndexSurvey={setIndexSurvey}
             />
 
             {/* <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}> */}

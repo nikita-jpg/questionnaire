@@ -315,10 +315,11 @@ const App = ({results, MAX_SCORE,
 
 								<PoolView
 									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
-									setIndexEraAction={data.setIndexEra}
-									setIndexSurveyAction={data.setIndexSurvey}
+									setIndexEraAction={data.Data_setIndexEra}
+									setIndexSurveyAction={data.Data_setIndexSurvey}
 									goToSurveyViewAction={appNavigate.App_goToSurveyView}
 									goToResultViewAction={appNavigate.App_goToResultView}
+									goToListAgeAction={poolView.PoolView_goToListAge}
 								/>
 
 								<ListQuestions 
@@ -327,12 +328,15 @@ const App = ({results, MAX_SCORE,
 									goToListSurveyAction={poolView.PoolView_goToListSurvey}
 									goToPollViewAction={appNavigate.App_goToPollView}
 									goToResultViewAction={appNavigate.App_goToResultView}
+
+									saveUserAnswersAction={data.Data_saveUserAnswers}
 								/>
 
 								<Result
 									id={VIEW_ID_RESULT}
 									goToSurveyViewAction={appNavigate.App_goToSurveyView}
 									goToPollViewAction={appNavigate.App_goToPollView}
+									setIndexSurveyAction={data.Data_setIndexSurvey}
 									// percent={results[indexResuslt].percent}
 									// year={results[indexResuslt].year}
 									// historicalEvent={results[indexResuslt].historicalEvent}

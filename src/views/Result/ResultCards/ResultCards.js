@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import CardWrapper from '../../../components/CardWrapper/CardWrapper';
-import { getAnswersResultSurvey } from '../../../help';
+import { getAnswersResultSurvey, getAnswersResultEra } from '../../../help';
 import { getCurSurvey, getCurEraSurveys, getIndexSurvey } from '../../../Selectors/data_selectors';
 import './ResultCards.css'
 
@@ -24,7 +24,7 @@ const makeUsedData = (surveys) =>{
 }
 
 const makeCard = (info, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
-    console.log(makeStepAnimDealyForCard())
+    
     return(
         <div className={`ResultCards__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
             <CardWrapper
@@ -40,20 +40,16 @@ const makeCard = (info, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyFo
     )
 }
 
-const makeCards = (arr, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) =>{
-    let cardsArr = [];
-    for(let i=0;i<arr.length;i++){
-        cardsArr.push(makeCard(arr[i], isFirstOpenResult, cardClick(i), makeStepAnimDealyForCard))
-    }
-    return cardsArr
-}
 
-const surveysFilterWithoutCurSurvey = (arrSurveys, curSurveyID) => {
+const getCardsFromSurveysFilter = (arrSurveys, curSurveyID, isFirstOpenResult, 
+    cardClick=()=>{}, 
+    makeStepAnimDealyForCard=()=>{}
+    ) => {
 
     let arr = [];
     for(let i=0;i<arrSurveys.length;i++){
         if( (arrSurveys[i].percentProgress !== arrSurveys[i].numberOfQuestions) && (i !== curSurveyID)){
-            arr.push(arrSurveys[i])
+            arr.push(makeCard(arrSurveys[i], isFirstOpenResult, cardClick(i), makeStepAnimDealyForCard))
         }
     }
 
@@ -63,88 +59,115 @@ const surveysFilterWithoutCurSurvey = (arrSurveys, curSurveyID) => {
         return(arr)
 }
 
-// const eraFilter = (arrEras, indexAge, isFirstOpenResult, isCompletedQuiz, 
-//     onAgain=()=>{}, goToEras=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
+const getCardsFromEraFilter = (arrEras, indexAge, isFirstOpenResult, isCompletedQuiz, 
+    onAgain=()=>{}, goToEras=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
 
-//     let retrunMessage= "";
-//     let returnButtons = [];
-//     let isHasNotFinishedEras = false;
+    let retrunMessage= "";
+    let returnButtons = [];
+    let isHasNotFinishedEras = false;
+    let erasProgress = {};
 
-//     for(let i=0;i<arrEras.length;i++){
-//         if( (arrEras[i].percentProgress !== arrEras[i].numberOfQuestions) && (i!==indexAge)) {
-//             isHasNotFinishedEras = true;
-//         }
-//     }
+    for(let i=0;i<arrEras.length;i++){
+        
+        erasProgress = getAnswersResultEra(arrEras[i])
 
-//     if( (isHasNotFinishedEras === true) && (isCompletedQuiz === true)  ){
-//         retrunMessage = "Поздравляем, вы завершили целую эпоху! Предлагаем перейти к выбору новой эпохи";
-//         returnButtons = [{text:"К эпохам", click:goToEras}]
-//     }
+        if((erasProgress.score !== erasProgress.total) && (i!==indexAge)) {
+            isHasNotFinishedEras = true;
+        }
+    }
 
-//     if( (isHasNotFinishedEras === false) && (isCompletedQuiz === true)  ){
-//         retrunMessage = "Поздравляем, вы завершили все эпохи!";
-//         returnButtons = []
-//     }
+    if( (isHasNotFinishedEras === true) && (isCompletedQuiz === true)  ){
+        retrunMessage = "Поздравляем, вы завершили целую эпоху! Предлагаем перейти к выбору новой эпохи";
+        returnButtons = [{text:"К эпохам", click:goToEras}]
+    }
 
-//     if( (isHasNotFinishedEras === true) && (isCompletedQuiz === false)  ){
-//         retrunMessage = "Поздравляем, вы почти полностью прошли эпоху на 100%. Но, к сожалению, данный орпос не на 100%. Хотите его перепройти или перейти к выбору новой эпохи?";
-//         returnButtons = [{text:"Ещё раз", click:onAgain}, {text:"К эпохам", click:goToEras}]
-//     }
+    //Готово
+    if( (isHasNotFinishedEras === false) && (isCompletedQuiz === true)  ){
+        retrunMessage = "Поздравляем, вы завершили все эпохи!";
+        returnButtons = []
+    }
 
-//     if( (isHasNotFinishedEras === false) && (isCompletedQuiz === false)  ){
-//         retrunMessage = "Поздравляем, вы почти прошли все опросы на 100%! Но, к сожалению, данный опрос не на 100%. Предлагаем вам его перепройти. Ещё чуть-чуть :)"
-//         returnButtons = [{text:"Ещё раз", click:onAgain}]
-//     }
+    if( (isHasNotFinishedEras === true) && (isCompletedQuiz === false)  ){
+        retrunMessage = "Поздравляем, вы почти полностью прошли эпоху на 100%. Но, к сожалению, данный орпос не на 100%. Хотите его перепройти или перейти к выбору новой эпохи?";
+        returnButtons = [{text:"Ещё раз", click:onAgain}, {text:"К эпохам", click:goToEras}]
+    }
 
-//     return(
-//         <div className="ResultCards__container">
+    if( (isHasNotFinishedEras === false) && (isCompletedQuiz === false)  ){
+        retrunMessage = "Поздравляем, вы почти прошли все опросы на 100%! Но, к сожалению, данный опрос не на 100%. Предлагаем вам его перепройти. Ещё чуть-чуть :)"
+        returnButtons = [{text:"Ещё раз", click:onAgain}]
+    }
+
+    return(
+        <div className="ResultCards__container">
             
-//             <div className={`ResultCards__container__text ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
-//                 <div className="ResultCards__text">{retrunMessage}</div>
-//             </div>
+            <div className={`ResultCards__container__text ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
+                <div className="ResultCards__text">{retrunMessage}</div>
+            </div>
 
-//             {returnButtons.length !== 0 &&
-//                 returnButtons.map((button)=>{
-//                     return(
-//                     <div className={`ResultCards__container__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
-//                         <div className="ResultCards__button">
-//                             <ButtonWrapper
-//                                 isLinkForm={true}
-//                                 style={{color:"var(--main-gray-color)", fontSize:"18px"}}
-//                                 text={button.text}
-//                                 onClick={button.click}
-//                             ></ButtonWrapper>
-//                         </div>
-//                     </div>
-//                 )}) 
-//             }
+            {returnButtons.length !== 0 &&
+                returnButtons.map((button)=>{
+                    return(
+                    <div className={`ResultCards__container__buttons ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
+                        <div className="ResultCards__button">
+                            <ButtonWrapper
+                                isLinkForm={true}
+                                style={{color:"var(--main-gray-color)", fontSize:"18px"}}
+                                text={button.text}
+                                onClick={button.click}
+                            ></ButtonWrapper>
+                        </div>
+                    </div>
+                )}) 
+            }
 
-//         </div>
-//     )
-// }
+        </div>
+    )
+}
 
 
 
-const ResultCards = ({indexAge,indexQuiz,eras,isFirstOpenResult, isCompletedQuiz,
+const ResultCards = ({
+    isFirstOpenResult, 
+    isCompletedSurvey,
+
+    upperCurSurveys, 
+    upperCurEraIndex,
+    upperCurSurveyIndex,
+    upperEras,
+
     goToQuiz=()=>{}, 
-    goToEras=()=>{},
+    goToPollView=()=>{},
     onAgain=()=>{},
+    setIndexSurvey=()=>{},
+    goToSurveyView=()=>{},
     makeStepAnimDealyForCard=()=>{}
 }) =>{
 
-    const surveys = makeUsedData(useSelector(getCurEraSurveys))
-    const curSurveyIndex = useSelector(getIndexSurvey)
+    const eras = upperEras;
+    const surveys = makeUsedData(upperCurSurveys)
+    const curSurveyIndex = upperCurSurveyIndex;
 
-    const curSurveyResult = getAnswersResultSurvey(useSelector(getCurSurvey))
-    const isCurSurveyCompleted = (curSurveyResult.score === curSurveyResult.total)
-    const cardClick = () =>{}
+    const cardClick = (indexSurvey) => () => {
+        setIndexSurvey(indexSurvey)
+        goToSurveyView()
+    }
 
 
     //Узнаём есть ли непройденные опросы (кроме текущего)
-    let surveysFilterResultArr = surveysFilterWithoutCurSurvey(surveys, curSurveyIndex)
+    let surveysFilterResultArr = getCardsFromSurveysFilter(surveys, curSurveyIndex, isFirstOpenResult, cardClick, makeStepAnimDealyForCard)
     if(surveysFilterResultArr !== null){
-        return makeCards(surveysFilterResultArr, isFirstOpenResult, cardClick, makeStepAnimDealyForCard)
+        return surveysFilterResultArr
     }
+
+    
+    let eraFilterResult = getCardsFromEraFilter(eras, upperCurEraIndex, isFirstOpenResult, isCompletedSurvey, onAgain, goToPollView, makeStepAnimDealyForCard)
+    // console.log(eraFilterResult)
+    if(eraFilterResult !== null){
+        return eraFilterResult
+    }
+    
+    return null
+    // return null
 
     // if(isCurSurveyCompleted)
     //     // return(surveysFilterResultArr)

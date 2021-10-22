@@ -1,7 +1,7 @@
 import { PanelHeader, Panel, Div } from '@vkontakte/vkui';
 import React from 'react';
 import './ListAge.css'
-import { getAnswersResulEra, isTitleCentre } from '../../help';
+import { getAnswersResultEra, isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
@@ -15,8 +15,8 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
     const info = eras.map((era)=>(
         {
             russianName: era.russianName,
-            percentProgress: getAnswersResulEra(era).score,
-            numberOfQuestions: getAnswersResulEra(era).total,
+            percentProgress: getAnswersResultEra(era).score,
+            numberOfQuestions: getAnswersResultEra(era).total,
             imageName: era.image.imageName,
             description: era.description
         }

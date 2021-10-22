@@ -24,7 +24,7 @@ export const initialState = {
 					},
 					subset: [
 						{
-							idQuestion: 2,
+							idQuestion: 40,
 							textQuestion: "Вопрос2",
 							image: {
 								imageName: "3.jpg",
@@ -32,37 +32,37 @@ export const initialState = {
 							},
 							answerOptions: [
 								{
-									idAnswerOption: 8,
-									idQuestion: 2,
+									idAnswerOption: 41,
+									idQuestion: 40,
 									text: "Вариант4",
 									score: 0
 								},
 								{
-									idAnswerOption: 7,
-									idQuestion: 2,
+									idAnswerOption: 42,
+									idQuestion: 40,
 									text: "Вариант3",
 									score: 0
 								},
 								{
-									idAnswerOption: 6,
-									idQuestion: 2,
+									idAnswerOption: 42,
+									idQuestion: 40,
 									text: "Вариант2",
 									score: 1
 								},
 								{
-									idAnswerOption: 5,
-									idQuestion: 2,
+									idAnswerOption: 43,
+									idQuestion: 40,
 									text: "Вариант1",
 									score: 0
 								}
 							],
 							userAnswer: {
-								idAnswerOption: 6
+								idAnswerOption: 42
 							}
 							// userAnswer: null
 						},
 						{
-							idQuestion: 3,
+							idQuestion: 44,
 							textQuestion: "Вопрос3",
 							image: {
 								imageName: "3.jpg",
@@ -70,26 +70,26 @@ export const initialState = {
 							},
 							answerOptions: [
 								{
-									idAnswerOption: 9,
-									idQuestion: 3,
+									idAnswerOption: 45,
+									idQuestion: 44,
 									text: "Вариант4",
 									score: 0
 								},
 								{
-									idAnswerOption: 10,
-									idQuestion: 3,
+									idAnswerOption: 46,
+									idQuestion: 44,
 									text: "Вариант3",
 									score: 0
 								},
 								{
-									idAnswerOption: 11,
-									idQuestion: 3,
+									idAnswerOption: 47,
+									idQuestion: 44,
 									text: "Вариант2",
 									score: 1
 								},
 								{
-									idAnswerOption: 12,
-									idQuestion: 3,
+									idAnswerOption: 48,
+									idQuestion: 44,
 									text: "Вариант1",
 									score: 0
 								}
@@ -100,7 +100,7 @@ export const initialState = {
 							userAnswer: null
 						},
 						{
-							idQuestion: 4,
+							idQuestion: 49,
 							textQuestion: "Вопрос4",
 							image: {
 								imageName: "3.jpg",
@@ -108,32 +108,32 @@ export const initialState = {
 							},
 							answerOptions: [
 								{
-									idAnswerOption: 13,
-									idQuestion: 3,
+									idAnswerOption: 50,
+									idQuestion: 49,
 									text: "Вариант4",
 									score: 0
 								},
 								{
-									idAnswerOption: 14,
-									idQuestion: 3,
+									idAnswerOption: 51,
+									idQuestion: 49,
 									text: "Вариант3",
 									score: 0
 								},
 								{
-									idAnswerOption: 15,
-									idQuestion: 3,
+									idAnswerOption: 52,
+									idQuestion: 49,
 									text: "Вариант2",
 									score: 1
 								},
 								{
-									idAnswerOption: 16,
-									idQuestion: 3,
+									idAnswerOption: 53,
+									idQuestion: 49,
 									text: "Вариант1",
 									score: 0
 								}
 							],
 							userAnswer: {
-								idAnswerOption: 13
+								idAnswerOption: 51
 							}
 							// userAnswer: null
 						},
@@ -148,7 +148,7 @@ export const initialState = {
 					},
 					subset: [
 						{
-							idQuestion: 2,
+							idQuestion: 54,
 							textQuestion: "Вопрос2 Опрос3",
 							image: {
 								imageName: "3.jpg",
@@ -156,37 +156,37 @@ export const initialState = {
 							},
 							answerOptions: [
 								{
-									idAnswerOption: 8,
-									idQuestion: 2,
+									idAnswerOption: 55,
+									idQuestion: 54,
 									text: "Вариант4",
 									score: 0
 								},
 								{
-									idAnswerOption: 7,
-									idQuestion: 2,
+									idAnswerOption: 56,
+									idQuestion: 54,
 									text: "Вариант3",
 									score: 0
 								},
 								{
-									idAnswerOption: 6,
-									idQuestion: 2,
+									idAnswerOption: 57,
+									idQuestion: 54,
 									text: "Вариант2",
 									score: 1
 								},
 								{
-									idAnswerOption: 5,
-									idQuestion: 2,
+									idAnswerOption: 58,
+									idQuestion: 54,
 									text: "Вариант1",
 									score: 0
 								}
 							],
 							userAnswer: {
-								idAnswerOption: 6
+								idAnswerOption: 58
 							}
 							// userAnswer: null
 						},
 						{
-							idQuestion: 3,
+							idQuestion: 59,
 							textQuestion: "Вопрос3",
 							image: {
 								imageName: "3.jpg",
@@ -194,32 +194,252 @@ export const initialState = {
 							},
 							answerOptions: [
 								{
-									idAnswerOption: 9,
-									idQuestion: 3,
+									idAnswerOption: 60,
+									idQuestion: 59,
 									text: "Вариант4",
 									score: 0
 								},
 								{
-									idAnswerOption: 10,
-									idQuestion: 3,
+									idAnswerOption: 61,
+									idQuestion: 59,
 									text: "Вариант3",
 									score: 0
 								},
 								{
-									idAnswerOption: 11,
-									idQuestion: 3,
+									idAnswerOption: 62,
+									idQuestion: 59,
 									text: "Вариант2",
 									score: 1
 								},
 								{
-									idAnswerOption: 12,
-									idQuestion: 3,
+									idAnswerOption: 63,
+									idQuestion: 59,
 									text: "Вариант1",
 									score: 0
 								}
 							],
 							userAnswer: {
-								idAnswerOption: 9
+								idAnswerOption: 63
+							}
+							// userAnswer: null
+						},
+					]
+				},
+			]
+		},
+		{
+			russianName: "Эра2",
+			description: "Описание Эры2",
+			image: {
+				imageName: "1.jpg",
+				sourceImageLink: "Ссылка на картинку1"
+			},
+			subset: [
+				{
+					russianName: "Опрос2",
+					description: "ОписаниеОпроса2",
+					image: {
+						imageName: "2.jpg",
+						sourceImageLink: "Ссылка на картинку2"
+					},
+					subset: [
+						{
+							idQuestion: 64,
+							textQuestion: "Вопрос2",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 65,
+									idQuestion: 64,
+									text: "Вариант4",
+									score: 0
+								},
+								{
+									idAnswerOption: 66,
+									idQuestion: 64,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 67,
+									idQuestion: 64,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 68,
+									idQuestion: 64,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							userAnswer: {
+								idAnswerOption: 67
+							}
+							// userAnswer: null
+						},
+						{
+							idQuestion: 69,
+							textQuestion: "Вопрос3",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 70,
+									idQuestion: 69,
+									text: "Вариант4",
+									score: 0
+								},
+								{
+									idAnswerOption: 71,
+									idQuestion: 69,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 72,
+									idQuestion: 69,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 73,
+									idQuestion: 69,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							// userAnswer: {
+							// 	idAnswerOption: 9
+							// }
+							userAnswer: null
+						},
+						{
+							idQuestion: 74,
+							textQuestion: "Вопрос4",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 75,
+									idQuestion: 74,
+									text: "Вариант4",
+									score: 0
+								},
+								{
+									idAnswerOption: 76,
+									idQuestion: 74,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 77,
+									idQuestion: 74,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 78,
+									idQuestion: 74,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							userAnswer: {
+								idAnswerOption: 78
+							}
+							// userAnswer: null
+						},
+					]
+				},
+				{
+					russianName: "Опрос3",
+					description: "ОписаниеОпроса2",
+					image: {
+						imageName: "2.jpg",
+						sourceImageLink: "Ссылка на картинку2"
+					},
+					subset: [
+						{
+							idQuestion: 79,
+							textQuestion: "Вопрос2 Опрос3",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 80,
+									idQuestion: 79,
+									text: "Вариант4",
+									score: 0
+								},
+								{
+									idAnswerOption: 81,
+									idQuestion: 79,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 82,
+									idQuestion: 79,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 83,
+									idQuestion: 79,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							userAnswer: {
+								idAnswerOption: 83
+							}
+							// userAnswer: null
+						},
+						{
+							idQuestion: 84,
+							textQuestion: "Вопрос3",
+							image: {
+								imageName: "3.jpg",
+								sourceImageLink: "Ссылка на картинку3"
+							},
+							answerOptions: [
+								{
+									idAnswerOption: 85,
+									idQuestion: 84,
+									text: "Вариант4",
+									score: 0
+								},
+								{
+									idAnswerOption: 85,
+									idQuestion: 84,
+									text: "Вариант3",
+									score: 0
+								},
+								{
+									idAnswerOption: 85,
+									idQuestion: 84,
+									text: "Вариант2",
+									score: 1
+								},
+								{
+									idAnswerOption: 86,
+									idQuestion: 84,
+									text: "Вариант1",
+									score: 0
+								}
+							],
+							userAnswer: {
+								idAnswerOption: 86
 							}
 							// userAnswer: null
 						},
