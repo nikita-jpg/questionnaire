@@ -10,7 +10,7 @@ import { Icon16CancelCircleOutline } from '@vkontakte/icons';
 
 import "./ItemAnswerQuestion.css";
 
-const ItemAnswerQuestion = ({indexQuestion, question, indexRightAnswer, indexUserAnswer, openAlert = () => {} }) => {
+const ItemAnswerQuestion = ({indexQuestion, questionTitle, isWin, openAlert = () => {} }) => {
 
     const ICON_SIZE = 24;
 
@@ -18,10 +18,11 @@ const ItemAnswerQuestion = ({indexQuestion, question, indexRightAnswer, indexUse
         <div className="ItemAnswerQuestion">
             <ButtonWrapper
                 onClick={ () => {openAlert(indexQuestion)}}
-                text={question.questionText}
+                text={questionTitle}
                 classNameText="ItemAnswerQuestion__button-text"
                 hasActive={false}
-                before={indexRightAnswer === indexUserAnswer 
+                before={
+                    isWin 
                     ? <Icon16CheckCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-green-color)"}}/> 
                     : <Icon16CancelCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-red-color)"}}/> }
             >

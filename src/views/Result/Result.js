@@ -258,10 +258,10 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
 
             <PanelAnswersQuestions
                 id={PANEL_ANSWERS_QUESTIONS}
-                questions={questions}
+                questions={curSurvey.subset}
                 indexesAnswers={indexesAnswers}
                 onBack={goBackInHistory}
-                openAlert={openAlert}
+                // openAlert={openAlert}
             >
             </PanelAnswersQuestions>
 

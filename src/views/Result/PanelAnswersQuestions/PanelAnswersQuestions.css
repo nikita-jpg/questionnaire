@@ -1,34 +1,34 @@
-.AnswersQuestions {
+.PanelAnswersQuestions {
     width: 100%;
 }
 
-.AnswersQuestions__title {
+.PanelAnswersQuestions__title {
     color: var(--main-white-color);
 }
 
 /* Alert */
-.PanelAnswersQuestions{
+.PanelAnswersQuestions__Alert{
     background-color: var( --main-second-bg-color);
 }
 
-.PanelAnswersQuestions__answer{
+.PanelAnswersQuestions__Alert__answer{
     background-color: var( --main-second-bg-color);
 }
 
-.PanelAnswersQuestions__title-answer{
+.PanelAnswersQuestions__Alert__title-answer{
     font-size: 16px;
     background: var(--main-second-bg-color);
     position: relative;
     padding: 0 8px;
     margin: 0;
 }
-.PanelAnswersQuestions__title-answer-wrap {
+.PanelAnswersQuestions__Alert__title-answer-wrap {
     position: relative;
     display: flex;
     justify-content: center;
 }
 
-.PanelAnswersQuestions__title-answer-wrap::before {
+.PanelAnswersQuestions__Alert__title-answer-wrap::before {
     position: absolute;
     top: 100%;
     right: 0;
@@ -38,30 +38,30 @@
     height: 2px;
     z-index: 2;
 }
-.PanelAnswersQuestions__title-answer-wrap_good::before {
+.PanelAnswersQuestions__Alert__title-answer-wrap_good::before {
     background: var(--main-second-green-color);
 }
 
-.PanelAnswersQuestions__title-answer-wrap_normal::before {
+.PanelAnswersQuestions__Alert__title-answer-wrap_normal::before {
     background: var(--main-gray-color);
 }
 
-.PanelAnswersQuestions__title-answer-wrap_bad::before {
+.PanelAnswersQuestions__Alert__title-answer-wrap_bad::before {
     background: var(--main-second-red-color);
 }
-.PanelAnswersQuestions__title-answer_good {
+.PanelAnswersQuestions__Alert__title-answer_good {
     color: var(--main-second-green-color);
 }
 
-.PanelAnswersQuestions__title-answer_normal {
+.PanelAnswersQuestions__Alert__title-answer_normal {
     color: var(--main-gray-color);
 }
 
-.PanelAnswersQuestions__title-answer_bad {
+.PanelAnswersQuestions__Alert__title-answer_bad {
     color: var(--main-second-red-color);
 }
 
-.PanelAnswersQuestions__text-answer {
+.PanelAnswersQuestions__Alert__text-answer {
     background: var(--main-therd-bg-color);
     margin-top: 10px;
     padding: 8px; 
