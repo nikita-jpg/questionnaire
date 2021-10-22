@@ -10,7 +10,7 @@ import ResultCards from "../ResultCards/ResultCards";
 
 // onClose={()=>{setIsFirstOpenResult(false)}} 
 const PanelResult = ({id, totalResult,isNeedAnim,adDate,isAdVisible,
-    goSurveyAgain=()=>{},
+    goSurveyView=()=>{},
     goToPanelAnswers=()=>{},
     goToPollView=()=>{},
     setAdVisible=()=>{},
@@ -64,7 +64,7 @@ const PanelResult = ({id, totalResult,isNeedAnim,adDate,isAdVisible,
         {/* Панелька с кнопками */}
             <div className={`Result__buttons ${isNeedAnim ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                 <ResultButtons 
-                    onAgain={goSurveyAgain}
+                    onAgain={goSurveyView}
                     // onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
                     onGoToAnswersQuestion={goToPanelAnswers}
                     goToPollView={goToPollView}

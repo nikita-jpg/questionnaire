@@ -22,19 +22,22 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
     goToViewListAndQuizes=()=>{},
     goToSurveyViewAction=()=>{},
     goToPollViewAction=()=>{},
+
+    setIndexEra=()=>{},
+    setIndexSurvey=()=>{},
+
  }) => {
 
 //Получаем необходимые данные
     const curSurvey = useSelector(getCurSurvey)
     const dispatch = useDispatch()
 
+
+
 //Если мы не первый раз открываем Result, то нам не нужно запускать заново анимацию
     const [isNeedAnim, setIsNeedAnim] = useState(true);
 
 
-
-    // const indexAgeAndSurvey = useSelector(getIndexEraAndSurvey);
-    // const indexAge = 0;
 
 //Внешняя навигация
         const goToSurveyView = () => {
@@ -195,9 +198,11 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                 adDate={adDate}
                 isAdVisible={isAdVisible}
                 totalResult={getAnswersResultSurvey(curSurvey)}
-                goSurveyAgain={goToSurveyView}
+
+                goSurveyView={goToSurveyView}
                 goToPollView={goToPollView}
                 goToPanelAnswers={goToPanelAnswers}
+
                 setAdVisible={setAdVisible}
             />
 

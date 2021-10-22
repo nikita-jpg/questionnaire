@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import CardWrapper from '../../../components/CardWrapper/CardWrapper';
 import { getAnswersResultSurvey } from '../../../help';
-import { getCurSurvey, getCurSurveys } from '../../../Selectors/data_selectors';
+import { getCurSurvey, getCurEraSurveys, getIndexSurvey } from '../../../Selectors/data_selectors';
 import './ResultCards.css'
 
 const makeUsedData = (surveys) =>{
@@ -23,7 +23,8 @@ const makeUsedData = (surveys) =>{
     return newSurveys
 }
 
-const makeCard = (info, isFirstOpenResult,cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
+const makeCard = (info, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
+    console.log(makeStepAnimDealyForCard())
     return(
         <div className={`ResultCards__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
             <CardWrapper
@@ -39,12 +40,20 @@ const makeCard = (info, isFirstOpenResult,cardClick=()=>{}, makeStepAnimDealyFor
     )
 }
 
-const surveysFilter = (arrQuizes, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
+const makeCards = (arr, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) =>{
+    let cardsArr = [];
+    for(let i=0;i<arr.length;i++){
+        cardsArr.push(makeCard(arr[i], isFirstOpenResult, cardClick(i), makeStepAnimDealyForCard))
+    }
+    return cardsArr
+}
+
+const surveysFilterWithoutCurSurvey = (arrSurveys, curSurveyID) => {
 
     let arr = [];
-    for(let i=0;i<arrQuizes.length;i++){
-        if(arrQuizes[i].percentProgress !== arrQuizes[i].numberOfQuestions){
-            arr.push(makeCard(arrQuizes[i], isFirstOpenResult, cardClick(i), makeStepAnimDealyForCard))
+    for(let i=0;i<arrSurveys.length;i++){
+        if( (arrSurveys[i].percentProgress !== arrSurveys[i].numberOfQuestions) && (i !== curSurveyID)){
+            arr.push(arrSurveys[i])
         }
     }
 
@@ -123,13 +132,24 @@ const ResultCards = ({indexAge,indexQuiz,eras,isFirstOpenResult, isCompletedQuiz
     makeStepAnimDealyForCard=()=>{}
 }) =>{
 
-    const surveys = makeUsedData(useSelector(getCurSurveys))
+    const surveys = makeUsedData(useSelector(getCurEraSurveys))
+    const curSurveyIndex = useSelector(getIndexSurvey)
 
-    let surveysFilterResult = surveysFilter(surveys, isFirstOpenResult, goToQuiz, makeStepAnimDealyForCard)
-    if(surveysFilterResult !== null)
-        return(surveysFilterResult)
+    const curSurveyResult = getAnswersResultSurvey(useSelector(getCurSurvey))
+    const isCurSurveyCompleted = (curSurveyResult.score === curSurveyResult.total)
+    const cardClick = () =>{}
+
+
+    //Узнаём есть ли непройденные опросы (кроме текущего)
+    let surveysFilterResultArr = surveysFilterWithoutCurSurvey(surveys, curSurveyIndex)
+    if(surveysFilterResultArr !== null){
+        return makeCards(surveysFilterResultArr, isFirstOpenResult, cardClick, makeStepAnimDealyForCard)
+    }
+
+    // if(isCurSurveyCompleted)
+    //     // return(surveysFilterResultArr)
     
-    // let eraFilterResult = eraFilter(eras, indexAge, isFirstOpenResult, isCompletedQuiz, onAgain, goToEras, makeStepAnimDealyForCard)
+    // let eraFilterResult = eraFilter(eras, indexAge, isFirstOpenResult, isCurSurveyCompleted, onAgain, goToEras, makeStepAnimDealyForCard)
     // if(eraFilter !== null)
     //     return(eraFilterResult)
 
