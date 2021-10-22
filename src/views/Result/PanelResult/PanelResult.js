@@ -65,6 +65,7 @@ const PanelResult = ({id, totalResult,
                             // onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
                             onGoToAnswersQuestion={goToPanelAnswers}
                             goToPollView={goToPollView}
+                            goToPanelAnswers={goToPanelAnswers}
                         />
                     </div>
 

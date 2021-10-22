@@ -1,9 +1,9 @@
 import { Div, FixedLayout } from '@vkontakte/vkui';
 import React, { createRef, useEffect, useState } from 'react';
-import animate from '../../../anime/animate';
-import easeOut from '../../../anime/easeOut';
-import BlackBackground from '../../../components/BlackBackground/BlackBackground';
-import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
+import animate from '../../../../anime/animate';
+import easeOut from '../../../../anime/easeOut';
+import BlackBackground from '../../../../components/BlackBackground/BlackBackground';
+import ButtonWrapper from '../../../../components/ButtonWrapper/ButtonWrapper';
 import Arrow, { colorsArrow, directionArrow } from './Arrow';
 import { Icon16CheckCircleOutline } from '@vkontakte/icons';
 import { Icon16CancelCircleOutline } from '@vkontakte/icons';

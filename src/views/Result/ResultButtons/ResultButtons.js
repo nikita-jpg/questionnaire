@@ -16,9 +16,9 @@ import { Icon28ShareExternalOutline } from '@vkontakte/icons';
 import ButtonWrapper from "../../../components/ButtonWrapper/ButtonWrapper";
 
 const ResultButtons = ({
-    onAgain=()=>{}, 
-    onGoToAnswersQuestion=()=>{}, 
+    onAgain=()=>{},
     goToPollView=()=>{},
+    goToPanelAnswers=()=>{},
     onBack = () => {}
 }) => {
     const sendToHistory = (image) => {
@@ -45,7 +45,7 @@ const ResultButtons = ({
                     className="Result-buttons__button"
                     classNameText="Result-buttons__text"
                     before={<Icon24List width={iconSize} height={iconSize} style={{color:"var(--main-yellow-color)"}}/>}
-                    onClick={onGoToAnswersQuestion}
+                    onClick={goToPanelAnswers}
                 >
                 </ButtonWrapper>
 

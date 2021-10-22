@@ -9,8 +9,8 @@ import "../../components/ListCard/ListCard.css";
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { getAnswersResultSurvey } from '../../help';
 import { getArrQuestions, getCurSurvey } from '../../Selectors/data_selectors';
+import PanelAnswersQuestions from './PanelAnswersQuestions/PanelAnswersQuestions';
 // import { getIndexEraAndSurvey } from '../../Selectors/data_selectors';
-import AnswersQuestions from "../AnswersQuestions/AnswersQuestions";
 import PanelResult from './PanelResult/PanelResult';
 import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
@@ -173,6 +173,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                 totalResult={getAnswersResultSurvey(curSurvey)}
                 goSurveyAgain={goToSurveyView}
                 goToPollView={goToPollView}
+                goToPanelAnswers={goToPanelAnswers}
             />
 
             {/* <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}> */}
@@ -225,14 +226,15 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
 
             {/* </PanelWrapper> */}
 
-            {/* <AnswersQuestions
+            <PanelAnswersQuestions
                 id={PANEL_ANSWERS_QUESTIONS}
                 questions={questions}
                 indexesAnswers={indexesAnswers}
                 onBack={goBackInHistory}
                 openAlert={openAlert}
             >
-            </AnswersQuestions> */}
+            </PanelAnswersQuestions>
+
         </View>
     )
 }
