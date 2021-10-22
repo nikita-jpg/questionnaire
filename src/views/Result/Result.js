@@ -109,7 +109,23 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
         }
 
 //Реклама
+        const getAdData = () => {
+            let addData = "";
+            console.log("getAdData use")
+            bridge.send('VKWebAppGetAds',{}).then((promoBannerProps) => {
+                    console.log("promo")
+                    addData = promoBannerProps
+                    // setAdDate(promoBannerProps)
+                    // (true);
+                })
+                .catch(error => console.log(error))
+                .finally(()=>{
+                    console.log("final")
+                })
+            return addData
+        }
         const [isAdVisible, setAdVisible] = useState(true)
+        // const [adDate, setAdDate] = useState(getAdData())
         const [adDate, setAdDate] = useState({
             title: 'Заголовок',
             domain: 'vk.com',
@@ -120,10 +136,10 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             description: 'Описание рекламы',
             ageRestrictions: "14+",
             statistics: [
-              { url: '', type: 'playbackStarted' },
-              { url: '', type: 'click' }
+                { url: '', type: 'playbackStarted' },
+                { url: '', type: 'click' }
             ]
-          })    
+        })  
 
 //Alert
         const getAnswerText = (indexQuestion, indexInAnswer) => {
@@ -176,10 +192,13 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             <PanelResult
                 id={PANEL_RESULT}
                 isNeedAnim={isNeedAnim}
+                adDate={adDate}
+                isAdVisible={isAdVisible}
                 totalResult={getAnswersResultSurvey(curSurvey)}
                 goSurveyAgain={goToSurveyView}
                 goToPollView={goToPollView}
                 goToPanelAnswers={goToPanelAnswers}
+                setAdVisible={setAdVisible}
             />
 
             {/* <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}> */}

@@ -4,13 +4,15 @@ import './PanelResult.css'
 import React, { useState } from "react";
 import ResultButtons from "../ResultButtons/ResultButtons";
 import { PromoBanner } from "@vkontakte/vkui";
+import bridge from '@vkontakte/vk-bridge';
 
 
 // onClose={()=>{setIsFirstOpenResult(false)}} 
-const PanelResult = ({id, totalResult,isNeedAnim,
+const PanelResult = ({id, totalResult,isNeedAnim,adDate,isAdVisible,
     goSurveyAgain=()=>{},
     goToPanelAnswers=()=>{},
     goToPollView=()=>{},
+    setAdVisible=()=>{},
 }) =>{
 
 
@@ -41,22 +43,6 @@ const PanelResult = ({id, totalResult,isNeedAnim,
         return "Result__points-postfix_good";
     }
 
-//Реклама
-        const [isAdVisible, setAdVisible] = useState(true)
-        const [adDate, setAdDate] = useState({
-            title: 'Заголовок',
-            domain: 'vk.com',
-            trackingLink: 'https://vk.com',
-            ctaText: 'Перейти',
-            advertisingLabel: 'Реклама',
-            iconLink: 'https://sun9-7.userapi.com/c846420/v846420985/1526c3/ISX7VF8NjZk.jpg',
-            description: 'Описание рекламы',
-            ageRestrictions: "14+",
-            statistics: [
-              { url: '', type: 'playbackStarted' },
-              { url: '', type: 'click' }
-            ]
-          }) 
 
     return(
         <PanelWrapper id={id} isOneColumn={true}>
