@@ -24,9 +24,13 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
     goToPollViewAction=()=>{},
  }) => {
 
-    //Получаем необходимые данные
+//Получаем необходимые данные
     const curSurvey = useSelector(getCurSurvey)
     const dispatch = useDispatch()
+
+//Если мы не первый раз открываем Result, то нам не нужно запускать заново анимацию
+    const [isNeedAnim, setIsNeedAnim] = useState(true);
+
 
 
     // const indexAgeAndSurvey = useSelector(getIndexEraAndSurvey);
@@ -41,7 +45,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             dispatch(goToPollViewAction())
         }
 
-    //Работа с панелями
+//Работа с панелями
         const PANEL_RESULT = "PANEL_RESULT";
         const PANEL_ANSWERS_QUESTIONS = "PANEL_ANSWERS_QUESTIONS";
         const [activePanel, setActivePanel] = useState(PANEL_RESULT)
@@ -49,10 +53,11 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
         const goToPanelAnswers = () => {
             goForwardInHistory(PANEL_ANSWERS_QUESTIONS)
             setActivePanel(PANEL_ANSWERS_QUESTIONS)
+            setIsNeedAnim(false)
         }
 
 
-    //История
+//История
         const [history, setHistory] = useState([PANEL_RESULT]);
 
         const goBackInHistory = () => {
@@ -78,7 +83,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
 		}
 
 
-    //Кнопки
+//Кнопки
         // Переход к эпохам
         const goToViewListAndQuizesWrapper = () => {
             setIsFirstOpenResult(true)
@@ -90,7 +95,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             return f(...args);
         }
 
-    //Анимация 
+//Анимация 
         const getClassNameForPercent = (percent) => {
             if (percent <= 4) {
                 return "Result__points-postfix_bad";
@@ -103,7 +108,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             return "Result__points-postfix_good";
         }
 
-    //Реклама
+//Реклама
         const [isAdVisible, setAdVisible] = useState(true)
         const [adDate, setAdDate] = useState({
             title: 'Заголовок',
@@ -120,7 +125,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             ]
           })    
 
-    //Alert
+//Alert
         const getAnswerText = (indexQuestion, indexInAnswer) => {
             if (indexesAnswers[indexQuestion] === -1) return "Вы не ответили"
             return `${questions[indexQuestion].answerOptions[indexInAnswer].text}`;
@@ -170,6 +175,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
 
             <PanelResult
                 id={PANEL_RESULT}
+                isNeedAnim={isNeedAnim}
                 totalResult={getAnswersResultSurvey(curSurvey)}
                 goSurveyAgain={goToSurveyView}
                 goToPollView={goToPollView}
