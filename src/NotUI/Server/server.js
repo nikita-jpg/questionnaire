@@ -37,7 +37,6 @@ const downloadData = async() =>{
 export async function downloadDefaultIMG(){
     const paths = reqSvgs.keys();
     for(let i=0;i<paths.length;i++){
-        console.log(paths[i])
         await downloadImgFromFolder(paths[i])
     }
 }

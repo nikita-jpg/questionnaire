@@ -10,7 +10,6 @@ const PanelResult = ({id, totalResult,
     goSurveyAgain=()=>{},
     goToPanelAnswers=()=>{},
     goToPollView=()=>{},
-
 }) =>{
 
 
@@ -41,6 +40,7 @@ const PanelResult = ({id, totalResult,
         return "Result__points-postfix_good";
     }
 
+
     return(
         <PanelWrapper id={id} isOneColumn={true}>
 
@@ -64,7 +64,7 @@ const PanelResult = ({id, totalResult,
                             onAgain={goSurveyAgain}
                             // onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
                             onGoToAnswersQuestion={goToPanelAnswers}
-                            goToViewListAndQuizes={goToPollView}
+                            goToPollView={goToPollView}
                         />
                     </div>
 

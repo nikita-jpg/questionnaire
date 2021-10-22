@@ -15,7 +15,12 @@ import { Icon24Globe } from '@vkontakte/icons';
 import { Icon28ShareExternalOutline } from '@vkontakte/icons';
 import ButtonWrapper from "../../../components/ButtonWrapper/ButtonWrapper";
 
-const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewListAndQuizes=()=>{},onBack = () => { }}) => {
+const ResultButtons = ({
+    onAgain=()=>{}, 
+    onGoToAnswersQuestion=()=>{}, 
+    goToPollView=()=>{},
+    onBack = () => {}
+}) => {
     const sendToHistory = (image) => {
 
         bridge.send("VKWebAppShowStoryBox", {
@@ -34,6 +39,7 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewLi
         <div className="Result-buttons__container">
             {/* <Div> */}
 
+            {/* К вопросам */}
                 <ButtonWrapper
                     text="К вопросам"
                     className="Result-buttons__button"
@@ -43,16 +49,18 @@ const ResultButtons = ({onAgain=()=>{}, onGoToAnswersQuestion=()=>{}, goToViewLi
                 >
                 </ButtonWrapper>
 
+            {/* К эпохам */}
                 <ButtonWrapper
                     size="l"
                     text="К эпохам"
                     className="Result-buttons__button"
                     classNameText="Result-buttons__text"
                     before={<Icon24Globe width={iconSize} height={iconSize} style={{color:"var(--main-purple-color)"}}/>}
-                    onClick={goToViewListAndQuizes}
+                    onClick={goToPollView}
                 >
                 </ButtonWrapper>
 
+            {/* Ещё раз */}
                 <ButtonWrapper
                     size="l"
                     text="Ещё раз"

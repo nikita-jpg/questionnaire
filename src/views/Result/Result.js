@@ -20,7 +20,8 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
     createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, 
     goToViewListAndQuizes=()=>{},
-    goToSurveyViewAction=()=>{}
+    goToSurveyViewAction=()=>{},
+    goToPollViewAction=()=>{},
  }) => {
 
     //Получаем необходимые данные
@@ -34,6 +35,10 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
 //Внешняя навигация
         const goToSurveyView = () => {
             dispatch(goToSurveyViewAction())
+        }
+
+        const goToPollView = () => {
+            dispatch(goToPollViewAction())
         }
 
     //Работа с панелями
@@ -167,6 +172,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                 id={PANEL_RESULT}
                 totalResult={getAnswersResultSurvey(curSurvey)}
                 goSurveyAgain={goToSurveyView}
+                goToPollView={goToPollView}
             />
 
             {/* <PanelWrapper id={PANEL_RESULT} onClose={()=>{setIsFirstOpenResult(false)}} isOneColumn={true}> */}

@@ -25,12 +25,10 @@ const CustomTooltip = ({children, text, defaultIsShown=false}) => {
     const [isVisible, setIsVisible] = useState(defaultIsShown);
 
     const open = useCallback(() => {
-        console.log("open")
         setIsVisible(true);
     });
 
     const close = useCallback(() => {
-        console.log("close")
         setIsVisible(false);
     });
 

@@ -12,7 +12,6 @@ const ModalPageForListQuestions = ({id,arrQuestions,
 
 }) => {
 
-    console.log(id)
     return(
         <ModalPage 
             id={id}

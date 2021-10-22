@@ -100,7 +100,6 @@ const ResultCards = ({indexAge,indexQuiz,eras,isFirstOpenResult, isCompletedQuiz
     makeStepAnimDealyForCard=()=>{}}) =>{
 
     let quizFilterResult = quizFilter(eras[indexAge].quizzes, indexQuiz, isFirstOpenResult, goToQuiz, makeStepAnimDealyForCard)
-    console.log(quizFilterResult)
     if(quizFilterResult !== null)
         return(quizFilterResult)
     

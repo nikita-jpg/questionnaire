@@ -332,6 +332,7 @@ const App = ({results, MAX_SCORE,
 								<Result
 									id={VIEW_ID_RESULT}
 									goToSurveyViewAction={appNavigate.App_goToSurveyView}
+									goToPollViewAction={appNavigate.App_goToPollView}
 									// percent={results[indexResuslt].percent}
 									// year={results[indexResuslt].year}
 									// historicalEvent={results[indexResuslt].historicalEvent}

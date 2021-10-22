@@ -16,16 +16,16 @@ const ImageCard = (imageName, sourceImageLink) => {
     //Устанавливаем дефолтую картинку на карточки
     const [image, setImage] = useState(defaultImage)
     //Загружаем основную картинку
-    // downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
+    downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
 
 
     return(
         <div className="Image__container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
-        {/* <img
+        <img
             className="Image__image" 
             src={image}
-        /> */}
+        />
         
         <CSSTransition 
             in={isImgInfoOpen} 
