@@ -6,12 +6,12 @@ import ResultButtons from "../ResultButtons/ResultButtons";
 import { PromoBanner } from "@vkontakte/vkui";
 import bridge from '@vkontakte/vk-bridge';
 import ResultCards from "../ResultCards/ResultCards";
-import { getCurEraSurveys, getEras, getIndexEra, getIndexSurvey } from "../../../Selectors/data_selectors";
+import { getCurEraSurveys, getEras, getIndexEra, getIndexSurvey, getResultCurSurvey } from "../../../Selectors/data_selectors";
 import { useSelector } from "react-redux";
 
 
 // onClose={()=>{setIsFirstOpenResult(false)}} 
-const PanelResult = ({id, total,isNeedAnim,adDate,isAdVisible,
+const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
     goToSurveyView=()=>{},
     goToPanelAnswers=()=>{},
     goToPollView=()=>{},
@@ -26,6 +26,7 @@ const PanelResult = ({id, total,isNeedAnim,adDate,isAdVisible,
     // пользователь вначале увидит изменение результата на результат кликнутого опроса,
     // а после перейдёт к новому опросу
 
+    const total = useSelector(getResultCurSurvey)
     const [totalResult, setTotal] = useState(0)
     // const [eras, setEras] = useState([])
     // const [surveys, setSurveys] = useState([])

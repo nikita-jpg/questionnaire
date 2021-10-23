@@ -187,9 +187,6 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
                 isNeedAnim={isNeedAnim}
                 adDate={adDate}
                 isAdVisible={isAdVisible}
-                // total={getAnswersResultSurvey(curSurvey)}
-                total={{score:0, total:0}}
-
 
                 goToSurveyView={goToSurveyView}
                 goToPollView={goToPollView}

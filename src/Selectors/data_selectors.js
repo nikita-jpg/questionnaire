@@ -106,6 +106,14 @@ export const getCurUserAnswer = (state) => {
 export const isAnswerOptionTrue = (idAnswerOption) => (state) =>{
     const answerOption = getAnswerOptionById(idAnswerOption)(state)
     return answerOption.score === 1 ? true : false
+}
+export const isQuestionTrue = (idQuestion) => (state) => {
+    const userAnswer = getUserAnswer(idQuestion)(state)
+    if(userAnswer === undefined){
+        return false
+    }
+
+    return isAnswerOptionTrue(userAnswer.idAnswerOption)(state)
 } 
 export const isCurQuestionTrue = (state) => {
     const userAnswer = getCurUserAnswer(state)
@@ -116,6 +124,7 @@ export const isCurQuestionTrue = (state) => {
 
     return isAnswerOptionTrue(userAnswer.idAnswerOption)
 }
+
 export const getRighAnswerOption = (idQuestion) => (state) =>{
 
     let ret = {};
@@ -129,6 +138,21 @@ export const getRighAnswerOption = (idQuestion) => (state) =>{
     })
 
     return ret
+}
+
+export const getResultCurSurvey = (state) =>{
+    const curQuestions = getCurQuestions(state)
+
+    const total = curQuestions.length
+    let score = 0;
+
+    curQuestions.map((question)=>{
+        if(isQuestionTrue(question.idQuestion)(state)){
+            score++
+        }
+    })
+
+    return {total:total, score:score}
 }
 
 

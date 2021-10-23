@@ -75,7 +75,7 @@ export const initialState = {
 			idEra:1,
 			idSurvey:1,
 			idQuestion: 1,
-			textQuestion: "Вопрос2",
+			textQuestion: "Вопрос1",
 			image: 
 			{
 				imageName: "3.jpg",
@@ -188,7 +188,12 @@ export const initialState = {
 		{
 			idSurvey:1,
 			idQuestion:1,
-			idAnswerOption:3,
+			idAnswerOption:2,
+		},
+		{
+			idSurvey:1,
+			idQuestion:2,
+			idAnswerOption:1,
 		}
 	]
 
