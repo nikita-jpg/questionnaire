@@ -7,7 +7,7 @@ import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
 import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
 import { QUESTION_NOT_ANSWERED } from '../../../NotUI/Data/consts';
-import { getArrQuestions } from '../../../Selectors/data_selectors';
+import { getAnswerOptions, getArrQuestions } from '../../../Selectors/data_selectors';
 import ImageCard from './ImageCard/ImageCard';
 
 import "./IteamListQuestion.css";
@@ -24,15 +24,16 @@ const IteamListQuestion = ({ id, question,
     getUserAnswer = () => {} 
 }) => {
     
-
+    const answerOptions = useSelector(getAnswerOptions(question.idQuestion))
+    console.log(answerOptions)
 
     return (
         <PanelWrapper id={id} isOneColumn={true}
             onHeaderClose={id === 0 ? goToPrevQuestion:false}
             onHeaderBack={goToPrevQuestion}
             headerText={id+1 + " из " + countQuestions}
-            headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
-            headerClick={changeModal}
+            // headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
+            // headerClick={changeModal}
         >
 
             <div className="IteamListQuestion">
@@ -46,7 +47,7 @@ const IteamListQuestion = ({ id, question,
 
                 <div className="IteamListQuestion__answer-options">
                     {
-                        question.answerOptions.map((answer, i) => (
+                        answerOptions.map((answer, i) => (
                             <ButtonWrapper
                                 onClick={() => {
                                     giveAnswer(question.idQuestion, answer.idAnswerOption)
@@ -54,7 +55,7 @@ const IteamListQuestion = ({ id, question,
                                     // setNotActiveBackgoundToAnswerButton();
                                 }}
                                 text={answer.text}
-                                className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
+                                // className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
                             >
                             </ButtonWrapper>
                         ))

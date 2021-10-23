@@ -45,6 +45,15 @@ export const getAnswerOptionById = (idAnswerOption) => (state) =>{
 
 
 // Получение текущих данных
+export const getCurEra = (state) => {
+
+    const curEraId = getCurEraId(state)
+    const eras = getEras(state)
+
+    return(
+        eras.filter((era)=>era.idEra === curEraId)[0]
+    )
+}
 export const getCurSurvey = (state) => {
 
     const curSurvId = getCurSurveyId(state)
@@ -59,8 +68,8 @@ export const getCurSurveys = (state) =>{
     return state.Data.Surveys.filter(survey=>survey.idEra === curEraId)
 }
 export const getCurQuestions = (state) => {
-    const curQuestionId = getCurQuestionId(state)
-    return state.Data.Surveys.filter(question=>question.idQuestion === curQuestionId)
+    const curSUrveyId = getCurSurveyId(state)
+    return state.Data.Questions.filter(question=>question.idSurvey === curSUrveyId)
 }
 
 //Остальные функции

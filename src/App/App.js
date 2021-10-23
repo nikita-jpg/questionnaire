@@ -322,7 +322,7 @@ const App = ({results, MAX_SCORE,
 									goToListAgeAction={poolView.PoolView_goToListAge}
 								/>
 
-								{/* <ListQuestions 
+								<ListQuestions 
 									id={viewsId.VIEW_ID_LIST_QUESTIONES}
 									onFinish={onFinishListQuestions}
 									goToListSurveyAction={poolView.PoolView_goToListSurvey}
@@ -330,7 +330,7 @@ const App = ({results, MAX_SCORE,
 									goToResultViewAction={appNavigate.App_goToResultView}
 
 									saveUserAnswersAction={data.Data_saveUserAnswers}
-								/> */}
+								/>
 
 								{/* <Result
 									id={VIEW_ID_RESULT}

@@ -6,7 +6,7 @@ import vkBridge from '@vkontakte/vk-bridge'
 import AlertWrapper from '../../components/AlertWrapper/AlertWrapper';
 import './ListQuestions.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { getArrQuestions } from '../../Selectors/data_selectors';
+import { getArrQuestions, getCurQuestions } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
 import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import ModalPageForListQuestions from './ModalPageForListQuestions/ModalPageForListQuestions';
@@ -26,7 +26,7 @@ const ListQuestions = ({id,
 
 
     //Получение данных
-    const arrQuestions = "useSelector(getArrQuestions)"
+    const arrQuestions = useSelector(getCurQuestions)
     const dispath = useDispatch();
 
 
@@ -121,15 +121,15 @@ const ListQuestions = ({id,
         return arrQuestions.length === userAnswers.length;
     }
 
-    useEffect(() => {
-        if(userAnswersFinishValidator){
-            if(!cheakAllAnswered()){
-                openFinishAlert();
-            }else{
-                finishSurveyWithOutCheck()
-            }
-        }
-	}, [userAnswersFinishValidator]);
+    // useEffect(() => {
+    //     if(userAnswersFinishValidator){
+    //         if(!cheakAllAnswered()){
+    //             openFinishAlert();
+    //         }else{
+    //             finishSurveyWithOutCheck()
+    //         }
+    //     }
+	// }, [userAnswersFinishValidator]);
 
     const finishSurvey = () => {
         setUserAnswersFinishValidator(true)
@@ -178,7 +178,7 @@ const ListQuestions = ({id,
     }
     const modal = (
         <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
-            <ModalPageForListQuestions
+            {/* <ModalPageForListQuestions
                 id={MODAL_ID}
                 arrQuestions={arrQuestions}
                 getUserAnswer={getUserAnswer}
@@ -186,7 +186,7 @@ const ListQuestions = ({id,
                 goToCurrentQuestion={goToCurrentQuestion}
                 finishSurvey={finishSurvey}
             
-            />
+            /> */}
         </ModalRoot>
     )
 
@@ -210,19 +210,19 @@ const ListQuestions = ({id,
     const openFinishAlert = () => {       
         setAlert(
 
-            <AlertWrapper
-                header="Вы ответили не на все вопросы"
-                leftText={"Отмена"}
-                rightText={"Завершить"}
-                rightFunc={ () => {
-                    finishSurveyWithOutCheck();
-                }}
-                onClose={()=>{ 
-                    setUserAnswersFinishValidator(false)
-                    setAlert(null)
-                }}
-            >
-            </AlertWrapper>
+            // <AlertWrapper
+            //     header="Вы ответили не на все вопросы"
+            //     leftText={"Отмена"}
+            //     rightText={"Завершить"}
+            //     rightFunc={ () => {
+            //         finishSurveyWithOutCheck();
+            //     }}
+            //     onClose={()=>{ 
+            //         setUserAnswersFinishValidator(false)
+            //         setAlert(null)
+            //     }}
+            // >
+            // </AlertWrapper>
 
     )}
 
@@ -250,7 +250,7 @@ const ListQuestions = ({id,
                 arrQuestions.map((question, i) =>(
                     <IteamListQuestion
                         id={i}            
-                        question={Object.assign({},question)}
+                        question={question}
                         countQuestions={arrQuestions.length}
                         isModalOpen={isModalOpen}
 

@@ -4,7 +4,7 @@ import { View } from "@vkontakte/vkui"
 import ListAge from "../ListAge/ListAge"
 import ListQuizes from "../ListQuizes/ListQuizes"
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurSurveys, getEras, getErasResults, getIndexEra, getIndexEraAndSurvey, getIndexSurvey, getSurveys, getSurveysResults } from '../../Selectors/data_selectors';
+import { getCurEra, getCurSurveys, getEras, getErasResults, getIndexEra, getIndexEraAndSurvey, getIndexSurvey, getSurveys, getSurveysResults } from '../../Selectors/data_selectors';
 import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
 
@@ -23,6 +23,7 @@ const PoolView = ({id,
 	//Получение данных
 	const eras = useSelector(getEras)
 	const erasResults = {tottal:0, score:0}
+	const eraTitle = useSelector(getCurEra).russianName
 
 	
 	const surveys = useSelector(getCurSurveys)
@@ -119,7 +120,7 @@ const PoolView = ({id,
 
         <ListQuizes 
             id={LIST_SURVEYS_PANEL} 
-            // title={eras[indexEra].russianName} 
+            title={eraTitle} 
             surveys={surveys} 
 			surveysResults={surveysResults}
             onBack={onBackListQuizes} 

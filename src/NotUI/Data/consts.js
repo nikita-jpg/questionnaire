@@ -1,4 +1,6 @@
 export const SET_INDEX_ERA = "SET_INDEX_ERA"
 export const SET_INDEX_SURVEY = "SET_INDEX_SURVEY"
+export const SET_INDEX_QUESTION = "SET_INDEX_QUESTION"
+
 export const SAVE_USER_ANSWERS = "SAVE_USER_ANSWERS"
 export const QUESTION_NOT_ANSWERED = null;

@@ -36,6 +36,7 @@ const ListQuizes = ({ id, title, surveys, surveysResults,
             isBtnNeed: false
         }
     })
+    
 
     return (
         <PanelWrapper id={id} headerText={title} onHeaderBack={onBack} isHeaderFixed={true}>
