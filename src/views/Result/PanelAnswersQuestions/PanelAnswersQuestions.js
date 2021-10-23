@@ -23,12 +23,54 @@ const isQuestionTrue = (idAnswerOptionUser, arrQuestions) =>{
     return ret
 }
 
+const getUserAnswerText = (idAnswerOptionUser, arrQuestions) =>{
+    let text = "";
+
+    if(idAnswerOptionUser === QUESTION_NOT_ANSWERED){
+        return null
+    }
+
+    arrQuestions.map((question)=>{
+        if(question.idAnswerOption === idAnswerOptionUser){
+            text = question.text
+        }
+    })
+
+    return text
+}
+
+const getArrOptioAnswersWithoutRight = (arrQuestions) =>{
+    let arr = [];
+
+    arrQuestions.map((question)=>{
+        if(question.score !== 1){
+            arr.push(question)
+        }
+    })
+
+    return arr
+}
+
+const getRightAnswerOption = (arrQuestions) =>{
+    let answerOption = {};
+
+    arrQuestions.map((question)=>{
+        if(question.score === 1){
+            answerOption = question
+        }
+    })
+
+    return answerOption
+}
+
+
+
 const PanelAnswersQuestions = ({id, questions, indexesAnswers, 
     onBack=()=>{}, 
-    openAlert=()=>{}
+    setAlert=()=>{}
 }) => {
 
-    console.log(questions)
+
     return (
         <PanelWrapper id={id} headerText="Вопросы" onHeaderBack={onBack} isOneColumn={true}>
 
@@ -39,10 +81,11 @@ const PanelAnswersQuestions = ({id, questions, indexesAnswers,
                         <ItemAnswerQuestion
                             indexQuestion={i}
                             questionTitle={question.textQuestion}
+                            userAnswerText={getUserAnswerText(question.userAnswer, question.answerOptions)}
+                            rightAnswerText={getRightAnswerOption(question.answerOptions)}
+                            arrOptioAnswersWithoutRight={getArrOptioAnswersWithoutRight(question.answerOptions)}
                             isWin = { (question.userAnswer !== QUESTION_NOT_ANSWERED) && (isQuestionTrue(question.userAnswer.idAnswerOption, question.answerOptions))  }
-                            // indexRightAnswer={questions[i].answerOptions.findIndex(a => a.score === 1)}
-                            // indexUserAnswer={indexesAnswers[i]}
-                            openAlert={openAlert}
+                            setAlert={setAlert}
                         />
                     ))
                 }

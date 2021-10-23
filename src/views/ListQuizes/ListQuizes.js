@@ -8,23 +8,34 @@ import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { useDispatch } from 'react-redux';
 import { getAnswersResultSurvey } from '../../help';
 
-const ListQuizes = ({ id, title, quizes, 
+const ListQuizes = ({ id, title, surveys, surveysResults,
     onBack = () => { }, 
     createOnClickItemQuizesBtn = (index) => null , 
     createOnClickItemQuizes = (index) => null 
 }) => {
 
-    const info = quizes.map((quiz)=>(
-        {
-            russianName: quiz.russianName,
-            percentProgress: getAnswersResultSurvey(quiz).score,
-            numberOfQuestions: getAnswersResultSurvey(quiz).total,
-            imageName: quiz.image.imageName,
-            description: quiz.description,
-            isBtnNeed: getAnswersResultSurvey(quiz).score !== 0 ? true : false
-        }
-    ))
 
+    // const info = surveys.map((survey)=>{
+    //     return{
+    //         russianName: survey.russianName,
+    //         percentProgress: surveyResult.score,
+    //         numberOfQuestions: surveyResult.total,
+    //         imageName: survey.image.imageName,
+    //         description: survey.description,
+    //         isBtnNeed: surveyResult.score !== 0 ? true : false
+    //     }
+    // })
+
+    const info = surveys.map((survey)=>{
+        return{
+            russianName: survey.russianName,
+            percentProgress: 0,
+            numberOfQuestions: 0,
+            imageName: survey.image.imageName,
+            description: survey.description,
+            isBtnNeed: false
+        }
+    })
 
     return (
         <PanelWrapper id={id} headerText={title} onHeaderBack={onBack} isHeaderFixed={true}>

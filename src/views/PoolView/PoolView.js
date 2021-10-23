@@ -4,7 +4,7 @@ import { View } from "@vkontakte/vkui"
 import ListAge from "../ListAge/ListAge"
 import ListQuizes from "../ListQuizes/ListQuizes"
 import { useDispatch, useSelector } from 'react-redux';
-import { getEras, getIndexEra, getIndexEraAndSurvey, getIndexSurvey } from '../../Selectors/data_selectors';
+import { getCurSurveys, getEras, getErasResults, getIndexEra, getIndexEraAndSurvey, getIndexSurvey, getSurveys, getSurveysResults } from '../../Selectors/data_selectors';
 import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
 
@@ -22,7 +22,13 @@ const PoolView = ({id,
 
 	//Получение данных
 	const eras = useSelector(getEras)
-	const indexEra = useSelector(getIndexEra);
+	const erasResults = {tottal:0, score:0}
+
+	
+	const surveys = useSelector(getCurSurveys)
+	const surveysResults = {tottal:0, score:0}
+
+	// const indexEra = useSelector(getIndexEra);
 	const mustCurrentPanel = useSelector(getFirstPanel); //Проверяем какая панелька должна быть открыта по приказу извне
 
 	const [activePanel, setActivePanel] = useState(mustCurrentPanel);
@@ -79,7 +85,7 @@ const PoolView = ({id,
 		goBackInHistory(LIST_AGE_PANEL)
 	}
 
-	const createOnClickItemAge = (indexEra) => () => {
+	const createOnClickItemAge = (indexEra) => {
 		setIndexEra(indexEra);
 		goForwardInHistory(LIST_SURVEYS_PANEL);
 		setActivePanel(LIST_SURVEYS_PANEL);
@@ -107,13 +113,15 @@ const PoolView = ({id,
         <ListAge 
             id={LIST_AGE_PANEL} 
             eras={eras} 
+			erasResults={erasResults}
             createOnClickItemAge={createOnClickItemAge}
         />
 
         <ListQuizes 
             id={LIST_SURVEYS_PANEL} 
-            title={eras[indexEra].russianName} 
-            quizes={eras[indexEra].subset} 
+            // title={eras[indexEra].russianName} 
+            surveys={surveys} 
+			surveysResults={surveysResults}
             onBack={onBackListQuizes} 
             createOnClickItemQuizes={createOnClickItemQuizes}
 			createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}

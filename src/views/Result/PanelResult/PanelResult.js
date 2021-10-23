@@ -27,22 +27,23 @@ const PanelResult = ({id, total,isNeedAnim,adDate,isAdVisible,
     // а после перейдёт к новому опросу
 
     const [totalResult, setTotal] = useState(0)
-    const [eras, setEras] = useState([])
-    const [surveys, setSurveys] = useState([])
-    const [curEraIndex,setCurEraIndex] = useState(-1)
-    const [curSurveyIndex,setCurSurveyIndex] = useState(-1)
+    // const [eras, setEras] = useState([])
+    // const [surveys, setSurveys] = useState([])
+    // const [curEraIndex,setCurEraIndex] = useState(-1)
+    // const [curSurveyIndex,setCurSurveyIndex] = useState(-1)
 
-    const surveysModified = useSelector(getCurEraSurveys)
-    const curEraIndexModified = useSelector(getIndexEra)
-    const curSurveyIndexModified = useSelector(getIndexSurvey)
-    const erasModified = useSelector(getEras)
+    // const surveysModified = useSelector(getCurEraSurveys)
+    // const curEraIndexModified = useSelector(getIndexEra)
+    // const curSurveyIndexModified = useSelector(getIndexSurvey)
+    // const erasModified = useSelector(getEras)
+    // const surveyResultModified = useSelector(getCur)
 
     useEffect(()=>{
         setTotal(total)
-        setEras(erasModified)
-        setSurveys(surveysModified)
-        setCurEraIndex(curEraIndexModified)
-        setCurSurveyIndex(curSurveyIndexModified)
+        // setEras(erasModified)
+        // setSurveys(surveysModified)
+        // setCurEraIndex(curEraIndexModified)
+        // setCurSurveyIndex(curSurveyIndexModified)
     }, [])
 
 //Анимация
@@ -109,7 +110,7 @@ const PanelResult = ({id, total,isNeedAnim,adDate,isAdVisible,
             }
 
         {/* Карточки опросов */}
-            <ResultCards 
+            {/* <ResultCards 
                 // indexAge={indexAge}
                 // indexQuiz={indexQuiz}
                 // eras={eras}
@@ -132,7 +133,7 @@ const PanelResult = ({id, total,isNeedAnim,adDate,isAdVisible,
                 // goToQuiz={createOnClickItemQuizes}
                 // goToEras={goToViewListAndQuizes}
             >
-            </ResultCards>
+            </ResultCards> */}
 
         </PanelWrapper>
     )

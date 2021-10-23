@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import CardWrapper from '../../../components/CardWrapper/CardWrapper';
 import { getAnswersResultSurvey, getAnswersResultEra } from '../../../help';
-import { getCurSurvey, getCurEraSurveys, getIndexSurvey } from '../../../Selectors/data_selectors';
+import { getCurSurvey, getCurEraSurveys, getIndexSurvey, testSelector } from '../../../Selectors/data_selectors';
 import './ResultCards.css'
 
 const makeUsedData = (surveys) =>{

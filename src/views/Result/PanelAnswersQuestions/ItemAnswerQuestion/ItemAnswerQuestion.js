@@ -9,15 +9,30 @@ import { Icon16CheckCircleOutline } from '@vkontakte/icons';
 import { Icon16CancelCircleOutline } from '@vkontakte/icons';
 
 import "./ItemAnswerQuestion.css";
+import AlertQuestionResult from '../../../../components/AlertQuestionResult/AlertQuestionResult';
 
-const ItemAnswerQuestion = ({indexQuestion, questionTitle, isWin, openAlert = () => {} }) => {
+const ItemAnswerQuestion = ({userAnswerText, questionTitle, isWin, rightAnswerText, arrOptioAnswersWithoutRight, setAlert = () => {} }) => {
 
     const ICON_SIZE = 24;
+
+    const openAlert = () =>{
+        setAlert(
+            <AlertQuestionResult
+                isWin={isWin}
+                questionTitle={questionTitle}
+                userAnswerText={userAnswerText}
+                rightAnswerText={rightAnswerText}
+                arrOthersQuestions={arrOptioAnswersWithoutRight}
+
+                onClose={setAlert(null)}
+            >
+            </AlertQuestionResult>
+    )}
 
     return (
         <div className="ItemAnswerQuestion">
             <ButtonWrapper
-                onClick={ () => {openAlert(indexQuestion)}}
+                onClick={ () => {openAlert()}}
                 text={questionTitle}
                 classNameText="ItemAnswerQuestion__button-text"
                 hasActive={false}

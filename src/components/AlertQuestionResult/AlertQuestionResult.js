@@ -3,9 +3,13 @@ import React from "react";
 import "./AlertQuestionResult.css";
 
 const AlertQuestionResult = ({
-    onClose, indexUserAnswer, indexRightAnswer, 
-    getAnswerText, indexQuestion, answerOptions,
-    questionText
+    isWin,
+    userAnswer,
+    questionTitle,
+    rightAnswerText,
+    arrOthersQuestions,
+
+    onClose=()=>{}
 }) => {
     return (
         <div className="AnswersQuestions__alert_big">
@@ -20,10 +24,10 @@ const AlertQuestionResult = ({
             >
                 <div className="AnswersQuestions__alert">
 
-                    <h3 className={"AlertQuestionResult__text-question"}>{questionText}</h3>
+                    <h3 className={"AlertQuestionResult__text-question"}>{questionTitle}</h3>
 
                         {
-                            indexUserAnswer !== indexRightAnswer &&
+                            isWin &&
                             <div>
                                 <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_bad">
                                     <div
@@ -35,7 +39,7 @@ const AlertQuestionResult = ({
                                 <div
                                     className="AnswersQuestions__alert__text-answer"
                                 >
-                                    {getAnswerText(indexQuestion, indexUserAnswer)}
+                                    {userAnswer}
                                 </div>
                             </div>
                         }
@@ -46,7 +50,7 @@ const AlertQuestionResult = ({
                                     className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_good"
                                 >
                                     {
-                                        indexUserAnswer === indexRightAnswer
+                                        isWin
                                             ? "Ваш ответ верен"
                                             : "Правильный ответ"
                                     }
@@ -56,7 +60,7 @@ const AlertQuestionResult = ({
                             <div
                                 className="AnswersQuestions__alert__text-answer"
                             >
-                                {getAnswerText(indexQuestion, indexRightAnswer)}
+                                {rightAnswerText}
                             </div>
                         </div>
 
@@ -68,11 +72,7 @@ const AlertQuestionResult = ({
                             </div>
 
                             {
-                                answerOptions.map((answer, i) => {
-                                    if (i === indexRightAnswer || i === indexUserAnswer) {
-                                        return null;
-                                    }
-
+                                arrOthersQuestions.map((answer, i) => {
                                     return (
                                         <div
                                             className="AnswersQuestions__alert__text-answer"

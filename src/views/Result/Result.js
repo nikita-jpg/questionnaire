@@ -160,6 +160,12 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             setIndexQuestion(indexQuestion);
             setIsVisibleAlert(true);
         }
+        const closeAlert = () =>{
+            setIsVisibleAlert(false)
+        }
+        const [poputAlert, setPopoutAlert] = useState(null)
+
+
 
         // let startAnimDealyForCard = 0.2;
         // let stepAnimDealyForCard = 0.1;
@@ -174,19 +180,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
         <View 
             id={id} 
             activePanel={activePanel} 
-            // popout={
-            //     isVisibleAlert
-            //     ?<AlertQuestionResult
-            //         onClose={() => { console.log(document.getElementsByClassName("vkuiAlert--ios")); setIsVisibleAlert(false) }}
-            //         indexQuestion={indexQuestion}
-            //         indexUserAnswer={calcIndexUserAnswer(indexQuestion)}
-            //         indexRightAnswer={calcIndexRightAnswer(indexQuestion)}
-            //         getAnswerText={getAnswerText}
-            //         answerOptions={questions[indexQuestion].answerOptions}
-            //         questionText={questions[indexQuestion].questionText}
-            //     />
-            //     :null
-            // } 
+            popout={poputAlert}
             onSwipeBack={goBackInHistory}
             history={history}>
 
@@ -256,14 +250,14 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
 
             {/* </PanelWrapper> */}
 
-            <PanelAnswersQuestions
+            {/* <PanelAnswersQuestions
                 id={PANEL_ANSWERS_QUESTIONS}
                 questions={curSurvey.subset}
                 indexesAnswers={indexesAnswers}
                 onBack={goBackInHistory}
-                // openAlert={openAlert}
+                setAlert={setPopoutAlert}
             >
-            </PanelAnswersQuestions>
+            </PanelAnswersQuestions> */}
 
         </View>
     )

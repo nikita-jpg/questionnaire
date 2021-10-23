@@ -6,21 +6,31 @@ import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import downloadImage from '../../NotUI/Server/server.js'
+import { useSelector } from 'react-redux';
+import { getEraResult } from '../../Selectors/data_selectors';
 
 
-const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
+const ListAge = ({id, eras, erasResults, createOnClickItemAge=index=>null}) => {
 
-    // console.log(eras)
+    // let a = 0
 
-    const info = eras.map((era)=>(
-        {
+    // for(let i=0;i<10;i++){
+    //     a = useSelector(getEraReselt)
+    // }
+    const info = eras.map((era)=>{
+        // let eraResult = erasResults.filter((eraResult)=>eraResult.idEra === era.idEra)[0]
+        return {
             russianName: era.russianName,
-            percentProgress: getAnswersResultEra(era).score,
-            numberOfQuestions: getAnswersResultEra(era).total,
+            percentProgress: 0,
+            numberOfQuestions: 0,
             imageName: era.image.imageName,
             description: era.description
         }
-    ))
+    })
+
+    const cardClick = (index) => () =>{
+        createOnClickItemAge(eras[index].idEra)
+    }
 
     return (
         <PanelWrapper id={id} headerText="Выбирете эпоху" isHeaderFixed={true}>
@@ -28,7 +38,7 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
                 <div className="ListAge__content">
                     <ListCard
                         info={info}
-                        cardClick={createOnClickItemAge}>
+                        cardClick={cardClick}>
                     </ListCard>
                 </div>
 

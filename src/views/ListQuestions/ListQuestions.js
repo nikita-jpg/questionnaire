@@ -26,7 +26,7 @@ const ListQuestions = ({id,
 
 
     //Получение данных
-    const arrQuestions = useSelector(getArrQuestions)
+    const arrQuestions = "useSelector(getArrQuestions)"
     const dispath = useDispatch();
 
 
