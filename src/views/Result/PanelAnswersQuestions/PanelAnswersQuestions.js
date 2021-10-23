@@ -81,7 +81,7 @@ const PanelAnswersQuestions = ({id, questions,
                         <ItemAnswerQuestion
                             indexQuestion={i}
                             questionTitle={question.textQuestion}
-                            openAlert={openAlert(question.idQuestion)}
+                            openAlert={()=>openAlert(question.idQuestion)}
                             // userAnswerText={getUserAnswerText(question.userAnswer, question.answerOptions)}
                             // rightAnswerText={getRightAnswerOption(question.answerOptions)}
                             // arrOptioAnswersWithoutRight={getArrOptioAnswersWithoutRight(question.answerOptions)}

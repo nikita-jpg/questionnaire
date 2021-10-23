@@ -1,7 +1,7 @@
 import { Alert } from "@vkontakte/vkui";
 import React from "react";
 import { useSelector } from "react-redux";
-import { getAnswerOptionById, getCurQuestion, getCurUserAnswer, getRighAnswerOption, isCurQuestionTrue } from "../../Selectors/data_selectors";
+import { getAnswerOptionById, getCurAnswerOptions, getCurQuestion, getCurUserAnswer, getRighAnswerOption, isCurQuestionTrue } from "../../Selectors/data_selectors";
 import "./AlertQuestionResult.css";
 
 const AlertQuestionResult = ({
@@ -10,11 +10,22 @@ const AlertQuestionResult = ({
 
     }) => {
     
-    const curQuestion = "useSelector(getCurQuestion)"
-    const isWin = "useSelector(isCurQuestionTrue)"
-    const userAnswer = "useSelector(getCurUserAnswer)"
-    const userAnswerText = "useSelector(getAnswerOptionById(userAnswer.idAnswerOption))"
-    const rightAnswer = "useSelector(getRighAnswerOption(curQuestion.idQuestion))"
+    const answerOptions = useSelector(getCurAnswerOptions)
+    const curQuestion = useSelector(getCurQuestion)
+    const userAnswer = useSelector(getCurUserAnswer)
+    const rightAnswer = useSelector(getRighAnswerOption(curQuestion.idQuestion))
+
+    const isWin = ((userAnswer !== undefined) && (userAnswer.idAnswerOption === rightAnswer.idAnswerOption)) ? true : false
+
+    let userAnswerText = "Вы не ответили";
+    answerOptions.map((answerOption)=>{
+        if(answerOptions.idAnswerOption === userAnswer.idAnswerOption){
+            userAnswerText = answerOption.text
+        }
+    })
+
+
+
 
     return (
         <div className="AnswersQuestions__alert_big">

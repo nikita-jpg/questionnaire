@@ -30,19 +30,26 @@ export const getAnswerOptionsById  = (idQuestion) => (state) =>{
 
 // Получение одного элемента по id
 export const getEraById = (idEra) => (state) =>{
-    return state.Data.Eras.filter((era)=>era.idEra === idEra)
+    return state.Data.Eras.filter((era)=>era.idEra === idEra)[0]
 } 
 export const getSurveyById = (idSurvey) => (state) =>{
-    return state.Data.Surveys.filter((survey)=>survey.idSurvey === idSurvey)
+    return state.Data.Surveys.filter((survey)=>survey.idSurvey === idSurvey)[0]
 } 
 export const getQuestionById = (idQuestion) => (state) =>{
-    return state.Data.Questions.filter((question)=>question.idQuestion === idQuestion)
+    return state.Data.Questions.filter((question)=>question.idQuestion === idQuestion)[0]
 } 
 export const getAnswerOptionById = (idAnswerOption) => (state) =>{
-    return state.Data.AnswerOptions.filter((answerOption)=>answerOption.idAnswerOption === idAnswerOption)
+    return state.Data.AnswerOptions.filter((answerOption)=>answerOption.idAnswerOption === idAnswerOption)[0]
 } 
 export const getUserAnswer = (idQuestion) => (state) =>{
-    return state.Data.UserAnswers.filter((userAnswer)=>userAnswer.idQuestion === idQuestion)
+    const userAnswer = state.Data.UserAnswers.filter((userAnswer)=>userAnswer.idQuestion === idQuestion)
+
+    if(userAnswer === undefined){
+        return undefined
+    }
+    else{
+        return userAnswer[0]
+    }
 }
 
 
@@ -72,11 +79,15 @@ export const getCurSurveys = (state) =>{
 }
 export const getCurQuestion = (state) =>{
     const curQuestionId = getCurQuestionId(state)
-    return state.Data.Questions.filter(question=>question.idQuestion === curQuestionId)
+    return state.Data.Questions.filter(question=>question.idQuestion === curQuestionId)[0]
 }
 export const getCurQuestions = (state) => {
     const curSurveyId = getCurSurveyId(state)
     return state.Data.Questions.filter(question=>question.idSurvey === curSurveyId)
+}
+export const getCurAnswerOptions = (state) =>{
+    const curQuestionId = getCurQuestionId(state)
+    return state.Data.AnswerOptions.filter(answerOption=>answerOption.questionId === curQuestionId)
 }
 export const getCurUserAnswer = (state) => {
     const curQuestionId = getCurQuestionId(state)
@@ -86,7 +97,7 @@ export const getCurUserAnswer = (state) => {
         return undefined
     }
     else{
-        return curUserAnswer[0]
+        return curUserAnswer
     }
 } 
 

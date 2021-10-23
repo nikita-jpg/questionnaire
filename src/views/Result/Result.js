@@ -160,7 +160,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
         const [isVisibleAlert, setIsVisibleAlert] = useState(false);
 
         const openAlert = (indexQuestion) => {
-            setIndexQuestion(indexQuestion);
+            // setIndexQuestion(indexQuestion);
             setIsVisibleAlert(true);
         }
         const closeAlert = () =>{
@@ -172,11 +172,12 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
             id={id} 
             activePanel={activePanel} 
             popout={    
-            isVisibleAlert &&
-            <AlertQuestionResult
-                onClose={closeAlert()}
+            isVisibleAlert
+            ?<AlertQuestionResult
+                onClose={closeAlert}
             >
             </AlertQuestionResult>
+            :null
             }
             onSwipeBack={goBackInHistory}
             history={history}>
