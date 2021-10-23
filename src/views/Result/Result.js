@@ -8,7 +8,7 @@ import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { getAnswersResultSurvey } from '../../help';
-import { getArrQuestions, getCurSurvey } from '../../Selectors/data_selectors';
+import { getArrQuestions, getCurQuestions, getCurSurvey, getQuestions } from '../../Selectors/data_selectors';
 import PanelAnswersQuestions from './PanelAnswersQuestions/PanelAnswersQuestions';
 // import { getIndexEraAndSurvey } from '../../Selectors/data_selectors';
 import PanelResult from './PanelResult/PanelResult';
@@ -16,7 +16,7 @@ import "./Result.css";
 import ResultButtons from "./ResultButtons/ResultButtons";
 import ResultCards from './ResultCards/ResultCards';
 
-const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
+const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOpenResult, setIsFirstOpenResult, indexQuiz,
     createOnClickItemQuizes = (index) => null,
     onAgain=()=>{}, 
     goToViewListAndQuizes=()=>{},
@@ -29,7 +29,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
  }) => {
 
 //Получаем необходимые данные
-    const curSurvey = useSelector(getCurSurvey)
+    const questions = useSelector(getCurQuestions)
     const dispatch = useDispatch()
 
 
@@ -148,7 +148,6 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
             return `${questions[indexQuestion].answerOptions[indexInAnswer].text}`;
         }
 
-        const [isVisibleAlert, setIsVisibleAlert] = useState(false);
         const [indexQuestion, setIndexQuestion] = useState();
         const calcIndexRightAnswer = (indexQuestion) => {
             return questions[indexQuestion].answerOptions.findIndex(a => a.score === 1);
@@ -156,6 +155,10 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
         const calcIndexUserAnswer = (indexQuestion) => {
             return indexesAnswers[indexQuestion];
         }
+
+
+        const [isVisibleAlert, setIsVisibleAlert] = useState(false);
+
         const openAlert = (indexQuestion) => {
             setIndexQuestion(indexQuestion);
             setIsVisibleAlert(true);
@@ -163,24 +166,18 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
         const closeAlert = () =>{
             setIsVisibleAlert(false)
         }
-        const [poputAlert, setPopoutAlert] = useState(null)
-
-
-
-        // let startAnimDealyForCard = 0.2;
-        // let stepAnimDealyForCard = 0.1;
-        // let curAnimDealyForCard = -stepAnimDealyForCard;
-
-        // const makeStepAnimDealyForCard = () => {
-        //     curAnimDealyForCard = curAnimDealyForCard + stepAnimDealyForCard;
-        //     return startAnimDealyForCard + curAnimDealyForCard + "s";
-        // }
 
     return (
         <View 
             id={id} 
             activePanel={activePanel} 
-            popout={poputAlert}
+            popout={    
+            isVisibleAlert &&
+            <AlertQuestionResult
+                onClose={closeAlert()}
+            >
+            </AlertQuestionResult>
+            }
             onSwipeBack={goBackInHistory}
             history={history}>
 
@@ -189,7 +186,9 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
                 isNeedAnim={isNeedAnim}
                 adDate={adDate}
                 isAdVisible={isAdVisible}
-                total={getAnswersResultSurvey(curSurvey)}
+                // total={getAnswersResultSurvey(curSurvey)}
+                total={{score:0, total:0}}
+
 
                 goToSurveyView={goToSurveyView}
                 goToPollView={goToPollView}
@@ -250,14 +249,14 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, questions
 
             {/* </PanelWrapper> */}
 
-            {/* <PanelAnswersQuestions
+            <PanelAnswersQuestions
                 id={PANEL_ANSWERS_QUESTIONS}
-                questions={curSurvey.subset}
+                questions={questions}
                 indexesAnswers={indexesAnswers}
                 onBack={goBackInHistory}
-                setAlert={setPopoutAlert}
+                openAlert={openAlert}
             >
-            </PanelAnswersQuestions> */}
+            </PanelAnswersQuestions>
 
         </View>
     )

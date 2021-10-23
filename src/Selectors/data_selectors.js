@@ -17,13 +17,13 @@ export const getCurQuestionId = (state) =>{
 
 
 // Получение массива элементов по id вышестоящего элемента
-export const getSurveys = (idEra) => (state) =>{
+export const getSurveysById = (idEra) => (state) =>{
     return state.Data.Surveys.filter(survey=>survey.idEra === idEra)
 }
-export const getQuestions = (idSurvey) => (state) =>{
+export const getQuestionsById = (idSurvey) => (state) =>{
     return state.Data.Questions.filter(question=>question.idSurvey === idSurvey)
 }
-export const getAnswerOptions = (idQuestion) => (state) =>{
+export const getAnswerOptionsById  = (idQuestion) => (state) =>{
     return state.Data.AnswerOptions.filter(answerOption=>answerOption.idQuestion === idQuestion)
 }
 
@@ -41,6 +41,9 @@ export const getQuestionById = (idQuestion) => (state) =>{
 export const getAnswerOptionById = (idAnswerOption) => (state) =>{
     return state.Data.AnswerOptions.filter((answerOption)=>answerOption.idAnswerOption === idAnswerOption)
 } 
+export const getUserAnswer = (idQuestion) => (state) =>{
+    return state.Data.UserAnswers.filter((userAnswer)=>userAnswer.idQuestion === idQuestion)
+}
 
 
 
@@ -67,10 +70,64 @@ export const getCurSurveys = (state) =>{
     const curEraId = getCurEraId(state)
     return state.Data.Surveys.filter(survey=>survey.idEra === curEraId)
 }
-export const getCurQuestions = (state) => {
-    const curSUrveyId = getCurSurveyId(state)
-    return state.Data.Questions.filter(question=>question.idSurvey === curSUrveyId)
+export const getCurQuestion = (state) =>{
+    const curQuestionId = getCurQuestionId(state)
+    return state.Data.Questions.filter(question=>question.idQuestion === curQuestionId)
 }
+export const getCurQuestions = (state) => {
+    const curSurveyId = getCurSurveyId(state)
+    return state.Data.Questions.filter(question=>question.idSurvey === curSurveyId)
+}
+export const getCurUserAnswer = (state) => {
+    const curQuestionId = getCurQuestionId(state)
+    const curUserAnswer = getUserAnswer(curQuestionId)(state)
+
+    if(curUserAnswer === undefined){
+        return undefined
+    }
+    else{
+        return curUserAnswer[0]
+    }
+} 
+
+
+// Результаты
+export const isAnswerOptionTrue = (idAnswerOption) => (state) =>{
+    const answerOption = getAnswerOptionById(idAnswerOption)(state)
+    return answerOption.score === 1 ? true : false
+} 
+export const isCurQuestionTrue = (state) => {
+    const userAnswer = getCurUserAnswer(state)
+
+    if(userAnswer === undefined){
+        return false
+    }
+
+    return isAnswerOptionTrue(userAnswer.idAnswerOption)
+}
+export const getRighAnswerOption = (idQuestion) => (state) =>{
+
+    let ret = {};
+
+    const answerOptions = getAnswerOptionsById(idQuestion)(state);
+
+    answerOptions.map((answerOption)=>{
+        if(isAnswerOptionTrue(answerOption.idAnswerOption)(state)){
+            ret = answerOption
+        }
+    })
+
+    return ret
+}
+
+
+
+
+
+
+
+
+
 
 //Остальные функции
 

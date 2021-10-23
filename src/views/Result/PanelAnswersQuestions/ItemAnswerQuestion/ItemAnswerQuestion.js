@@ -11,35 +11,38 @@ import { Icon16CancelCircleOutline } from '@vkontakte/icons';
 import "./ItemAnswerQuestion.css";
 import AlertQuestionResult from '../../../../components/AlertQuestionResult/AlertQuestionResult';
 
-const ItemAnswerQuestion = ({userAnswerText, questionTitle, isWin, rightAnswerText, arrOptioAnswersWithoutRight, setAlert = () => {} }) => {
+const ItemAnswerQuestion = ({userAnswerText, questionTitle, isWin, rightAnswerText, arrOptioAnswersWithoutRight, 
+    openAlert = () => {} }) => {
 
     const ICON_SIZE = 24;
 
-    const openAlert = () =>{
-        setAlert(
-            <AlertQuestionResult
-                isWin={isWin}
-                questionTitle={questionTitle}
-                userAnswerText={userAnswerText}
-                rightAnswerText={rightAnswerText}
-                arrOthersQuestions={arrOptioAnswersWithoutRight}
+    // const openAlert = () =>{
+    //     setAlert(
+    //         <AlertQuestionResult
+    //             isWin={isWin}
+    //             questionTitle={questionTitle}
+    //             userAnswerText={userAnswerText}
+    //             rightAnswerText={rightAnswerText}
+    //             arrOthersQuestions={arrOptioAnswersWithoutRight}
 
-                onClose={setAlert(null)}
-            >
-            </AlertQuestionResult>
-    )}
+    //             onClose={setAlert(null)}
+    //         >
+    //         </AlertQuestionResult>
+    // )}
 
     return (
         <div className="ItemAnswerQuestion">
             <ButtonWrapper
-                onClick={ () => {openAlert()}}
+                onClick={openAlert}
                 text={questionTitle}
                 classNameText="ItemAnswerQuestion__button-text"
                 hasActive={false}
-                before={
-                    isWin 
-                    ? <Icon16CheckCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-green-color)"}}/> 
-                    : <Icon16CancelCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-red-color)"}}/> }
+                // before=
+                // {
+                //     isWin 
+                //     ? <Icon16CheckCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-green-color)"}}/> 
+                //     : <Icon16CancelCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-red-color)"}}/> 
+                // }
             >
             </ButtonWrapper>
         </div>

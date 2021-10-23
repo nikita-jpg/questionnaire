@@ -7,7 +7,7 @@ import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import Header from '../../../components/Header/Header';
 import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
 import { QUESTION_NOT_ANSWERED } from '../../../NotUI/Data/consts';
-import { getAnswerOptions, getArrQuestions } from '../../../Selectors/data_selectors';
+import { getAnswerOptionsById } from '../../../Selectors/data_selectors';
 import ImageCard from './ImageCard/ImageCard';
 
 import "./IteamListQuestion.css";
@@ -24,7 +24,7 @@ const IteamListQuestion = ({ id, question,
     getUserAnswer = () => {} 
 }) => {
     
-    const answerOptions = useSelector(getAnswerOptions(question.idQuestion))
+    const answerOptions = useSelector(getAnswerOptionsById(question.idQuestion))
     console.log(answerOptions)
 
     return (

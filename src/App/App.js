@@ -332,7 +332,7 @@ const App = ({results, MAX_SCORE,
 									saveUserAnswersAction={data.Data_saveUserAnswers}
 								/>
 
-								{/* <Result
+								<Result
 									id={VIEW_ID_RESULT}
 									goToSurveyViewAction={appNavigate.App_goToSurveyView}
 									goToPollViewAction={appNavigate.App_goToPollView}
@@ -353,7 +353,7 @@ const App = ({results, MAX_SCORE,
 									// onAgain={onAgainResult}
 									// onGoToAnswersQuestion={onGoToAnswersQuestionResult}
 									// goToViewListAndQuizes={goToViewListAgeAndQuizesFromResult}
-									/> */}
+									/>
 
 								{/* <Result
 									id={viewsId.VIEW_ID_RESULT}

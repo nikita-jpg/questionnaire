@@ -1,16 +1,21 @@
 import { Alert } from "@vkontakte/vkui";
 import React from "react";
+import { useSelector } from "react-redux";
+import { getAnswerOptionById, getCurQuestion, getCurUserAnswer, getRighAnswerOption, isCurQuestionTrue } from "../../Selectors/data_selectors";
 import "./AlertQuestionResult.css";
 
 const AlertQuestionResult = ({
-    isWin,
-    userAnswer,
-    questionTitle,
-    rightAnswerText,
-    arrOthersQuestions,
 
     onClose=()=>{}
-}) => {
+
+    }) => {
+    
+    const curQuestion = "useSelector(getCurQuestion)"
+    const isWin = "useSelector(isCurQuestionTrue)"
+    const userAnswer = "useSelector(getCurUserAnswer)"
+    const userAnswerText = "useSelector(getAnswerOptionById(userAnswer.idAnswerOption))"
+    const rightAnswer = "useSelector(getRighAnswerOption(curQuestion.idQuestion))"
+
     return (
         <div className="AnswersQuestions__alert_big">
             <Alert
@@ -24,7 +29,7 @@ const AlertQuestionResult = ({
             >
                 <div className="AnswersQuestions__alert">
 
-                    <h3 className={"AlertQuestionResult__text-question"}>{questionTitle}</h3>
+                    <h3 className={"AlertQuestionResult__text-question"}>{curQuestion.textQuestion}</h3>
 
                         {
                             isWin &&
@@ -39,7 +44,7 @@ const AlertQuestionResult = ({
                                 <div
                                     className="AnswersQuestions__alert__text-answer"
                                 >
-                                    {userAnswer}
+                                    {userAnswerText}
                                 </div>
                             </div>
                         }
@@ -60,7 +65,7 @@ const AlertQuestionResult = ({
                             <div
                                 className="AnswersQuestions__alert__text-answer"
                             >
-                                {rightAnswerText}
+                                {rightAnswer.text}
                             </div>
                         </div>
 
@@ -71,7 +76,7 @@ const AlertQuestionResult = ({
                                 >Остальные варианты</div>
                             </div>
 
-                            {
+                            {/* {
                                 arrOthersQuestions.map((answer, i) => {
                                     return (
                                         <div
@@ -82,7 +87,7 @@ const AlertQuestionResult = ({
                                         </div>
                                     )
                                 })
-                            }
+                            } */}
                         </div>
 
                 </div>

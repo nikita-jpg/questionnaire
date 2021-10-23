@@ -65,9 +65,9 @@ const getRightAnswerOption = (arrQuestions) =>{
 
 
 
-const PanelAnswersQuestions = ({id, questions, indexesAnswers, 
+const PanelAnswersQuestions = ({id, questions,
     onBack=()=>{}, 
-    setAlert=()=>{}
+    openAlert=()=>{}
 }) => {
 
 
@@ -81,11 +81,12 @@ const PanelAnswersQuestions = ({id, questions, indexesAnswers,
                         <ItemAnswerQuestion
                             indexQuestion={i}
                             questionTitle={question.textQuestion}
-                            userAnswerText={getUserAnswerText(question.userAnswer, question.answerOptions)}
-                            rightAnswerText={getRightAnswerOption(question.answerOptions)}
-                            arrOptioAnswersWithoutRight={getArrOptioAnswersWithoutRight(question.answerOptions)}
-                            isWin = { (question.userAnswer !== QUESTION_NOT_ANSWERED) && (isQuestionTrue(question.userAnswer.idAnswerOption, question.answerOptions))  }
-                            setAlert={setAlert}
+                            openAlert={openAlert(question.idQuestion)}
+                            // userAnswerText={getUserAnswerText(question.userAnswer, question.answerOptions)}
+                            // rightAnswerText={getRightAnswerOption(question.answerOptions)}
+                            // arrOptioAnswersWithoutRight={getArrOptioAnswersWithoutRight(question.answerOptions)}
+                            // isWin = { (question.userAnswer !== QUESTION_NOT_ANSWERED) && (isQuestionTrue(question.userAnswer.idAnswerOption, question.answerOptions))  }
+                            // setAlert={setAlert}
                         />
                     ))
                 }
