@@ -188,7 +188,7 @@ export const initialState = {
 		{
 			idSurvey:1,
 			idQuestion:1,
-			idAnswerOption:1,
+			idAnswerOption:3,
 		}
 	]
 

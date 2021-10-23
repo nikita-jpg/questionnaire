@@ -19,12 +19,10 @@ const AlertQuestionResult = ({
 
     let userAnswerText = "Вы не ответили";
     answerOptions.map((answerOption)=>{
-        if(answerOptions.idAnswerOption === userAnswer.idAnswerOption){
+        if(answerOption.idAnswerOption === userAnswer.idAnswerOption){
             userAnswerText = answerOption.text
         }
     })
-
-
 
 
     return (
@@ -43,7 +41,7 @@ const AlertQuestionResult = ({
                     <h3 className={"AlertQuestionResult__text-question"}>{curQuestion.textQuestion}</h3>
 
                         {
-                            isWin &&
+                            !isWin &&
                             <div>
                                 <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_bad">
                                     <div
@@ -87,18 +85,19 @@ const AlertQuestionResult = ({
                                 >Остальные варианты</div>
                             </div>
 
-                            {/* {
-                                arrOthersQuestions.map((answer, i) => {
+                            {
+                                answerOptions.map((answerOption, i) => {
                                     return (
+                                        answerOption.idAnswerOption !== userAnswer.idAnswerOption &&
                                         <div
                                             className="AnswersQuestions__alert__text-answer"
-                                            key={answer.text}
+                                            key={answerOption.text}
                                         >
-                                            {answer.text}
+                                            {answerOption.text}
                                         </div>
                                     )
                                 })
-                            } */}
+                            }
                         </div>
 
                 </div>
