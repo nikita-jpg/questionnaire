@@ -140,7 +140,7 @@ const ListQuestions = ({id,
             if(!cheakAllAnswered()){
                 openFinishAlert();
             }else{
-                // finishSurveyWithOutCheck()
+                finishSurveyWithOutCheck()
             }
         }
 	}, [userAnswersFinishValidator]);

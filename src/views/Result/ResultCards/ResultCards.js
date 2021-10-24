@@ -6,21 +6,19 @@ import { getAnswersResultSurvey, getAnswersResultEra } from '../../../help';
 import { getCurSurvey, getCurEraSurveys, getIndexSurvey, testSelector } from '../../../Selectors/data_selectors';
 import './ResultCards.css'
 
-const makeUsedData = (surveys) =>{
-    let newSurveys = [];
-    surveys.map((survey)=>(
-        newSurveys.push(
+const makeUsedData = (survey, surveyResult) =>{
+    console.log(survey)
+    return(
         {
             russianName: survey.russianName,
-            percentProgress: getAnswersResultSurvey(survey).score,
-            numberOfQuestions: getAnswersResultSurvey(survey).total,
+            percentProgress: surveyResult.score,
+            numberOfQuestions: surveyResult.total,
             imageName: survey.image.imageName,
             description: survey.description,
-            isBtnNeed: getAnswersResultSurvey(survey).score !== 0 ? true : false
+            // isBtnNeed: getAnswersResultSurvey(survey).score !== 0 ? true : false
         }
-    )))
+    )
 
-    return newSurveys
 }
 
 const makeCard = (info, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
@@ -41,17 +39,21 @@ const makeCard = (info, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyFo
 }
 
 
-const getCardsFromSurveysFilter = (arrSurveys, curSurveyID, isFirstOpenResult, 
+const getCardsFromSurveysFilter = (surveys,surveysResult, curSurveyID, isFirstOpenResult, 
     cardClick=()=>{}, 
     makeStepAnimDealyForCard=()=>{}
     ) => {
 
     let arr = [];
-    for(let i=0;i<arrSurveys.length;i++){
-        if( (arrSurveys[i].percentProgress !== arrSurveys[i].numberOfQuestions) && (i !== curSurveyID)){
-            arr.push(makeCard(arrSurveys[i], isFirstOpenResult, cardClick(i), makeStepAnimDealyForCard))
+    surveysResult.map((surveyResult)=>{
+        if((surveyResult.score !== surveyResult.total) && (surveyResult.idSurvey !== curSurveyID)){
+
+            let curSurvey = surveys.filter((survey)=>survey.idSurvey === surveyResult.idSurvey)[0]
+            let data = makeUsedData(curSurvey, surveyResult)
+            arr.push(makeCard(data, isFirstOpenResult, cardClick(curSurvey.idSurvey), makeStepAnimDealyForCard))
+
         }
-    }
+    })
 
     if(arr.length === 0)
         return null
@@ -59,22 +61,18 @@ const getCardsFromSurveysFilter = (arrSurveys, curSurveyID, isFirstOpenResult,
         return(arr)
 }
 
-const getCardsFromEraFilter = (arrEras, indexAge, isFirstOpenResult, isCompletedQuiz, 
+const getCardsFromEraFilter = (erasResult, curEraID, isFirstOpenResult, isCompletedQuiz, 
     onAgain=()=>{}, goToEras=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
 
     let retrunMessage= "";
     let returnButtons = [];
     let isHasNotFinishedEras = false;
-    let erasProgress = {};
 
-    for(let i=0;i<arrEras.length;i++){
-        
-        erasProgress = getAnswersResultEra(arrEras[i])
-
-        if((erasProgress.score !== erasProgress.total) && (i!==indexAge)) {
+    erasResult.map((eraResult)=>{
+        if((eraResult.score !== eraResult.total) && (eraResult.idEra !== curEraID)){
             isHasNotFinishedEras = true;
         }
-    }
+    })
 
     if( (isHasNotFinishedEras === true) && (isCompletedQuiz === true)  ){
         retrunMessage = "Поздравляем, вы завершили целую эпоху! Предлагаем перейти к выбору новой эпохи";
@@ -129,10 +127,11 @@ const ResultCards = ({
     isFirstOpenResult, 
     isCompletedSurvey,
 
-    upperCurSurveys, 
-    upperCurEraIndex,
-    upperCurSurveyIndex,
-    upperEras,
+    curSurveys, 
+    curSurveysResult,
+    curEraIndex,
+    curSurveyIndex,
+    erasResult,
 
     goToQuiz=()=>{}, 
     goToPollView=()=>{},
@@ -142,24 +141,24 @@ const ResultCards = ({
     makeStepAnimDealyForCard=()=>{}
 }) =>{
 
-    const eras = upperEras;
-    const surveys = makeUsedData(upperCurSurveys)
-    const curSurveyIndex = upperCurSurveyIndex;
+    // const eras = upperEras;
+    // const surveys = makeUsedData(upperCurSurveys)
+
 
     const cardClick = (indexSurvey) => () => {
         setIndexSurvey(indexSurvey)
         goToSurveyView()
     }
 
-
+    
     //Узнаём есть ли непройденные опросы (кроме текущего)
-    let surveysFilterResultArr = getCardsFromSurveysFilter(surveys, curSurveyIndex, isFirstOpenResult, cardClick, makeStepAnimDealyForCard)
+    let surveysFilterResultArr = getCardsFromSurveysFilter(curSurveys,curSurveysResult, curSurveyIndex, isFirstOpenResult, cardClick, makeStepAnimDealyForCard)
     if(surveysFilterResultArr !== null){
         return surveysFilterResultArr
     }
 
     
-    let eraFilterResult = getCardsFromEraFilter(eras, upperCurEraIndex, isFirstOpenResult, isCompletedSurvey, onAgain, goToPollView, makeStepAnimDealyForCard)
+    let eraFilterResult = getCardsFromEraFilter(erasResult, curEraIndex, isFirstOpenResult, isCompletedSurvey, onAgain, goToPollView, makeStepAnimDealyForCard)
     // console.log(eraFilterResult)
     if(eraFilterResult !== null){
         return eraFilterResult

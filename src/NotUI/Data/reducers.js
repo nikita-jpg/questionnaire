@@ -30,8 +30,6 @@ export const dataReducer = (state = initialState, action) =>{
                 )
             }
 
-            console.log(userAnswersState)
-
             return {...state, ...{UserAnswers:userAnswersState}}
         }
         default:{

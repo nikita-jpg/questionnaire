@@ -6,7 +6,7 @@ import ResultButtons from "../ResultButtons/ResultButtons";
 import { PromoBanner } from "@vkontakte/vkui";
 import bridge from '@vkontakte/vk-bridge';
 import ResultCards from "../ResultCards/ResultCards";
-import { getCurEraSurveys, getEras, getIndexEra, getIndexSurvey, getResultCurSurvey } from "../../../Selectors/data_selectors";
+import { getCurEraId, getCurEraSurveys, getCurSurveyId, getCurSurveys, getEras, getIndexEra, getIndexSurvey, getResultCurSurvey, getResultCurSurveys, getResultsEras } from "../../../Selectors/data_selectors";
 import { useSelector } from "react-redux";
 
 
@@ -28,23 +28,29 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
 
     const total = useSelector(getResultCurSurvey)
     const [totalResult, setTotal] = useState(0)
-    // const [eras, setEras] = useState([])
-    // const [surveys, setSurveys] = useState([])
-    // const [curEraIndex,setCurEraIndex] = useState(-1)
-    // const [curSurveyIndex,setCurSurveyIndex] = useState(-1)
+    const [eras, setEras] = useState([])
+    const [erasResult, setErasResult] = useState([])
+    const [surveys, setSurveys] = useState([])
+    const [surveysCurResult, setSurveysCurResult] = useState([])
+    const [curEraIndex,setCurEraIndex] = useState(-1)
+    const [curSurveyIndex,setCurSurveyIndex] = useState(-1)
 
-    // const surveysModified = useSelector(getCurEraSurveys)
-    // const curEraIndexModified = useSelector(getIndexEra)
-    // const curSurveyIndexModified = useSelector(getIndexSurvey)
-    // const erasModified = useSelector(getEras)
-    // const surveyResultModified = useSelector(getCur)
+    const surveysModified = useSelector(getCurSurveys)
+    const curEraIndexModified = useSelector(getCurEraId)
+    const curSurveyIndexModified = useSelector(getCurSurveyId)
+    const erasModified = useSelector(getEras)
+    const erasResultModified = useSelector(getResultsEras)
+    const surveysCurResultModified = useSelector(getResultCurSurveys)
+
 
     useEffect(()=>{
         setTotal(total)
-        // setEras(erasModified)
-        // setSurveys(surveysModified)
-        // setCurEraIndex(curEraIndexModified)
-        // setCurSurveyIndex(curSurveyIndexModified)
+        setEras(erasModified)
+        setErasResult(erasResultModified)
+        setSurveys(surveysModified)
+        setCurEraIndex(curEraIndexModified)
+        setCurSurveyIndex(curSurveyIndexModified)
+        setSurveysCurResult(surveysCurResultModified)
     }, [])
 
 //Анимация
@@ -73,7 +79,6 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
 
         return "Result__points-postfix_good";
     }
-
 
     return(
         <PanelWrapper id={id} isOneColumn={true}>
@@ -111,17 +116,19 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
             }
 
         {/* Карточки опросов */}
-            {/* <ResultCards 
+            <ResultCards 
                 // indexAge={indexAge}
                 // indexQuiz={indexQuiz}
                 // eras={eras}
                 isFirstOpenResult={isNeedAnim}
 
-                upperEras={eras}
-                upperCurSurveys={surveys}
+                eras={eras}
+                erasResult={erasResult}
+                curSurveys={surveys}
+                curSurveysResult={surveysCurResult}
 
-                upperCurEraIndex={curEraIndex}
-                upperCurSurveyIndex={curSurveyIndex}
+                curEraIndex={curEraIndex}
+                curSurveyIndex={curSurveyIndex}
 
                 isCompletedSurvey={totalResult.score === totalResult.total}
                 // isCompletedQuiz={percent === questions.length ? true : false}
@@ -134,7 +141,7 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
                 // goToQuiz={createOnClickItemQuizes}
                 // goToEras={goToViewListAndQuizes}
             >
-            </ResultCards> */}
+            </ResultCards>
 
         </PanelWrapper>
     )
