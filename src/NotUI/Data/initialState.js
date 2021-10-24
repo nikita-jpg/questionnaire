@@ -188,12 +188,12 @@ export const initialState = {
 		{
 			idSurvey:1,
 			idQuestion:1,
-			idAnswerOption:2,
+			idAnswerOption:3,
 		},
 		{
 			idSurvey:1,
 			idQuestion:2,
-			idAnswerOption:1,
+			idAnswerOption:6,
 		}
 	]
 

@@ -125,7 +125,9 @@ export const isCurQuestionTrue = (state) => {
     return isAnswerOptionTrue(userAnswer.idAnswerOption)
 }
 
-export const getRighAnswerOption = (idQuestion) => (state) =>{
+
+
+export const getRightAnswerOptionById = (idQuestion) => (state) =>{
 
     let ret = {};
 
@@ -154,7 +156,39 @@ export const getResultCurSurvey = (state) =>{
 
     return {total:total, score:score}
 }
+export const getResultSurveyById = (idSurvey) => (state) =>{
+    const questions = getQuestionsById(idSurvey)(state)
 
+    const total = questions.length
+    let score = 0;
+
+    questions.map((question)=>{
+        if(isQuestionTrue(question.idQuestion)(state)){
+            score++
+        }
+    })
+
+    return {total:total, score:score}
+}
+
+export const getResultCurSurveys = (state) =>{
+    const curSurveys = getCurSurveys(state)
+
+    let ret = []
+
+    curSurveys.map((survey)=>{
+        let surveyResult = getResultSurveyById(survey.idSurvey)(state)
+        ret.push(
+            {
+                idSurvey:survey.idSurvey,
+                total:surveyResult.total, 
+                score:surveyResult.score
+            }
+        )
+    })
+
+    return ret
+}
 
 
 

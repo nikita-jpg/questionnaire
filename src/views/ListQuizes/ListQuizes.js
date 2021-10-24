@@ -5,8 +5,9 @@ import ListCard from '../../components/ListCard/ListCard'
 import './ListQuizes.css';
 import Header from '../../components/Header/Header';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAnswersResultSurvey } from '../../help';
+import { getResultCurSurveys } from '../../Selectors/data_selectors';
 
 const ListQuizes = ({ id, title, surveys, surveysResults,
     onBack = () => { }, 
@@ -26,11 +27,15 @@ const ListQuizes = ({ id, title, surveys, surveysResults,
     //     }
     // })
 
+    const surveysResult = useSelector(getResultCurSurveys);
+    let surveyResult = {};
+
     const info = surveys.map((survey)=>{
+        surveyResult = surveysResult.filter((surveyResult)=>surveyResult.idSurvey === survey.idSurvey)[0]
         return{
             russianName: survey.russianName,
-            percentProgress: 0,
-            numberOfQuestions: 0,
+            percentProgress: surveyResult.score,
+            numberOfQuestions: surveyResult.total,
             imageName: survey.image.imageName,
             description: survey.description,
             isBtnNeed: false
