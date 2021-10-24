@@ -190,6 +190,41 @@ export const getResultCurSurveys = (state) =>{
     return ret
 }
 
+export const getResultEraById = (idEra) => (state) =>{
+    const surveys = getSurveysById(idEra)(state)
+
+    const total = surveys.length
+    let score = 0
+
+    surveys.map((survey)=>{
+        let surveyResult = getResultSurveyById(survey.idSurvey)(state)
+        if(surveyResult.score === surveyResult.total){
+            score++
+        }
+    })
+
+    return {score:score, total:total}
+
+}
+
+export const getResultsEras = (state) =>{
+    const eras = getEras(state)
+
+    let ret = []
+
+    eras.map((era)=>{
+        let eraResult = getResultEraById(era.idEra)(state)
+        ret.push(
+            {
+                idEra:era.idEra,
+                total:eraResult.total, 
+                score:eraResult.score
+            }
+        )
+    })
+
+    return ret
+}
 
 
 

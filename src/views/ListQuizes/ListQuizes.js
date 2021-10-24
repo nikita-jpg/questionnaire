@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAnswersResultSurvey } from '../../help';
 import { getResultCurSurveys } from '../../Selectors/data_selectors';
 
-const ListQuizes = ({ id, title, surveys, surveysResults,
+const ListQuizes = ({ id, title, surveys,
     onBack = () => { }, 
     createOnClickItemQuizesBtn = (index) => null , 
     createOnClickItemQuizes = (index) => null 

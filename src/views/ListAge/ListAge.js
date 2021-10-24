@@ -7,22 +7,20 @@ import Header from '../../components/Header/Header'
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import downloadImage from '../../NotUI/Server/server.js'
 import { useSelector } from 'react-redux';
-import { getEraResult } from '../../Selectors/data_selectors';
+import { getEraResult, getResultsEras } from '../../Selectors/data_selectors';
 
 
-const ListAge = ({id, eras, erasResults, createOnClickItemAge=index=>null}) => {
+const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
 
-    // let a = 0
+ 
+    const eraResults = useSelector(getResultsEras);
 
-    // for(let i=0;i<10;i++){
-    //     a = useSelector(getEraReselt)
-    // }
     const info = eras.map((era)=>{
-        // let eraResult = erasResults.filter((eraResult)=>eraResult.idEra === era.idEra)[0]
+        let eraResult = eraResults.filter((eraResult)=>eraResult.idEra === era.idEra)[0]
         return {
             russianName: era.russianName,
-            percentProgress: 0,
-            numberOfQuestions: 0,
+            percentProgress: eraResult.score,
+            numberOfQuestions: eraResult.total,
             imageName: era.image.imageName,
             description: era.description
         }

@@ -27,7 +27,6 @@ const PoolView = ({id,
 
 	
 	const surveys = useSelector(getCurSurveys)
-	const surveysResults = {tottal:0, score:0}
 
 	// const indexEra = useSelector(getIndexEra);
 	const mustCurrentPanel = useSelector(getFirstPanel); //Проверяем какая панелька должна быть открыта по приказу извне
@@ -122,7 +121,6 @@ const PoolView = ({id,
             id={LIST_SURVEYS_PANEL} 
             title={eraTitle} 
             surveys={surveys} 
-			surveysResults={surveysResults}
             onBack={onBackListQuizes} 
             createOnClickItemQuizes={createOnClickItemQuizes}
 			createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}
