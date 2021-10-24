@@ -42,6 +42,9 @@ const ListQuizes = ({ id, title, surveys, surveysResults,
         }
     })
     
+    const cardClick = (indexSurvey) => () =>{
+        createOnClickItemQuizes(surveys[indexSurvey].idSurvey)
+    }
 
     return (
         <PanelWrapper id={id} headerText={title} onHeaderBack={onBack} isHeaderFixed={true}>
@@ -49,7 +52,7 @@ const ListQuizes = ({ id, title, surveys, surveysResults,
             <div className="ListQuizes">
                 <ListCard
                     info={info}
-                    cardClick={createOnClickItemQuizes}
+                    cardClick={cardClick}
                     btnCardClick={createOnClickItemQuizesBtn}
                 />
             </div>

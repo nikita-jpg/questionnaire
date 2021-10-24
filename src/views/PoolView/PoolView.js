@@ -92,7 +92,7 @@ const PoolView = ({id,
 		setActivePanel(LIST_SURVEYS_PANEL);
 	}
 
-	const createOnClickItemQuizes = (indexSurvey) => () => {
+	const createOnClickItemQuizes = (indexSurvey) => {
 		setIndexSurvey(indexSurvey)
 		goToViewListQuestions()
 	}
