@@ -17,22 +17,22 @@ export const dataReducer = (state = initialState, action) =>{
         }
 
         case SAVE_USER_ANSWERS:{
-            let survey = {...state.Eras[state.indexEra].subset[state.indexSurvey]};
+            let userAnswersState = [...state.UserAnswers].filter((userAnswer)=>userAnswer.idSurvey !== state.CurSurveyId);
             let userAnswers = action.userAnswers;
+            
+            if(userAnswersState === undefined){
+                userAnswersState = []
+            }
 
-            survey.subset.map((question)=>{
-                question.userAnswer = null
-            })
+            for(let i=0;i<userAnswers.length;i++){
+                userAnswersState.push(
+                    userAnswers[i]
+                )
+            }
 
-            survey.subset.map((question)=>{
-                for(let i=0;i<userAnswers.length;i++){
-                    if(question.idQuestion === userAnswers[i].idQuestion){
-                        question.userAnswer = {idAnswerOption:userAnswers[i].idAnswerOption}
-                    }
-                }
-            })
+            console.log(userAnswersState)
 
-            return {...state, ...{survey}}
+            return {...state, ...{UserAnswers:userAnswersState}}
         }
         default:{
             return state

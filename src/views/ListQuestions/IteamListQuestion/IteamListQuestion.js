@@ -25,15 +25,14 @@ const IteamListQuestion = ({ id, question,
 }) => {
     
     const answerOptions = useSelector(getAnswerOptionsById(question.idQuestion))
-    console.log(answerOptions)
 
     return (
         <PanelWrapper id={id} isOneColumn={true}
             onHeaderClose={id === 0 ? goToPrevQuestion:false}
             onHeaderBack={goToPrevQuestion}
             headerText={id+1 + " из " + countQuestions}
-            // headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
-            // headerClick={changeModal}
+            headerIcon={<Icon28ChevronDownOutline style={{ transform: `rotate(${isModalOpen ? '180deg' : '0'})`, transition:"0.5s" }} />}
+            headerClick={changeModal}
         >
 
             <div className="IteamListQuestion">
@@ -55,7 +54,8 @@ const IteamListQuestion = ({ id, question,
                                     // setNotActiveBackgoundToAnswerButton();
                                 }}
                                 text={answer.text}
-                                // className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
+                                // className={`IteamListQuestion__answer`}
+                                className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
                             >
                             </ButtonWrapper>
                         ))

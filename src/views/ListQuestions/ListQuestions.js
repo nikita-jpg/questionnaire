@@ -6,7 +6,7 @@ import vkBridge from '@vkontakte/vk-bridge'
 import AlertWrapper from '../../components/AlertWrapper/AlertWrapper';
 import './ListQuestions.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { getArrQuestions, getCurQuestions } from '../../Selectors/data_selectors';
+import { getArrQuestions, getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
 import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import ModalPageForListQuestions from './ModalPageForListQuestions/ModalPageForListQuestions';
@@ -27,6 +27,7 @@ const ListQuestions = ({id,
 
     //Получение данных
     const arrQuestions = useSelector(getCurQuestions)
+    const curSurveyId = useSelector(getCurSurveyId)
     const dispath = useDispatch();
 
 
@@ -65,7 +66,20 @@ const ListQuestions = ({id,
         return idAnswer
     }
 
-    const saveAnswersToState = () => dispath(saveUserAnswersAction(userAnswers))
+    const saveAnswersToState = () => {
+        let userAnswersForState = Object.assign([],userAnswers)
+
+
+        for(let i=0;i<userAnswersForState.length;i++){
+            userAnswersForState[i] = {
+                idSurvey:curSurveyId,
+                idQuestion:userAnswersForState[i].idQuestion,
+                idAnswerOption:userAnswersForState[i].idAnswerOption
+            }
+        }
+
+        dispath(saveUserAnswersAction(userAnswersForState))
+    }
     const saveAnswersToServer= () => sendUserAnswersToServer(userAnswers)
 
 
@@ -121,15 +135,15 @@ const ListQuestions = ({id,
         return arrQuestions.length === userAnswers.length;
     }
 
-    // useEffect(() => {
-    //     if(userAnswersFinishValidator){
-    //         if(!cheakAllAnswered()){
-    //             openFinishAlert();
-    //         }else{
-    //             finishSurveyWithOutCheck()
-    //         }
-    //     }
-	// }, [userAnswersFinishValidator]);
+    useEffect(() => {
+        if(userAnswersFinishValidator){
+            if(!cheakAllAnswered()){
+                openFinishAlert();
+            }else{
+                // finishSurveyWithOutCheck()
+            }
+        }
+	}, [userAnswersFinishValidator]);
 
     const finishSurvey = () => {
         setUserAnswersFinishValidator(true)
@@ -178,15 +192,14 @@ const ListQuestions = ({id,
     }
     const modal = (
         <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
-            {/* <ModalPageForListQuestions
+            <ModalPageForListQuestions
                 id={MODAL_ID}
                 arrQuestions={arrQuestions}
                 getUserAnswer={getUserAnswer}
                 changeModal={changeModal}
                 goToCurrentQuestion={goToCurrentQuestion}
                 finishSurvey={finishSurvey}
-            
-            /> */}
+            />
         </ModalRoot>
     )
 
@@ -210,19 +223,19 @@ const ListQuestions = ({id,
     const openFinishAlert = () => {       
         setAlert(
 
-            // <AlertWrapper
-            //     header="Вы ответили не на все вопросы"
-            //     leftText={"Отмена"}
-            //     rightText={"Завершить"}
-            //     rightFunc={ () => {
-            //         finishSurveyWithOutCheck();
-            //     }}
-            //     onClose={()=>{ 
-            //         setUserAnswersFinishValidator(false)
-            //         setAlert(null)
-            //     }}
-            // >
-            // </AlertWrapper>
+            <AlertWrapper
+                header="Вы ответили не на все вопросы"
+                leftText={"Отмена"}
+                rightText={"Завершить"}
+                rightFunc={ () => {
+                    finishSurveyWithOutCheck();
+                }}
+                onClose={()=>{ 
+                    setUserAnswersFinishValidator(false)
+                    setAlert(null)
+                }}
+            >
+            </AlertWrapper>
 
     )}
 
