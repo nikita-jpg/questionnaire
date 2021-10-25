@@ -39,12 +39,12 @@ const ItemAnswerQuestion = ({userAnswerText,idQuestion, questionTitle, rightAnsw
                 text={questionTitle}
                 classNameText="ItemAnswerQuestion__button-text"
                 hasActive={false}
-                // before=
-                // {
-                //     isWin 
-                //     ? <Icon16CheckCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-green-color)"}}/> 
-                //     : <Icon16CancelCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-red-color)"}}/> 
-                // }
+                before=
+                {
+                    isWin 
+                    ? <Icon16CheckCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-green-color)"}}/> 
+                    : <Icon16CancelCircleOutline height={ICON_SIZE} width={ICON_SIZE} style={{color:"var(--main-red-color)"}}/> 
+                }
             >
             </ButtonWrapper>
         </div>
