@@ -1,4 +1,4 @@
-.SpinnerView{
+.LoadingPanel{
     margin: 0;
     position: absolute;
     padding: 0;
@@ -14,7 +14,7 @@
     max-width: 120px; */
     background-color: var(--main-bg-color);
 }
-.SpinnerView__spinnerBox{
+.LoadingPanel__spinnerBox{
     width: 60px;
     height: 60px;
     background-color: var(--main-gray-color);
@@ -42,7 +42,7 @@
 } */
 
   
-.SpinnerView__spinnerBox_spinner {
+.LoadingPanel__spinnerBox_spinner {
     /* position: fixed; */
     width: 90px;
     height: 90px;

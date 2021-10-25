@@ -1,6 +1,12 @@
 import * as viewsConsts from './Constants'
 
 
+export const App_goToLoadingtView = () => {
+    return{
+        type:viewsConsts.VIEW_ID_SPINNER
+    }
+}
+
 export const App_goToStartView = () => {
     return{
         type:viewsConsts.VIEW_ID_START_WINDOW

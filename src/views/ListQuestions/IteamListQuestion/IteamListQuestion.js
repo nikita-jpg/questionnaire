@@ -54,7 +54,6 @@ const IteamListQuestion = ({ id, question,
                                     // setNotActiveBackgoundToAnswerButton();
                                 }}
                                 text={answer.text}
-                                // className={`IteamListQuestion__answer`}
                                 className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
                             >
                             </ButtonWrapper>

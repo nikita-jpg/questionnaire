@@ -18,7 +18,6 @@ const ImageCard = (imageName, sourceImageLink) => {
     //Загружаем основную картинку
     downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
 
-
     return(
         <div className="Image__container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 

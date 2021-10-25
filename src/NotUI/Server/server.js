@@ -57,9 +57,10 @@ export async function downloadImgFromFolder(path){
 
 export async function downloadImagesArr(arr){
     for(let i=0;i<arr.length;i++){
-        await downloadImageFromServer(arr[i].image.imageName).then(imageData=>{
+        await downloadImageFromServer(arr[i]).then(imageData=>{
             let img = new Image();
-            img.src = imageData;
+            // img.src = imageData;
+            img.src = imageData
 
             img.onerror = () => {
                 console.log(img.src + " error")
@@ -74,8 +75,8 @@ export async function downloadImagesArr(arr){
 
 // Загрузка изображений с сервера
 export async function downloadImageFromServer(imageName){
-    return ""
-    const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
+    // const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
+    const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + "1.jpg",{
         responseType: 'arraybuffer'
     }).then(response => Buffer.from(response.data, 'binary').toString('base64'))
     

@@ -325,6 +325,8 @@ const App = ({results, MAX_SCORE,
 									goToListSurveyAction={poolView.PoolView_goToListSurvey}
 									goToPollViewAction={appNavigate.App_goToPollView}
 									goToResultViewAction={appNavigate.App_goToResultView}
+									goToLoadingViewAction={appNavigate.App_goToLoadingtView}
+									goToViewListQuestions={appNavigate.App_goToSurveyView}
 
 									saveUserAnswersAction={data.Data_saveUserAnswers}
 								/>

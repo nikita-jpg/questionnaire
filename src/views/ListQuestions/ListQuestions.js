@@ -8,15 +8,19 @@ import './ListQuestions.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getArrQuestions, getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
-import { sendUserAnswersToServer } from '../../NotUI/Server/server';
+import { downloadImagesArr, sendUserAnswersToServer } from '../../NotUI/Server/server';
 import ModalPageForListQuestions from './ModalPageForListQuestions/ModalPageForListQuestions';
 import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
+import LoadingPanel from '../../components/LoadingPanel/LoadingPanel'
+
 
 const MODAL_ID = "MODAL_ID"
-const PANEL_FIRST_ID="IteamListQuestion-0"
+const PANEL_LOADING = "PANEL_LOADING-0"
 
 
-const ListQuestions = ({id, 
+const ListQuestions = ({id,
+    goToLoadingViewAction=()=>{}, 
+    goToViewListQuestionsAction=()=>{},
     goToPollViewAction=()=>{}, 
     goToResultViewAction=()=>{}, 
     goToListSurveyAction=()=>{},
@@ -24,12 +28,32 @@ const ListQuestions = ({id,
 }) => {
 
 
-
     //Получение данных
     const arrQuestions = useSelector(getCurQuestions)
     const curSurveyId = useSelector(getCurSurveyId)
     const dispath = useDispatch();
 
+    //Внутренняя навигация
+    const [activePanel, setActivePanel] = useState(PANEL_LOADING);
+    const setIndexQuestionAndHistory = (newIndex) => {
+        setActivePanel(newIndex)
+        changeHistory(newIndex)
+    }
+
+    //Подгрузка картинок
+    useEffect(()=>{
+
+        let imageArr = [];
+        arrQuestions.map((question)=>{
+            imageArr.push(question.image.imageName)
+        })
+
+        downloadImagesArr(imageArr)
+        .then((res)=>{
+            setActivePanel(0)
+        })
+
+    },[])
 
 
     //Работа с ответами
@@ -87,20 +111,17 @@ const ListQuestions = ({id,
 
 
     //Внешняя навигация
+    const goToLoadingView = () => dispath(goToLoadingViewAction)
     const goToResultView = () => dispath(goToResultViewAction())
     const goToPollView = () => {
         dispath(goToListSurveyAction())
         dispath(goToPollViewAction())
     }
+    const goToViewListQuestions = () =>dispath(goToViewListQuestionsAction())
 
 
 
-    //Логика переключения вопросов
-    const [indexQuestion, setIndexQuestion] = useState(0);
-    const setIndexQuestionAndHistory = (newIndex) => {
-        setIndexQuestion(newIndex)
-        changeHistory(newIndex)
-    }
+
 
 
 
@@ -124,10 +145,10 @@ const ListQuestions = ({id,
 
         if(checkIndex(indexQuestion)){
             changeHistory(indexQuestion)
-            setIndexQuestion(indexQuestion)
+            setActivePanel(indexQuestion)
         }
     }
-    const goToPrevQuestion=()=> goToCurrentQuestion(indexQuestion - 1)
+    const goToPrevQuestion=()=> goToCurrentQuestion(activePanel - 1)
     const goToNextQuestion=()=> goToCurrentQuestion(history.length)
 
 
@@ -255,12 +276,15 @@ const ListQuestions = ({id,
 
     return (
         <View id={id} 
-            activePanel={indexQuestion} 
+            activePanel={activePanel} 
             modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
             popout={alert}
             >
+            
+            <LoadingPanel id={PANEL_LOADING}/>
+            
             {
                 arrQuestions.map((question, i) =>(
                     <IteamListQuestion
