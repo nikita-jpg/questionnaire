@@ -12,16 +12,16 @@ const http = axios.create({
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 
-//Загрузка перед входом в основное окно приложения
-export async function firstDownload(){	
-    // await downloadDefaultIMG();
-    const data = await downloadData();
-    // await downloadImagesArr(data.eras);
-    return data
-}
+// //Загрузка перед входом в основное окно приложения
+// export async function firstDownload(){	
+//     // await downloadDefaultIMG();
+//     const data = await downloadData();
+//     // await downloadImagesArr(data.eras);
+//     return data
+// }
 
 //Загрузка isFirstOpen и eras
-const downloadData = async() =>{
+export async function  downloadData(){
     let data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
     // console.log(data)
 
