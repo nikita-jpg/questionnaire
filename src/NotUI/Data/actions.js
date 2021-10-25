@@ -1,4 +1,4 @@
-import {SET_INDEX_ERA, SET_INDEX_SURVEY, SAVE_USER_ANSWERS} from './consts'
+import {SET_INDEX_ERA, SET_INDEX_SURVEY, SAVE_USER_ANSWERS, SET_STATIC_DATA_FROM_SERVER, SET_INDEX_QUESTION} from './consts'
 
 export const Data_setIndexEra = (indexEra) => {
     return{
@@ -16,7 +16,7 @@ export const Data_setIndexSurvey = (indexSurvey) => {
 
 export const Data_setIndexQuestion= (indexQuestion) => {
     return{
-        type:SET_INDEX_SURVEY,
+        type:SET_INDEX_QUESTION,
         CurQuestionId: indexQuestion
     }
 }
@@ -25,5 +25,12 @@ export const Data_saveUserAnswers = (userAnswers) => {
     return{
         type:SAVE_USER_ANSWERS,
         userAnswers:userAnswers
+    }
+}
+
+export const Data_setStaticDataFromServer = (data) => {
+    return{
+        type:SET_STATIC_DATA_FROM_SERVER,
+        data:data
     }
 }

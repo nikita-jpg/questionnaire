@@ -66,7 +66,7 @@ const ListQuestions = ({id,
         return idAnswer
     }
 
-    const saveAnswersToState = () => {
+    const getPrepareDataToSend = () =>{
         let userAnswersForState = Object.assign([],userAnswers)
 
 
@@ -78,9 +78,11 @@ const ListQuestions = ({id,
             }
         }
 
-        dispath(saveUserAnswersAction(userAnswersForState))
+        return userAnswersForState
     }
-    const saveAnswersToServer= () => sendUserAnswersToServer(userAnswers)
+
+    const saveAnswersToState = () => {dispath(saveUserAnswersAction(getPrepareDataToSend()))}
+    const saveAnswersToServer= () => sendUserAnswersToServer(getPrepareDataToSend())
 
 
 

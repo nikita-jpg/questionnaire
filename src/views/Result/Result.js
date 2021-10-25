@@ -24,7 +24,8 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
     goToPollViewAction=()=>{},
 
     setIndexEra=()=>{},
-    setIndexSurveyAction=()=>{},
+    setCurSurveyIdAction=()=>{},
+    setCurQuestionIdAction=()=>{},
 
  }) => {
 
@@ -44,7 +45,8 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
         
         const goToPollView = () => dispatch(goToPollViewAction())
 
-        const setIndexSurvey = (indexSurvey) => dispatch(setIndexSurveyAction(indexSurvey))
+        const setIndexSurvey = (indexSurvey) => dispatch(setCurSurveyIdAction(indexSurvey))
+        const setIdQuestion = (idQuestion) => dispatch(setCurQuestionIdAction(idQuestion))
 
 //Работа с панелями
         const PANEL_RESULT = "PANEL_RESULT";
@@ -160,7 +162,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
         const [isVisibleAlert, setIsVisibleAlert] = useState(false);
 
         const openAlert = (indexQuestion) => {
-            // setIndexQuestion(indexQuestion);
+            setIdQuestion(indexQuestion);
             setIsVisibleAlert(true);
         }
         const closeAlert = () =>{

@@ -1,5 +1,5 @@
 import { initialState } from "./initialState"
-import {SET_INDEX_ERA, SET_INDEX_SURVEY, SAVE_USER_ANSWERS, SET_INDEX_QUESTION} from './consts'
+import {SET_INDEX_ERA, SET_INDEX_SURVEY, SAVE_USER_ANSWERS, SET_INDEX_QUESTION, SET_STATIC_DATA_FROM_SERVER} from './consts'
 
 export const dataReducer = (state = initialState, action) =>{
     switch(action.type){
@@ -32,6 +32,20 @@ export const dataReducer = (state = initialState, action) =>{
 
             return {...state, ...{UserAnswers:userAnswersState}}
         }
+
+        case SET_STATIC_DATA_FROM_SERVER:{
+            const data = action.data
+            return {...state, ...{
+                Eras:data.Eras,
+                Surveys:data.Surveys,
+                Questions:data.Questions,
+                AnswerOptions:data.AnswerOptions,
+                UserAnswers:data.UserAnswers
+            }}
+        }
+
+
+
         default:{
             return state
         }

@@ -14,21 +14,22 @@ const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 //Загрузка перед входом в основное окно приложения
 export async function firstDownload(){	
-    await downloadDefaultIMG();
+    // await downloadDefaultIMG();
     const data = await downloadData();
-    await downloadImagesArr(data.eras);
+    // await downloadImagesArr(data.eras);
     return data
 }
 
 //Загрузка isFirstOpen и eras
 const downloadData = async() =>{
     let data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
+    console.log(data)
 
     //Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard обращается к свойству subset
-    let stringData = JSON.stringify(data)
-    stringData = stringData.replaceAll('"surveys":', '"subset":')
-    stringData = stringData.replaceAll('"questions":', '"subset":')
-    data = JSON.parse(stringData)
+    // let stringData = JSON.stringify(data)
+    // stringData = stringData.replaceAll('"surveys":', '"subset":')
+    // stringData = stringData.replaceAll('"questions":', '"subset":')
+    // data = JSON.parse(stringData)
 
     return data;
 }
@@ -83,8 +84,9 @@ export async function downloadImageFromServer(imageName){
 
 // Отправка ответа на сервер
 export async function sendUserAnswersToServer(userAnswers){
-    return ""
-    await http.post("http://127.0.0.1:18301/giveAnswers",{
+    const data = await http.post("http://127.0.0.1:18301/giveAnswers",{
         userAnswers:userAnswers
-    }).then(data=>{return data.data})
+    }).then(data=>{console.log(data);return data.data})
+
+    return data
 }

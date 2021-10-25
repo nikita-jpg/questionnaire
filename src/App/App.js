@@ -21,7 +21,7 @@ import SpinnerView from '../views/SpinnerView/SpinnerView';
 // import axios from 'axios';
 
 import TestView from '../components/TestView/TestView';
-import { Provider, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 
 //Actions
 import * as appNavigate from './Actions'
@@ -47,6 +47,7 @@ import PoolView from '../views/PoolView/PoolView';
 const App = ({results, MAX_SCORE, 
 	savePercentQuiz = (indexAge, indexQuiz, percentProgress) => {}}) => {
 	
+	const dispatch = useDispatch()
 
 	// логика переключения между View
 	const VIEW_ID_START_WINDOW = "VIEW_ID_START_WINDOW";
@@ -146,24 +147,19 @@ const App = ({results, MAX_SCORE,
 			]
 		}
 	]);
-	const [isNeedDateLoad,setIsNeedDateLoad] = useState(true)
+
 
 	useEffect(() => {
-		// if(isNeedDateLoad){
 
-		// 	server.firstDownload().then(data=>{
-		// 		// setEras(data.eras)
+		server.firstDownload().then(info=>{
+			dispatch(data.Data_setStaticDataFromServer(info))
 
-		// 		if(true){
-		// 			goToViewStartWindow();
-		// 		}else{
-		// 			goToViewListAgeAndQuizes();
-		// 		}
-		// 	})
-
-		// 	setIsNeedDateLoad(false);
-		// }
-
+			if(true){
+				goToViewStartWindow();
+			}else{
+				goToViewListAgeAndQuizes();
+			}
+		})
 		//Обновляем текущую ширину
 
 		// additionalActions.Additional_setCurHeight(document.getElementById('root').scrollHeight)
@@ -336,7 +332,8 @@ const App = ({results, MAX_SCORE,
 									id={VIEW_ID_RESULT}
 									goToSurveyViewAction={appNavigate.App_goToSurveyView}
 									goToPollViewAction={appNavigate.App_goToPollView}
-									setIndexSurveyAction={data.Data_setIndexSurvey}
+									setCurSurveyIdAction={data.Data_setIndexSurvey}
+									setCurQuestionIdAction={data.Data_setIndexQuestion}
 									// percent={results[indexResuslt].percent}
 									// year={results[indexResuslt].year}
 									// historicalEvent={results[indexResuslt].historicalEvent}

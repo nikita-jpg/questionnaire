@@ -38,12 +38,16 @@ const ListQuizes = ({ id, title, surveys,
             numberOfQuestions: surveyResult.total,
             imageName: survey.image.imageName,
             description: survey.description,
-            isBtnNeed: false
+            isBtnNeed: surveyResult.score !== 0 ? true : false 
         }
     })
     
     const cardClick = (indexSurvey) => () =>{
         createOnClickItemQuizes(surveys[indexSurvey].idSurvey)
+    }
+
+    const cardBtnClick = (indexSurvey) => () =>{
+        createOnClickItemQuizesBtn(surveys[indexSurvey].idSurvey)
     }
 
     return (
@@ -53,7 +57,7 @@ const ListQuizes = ({ id, title, surveys,
                 <ListCard
                     info={info}
                     cardClick={cardClick}
-                    btnCardClick={createOnClickItemQuizesBtn}
+                    btnCardClick={cardBtnClick}
                 />
             </div>
 

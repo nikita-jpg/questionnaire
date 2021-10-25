@@ -72,7 +72,6 @@ export const initialState = {
 	Questions:
 	[
 		{
-			idEra:1,
 			idSurvey:1,
 			idQuestion: 1,
 			textQuestion: "Вопрос1",
@@ -83,7 +82,6 @@ export const initialState = {
 			}
 		},
 		{
-			idEra:1,
 			idSurvey:1,
 			idQuestion: 2,
 			textQuestion: "Вопрос2",
@@ -94,7 +92,6 @@ export const initialState = {
 			}
 		},
 		{
-			idEra:1,
 			idSurvey:2,
 			idQuestion: 3,
 			textQuestion: "Вопрос2",
@@ -109,72 +106,54 @@ export const initialState = {
 	AnswerOptions:
 	[
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 1,
 			idAnswerOption: 1,
 			text: "Вариант4",
 			score: 0
 		},
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 1,
 			idAnswerOption: 2,
 			text: "Вариант4",
 			score: 0
 		},
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 1,
 			idAnswerOption: 3,
 			text: "Вариант4",
 			score: 1
 		},
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 2,
 			idAnswerOption: 4,
 			text: "Вариант4",
 			score: 0
 		},
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 2,
 			idAnswerOption: 5,
 			text: "Вариант4",
 			score: 0
 		},
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 2,
 			idAnswerOption: 6,
 			text: "Вариант4",
 			score: 1
 		},
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 3,
 			idAnswerOption: 7,
 			text: "Вариант4",
 			score: 1
 		},
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 3,
 			idAnswerOption: 8,
 			text: "Вариант4",
 			score: 0
 		},
 		{
-			idEra: 1,
-			idSurvey: 1,
 			idQuestion: 3,
 			idAnswerOption: 9,
 			text: "Вариант4",

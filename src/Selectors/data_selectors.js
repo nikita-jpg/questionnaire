@@ -105,6 +105,7 @@ export const getCurUserAnswer = (state) => {
 // Результаты
 export const isAnswerOptionTrue = (idAnswerOption) => (state) =>{
     const answerOption = getAnswerOptionById(idAnswerOption)(state)
+
     return answerOption.score === 1 ? true : false
 }
 export const isQuestionTrue = (idQuestion) => (state) => {

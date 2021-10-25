@@ -37,7 +37,7 @@ const ListCard = ( { info,percentProgress,numberOfQuestions,
                                 numberOfQuestions={record.numberOfQuestions}
                                 
                                 cardClick={cardClick(i)}
-                                btnCardClickObj={{ isBtnNeed:record.isBtnNeed, func: () => btnCardClick(i)}}
+                                btnCardClickObj={{ isBtnNeed:record.isBtnNeed, func: btnCardClick(i)}}
 
                                 imageName={record.imageName}
                                 description={record.description}
