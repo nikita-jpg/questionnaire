@@ -19,7 +19,7 @@ const AlertQuestionResult = ({
 
     let userAnswerText = "Вы не ответили";
     answerOptions.map((answerOption)=>{
-        if(answerOption.idAnswerOption === userAnswer.idAnswerOption){
+        if((userAnswer !== undefined) && (answerOption.idAnswerOption === userAnswer.idAnswerOption)){
             userAnswerText = answerOption.text
         }
     })
@@ -88,7 +88,13 @@ const AlertQuestionResult = ({
                             {
                                 answerOptions.map((answerOption, i) => {
                                     return (
-                                        answerOption.idAnswerOption !== userAnswer.idAnswerOption &&
+                                        (answerOption.idAnswerOption !== rightAnswer.idAnswerOption)
+                                        &&
+                                        (
+                                            ((userAnswer !== undefined) && (answerOption.idAnswerOption !== userAnswer.idAnswerOption))
+                                            ||(userAnswer === undefined)
+                                        ) 
+                                        &&
                                         <div
                                             className="AnswersQuestions__alert__text-answer"
                                             key={answerOption.text}

@@ -2,7 +2,6 @@ import { Icon24Back } from '@vkontakte/icons';
 import { Alert, Div, Panel, PanelHeader, PanelHeaderButton, View } from '@vkontakte/vkui';
 import React, { useState } from 'react';
 import Header from '../../../components/Header/Header';
-import Arrow from './ItemAnswerQuestion/Arrow';
 // import './ItemAnswerQuestion/ItemAnswerQuestion.css';
 
 import "./PanelAnswersQuestions.css";
@@ -10,6 +9,7 @@ import ItemAnswerQuestion from './ItemAnswerQuestion/ItemAnswerQuestion';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
 import { QUESTION_NOT_ANSWERED } from '../../../NotUI/Data/consts';
+import { useSelector } from 'react-redux';
 
 const isQuestionTrue = (idAnswerOptionUser, arrQuestions) =>{
     let ret = false;
@@ -81,6 +81,7 @@ const PanelAnswersQuestions = ({id, questions,
                         <ItemAnswerQuestion
                             indexQuestion={i}
                             questionTitle={question.textQuestion}
+                            idQuestion={question.idQuestion}
                             openAlert={()=>openAlert(question.idQuestion)}
                             // userAnswerText={getUserAnswerText(question.userAnswer, question.answerOptions)}
                             // rightAnswerText={getRightAnswerOption(question.answerOptions)}

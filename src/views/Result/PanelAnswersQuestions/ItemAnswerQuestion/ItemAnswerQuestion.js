@@ -4,17 +4,19 @@ import animate from '../../../../anime/animate';
 import easeOut from '../../../../anime/easeOut';
 import BlackBackground from '../../../../components/BlackBackground/BlackBackground';
 import ButtonWrapper from '../../../../components/ButtonWrapper/ButtonWrapper';
-import Arrow, { colorsArrow, directionArrow } from './Arrow';
 import { Icon16CheckCircleOutline } from '@vkontakte/icons';
 import { Icon16CancelCircleOutline } from '@vkontakte/icons';
 
 import "./ItemAnswerQuestion.css";
 import AlertQuestionResult from '../../../../components/AlertQuestionResult/AlertQuestionResult';
+import { useSelector } from 'react-redux';
+import { isQuestionTrue } from '../../../../Selectors/data_selectors';
 
-const ItemAnswerQuestion = ({userAnswerText, questionTitle, isWin, rightAnswerText, arrOptioAnswersWithoutRight, 
+const ItemAnswerQuestion = ({userAnswerText,idQuestion, questionTitle, rightAnswerText, arrOptioAnswersWithoutRight, 
     openAlert = () => {} }) => {
 
     const ICON_SIZE = 24;
+    const isWin = useSelector(isQuestionTrue(idQuestion))
 
     // const openAlert = () =>{
     //     setAlert(

@@ -170,11 +170,17 @@ const App = ({results, MAX_SCORE,
 
 				// Загрузка картинок эпох
 				server.downloadImagesArr(erasImages).then(res=>{
-					if(info.UserData.isFirstOpen){
-						dispatch(appNavigate.App_goToStartView())
-					}else{
-						dispatch(appNavigate.App_goToPollView())
-					}
+
+					// Загрузка svg-шек
+					server.downloadDefaultIMG().then((res)=>{
+						if(info.UserData.isFirstOpen){
+							dispatch(appNavigate.App_goToStartView())
+						}else{
+							dispatch(appNavigate.App_goToPollView())
+						}
+					})
+					.catch(err=>console.log(err))
+
 				})
 				.catch(err=>console.log(err))
 
