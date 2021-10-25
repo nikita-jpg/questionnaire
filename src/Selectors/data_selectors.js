@@ -229,6 +229,9 @@ export const getResultsEras = (state) =>{
 
 
 
+//Данные пользователя
+export const getIsFirstOpen = (state) => state.Data.UserData.isFirstOpen
+
 
 
 

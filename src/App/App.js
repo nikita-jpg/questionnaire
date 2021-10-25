@@ -36,6 +36,7 @@ import * as viewsId from './Constants'
 
 import {selectCurrentView} from '../Selectors/app_selectors'
 import PoolView from '../views/PoolView/PoolView';
+import { getIsFirstOpen } from '../Selectors/data_selectors';
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
@@ -154,10 +155,10 @@ const App = ({results, MAX_SCORE,
 		server.firstDownload().then(info=>{
 			dispatch(data.Data_setStaticDataFromServer(info))
 
-			if(true){
-				goToViewStartWindow();
+			if(info.UserData.isFirstOpen){
+				dispatch(appNavigate.App_goToStartView())
 			}else{
-				goToViewListAgeAndQuizes();
+				dispatch(appNavigate.App_goToPollView())
 			}
 		})
 		//Обновляем текущую ширину

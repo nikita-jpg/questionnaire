@@ -1,5 +1,13 @@
 import * as viewsConsts from './Constants'
 
+
+export const App_goToStartView = () => {
+    return{
+        type:viewsConsts.VIEW_ID_START_WINDOW
+    }
+}
+
+
 export const App_goToPollView = () => {
     return{
         type:viewsConsts.VIEW_ID_LIST_AGE_AND_QUIZES

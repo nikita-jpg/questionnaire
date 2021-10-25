@@ -4,6 +4,10 @@ export const initialState = {
 	CurSurveyId:1,
 	CurQuestionId:1,
 
+	// UserData:{
+	// 	isFirstOpen:false
+	// },
+
 	Eras:
 	[
 		{

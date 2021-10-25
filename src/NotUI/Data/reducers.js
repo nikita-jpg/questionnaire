@@ -36,6 +36,7 @@ export const dataReducer = (state = initialState, action) =>{
         case SET_STATIC_DATA_FROM_SERVER:{
             const data = action.data
             return {...state, ...{
+                // UserData:data.UserData,
                 Eras:data.Eras,
                 Surveys:data.Surveys,
                 Questions:data.Questions,

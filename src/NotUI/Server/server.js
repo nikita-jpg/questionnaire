@@ -23,7 +23,7 @@ export async function firstDownload(){
 //Загрузка isFirstOpen и eras
 const downloadData = async() =>{
     let data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
-    console.log(data)
+    // console.log(data)
 
     //Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard обращается к свойству subset
     // let stringData = JSON.stringify(data)
