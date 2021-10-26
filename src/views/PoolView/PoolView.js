@@ -23,7 +23,6 @@ const PoolView = ({id,
 	//Получение данных
 	const eras = useSelector(getEras)
 	const erasResults = {tottal:0, score:0}
-	const eraTitle = useSelector(getCurEra).russianName
 
 	
 	const surveys = useSelector(getCurSurveys)
@@ -119,7 +118,6 @@ const PoolView = ({id,
 
         <ListQuizes 
             id={LIST_SURVEYS_PANEL} 
-            title={eraTitle} 
             surveys={surveys} 
             onBack={onBackListQuizes} 
             createOnClickItemQuizes={createOnClickItemQuizes}

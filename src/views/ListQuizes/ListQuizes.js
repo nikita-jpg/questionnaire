@@ -7,9 +7,9 @@ import Header from '../../components/Header/Header';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnswersResultSurvey } from '../../help';
-import { getResultCurSurveys } from '../../Selectors/data_selectors';
+import { getCurEra, getResultCurSurveys } from '../../Selectors/data_selectors';
 
-const ListQuizes = ({ id, title, surveys,
+const ListQuizes = ({ id, surveys,
     onBack = () => { }, 
     createOnClickItemQuizesBtn = (index) => null , 
     createOnClickItemQuizes = (index) => null 
@@ -28,6 +28,7 @@ const ListQuizes = ({ id, title, surveys,
     // })
 
     const surveysResult = useSelector(getResultCurSurveys);
+    const title = useSelector(getCurEra).russianName
     let surveyResult = {};
 
     const info = surveys.map((survey)=>{

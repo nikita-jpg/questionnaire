@@ -5,7 +5,7 @@ import { downloadImageFromServer } from '../../../../NotUI/Server/server';
 import { Div } from '@vkontakte/vkui';
 import { CSSTransition } from 'react-transition-group';
 
-const ImageCard = (imageName, sourceImageLink) => {
+const ImageCard = ({imageName, sourceImageLink}) => {
 
     //Управление состояниями карточки (картинка/источник)
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)

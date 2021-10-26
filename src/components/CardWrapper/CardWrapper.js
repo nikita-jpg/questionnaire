@@ -14,7 +14,7 @@ const CardWrapper = ({title, textBtn, percentProgress,numberOfQuestions,imageNam
     const [image, setImage] = useState(defaultImage)
 
     //Загружаем основную картинку
-    // downloadImage(imageName).then(imageData=>{setImage(imageData)})
+    downloadImage(imageName).then(imageData=>{setImage(imageData)})
 
     const down = () =>{
         return(

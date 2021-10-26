@@ -7,7 +7,7 @@ import { getCurSurvey, getCurEraSurveys, getIndexSurvey, testSelector } from '..
 import './ResultCards.css'
 
 const makeUsedData = (survey, surveyResult) =>{
-    console.log(survey)
+    // console.log(survey)
     return(
         {
             russianName: survey.russianName,
