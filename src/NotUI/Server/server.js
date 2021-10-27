@@ -8,8 +8,8 @@ const http = axios.create({
         Authorization: `${window.location.search.slice(1)}`
     }
 });
-const DEFAULT_URL = "http://127.0.0.1:18301/"
-export const DEFAULT_URL_DOWNLOAD_IMG = "http://127.0.0.1:18301/getImage?imageName="
+export const DEFAULT_URL = "https://f313-212-16-10-199.ngrok.io/"
+export const DEFAULT_URL_DOWNLOAD_IMG = "https://f313-212-16-10-199.ngrok.io/getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 
@@ -23,11 +23,10 @@ const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 //Загрузка isFirstOpen и eras
 export async function  downloadData(){
-    console.log("data download started")
+
     let data = await http.get(DEFAULT_URL)
-    .then(data=>{return data.data})
-    .catch(err => console.log(err + " - downloadData error"))
-    console.log(data)
+                        .then(data=>{return data.data})
+                        .catch(err => console.log(err + " - downloadData error"))
 
     //Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard обращается к свойству subset
     // let stringData = JSON.stringify(data)
@@ -60,6 +59,8 @@ export async function downloadImgFromFolder(path){
 }
 
 export async function downloadImagesArr(arr){
+
+    let retArr = []
     for(let i=0;i<arr.length;i++){
         await downloadImageFromServer(arr[i]).then(imageData=>{
             let img = new Image();
@@ -71,15 +72,17 @@ export async function downloadImagesArr(arr){
             }
             img.onload = () => {
                 window[img.src] = img
+                retArr.push(img.src)
                 return
             }
         })
     }
+    return retArr
 }
+
 
 // Загрузка изображений с сервера
 export async function downloadImageFromServer(imageName){
-    // const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
     const image = await http.get(DEFAULT_URL+"getImage?imageName=" + imageName,{
         responseType: 'arraybuffer'
     }).then(response => Buffer.from(response.data, 'binary').toString('base64'))

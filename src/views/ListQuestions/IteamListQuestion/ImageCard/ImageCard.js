@@ -5,7 +5,7 @@ import { DEFAULT_URL_DOWNLOAD_IMG, downloadImageFromServer } from '../../../../N
 import { Div } from '@vkontakte/vkui';
 import { CSSTransition } from 'react-transition-group';
 
-const ImageCard = ({imageName, sourceImageLink}) => {
+const ImageCard = ({image, sourceImageLink}) => {
 
     //Управление состояниями карточки (картинка/источник)
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
@@ -14,7 +14,7 @@ const ImageCard = ({imageName, sourceImageLink}) => {
 
     //Картинка
     //Устанавливаем дефолтую картинку на карточки
-    const [image, setImage] = useState(defaultImage)
+    // const [image, setImage] = useState(defaultImage)
     //Загружаем основную картинку
     // useEffect(()=>{
     //     downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
@@ -24,15 +24,15 @@ const ImageCard = ({imageName, sourceImageLink}) => {
     return(
         <div className="Image__container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
-        <img
+        {/* <img
             className="Image__image_default" 
             src={defaultImage}
-        />
+        /> */}
 
 
         <img
             className="Image__image" 
-            src={DEFAULT_URL_DOWNLOAD_IMG + imageName}
+            src={image}
         />
         
         <CSSTransition 

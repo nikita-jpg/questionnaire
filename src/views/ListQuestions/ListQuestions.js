@@ -31,25 +31,28 @@ const ListQuestions = ({id,
     //Получение данных
     const arrQuestions = useSelector(getCurQuestions)
     const curSurveyId = useSelector(getCurSurveyId)
+    const [imageArr, setImageArr] = useState([])
     const dispath = useDispatch();
 
     //Внутренняя навигация
-    const [activePanel, setActivePanel] = useState(0);
+    const [activePanel, setActivePanel] = useState(PANEL_LOADING);
     const setIndexQuestionAndHistory = (newIndex) => {
         setActivePanel(newIndex)
         changeHistory(newIndex)
     }
 
-    //Подгрузка картинок
+    // //Подгрузка картинок
     useEffect(()=>{
 
-        let imageArr = [];
+        let imageArrNames = [];
         arrQuestions.map((question)=>{
-            imageArr.push(question.image.imageName)
+            imageArrNames.push(question.image.imageName)
         })
 
-        downloadImagesArr(imageArr)
+        downloadImagesArr(imageArrNames)
         .then((res)=>{
+            // console.log(res)
+            setImageArr(res)
             setActivePanel(0)
         })
 
@@ -292,6 +295,7 @@ const ListQuestions = ({id,
                         question={question}
                         countQuestions={arrQuestions.length}
                         isModalOpen={isModalOpen}
+                        image={imageArr[i]}
 
                         giveAnswer={giveAnswer}
                         goToNextQuestion={goToNextQuestion}

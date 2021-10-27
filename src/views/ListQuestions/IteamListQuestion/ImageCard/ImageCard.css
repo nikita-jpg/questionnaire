@@ -18,9 +18,10 @@
 
 
 .Image__image {
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
+    height: 200px;
     width: 100%;
     z-index: 1;
     border-radius: 8px;
