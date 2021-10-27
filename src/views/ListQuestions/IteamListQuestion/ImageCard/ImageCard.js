@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ImageCard.css"
 import defaultImage from '../../../../svg/imgLoader.svg'
 import { downloadImageFromServer } from '../../../../NotUI/Server/server';
@@ -16,7 +16,10 @@ const ImageCard = ({imageName, sourceImageLink}) => {
     //Устанавливаем дефолтую картинку на карточки
     const [image, setImage] = useState(defaultImage)
     //Загружаем основную картинку
-    downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
+    useEffect(()=>{
+        downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
+    },[])
+
 
     return(
         <div className="Image__container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
