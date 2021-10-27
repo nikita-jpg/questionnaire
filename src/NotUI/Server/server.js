@@ -8,7 +8,7 @@ const http = axios.create({
         Authorization: `${window.location.search.slice(1)}`
     }
 });
-
+const DEFAULT_URL = "https://b88f-212-16-10-199.ngrok.io/"
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 
@@ -22,8 +22,11 @@ const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 //Загрузка isFirstOpen и eras
 export async function  downloadData(){
-    let data = await http.get("http://127.0.0.1:18301/").then(data=>{return data.data})
-    // console.log(data)
+    console.log("data download started")
+    let data = await http.get(DEFAULT_URL)
+    .then(data=>{return data.data})
+    .catch(err => console.log(err + " - downloadData error"))
+    console.log(data)
 
     //Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard обращается к свойству subset
     // let stringData = JSON.stringify(data)
@@ -47,7 +50,7 @@ export async function downloadImgFromFolder(path){
     img.src = reqSvgs(path);
 
     img.onerror = () => {
-        console.log(img.src + " error")
+        console.log(img.src + " - downloadImgFromFolder error")
     }
     img.onload = () => {
         window[img.src] = img
@@ -76,7 +79,7 @@ export async function downloadImagesArr(arr){
 // Загрузка изображений с сервера
 export async function downloadImageFromServer(imageName){
     // const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
-    const image = await http.get("http://127.0.0.1:18301/getImage?imageName=" + imageName,{
+    const image = await http.get(DEFAULT_URL+"getImage?imageName=" + imageName,{
         responseType: 'arraybuffer'
     }).then(response => Buffer.from(response.data, 'binary').toString('base64'))
     
@@ -85,9 +88,9 @@ export async function downloadImageFromServer(imageName){
 
 // Отправка ответа на сервер
 export async function sendUserAnswersToServer(userAnswers){
-    const data = await http.post("http://127.0.0.1:18301/giveAnswers",{
+    const data = await http.post(DEFAULT_URL+"giveAnswers",{
         userAnswers:userAnswers
-    }).then(data=>{console.log(data);return data.data})
+    }).then(data=>{return data.data})
 
-    return data
+    return "data"
 }

@@ -34,7 +34,7 @@ const ListQuestions = ({id,
     const dispath = useDispatch();
 
     //Внутренняя навигация
-    const [activePanel, setActivePanel] = useState(PANEL_LOADING);
+    const [activePanel, setActivePanel] = useState(0);
     const setIndexQuestionAndHistory = (newIndex) => {
         setActivePanel(newIndex)
         changeHistory(newIndex)
@@ -173,8 +173,8 @@ const ListQuestions = ({id,
     }
 
     const finishSurveyWithOutCheck = () =>{
-        saveAnswersToState()
-        saveAnswersToServer()
+        // saveAnswersToState()
+        // saveAnswersToServer()
         goToResultView()
     }
 
@@ -277,7 +277,7 @@ const ListQuestions = ({id,
     return (
         <View id={id} 
             activePanel={activePanel} 
-            modal={modal} 
+            // modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
             popout={alert}

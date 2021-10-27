@@ -16,9 +16,9 @@ const ImageCard = ({imageName, sourceImageLink}) => {
     //Устанавливаем дефолтую картинку на карточки
     const [image, setImage] = useState(defaultImage)
     //Загружаем основную картинку
-    useEffect(()=>{
-        downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
-    },[])
+    // useEffect(()=>{
+    //     downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
+    // },[])
 
 
     return(
@@ -26,7 +26,7 @@ const ImageCard = ({imageName, sourceImageLink}) => {
 
         <img
             className="Image__image" 
-            src={image}
+            src={"https://b88f-212-16-10-199.ngrok.io/getImage?imageName=era_RF.jpeg"}
         />
         
         <CSSTransition 

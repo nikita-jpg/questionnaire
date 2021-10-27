@@ -7,7 +7,7 @@
   "scripts": {
     "start": "cross-env PORT=10887 HTTPS=true react-scripts start",
     "ap": "cross-env PORT=10888 HTTPS=false react-scripts start",
-    "ng": "ngrok http 10888",
+    "ng": "ngrok http 18301",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
