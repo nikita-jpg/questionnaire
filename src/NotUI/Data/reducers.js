@@ -1,22 +1,23 @@
 import { initialState } from "./initialState"
-import {SET_INDEX_ERA, SET_INDEX_SURVEY, SAVE_USER_ANSWERS, SET_INDEX_QUESTION, SET_STATIC_DATA_FROM_SERVER} from './consts'
+import * as consts from './consts'
 
 export const dataReducer = (state = initialState, action) =>{
+
     switch(action.type){
 
-        case SET_INDEX_ERA:{
+        case consts.SET_INDEX_ERA:{
             return {...state, ...{CurEraId: action.CurEraId}}
         }
 
-        case SET_INDEX_SURVEY:{
+        case consts.SET_INDEX_SURVEY:{
             return {...state, ...{CurSurveyId: action.CurSurveyId}}
         }
 
-        case SET_INDEX_QUESTION:{
+        case consts.SET_INDEX_QUESTION:{
             return {...state, ...{CurQuestionId: action.CurQuestionId}}
         }
 
-        case SAVE_USER_ANSWERS:{
+        case consts.SAVE_USER_ANSWERS:{
             let userAnswersState = [...state.UserAnswers].filter((userAnswer)=>userAnswer.idSurvey !== state.CurSurveyId);
             let userAnswers = action.userAnswers;
             
@@ -33,7 +34,7 @@ export const dataReducer = (state = initialState, action) =>{
             return {...state, ...{UserAnswers:userAnswersState}}
         }
 
-        case SET_STATIC_DATA_FROM_SERVER:{
+        case consts.SET_STATIC_DATA_FROM_SERVER:{
             const data = action.data
             return {...state, ...{
                 // UserData:data.UserData,
@@ -45,7 +46,39 @@ export const dataReducer = (state = initialState, action) =>{
             }}
         }
 
+        case consts.SET_IMAGES_ERAS:{
+            const images = action.images
+            let imagesFromState = Object.assign([],state.Images)
+            images.map((image)=>{
+                imagesFromState.Eras.push(image)
+            })
+            
+            return{...state, ...{
+                Images: imagesFromState
+            }}
+        }
 
+        case consts.SET_IMAGES_SURVEYS:{
+            const images = action.images
+            let imagesFromState = Object.assign([],state.Images)
+            images.map((image)=>{
+                imagesFromState.Surveys.push(image)
+            })
+            
+            return{...state, ...{
+                Images: imagesFromState
+            }}
+        }
+
+        case consts.SET_IMAGES_CUR:{
+            const images = action.images
+            let imagesFromState = Object.assign([],state.Images)
+            imagesFromState.CurImages = images
+            
+            return{...state, ...{
+                Images: imagesFromState
+            }}
+        }
 
         default:{
             return state

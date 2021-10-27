@@ -4,12 +4,14 @@ import defaultImage from '../../../../svg/imgLoader.svg'
 import { DEFAULT_URL_DOWNLOAD_IMG, downloadImageFromServer } from '../../../../NotUI/Server/server';
 import { Div } from '@vkontakte/vkui';
 import { CSSTransition } from 'react-transition-group';
+import { useSelector } from 'react-redux';
 
 const ImageCard = ({image, sourceImageLink}) => {
 
     //Управление состояниями карточки (картинка/источник)
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
     const onLinkClick = (e) => e.stopPropagation();
+    const imageFromState = useSelector()
     
 
     //Картинка

@@ -89,6 +89,9 @@ const App = ({results, MAX_SCORE,
 	// первый раз открываем Result
 	const [isFirstOpenResult, setIsFirstOpenResult] = useState(true);
 
+	const sendImagesToStateEras = (images) => dispatch(data.Data_setImagesEras(images))
+	const sendImagesToStateSurveys = (images) => dispatch(data.Data_setImagesSurveys(images))
+
 
 	const [eras, setEras] = useState(
 	[
@@ -149,13 +152,16 @@ const App = ({results, MAX_SCORE,
 		}
 	]);
 
+	const [eraImages, setEraImages] = useState([])
+	const [surveyImages, setSurveyImages] = useState([])
+
 
 	useEffect(() => {
 
 		// dispatch(appNavigate.App_goToStartView())
 		server.downloadData().then(info=>{
 			dispatch(data.Data_setStaticDataFromServer(info))
-
+			// console.log(info)
 			let erasImages = [];
 			info.Eras.map((era)=>{
 				erasImages.push(era.image.imageName)
@@ -163,6 +169,7 @@ const App = ({results, MAX_SCORE,
 
 			// Загрузка картинок эр
 			server.downloadImagesArr(erasImages).then(res=>{
+				sendImagesToStateEras(res)
 
 				let surveysImages = [];
 				info.Surveys.map((survey)=>{
@@ -170,7 +177,8 @@ const App = ({results, MAX_SCORE,
 				})
 
 				// Загрузка картинок эпох
-				server.downloadImagesArr(erasImages).then(res=>{
+				server.downloadImagesArr(surveysImages).then(newRes=>{
+					sendImagesToStateSurveys(newRes)
 
 					// Загрузка svg-шек
 					server.downloadDefaultIMG().then((res)=>{
@@ -340,6 +348,8 @@ const App = ({results, MAX_SCORE,
 									goToPollView={appNavigate.App_goToPollView}/>
 
 								<PoolView
+									eraImages={eraImages}
+									surveyImages={surveyImages}
 									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
 									setIndexEraAction={data.Data_setIndexEra}
 									setIndexSurveyAction={data.Data_setIndexSurvey}

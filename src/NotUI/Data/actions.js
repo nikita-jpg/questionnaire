@@ -1,4 +1,4 @@
-import {SET_INDEX_ERA, SET_INDEX_SURVEY, SAVE_USER_ANSWERS, SET_STATIC_DATA_FROM_SERVER, SET_INDEX_QUESTION} from './consts'
+import {SET_INDEX_ERA, SET_INDEX_SURVEY, SAVE_USER_ANSWERS, SET_STATIC_DATA_FROM_SERVER, SET_INDEX_QUESTION, SET_IMAGES, SET_IMAGES_ERAS, SET_IMAGES_SURVEYS, SET_IMAGES_CUR} from './consts'
 
 export const Data_setIndexEra = (indexEra) => {
     return{
@@ -28,9 +28,34 @@ export const Data_saveUserAnswers = (userAnswers) => {
     }
 }
 
+
 export const Data_setStaticDataFromServer = (data) => {
     return{
         type:SET_STATIC_DATA_FROM_SERVER,
         data:data
+    }
+}
+
+
+
+//Картинки
+export const Data_setImagesEras = (images) => {
+    return{
+        type:SET_IMAGES_ERAS,
+        images:images
+    }
+}
+
+export const Data_setImagesSurveys = (images) => {
+    return{
+        type:SET_IMAGES_SURVEYS,
+        images:images
+    }
+}
+
+export const Data_setImages_Cur = (images) => {
+    return{
+        type:SET_IMAGES_CUR,
+        images:images
     }
 }

@@ -178,7 +178,14 @@ export const initialState = {
 			idQuestion:2,
 			idAnswerOption:6,
 		}
-	]
+	],
+
+	Images:{
+		Eras:[],
+		Surveys:[],
+		CurImages:[]
+	}
+
 
 
     // indexEraAndSurvey:

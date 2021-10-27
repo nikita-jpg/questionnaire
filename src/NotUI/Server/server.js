@@ -8,8 +8,8 @@ const http = axios.create({
         Authorization: `${window.location.search.slice(1)}`
     }
 });
-export const DEFAULT_URL = "https://f313-212-16-10-199.ngrok.io/"
-export const DEFAULT_URL_DOWNLOAD_IMG = "https://f313-212-16-10-199.ngrok.io/getImage?imageName="
+export const DEFAULT_URL = "https://dade-212-16-10-199.ngrok.io/"
+export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 
@@ -63,18 +63,21 @@ export async function downloadImagesArr(arr){
     let retArr = []
     for(let i=0;i<arr.length;i++){
         await downloadImageFromServer(arr[i]).then(imageData=>{
-            let img = new Image();
-            // img.src = imageData;
-            img.src = imageData
+            // let img = new Image();
+            // // img.src = imageData;
+            // img.src = imageData
+            retArr.push({
+                imageName:arr[i], 
+                data:imageData
+            })
 
-            img.onerror = () => {
-                console.log(img.src + " error")
-            }
-            img.onload = () => {
-                window[img.src] = img
-                retArr.push(img.src)
-                return
-            }
+            // img.onerror = () => {
+            //     console.log(img.src + " error")
+            // }
+            // img.onload = () => {
+            //     window[img.src] = img
+            //     return
+            // }
         })
     }
     return retArr

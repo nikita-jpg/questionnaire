@@ -9,7 +9,7 @@ import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
 
 
-const PoolView = ({id, 
+const PoolView = ({id,
 	setIndexEraAction=()=>{}, 
 	setIndexSurveyAction=()=>{}, 
 	goToSurveyViewAction=()=>{},
@@ -23,6 +23,7 @@ const PoolView = ({id,
 	//Получение данных
 	const eras = useSelector(getEras)
 	const erasResults = {tottal:0, score:0}
+
 
 	
 	const surveys = useSelector(getCurSurveys)

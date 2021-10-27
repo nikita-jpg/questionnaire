@@ -7,7 +7,7 @@ import Header from '../../components/Header/Header';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnswersResultSurvey } from '../../help';
-import { getCurEra, getResultCurSurveys } from '../../Selectors/data_selectors';
+import { getCurEra, getImages, getResultCurSurveys } from '../../Selectors/data_selectors';
 
 const ListQuizes = ({ id, surveys,
     onBack = () => { }, 
@@ -27,6 +27,8 @@ const ListQuizes = ({ id, surveys,
     //     }
     // })
 
+    // const newImages = useSelector(getImages)
+    // console.log(newImages)
     const surveysResult = useSelector(getResultCurSurveys);
     const title = useSelector(getCurEra).russianName
     let surveyResult = {};

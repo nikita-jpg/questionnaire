@@ -241,8 +241,24 @@ export const getIsFirstOpen = (state) => state.Data.UserData.isFirstOpen
 
 //Получить все эры
 export const getEras = (state) => state.Data.Eras
+export const getImages = (state) => {
+    return state.Data.Images
+}
 
+export const getImageByName = (imageName) => (state) => {
 
+    const values = Object.values(state.Data.Images)
+
+    const images = [].concat(...values)
+    let ret = images.filter(image=>image.imageName === imageName)
+
+    if(ret === undefined){
+        return undefined
+    }
+    else{
+        return ret[0]
+    }
+}
 
 
 // export const getArrQuestions = (state) => {
