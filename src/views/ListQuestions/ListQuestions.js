@@ -173,8 +173,8 @@ const ListQuestions = ({id,
     }
 
     const finishSurveyWithOutCheck = () =>{
-        // saveAnswersToState()
-        // saveAnswersToServer()
+        saveAnswersToState()
+        saveAnswersToServer()
         goToResultView()
     }
 
@@ -277,7 +277,7 @@ const ListQuestions = ({id,
     return (
         <View id={id} 
             activePanel={activePanel} 
-            // modal={modal} 
+            modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
             popout={alert}

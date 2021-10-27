@@ -37,10 +37,10 @@ const IteamListQuestion = ({ id, question,
 
             <div className="IteamListQuestion">
 
-                {/* <ImageCard
+                <ImageCard
                     imageName={question.image.imageName}
                     sourceImageLink={question.image.sourceImageLink}
-                /> */}
+                />
 
                 <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
 

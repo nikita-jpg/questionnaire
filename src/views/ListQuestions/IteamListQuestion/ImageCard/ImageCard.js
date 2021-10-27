@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./ImageCard.css"
 import defaultImage from '../../../../svg/imgLoader.svg'
-import { downloadImageFromServer } from '../../../../NotUI/Server/server';
+import { DEFAULT_URL_DOWNLOAD_IMG, downloadImageFromServer } from '../../../../NotUI/Server/server';
 import { Div } from '@vkontakte/vkui';
 import { CSSTransition } from 'react-transition-group';
 
@@ -25,8 +25,14 @@ const ImageCard = ({imageName, sourceImageLink}) => {
         <div className="Image__container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
 
         <img
+            className="Image__image_default" 
+            src={defaultImage}
+        />
+
+
+        <img
             className="Image__image" 
-            src={"https://b88f-212-16-10-199.ngrok.io/getImage?imageName=era_RF.jpeg"}
+            src={DEFAULT_URL_DOWNLOAD_IMG + imageName}
         />
         
         <CSSTransition 

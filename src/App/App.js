@@ -152,44 +152,44 @@ const App = ({results, MAX_SCORE,
 
 	useEffect(() => {
 
-		dispatch(appNavigate.App_goToStartView())
-		// server.downloadData().then(info=>{
-		// 	dispatch(data.Data_setStaticDataFromServer(info))
+		// dispatch(appNavigate.App_goToStartView())
+		server.downloadData().then(info=>{
+			dispatch(data.Data_setStaticDataFromServer(info))
 
-		// 	let erasImages = [];
-		// 	info.Eras.map((era)=>{
-		// 		erasImages.push(era.image.imageName)
-		// 	})
+			let erasImages = [];
+			info.Eras.map((era)=>{
+				erasImages.push(era.image.imageName)
+			})
 
-		// 	// Загрузка картинок эр
-		// 	server.downloadImagesArr(erasImages).then(res=>{
+			// Загрузка картинок эр
+			server.downloadImagesArr(erasImages).then(res=>{
 
-		// 		let surveysImages = [];
-		// 		info.Surveys.map((survey)=>{
-		// 			surveysImages.push(survey.image.imageName)
-		// 		})
+				let surveysImages = [];
+				info.Surveys.map((survey)=>{
+					surveysImages.push(survey.image.imageName)
+				})
 
-		// 		// Загрузка картинок эпох
-		// 		server.downloadImagesArr(erasImages).then(res=>{
+				// Загрузка картинок эпох
+				server.downloadImagesArr(erasImages).then(res=>{
 
-		// 			// Загрузка svg-шек
-		// 			server.downloadDefaultIMG().then((res)=>{
-		// 				if(info.UserData.isFirstOpen){
-		// 					dispatch(appNavigate.App_goToStartView())
-		// 				}else{
-		// 					dispatch(appNavigate.App_goToPollView())
-		// 				}
-		// 			})
-		// 			.catch(err=>console.log(err))
+					// Загрузка svg-шек
+					server.downloadDefaultIMG().then((res)=>{
+						if(info.UserData.isFirstOpen){
+							dispatch(appNavigate.App_goToStartView())
+						}else{
+							dispatch(appNavigate.App_goToPollView())
+						}
+					})
+					.catch(err=>console.log(err))
 
-		// 		})
-		// 		.catch(err=>console.log(err))
+				})
+				.catch(err=>console.log(err))
 
-		// 	})
-		// 	.catch(err=>console.log(err))
+			})
+			.catch(err=>console.log(err))
 
-		// })
-		// .catch(err=>console.log(err))
+		})
+		.catch(err=>console.log(err))
 		//Обновляем текущую ширину
 
 		// additionalActions.Additional_setCurHeight(document.getElementById('root').scrollHeight)
