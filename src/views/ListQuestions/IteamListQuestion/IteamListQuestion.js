@@ -14,7 +14,7 @@ import "./IteamListQuestion.css";
 
 const osName = platform();
 
-const IteamListQuestion = ({ id, question, image,
+const IteamListQuestion = ({ id, question,
     countQuestions,
     isModalOpen,
     goToPrevQuestion=()=>{}, 
@@ -37,10 +37,10 @@ const IteamListQuestion = ({ id, question, image,
 
             <div className="IteamListQuestion">
 
-                <ImageCard
+                {/* <ImageCard
                     image={image.data}
                     sourceImageLink={question.image.sourceImageLink}
-                />
+                /> */}
 
                 <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
 
