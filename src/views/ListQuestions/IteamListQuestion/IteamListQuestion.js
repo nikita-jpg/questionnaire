@@ -21,7 +21,7 @@ const IteamListQuestion = ({ id, question,
     goToNextQuestion=()=>{},
     giveAnswer=()=>{},
     changeModal = () => {}, 
-    getUserAnswer = () => {} 
+    getUserAnswer = () => {}
 }) => {
     
     const answerOptions = useSelector(getAnswerOptionsById(question.idQuestion))
@@ -41,25 +41,27 @@ const IteamListQuestion = ({ id, question,
                     image={image.data}
                     sourceImageLink={question.image.sourceImageLink}
                 /> */}
+                {/* <div style={{"flex":1}}></div> */}
+                {/* <div className="IteamListQuestion__image-container"> */}
+                    <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
 
-                <Text weight="regular" className="IteamListQuestion__question">{question.textQuestion}</Text> 
-
-                <div className="IteamListQuestion__answer-options">
-                    {
-                        answerOptions.map((answer, i) => (
-                            <ButtonWrapper
-                                onClick={() => {
-                                    giveAnswer(question.idQuestion, answer.idAnswerOption)
-                                    goToNextQuestion()
-                                    // setNotActiveBackgoundToAnswerButton();
-                                }}
-                                text={answer.text}
-                                className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
-                            >
-                            </ButtonWrapper>
-                        ))
-                    }
-                </div>
+                    <div className="IteamListQuestion__answer-options">
+                        {
+                            answerOptions.map((answer, i) => (
+                                <ButtonWrapper
+                                    onClick={() => {
+                                        giveAnswer(question.idQuestion, answer.idAnswerOption)
+                                        goToNextQuestion()
+                                        // setNotActiveBackgoundToAnswerButton();
+                                    }}
+                                    text={answer.text}
+                                    className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }
+                                >
+                                </ButtonWrapper>
+                            ))
+                        }
+                    </div>
+                {/* </div> */}
             </div>
         </PanelWrapper>
     )

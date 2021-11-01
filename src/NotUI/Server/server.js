@@ -8,7 +8,7 @@ const http = axios.create({
         Authorization: `${window.location.search.slice(1)}`
     }
 });
-export const DEFAULT_URL = "https://39d7-62-33-49-154.ngrok.io/"
+export const DEFAULT_URL = "https://cf84-62-33-49-154.ngrok.io/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
