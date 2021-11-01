@@ -89,8 +89,8 @@ const App = ({results, MAX_SCORE,
 	// первый раз открываем Result
 	const [isFirstOpenResult, setIsFirstOpenResult] = useState(true);
 
-	const sendImagesToStateEras = (images) => dispatch(data.Data_setImagesEras(images))
-	const sendImagesToStateSurveys = (images) => dispatch(data.Data_setImagesSurveys(images))
+	const sendImagesToStateEras = (images) => dispatch(data.Data_addStaticImages(images))
+	const sendImagesToStateSurveys = (images) => dispatch(data.Data_addStaticImages(images))
 
 
 	const [eras, setEras] = useState(
@@ -156,12 +156,12 @@ const App = ({results, MAX_SCORE,
 	const [surveyImages, setSurveyImages] = useState([])
 
 
+	// Прелзагрузка всего необходимого
 	useEffect(() => {
 
-		// dispatch(appNavigate.App_goToStartView())
+		// Загрузка текста для эр и опросов, результатов. Вопросы для кокретного опроса не грузятся
 		server.downloadData().then(info=>{
 			dispatch(data.Data_setStaticDataFromServer(info))
-			// console.log(info)
 			let erasImages = [];
 			info.Eras.map((era)=>{
 				erasImages.push(era.image.imageName)
@@ -182,6 +182,7 @@ const App = ({results, MAX_SCORE,
 
 					// Загрузка svg-шек
 					server.downloadDefaultIMG().then((res)=>{
+						
 						if(info.UserData.isFirstOpen){
 							dispatch(appNavigate.App_goToStartView())
 						}else{

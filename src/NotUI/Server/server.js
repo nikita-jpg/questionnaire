@@ -8,7 +8,7 @@ const http = axios.create({
         Authorization: `${window.location.search.slice(1)}`
     }
 });
-export const DEFAULT_URL = "https://dade-212-16-10-199.ngrok.io/"
+export const DEFAULT_URL = "https://39d7-62-33-49-154.ngrok.io/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
@@ -39,13 +39,26 @@ export async function  downloadData(){
 
 // Загрузка изображений, которы должны быть в кэше до запуска
 export async function downloadDefaultIMG(){
+    // let retArr = []
+
     const paths = reqSvgs.keys();
+
+    
     for(let i=0;i<paths.length;i++){
-        await downloadImgFromFolder(paths[i])
+        await downloadImgFromFolder(paths[i]).then(imageData=>{
+
+            // retArr.push({
+            //     imageName:paths[i], 
+            //     data:imageData
+            // })
+        })
     }
+
 }
 
 export async function downloadImgFromFolder(path){
+    let ret = undefined
+
     let img = new Image();
     img.src = reqSvgs(path);
 
@@ -53,8 +66,8 @@ export async function downloadImgFromFolder(path){
         console.log(img.src + " - downloadImgFromFolder error")
     }
     img.onload = () => {
-        window[img.src] = img
-        return
+        // console.log(img)
+        // ret = img.src
     }
 }
 
@@ -63,21 +76,11 @@ export async function downloadImagesArr(arr){
     let retArr = []
     for(let i=0;i<arr.length;i++){
         await downloadImageFromServer(arr[i]).then(imageData=>{
-            // let img = new Image();
-            // // img.src = imageData;
-            // img.src = imageData
+
             retArr.push({
                 imageName:arr[i], 
                 data:imageData
             })
-
-            // img.onerror = () => {
-            //     console.log(img.src + " error")
-            // }
-            // img.onload = () => {
-            //     window[img.src] = img
-            //     return
-            // }
         })
     }
     return retArr
@@ -99,5 +102,5 @@ export async function sendUserAnswersToServer(userAnswers){
         userAnswers:userAnswers
     }).then(data=>{return data.data})
 
-    return "data"
+    return data
 }

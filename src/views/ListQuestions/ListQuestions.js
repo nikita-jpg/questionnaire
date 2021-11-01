@@ -41,6 +41,7 @@ const ListQuestions = ({id,
         changeHistory(newIndex)
     }
 
+
     // //Подгрузка картинок
     useEffect(()=>{
 
@@ -51,7 +52,6 @@ const ListQuestions = ({id,
 
         downloadImagesArr(imageArrNames)
         .then((res)=>{
-            // console.log(res)
             setImageArr(res)
             setActivePanel(0)
         })

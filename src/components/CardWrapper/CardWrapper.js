@@ -2,7 +2,7 @@ import { Button, ContentCard } from "@vkontakte/vkui"
 import React, { useEffect, useState } from 'react';
 import './CardWrapper.css';
 import defaultImage from '../../svg/imgLoader.svg'
-import {DEFAULT_URL, DEFAULT_URL_DOWNLOAD_IMG, downloadImageFromServer as downloadImage, downloadImageFromServerTset} from '../../NotUI/Server/server'
+import {DEFAULT_URL, DEFAULT_URL_DOWNLOAD_IMG, downloadImageFromServer as downloadImage, downloadImageFromServer, downloadImageFromServerTset} from '../../NotUI/Server/server'
 import CardWrapperDescription from "./CardWrapperDescription/CardWrapperDescription";
 import { useSelector } from "react-redux";
 import { getImageByName } from "../../Selectors/data_selectors";
@@ -12,10 +12,16 @@ const CardWrapper = ({title, textBtn, percentProgress,numberOfQuestions,imageNam
     }) => {
 
 
-    //Устанавливаем дефолтую картинку на карточки
-    const imageData = useSelector(getImageByName(imageName))
+    
+    const stateImage = useSelector(getImageByName(imageName))
+    const [image, setImage] = useState(stateImage !== undefined ? stateImage.data : defaultImage)
 
-    const [image, setImage] = useState(imageData.data)
+    useEffect(()=>{
+        if(stateImage === undefined){
+            downloadImageFromServer(imageName)
+            .then(res=>setImage(res))
+        }
+    },[])
 
 
     const down = () =>{

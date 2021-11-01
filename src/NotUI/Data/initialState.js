@@ -183,7 +183,28 @@ export const initialState = {
 	Images:{
 		Eras:[],
 		Surveys:[],
-		CurImages:[]
+		CurSurvey:{
+			idSurvey:0,
+			images:[
+				{
+					imageName:"",
+					data:""
+				}
+			]
+		}
+	},
+
+	StaticImages:[
+	],
+
+	DynamicImages:{
+		CurSurveyImages:{
+			idSurvey:
+			{
+				imageName:"",
+				data:""
+			}
+		}
 	}
 
 

@@ -58,27 +58,40 @@ export const dataReducer = (state = initialState, action) =>{
             }}
         }
 
-        case consts.SET_IMAGES_SURVEYS:{
+        // case consts.SET_IMAGES_SURVEYS:{
+        //     const images = action.images
+        //     let imagesFromState = Object.assign([],state.Images)
+        //     images.map((image)=>{
+        //         imagesFromState.Surveys.push(image)
+        //     })
+            
+        //     return{...state, ...{
+        //         Images: imagesFromState
+        //     }}
+        // }
+
+        case consts.ADD_STATIC_IMAGES:{
             const images = action.images
-            let imagesFromState = Object.assign([],state.Images)
+            let imagesFromState = Object.assign([],state.StaticImages)
+
             images.map((image)=>{
-                imagesFromState.Surveys.push(image)
+                imagesFromState.push(image)
             })
             
             return{...state, ...{
-                Images: imagesFromState
+                StaticImages: imagesFromState
             }}
         }
 
-        case consts.SET_IMAGES_CUR:{
-            const images = action.images
-            let imagesFromState = Object.assign([],state.Images)
-            imagesFromState.CurImages = images
+        // case consts.SET_IMAGES_CUR:{
+        //     const images = action.images
+        //     let imagesFromState = Object.assign([],state.Images)
+        //     imagesFromState.CurImages = images
             
-            return{...state, ...{
-                Images: imagesFromState
-            }}
-        }
+        //     return{...state, ...{
+        //         Images: imagesFromState
+        //     }}
+        // }
 
         default:{
             return state

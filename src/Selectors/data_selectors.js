@@ -235,8 +235,6 @@ export const getIsFirstOpen = (state) => state.Data.UserData.isFirstOpen
 
 
 
-
-
 //Остальные функции
 
 //Получить все эры
@@ -245,22 +243,49 @@ export const getImages = (state) => {
     return state.Data.Images
 }
 
-export const getImageByName = (imageName) => (state) => {
+//Статические (не меняются на протяжении всей работы приложения) картинки
+const getStaticImageByName = (imageName) => (state) => {
 
-    const values = Object.values(state.Data.Images)
+    let ret = undefined;
+    const images = Object.values(state.Data.StaticImages)
 
-    const images = [].concat(...values)
-    let ret = images.filter(image=>image.imageName === imageName)
+    images.map((image)=>{
+        if (image.imageName === imageName){
+            ret = image
+        }
+    })
 
-    if(ret === undefined){
-        return undefined
-    }
-    else{
-        return ret[0]
-    }
+    return ret
 }
 
+export const getImageByName = (imageName) => (state) => {
 
+    let ret = undefined;
+
+    const staticImage = getStaticImageByName(imageName)(state)
+
+    if(staticImage !== undefined){
+        ret = staticImage
+    }
+
+    return ret
+
+}
+
+// //Статические (меняются на протяжении всей работы приложения) картинки
+// const getDynamicImage = (imageName) => (state) => {
+//     const values = Object.values(state.Data.DynamicImages)
+
+//     const images = [].concat(...values)
+//     let ret = images.filter(image=>image.imageName === imageName)
+
+//     if(ret === undefined){
+//         return undefined
+//     }
+//     else{
+//         return ret[0]
+//     }
+// }
 // export const getArrQuestions = (state) => {
 //     const eras = getEras(state)
 //     const indexEra = getIndexEra(state)

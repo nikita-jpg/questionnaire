@@ -4,7 +4,7 @@ import { View } from "@vkontakte/vkui"
 import ListAge from "../ListAge/ListAge"
 import ListQuizes from "../ListQuizes/ListQuizes"
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurEra, getCurSurveys, getEras, getErasResults, getIndexEra, getIndexEraAndSurvey, getIndexSurvey, getSurveys, getSurveysResults } from '../../Selectors/data_selectors';
+import { getCurEra, getCurSurveys, getEras, getErasResults, getImageByName, getIndexEra, getIndexEraAndSurvey, getIndexSurvey, getSurveys, getSurveysResults } from '../../Selectors/data_selectors';
 import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
 
@@ -64,6 +64,11 @@ const PoolView = ({id,
 		}
 	}
 
+	// const getImageFromState = (imageName) => useSelector(getImageByName(imageName))
+
+	// useEffect(()=>{
+		
+	// },[])
 
 	//Проверяем какая панелька должна быть открыта по приказу извне
 	useEffect(() => {

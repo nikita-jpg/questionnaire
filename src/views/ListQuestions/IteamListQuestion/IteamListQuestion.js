@@ -38,7 +38,7 @@ const IteamListQuestion = ({ id, question, image,
             <div className="IteamListQuestion">
 
                 <ImageCard
-                    image={image}
+                    image={image.data}
                     sourceImageLink={question.image.sourceImageLink}
                 />
 

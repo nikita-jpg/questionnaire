@@ -10,9 +10,7 @@ const ImageCard = ({image, sourceImageLink}) => {
 
     //Управление состояниями карточки (картинка/источник)
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
-    const onLinkClick = (e) => e.stopPropagation();
-    const imageFromState = useSelector()
-    
+    const onLinkClick = (e) => e.stopPropagation();    
 
     //Картинка
     //Устанавливаем дефолтую картинку на карточки
