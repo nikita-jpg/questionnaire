@@ -183,9 +183,9 @@ const App = ({results, MAX_SCORE,
 					server.downloadImagesArr(surveysImages).then(newRes=>{
 						sendImagesToStateSurveys(newRes)
 
-						//Тестирование
-						server.TestdownloadImagesArr(surveysImages).then((res)=>{
-						})
+						// //Тестирование
+						// server.TestdownloadImagesArr(surveysImages).then((res)=>{
+						// })
 
 					})
 					.catch(err=>console.log(err))

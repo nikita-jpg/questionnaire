@@ -51,7 +51,8 @@ const CardWrapper = ({title, textBtn, percentProgress,numberOfQuestions,imageNam
         mode={"tint"}
         onClick={cardClick}
         image={image}
-        caption={caption}
+        text={caption}
+        caption="Photo by Siyuan on Unsplash"
         className="CardWrapper__Card"
     >
         </ContentCard>

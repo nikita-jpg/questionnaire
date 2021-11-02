@@ -2,6 +2,7 @@
     background-color: var(--main-second-bg-color);
     min-width: var(--main-min-card-width);
     max-width: var(--main-max-card-width);
+
 }
 .CardWrapper__title{
     color: var(--main-white-color);
