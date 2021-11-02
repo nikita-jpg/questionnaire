@@ -8,7 +8,7 @@ const http = axios.create({
         Authorization: `${window.location.search.slice(1)}`
     }
 });
-export const DEFAULT_URL = "https://cf84-62-33-49-154.ngrok.io/"
+export const DEFAULT_URL = "https://3f66-62-33-49-154.ngrok.io/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
@@ -69,6 +69,21 @@ export async function downloadImgFromFolder(path){
         // console.log(img)
         // ret = img.src
     }
+}
+
+export async function TestdownloadImagesArr(arr){
+
+    let retArr = []
+    for(let i=0;i<42;i++){
+        // await downloadImageFromServer(arr[0]).then(imageData=>{
+
+        //     // retArr.push({
+        //     //     imageName:arr[i], 
+        //     //     data:imageData
+        //     // })
+        // })
+    }
+    // return retArr
 }
 
 export async function downloadImagesArr(arr){

@@ -1,7 +1,8 @@
 .ListCard{
+    margin: 10px;
     width: 100%;
     height: fit-content;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--main-min-card-width), 1fr));
-    grid-gap: 8px;
+    grid-gap: 16px;
 }

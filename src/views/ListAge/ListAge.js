@@ -25,6 +25,11 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
             description: era.description
         }
     })
+    
+    let newInfo = info;
+    newInfo.push(info[0])
+    newInfo.push(info[0])
+    newInfo.push(info[0])
 
     const cardClick = (index) => () =>{
         createOnClickItemAge(eras[index].idEra)
@@ -35,7 +40,7 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
 
                 <div className="ListAge__content">
                     <ListCard
-                        info={info}
+                        info={newInfo}
                         cardClick={cardClick}>
                     </ListCard>
                 </div>

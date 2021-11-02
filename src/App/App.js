@@ -171,26 +171,30 @@ const App = ({results, MAX_SCORE,
 			server.downloadImagesArr(erasImages).then(res=>{
 				sendImagesToStateEras(res)
 
-				let surveysImages = [];
-				info.Surveys.map((survey)=>{
-					surveysImages.push(survey.image.imageName)
-				})
+				// Загрузка svg-шек
+				server.downloadDefaultIMG().then((res)=>{
 
-				// Загрузка картинок эпох
-				server.downloadImagesArr(surveysImages).then(newRes=>{
-					sendImagesToStateSurveys(newRes)
+					let surveysImages = [];
+					info.Surveys.map((survey)=>{
+						surveysImages.push(survey.image.imageName)
+					})
 
-					// Загрузка svg-шек
-					server.downloadDefaultIMG().then((res)=>{
-						
-						if(info.UserData.isFirstOpen){
-							dispatch(appNavigate.App_goToStartView())
-						}else{
-							dispatch(appNavigate.App_goToPollView())
-						}
+					// Загрузка картинок эпох
+					server.downloadImagesArr(surveysImages).then(newRes=>{
+						sendImagesToStateSurveys(newRes)
+
+						//Тестирование
+						server.TestdownloadImagesArr(surveysImages).then((res)=>{
+						})
+
 					})
 					.catch(err=>console.log(err))
-
+	
+					if(info.UserData.isFirstOpen){
+						dispatch(appNavigate.App_goToStartView())
+					}else{
+						dispatch(appNavigate.App_goToPollView())
+					}
 				})
 				.catch(err=>console.log(err))
 
