@@ -1,19 +1,44 @@
 import { Button } from '@vkontakte/vkui';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ButtonWrapper from '../../ButtonWrapper/ButtonWrapper';
+import AlertWrapper from '../../Alert/AlertWrapper/AlertWrapper'
+import * as alert from '../../Alert/actions'
 import './CardWrapperDescription.css'
 
-const CardWrapperDescription = ({text, textBtn, btnCardClickObj={}}) => {
+const CardWrapperDescription = ({text, textBtn,imgSource, btnCardClickObj={}}) => {
+
+    const dispath = useDispatch();
+    const closeAlert = () => dispath(alert.Alert_closeAlert())
+    const imgSourceAlert = 
+    <AlertWrapper
+        header="Ссылка на источник фото"
+        description={imgSource}
+        rightText={"Выйти"}
+        rightFunc={()=>closeAlert()}
+        onClose={()=>closeAlert()}
+    ></AlertWrapper>
+    const openAlert = () => dispath(alert.Alert_setAlert(imgSourceAlert))
+    
 
     const click = (e) => {
         e.stopPropagation()
         btnCardClickObj.func();
+    }
+
+    const sourceImgClick = (e) => {
+        e.stopPropagation()
+        openAlert()        
     }
     
     return(
         <div className="CardWrapperDescription">
 
             <div className="CardWrapperDescription__text">{text}</div>
+
+            {/* <a href="https://translate.yandex.ru"> Источник ссылка</a> */}
+
+            <div className="CardWrapperDescription__text CardWrapperDescription__imageSource" onClick={sourceImgClick}>Источник изображения</div>
 
             {
             btnCardClickObj.isBtnNeed ?

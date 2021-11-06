@@ -6,12 +6,11 @@ import ListCard from '../../components/ListCard/ListCard'
 import Header from '../../components/Header/Header'
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import downloadImage from '../../NotUI/Server/server.js'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getEraResult, getResultsEras } from '../../Selectors/data_selectors';
 
 
-const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
-
+const ListAge = ({id, eras, createOnClickItemAge=index=>null,setAlert=()=>{},}) => {
  
     const eraResults = useSelector(getResultsEras);
 
@@ -27,9 +26,9 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
     })
     
     let newInfo = info;
-    newInfo.push(info[0])
-    newInfo.push(info[0])
-    newInfo.push(info[0])
+    // newInfo.push(info[0])
+    // newInfo.push(info[0])
+    // newInfo.push(info[0])
 
     const cardClick = (index) => () =>{
         createOnClickItemAge(eras[index].idEra)

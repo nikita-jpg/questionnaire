@@ -3,7 +3,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
 import vkBridge from '@vkontakte/vk-bridge'
-import AlertWrapper from '../../components/AlertWrapper/AlertWrapper';
+import AlertWrapper from '../../components/Alert/AlertWrapper/AlertWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArrQuestions, getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';

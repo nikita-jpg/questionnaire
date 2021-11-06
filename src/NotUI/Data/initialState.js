@@ -188,6 +188,7 @@ export const initialState = {
 			images:[
 				{
 					imageName:"",
+					sourceImageLink:"",
 					data:""
 				}
 			]

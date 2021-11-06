@@ -1,7 +1,7 @@
 import { Alert } from "@vkontakte/vkui";
 import React from "react";
 import { useSelector } from "react-redux";
-import { getAnswerOptionById, getCurAnswerOptions, getCurQuestion, getCurUserAnswer, getRightAnswerOptionById, isCurQuestionTrue } from "../../Selectors/data_selectors";
+import { getAnswerOptionById, getCurAnswerOptions, getCurQuestion, getCurUserAnswer, getRightAnswerOptionById, isCurQuestionTrue } from "../../../Selectors/data_selectors";
 import "./AlertQuestionResult.css";
 
 const AlertQuestionResult = ({

@@ -11,3 +11,6 @@
     flex-direction: row;
 
 }
+.CardWrapper__photoAuthor{
+    color: var(--main-therd-text-color);
+}

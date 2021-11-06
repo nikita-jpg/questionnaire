@@ -2,7 +2,7 @@ import bridge from '@vkontakte/vk-bridge';
 import { ContentCard, Div, Panel, PromoBanner, View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import AlertQuestionResult from "../../components/AlertQuestionResult/AlertQuestionResult";
+import AlertQuestionResult from "../../components/Alert/AlertQuestionResult/AlertQuestionResult";
 import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
@@ -174,12 +174,12 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
             id={id} 
             activePanel={activePanel} 
             popout={    
-            isVisibleAlert
-            ?<AlertQuestionResult
-                onClose={closeAlert}
-            >
-            </AlertQuestionResult>
-            :null
+                isVisibleAlert
+                ?<AlertQuestionResult
+                    onClose={closeAlert}
+                >
+                </AlertQuestionResult>
+                :null
             }
             onSwipeBack={goBackInHistory}
             history={history}>

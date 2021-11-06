@@ -7,7 +7,11 @@
     width: 100%;
     height: 100%;
     font-size: 13px;
-    color: var(--main-gray-color);
+    color: var(--main-second-text-color);
+}
+
+.CardWrapperDescription__imageSource{
+    text-decoration: underline;
 }
 
 .CardWrapperDescription__button_Container{

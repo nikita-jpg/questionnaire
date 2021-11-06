@@ -14,7 +14,7 @@ const PoolView = ({id,
 	setIndexSurveyAction=()=>{}, 
 	goToSurveyViewAction=()=>{},
 	goToResultViewAction=()=>{},
-	goToListAgeAction=()=>{}
+	goToListAgeAction=()=>{},
 	}) => {
 
 	const dispatch = useDispatch()
@@ -122,13 +122,13 @@ const PoolView = ({id,
             createOnClickItemAge={createOnClickItemAge}
         />
 
-        <ListQuizes 
+        {/* <ListQuizes 
             id={LIST_SURVEYS_PANEL} 
             surveys={surveys} 
             onBack={onBackListQuizes} 
             createOnClickItemQuizes={createOnClickItemQuizes}
 			createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}
-        />
+        /> */}
 
     </View>
     )

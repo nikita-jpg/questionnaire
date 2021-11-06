@@ -1,7 +1,7 @@
 import { Button, ContentCard } from "@vkontakte/vkui"
 import React, { useEffect, useState } from 'react';
 import './CardWrapper.css';
-import defaultImage from '../../svg/imgLoader.svg'
+import defaultImage from '../DefaultImage/DefaultImage'
 import {DEFAULT_URL, DEFAULT_URL_DOWNLOAD_IMG, downloadImageFromServer as downloadImage, downloadImageFromServer, downloadImageFromServerTset} from '../../NotUI/Server/server'
 import CardWrapperDescription from "./CardWrapperDescription/CardWrapperDescription";
 import { useSelector } from "react-redux";
@@ -14,29 +14,36 @@ const CardWrapper = ({title, textBtn, percentProgress,numberOfQuestions,imageNam
 
     
     const stateImage = useSelector(getImageByName(imageName))
-    const [image, setImage] = useState(stateImage !== undefined ? stateImage.data : defaultImage)
+    const [image, setImage] = useState(stateImage !== undefined ? stateImage : defaultImage)
 
     useEffect(()=>{
         if(stateImage === undefined){
             downloadImageFromServer(imageName)
-            .then(res=>setImage(res))
+            .then(res=>setImage(
+                {
+                    imageName:imageName,
+                    data:res
+                }
+            ))
         }
     },[])
 
 
-    const down = () =>{
-        return(
-        <div style={{width:"200px",height:"200px"}}>
-            {description}
-            <Button></Button>
-        </div>
-    )}
+    // const down = () =>{
+    //     return(
+    //     <div style={{width:"200px",height:"200px"}}>
+    //         {description}
+    //         <Button></Button>
+    //     </div>
+    // )}
 
-    const caption = (
+    const cardText = (
         <CardWrapperDescription
             btnCardClickObj={btnCardClickObj}
             text={description}
             textBtn={textBtn}
+            imgSource={""}
+            // imgSource={image.sourceImageLink !== undefined ? image.sourceImageLink : ""}
         ></CardWrapperDescription>
     )
 
@@ -50,9 +57,8 @@ const CardWrapper = ({title, textBtn, percentProgress,numberOfQuestions,imageNam
         }
         mode={"tint"}
         onClick={cardClick}
-        image={image}
-        text={caption}
-        caption="Photo by Siyuan on Unsplash"
+        image={image.data}
+        text={cardText}
         className="CardWrapper__Card"
     >
         </ContentCard>

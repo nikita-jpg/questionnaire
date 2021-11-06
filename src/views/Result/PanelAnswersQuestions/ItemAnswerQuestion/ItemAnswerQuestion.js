@@ -8,7 +8,6 @@ import { Icon16CheckCircleOutline } from '@vkontakte/icons';
 import { Icon16CancelCircleOutline } from '@vkontakte/icons';
 
 import "./ItemAnswerQuestion.css";
-import AlertQuestionResult from '../../../../components/AlertQuestionResult/AlertQuestionResult';
 import { useSelector } from 'react-redux';
 import { isQuestionTrue } from '../../../../Selectors/data_selectors';
 

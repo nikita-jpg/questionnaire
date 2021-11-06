@@ -28,6 +28,7 @@ import * as appNavigate from './Actions'
 import * as server from '../NotUI/Server/server'
 import * as data from '../NotUI/Data/actions'
 import * as poolView from '../views/PoolView/actions'
+import * as alert from '../components/Alert/actions'
 
 //Views id
 import * as viewsId from './Constants'
@@ -37,6 +38,7 @@ import * as viewsId from './Constants'
 import {selectCurrentView} from '../Selectors/app_selectors'
 import PoolView from '../views/PoolView/PoolView';
 import { getIsFirstOpen } from '../Selectors/data_selectors';
+import { getAlert } from '../Selectors/alert_selectors';
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
@@ -164,7 +166,7 @@ const App = ({results, MAX_SCORE,
 			dispatch(data.Data_setStaticDataFromServer(info))
 			let erasImages = [];
 			info.Eras.map((era)=>{
-				erasImages.push(era.image.imageName)
+				erasImages.push(era.image)
 			})
 
 			// Загрузка картинок эр
@@ -176,7 +178,7 @@ const App = ({results, MAX_SCORE,
 
 					let surveysImages = [];
 					info.Surveys.map((survey)=>{
-						surveysImages.push(survey.image.imageName)
+						surveysImages.push(survey.image)
 					})
 
 					// Загрузка картинок эпох
@@ -338,13 +340,16 @@ const App = ({results, MAX_SCORE,
 	}
 
 	const activeView = useSelector(selectCurrentView)
-	// console.log(eras)
+	const curAlert = useSelector(getAlert)
 
 	return (
 	<ConfigProvider isWebView={true}>
 		<AdaptivityProvider>
 			<AppRoot>
-				<SplitLayout header={null}>
+				<SplitLayout 
+					header={null} 
+					popout={curAlert}
+				>
 					<SplitCol animate={true}>
 							<Root activeView={activeView}>
 
