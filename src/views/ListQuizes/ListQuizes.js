@@ -40,6 +40,7 @@ const ListQuizes = ({ id, surveys,
             percentProgress: surveyResult.score,
             numberOfQuestions: surveyResult.total,
             imageName: survey.image.imageName,
+            imgSource: survey.image.sourceImageLink,
             description: survey.description,
             isBtnNeed: surveyResult.score !== 0 ? true : false 
         }

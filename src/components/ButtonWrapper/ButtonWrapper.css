@@ -22,11 +22,5 @@
 
 /* linkForm */
 .ButtonWrapper__text_linkForm{
-    text-align: center;
-    color: var(--main-white-color);
     font-size: 24px;
-    text-decoration: underline;
-}
-.ButtonWrapper__text_linkForm:hover{
-    cursor: pointer;
 }

@@ -7,10 +7,16 @@ import CardWrapperDescription from "./CardWrapperDescription/CardWrapperDescript
 import { useSelector } from "react-redux";
 import { getImageByName } from "../../Selectors/data_selectors";
 
-const CardWrapper = ({title, textBtn, percentProgress,numberOfQuestions,imageName,description,btnCardClickObj,
+const CardWrapper = ({title, 
+    textBtn, 
+    percentProgress,
+    numberOfQuestions,
+    imageName,
+    imgSource,
+    description,
+    btnCardClickObj,
     cardClick=()=>{},
     }) => {
-
 
     
     const stateImage = useSelector(getImageByName(imageName))
@@ -42,7 +48,7 @@ const CardWrapper = ({title, textBtn, percentProgress,numberOfQuestions,imageNam
             btnCardClickObj={btnCardClickObj}
             text={description}
             textBtn={textBtn}
-            imgSource={""}
+            imgSource={imgSource}
             // imgSource={image.sourceImageLink !== undefined ? image.sourceImageLink : ""}
         ></CardWrapperDescription>
     )

@@ -11,7 +11,10 @@
     /* Текст */
     --main-first-text-color:white;
     --main-second-text-color:#AAAAAA;
-    --main-therd-text-color:#A0A0A0;
+    --main-therd-text-color:#A9A9A9;
+
+    /* Ссылки */
+    --main-link-color:var(--main-therd-text-color);
 
     --main-white-color:#ffff;
     --main-red-color:#FF453A;
@@ -181,4 +184,16 @@
 /* Модалка */
 * .vkuiModalPageHeader__content{
   justify-content: center;
+}
+
+/* Ссылки (я написал) */
+.My_link{
+  text-align: center;
+  color: var(--main-link-color);
+  font-weight:500;
+  /* font-size: 24px; */
+  text-decoration: underline;
+}
+.My_link:hover{
+  cursor: pointer;
 }

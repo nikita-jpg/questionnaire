@@ -11,6 +11,7 @@
 }
 
 .CardWrapperDescription__imageSource{
+    text-align: start;
     text-decoration: underline;
 }
 

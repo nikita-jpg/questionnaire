@@ -13,8 +13,8 @@ const CardWrapperDescription = ({text, textBtn,imgSource, btnCardClickObj={}}) =
     const imgSourceAlert = 
     <AlertWrapper
         header="Ссылка на источник фото"
-        description={imgSource}
-        rightText={"Выйти"}
+        description={<a className="My_link" href={imgSource}>{imgSource}</a>}
+        rightText={"Закрыть"}
         rightFunc={()=>closeAlert()}
         onClose={()=>closeAlert()}
     ></AlertWrapper>
@@ -38,7 +38,7 @@ const CardWrapperDescription = ({text, textBtn,imgSource, btnCardClickObj={}}) =
 
             {/* <a href="https://translate.yandex.ru"> Источник ссылка</a> */}
 
-            <div className="CardWrapperDescription__text CardWrapperDescription__imageSource" onClick={sourceImgClick}>Источник изображения</div>
+            <div className="My_link CardWrapperDescription__text CardWrapperDescription__imageSource" onClick={sourceImgClick}>Источник изображения</div>
 
             {
             btnCardClickObj.isBtnNeed ?

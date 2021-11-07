@@ -5,7 +5,7 @@ import { getCurWidth } from '../../Additional/selectors';
 import CardWrapper from '../CardWrapper/CardWrapper';
 import './ListCard.css';
 
-const ListCard = ( { info,percentProgress,numberOfQuestions, 
+const ListCard = ( {info,
     cardClick = (index) => null, 
     btnCardClick = (index) => null,
     }) => {
@@ -25,7 +25,7 @@ const ListCard = ( { info,percentProgress,numberOfQuestions,
         } 
     }
 
-    
+
     return (
             <div className="ListCard" style={{maxWidth:getWidthInfo().maxWidth}}>
                 {
@@ -40,6 +40,7 @@ const ListCard = ( { info,percentProgress,numberOfQuestions,
                                 btnCardClickObj={{ isBtnNeed:record.isBtnNeed, func: btnCardClick(i)}}
 
                                 imageName={record.imageName}
+                                imgSource={record.imgSource}
                                 description={record.description}
                                 textBtn={"Посмотреть результаты"}
                             >

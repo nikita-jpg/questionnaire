@@ -108,7 +108,7 @@ const getCardsFromEraFilter = (erasResult, curEraID, isFirstOpenResult, isComple
                         <div className="ResultCards__button">
                             <ButtonWrapper
                                 isLinkForm={true}
-                                style={{color:"var(--main-gray-color)", fontSize:"18px"}}
+                                style={{fontSize:"18px"}}
                                 text={button.text}
                                 onClick={button.click}
                             ></ButtonWrapper>

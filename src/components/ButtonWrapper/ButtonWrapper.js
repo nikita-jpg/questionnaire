@@ -8,7 +8,7 @@ const ButtonWrapper = ({isActived, text, onClick=()=>{}, before, className, clas
 
     if(isLinkForm){
         return(
-            <div className="ButtonWrapper__text_linkForm" style={style} onClick={onClick}>{text}</div>
+            <div className="My_link ButtonWrapper__text_linkForm" style={style} onClick={onClick}>{text}</div>
         )
     }
     return(

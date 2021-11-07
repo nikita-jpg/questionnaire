@@ -21,14 +21,12 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null,setAlert=()=>{},}) 
             percentProgress: eraResult.score,
             numberOfQuestions: eraResult.total,
             imageName: era.image.imageName,
+            imgSource: era.image.sourceImageLink,
             description: era.description
         }
     })
     
     let newInfo = info;
-    // newInfo.push(info[0])
-    // newInfo.push(info[0])
-    // newInfo.push(info[0])
 
     const cardClick = (index) => () =>{
         createOnClickItemAge(eras[index].idEra)
