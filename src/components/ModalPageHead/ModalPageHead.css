@@ -11,6 +11,6 @@
     padding-right: 12px;
 }
 .ModalPageHead__button-pug{
-    color: var(--main-second-bg-color);
+    color: var(--main-second-text-color);
     cursor: inherit;
 }

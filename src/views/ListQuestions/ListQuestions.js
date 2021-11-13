@@ -92,6 +92,22 @@ const ListQuestions = ({id,
         return idAnswer
     }
 
+
+    const getPrepareDataToSendToServer = () =>{
+        let userAnswersForState = Object.assign([],userAnswers)
+
+
+        for(let i=0;i<userAnswersForState.length;i++){
+            userAnswersForState[i] = {
+                idSurvey:curSurveyId,
+                idQuestion:userAnswersForState[i].idQuestion,
+                idAnswerOption:userAnswersForState[i].idAnswerOption
+            }
+        }
+
+        return {surveyId:curSurveyId, userAnswers:userAnswersForState}
+    }
+
     const getPrepareDataToSend = () =>{
         let userAnswersForState = Object.assign([],userAnswers)
 
@@ -108,7 +124,7 @@ const ListQuestions = ({id,
     }
 
     const saveAnswersToState = () => {dispath(saveUserAnswersAction(getPrepareDataToSend()))}
-    const saveAnswersToServer= () => sendUserAnswersToServer(getPrepareDataToSend())
+    const saveAnswersToServer= () => sendUserAnswersToServer(getPrepareDataToSendToServer())
 
 
 

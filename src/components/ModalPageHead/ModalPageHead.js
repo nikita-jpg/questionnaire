@@ -11,14 +11,14 @@ const ModalPageHead = ({text, onClose = () => {}}) => {
 
     let textAlign = isTitleCentre(useSelector(getCurWidth)).text;
     const { viewWidth } = useAdaptivity();
-    const isDesktop = !(viewWidth >= ViewWidth.SMALL_TABLET);    
+    const isNotDesktop = !(viewWidth >= ViewWidth.SMALL_TABLET);    
     return(
         <ModalPageHeader
             // separator={false}
             // visor={true}
             // transparent={true}
-            right={isDesktop && <Icon24Dismiss className="ModalPageHead__button-close" onClick={onClose}/>}
-            left={isDesktop && <PanelHeaderClose className="ModalPageHead__button-pug"/>}
+            right={isNotDesktop && <Icon24Dismiss className="ModalPageHead__button-close" onClick={onClose}/>}
+            // left={isDesktop && <PanelHeaderClose className="ModalPageHead__button-pug"/>}
         >
          <div className="ModalPageHead__inside" style={{textAlign}}>
             {text}
