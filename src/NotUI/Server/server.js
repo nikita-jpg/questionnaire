@@ -9,7 +9,7 @@ const http = axios.create({
     }
 });
 export const DEFAULT_IMAGE_EXPANSION = ".webp"
-export const DEFAULT_URL = "https://d9bf-62-33-49-154.ngrok.io/"
+export const DEFAULT_URL = "https://6650-62-33-49-154.ngrok.io/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
@@ -115,6 +115,7 @@ export async function downloadImageFromServer(imageName){
 
 // Отправка ответа на сервер
 export async function sendUserAnswersToServer(userAnswers){
+    console.log(userAnswers)
     const data = await http.post(DEFAULT_URL+"giveAnswers",{
         userAnswers:userAnswers
     }).then(data=>{return data.data})

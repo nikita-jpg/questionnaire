@@ -6,6 +6,8 @@ import Header from "../Header/Header";
 
 import './PanelWrapper.css'
 
+// Обёртка для панели. 
+// Задаёт отступ и даёт доп возможности
 const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
     isHeaderHide, isHeaderFixed, onHeaderClose, onHeaderBack, 
     headerIcon, headerText, headerClick}) => {
@@ -24,8 +26,11 @@ const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
 
         <Panel id={id} separator={false} name={name}>
 
-            <div className="PanelWrapper" style={{minHeight:curHeight,minWidth:curWidth, 
-                justifyContent:isVerticalCentre?"center":"start"}}>
+            <div className="PanelWrapper" 
+                style={{
+                    // minHeight:curHeight,
+                    // minWidth:curWidth, 
+                    justifyContent:isVerticalCentre?"center":"start"}}>
                 {
                     !isHeaderHide &&
                     <Header
