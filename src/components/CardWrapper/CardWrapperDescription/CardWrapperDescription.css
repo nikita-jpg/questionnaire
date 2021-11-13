@@ -13,6 +13,7 @@
 .CardWrapperDescription__imageSource{
     text-align: start;
     text-decoration: underline;
+    width: fit-content;
 }
 
 .CardWrapperDescription__button_Container{
