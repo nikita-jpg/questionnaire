@@ -22,13 +22,13 @@ const makeUsedData = (survey, surveyResult) =>{
 }
 
 const makeCard = (info, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyForCard=()=>{}) => {
-    
     return(
         <div className={`ResultCards__card ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
             <CardWrapper
                 title={info.russianName}
                 percentProgress={info.percentProgress}
                 numberOfQuestions={info.numberOfQuestions}
+                imageName={info.imageName}
                 imageSrc={info.imageSrc}
                 description={info.description}
                 cardClick={cardClick}
