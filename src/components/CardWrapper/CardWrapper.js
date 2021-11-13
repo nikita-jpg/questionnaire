@@ -20,6 +20,8 @@ const CardWrapper = ({title,
 
     
     const stateImage = useSelector(getImageByName(imageName))
+    console.log("CardWrapper")
+    console.log(stateImage)
     const [image, setImage] = useState(stateImage !== undefined ? stateImage : defaultImage)
 
     useEffect(()=>{
