@@ -1,8 +1,8 @@
 import { Div, ModalPage, SimpleCell } from "@vkontakte/vkui";
 import './ModalPageForListQuestions.css'
 import React from 'react';
-import ModalPageHead from "../../../components/ModalPageHead/ModalPageHead";
-import { QUESTION_NOT_ANSWERED } from "../../../NotUI/Data/consts";
+import ModalPageHead from "../../../ModalPageHead/ModalPageHead";
+import { QUESTION_NOT_ANSWERED } from "../../../../NotUI/Data/consts";
 
 const ModalPageForListQuestions = ({id,arrQuestions,
     changeModal=()=>{},
@@ -12,12 +12,10 @@ const ModalPageForListQuestions = ({id,arrQuestions,
 
 }) => {
 
-    console.log("modal")
-
     return(
-        <ModalPage 
+        <ModalPage
+            settlingHeight={100} 
             id={id}
-            settlingHeight={100}
             header={
                 <ModalPageHead text="Вопросы" onClose={changeModal}></ModalPageHead>
             }>

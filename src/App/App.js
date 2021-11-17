@@ -39,6 +39,7 @@ import {selectCurrentView} from '../Selectors/app_selectors'
 import PoolView from '../views/PoolView/PoolView';
 import { getIsFirstOpen } from '../Selectors/data_selectors';
 import { getAlert } from '../Selectors/alert_selectors';
+import ModalRootMain from '../components/Modal/ModalRootMain';
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
@@ -347,6 +348,7 @@ const App = ({results, MAX_SCORE,
 		<AdaptivityProvider>
 			<AppRoot>
 				<SplitLayout 
+					modal={<ModalRootMain/>}
 					header={null} 
 					popout={curAlert}
 				>

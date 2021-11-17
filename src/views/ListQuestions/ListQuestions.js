@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getArrQuestions, getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
 import { downloadImagesArr, sendUserAnswersToServer } from '../../NotUI/Server/server';
-import ModalPageForListQuestions from './ModalPageForListQuestions/ModalPageForListQuestions';
+import ModalPageForListQuestions from '../../components/Modal/Modals/ModalPageForListQuestions/ModalPageForListQuestions';
 import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
 import LoadingPanel from '../../components/LoadingPanel/LoadingPanel'
 

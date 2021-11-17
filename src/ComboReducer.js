@@ -5,6 +5,7 @@ import {additionalReducer} from './Additional/reducer'
 import { listSurveyReducer } from "./views/ListQuestions/reducer";
 import { poolVeiwReducer } from "./views/PoolView/reducer";
 import {alertReducer} from "./components/Alert/alertReducer"
+import { modalReducer } from "./components/Modal/modalRootMainReduecer";
 
 export const comboReducer = combineReducers({
     App: appReducer,
@@ -12,5 +13,6 @@ export const comboReducer = combineReducers({
     PoolView: poolVeiwReducer,
     Data: dataReducer,
     Alert: alertReducer,
+    Modal: modalReducer,
     Additional: additionalReducer
 })
