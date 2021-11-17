@@ -11,7 +11,9 @@ import { downloadImagesArr, sendUserAnswersToServer } from '../../NotUI/Server/s
 import ModalPageForListQuestions from '../../components/Modal/Modals/ModalPageForListQuestions/ModalPageForListQuestions';
 import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
 import LoadingPanel from '../../components/LoadingPanel/LoadingPanel'
-
+import {closeModal, openModalListQuestions } from '../../components/Modal/actions';
+import { setDataModalListQuestions } from '../../components/Modal/Modals/ModalPageForListQuestions/actionsModalListQuestions';
+import { isModalListQuestionsOpen } from '../../Selectors/modal_selectors';
 
 const MODAL_ID = "MODAL_ID"
 const PANEL_LOADING = "PANEL_LOADING-0"
@@ -141,8 +143,6 @@ const ListQuestions = ({id,
 
 
 
-
-
     //Навигация
     const checkIndex = (indexQuestion) =>{
 
@@ -170,11 +170,35 @@ const ListQuestions = ({id,
     const goToNextQuestion=()=> goToCurrentQuestion(history.length)
 
 
+    // Работа с модальным окном
+    const isModalOpen = useSelector(isModalListQuestionsOpen)
+    const openModal = () => {
+            dispath(setDataModalListQuestions({
+                arrQuestions:arrQuestions,
+                getUserAnswer:getUserAnswer,
+                goToCurrentQuestion:goToCurrentQuestion,
+                finishSurvey:finishSurvey
+            }))
+            dispath(openModalListQuestions())
+    }
+    const closeModalListQuestions = () => dispath(closeModal())
+
+
+
 
     //Окончание опроса
     const cheakAllAnswered = () => {
         return arrQuestions.length === userAnswers.length;
     }
+
+    useEffect(() => {
+        dispath(setDataModalListQuestions({
+            arrQuestions:arrQuestions,
+            getUserAnswer:getUserAnswer,
+            goToCurrentQuestion:goToCurrentQuestion,
+            finishSurvey:finishSurvey
+        }))   
+    },[])
 
     useEffect(() => {
         if(userAnswersFinishValidator){
@@ -189,11 +213,27 @@ const ListQuestions = ({id,
     const finishSurvey = () => {
         setUserAnswersFinishValidator(true)
     }
-
-    const finishSurveyWithOutCheck = () =>{
+    
+    const finishWithTimeOut = () => setTimeout(()=>{
+        saveAnswersToState()
+        saveAnswersToServer()
+        goToResultView()}, 250)
+    
+    const finishWithOutTimeOut = () => {
         saveAnswersToState()
         saveAnswersToServer()
         goToResultView()
+    }
+
+    const finishSurveyWithOutCheck = () =>{
+        closeModalListQuestions()
+        if(isModalOpen){
+            finishWithTimeOut()
+        }
+        else{
+            finishWithOutTimeOut()
+        }
+        
     }
 
 
@@ -221,28 +261,19 @@ const ListQuestions = ({id,
 
 
 
-    // Работа с модальным окном
-    const [isModalOpen, setModalOpen] = useState(null)
-    const changeModal = () => {
-        if(isModalOpen === MODAL_ID){
-            setModalOpen(null)
-        }
-        else{
-            setModalOpen(MODAL_ID)
-        }
-    }
-    const modal = (
-        <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
-            <ModalPageForListQuestions
-                id={MODAL_ID}
-                arrQuestions={arrQuestions}
-                getUserAnswer={getUserAnswer}
-                changeModal={changeModal}
-                goToCurrentQuestion={goToCurrentQuestion}
-                finishSurvey={finishSurvey}
-            />
-        </ModalRoot>
-    )
+
+    // const modal = (
+    //     <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
+    //         <ModalPageForListQuestions
+    //             id={MODAL_ID}
+    //             arrQuestions={arrQuestions}
+    //             getUserAnswer={getUserAnswer}
+    //             changeModal={changeModal}
+    //             goToCurrentQuestion={goToCurrentQuestion}
+    //             finishSurvey={finishSurvey}
+    //         />
+    //     </ModalRoot>
+    // )
 
 
 
@@ -269,7 +300,7 @@ const ListQuestions = ({id,
                 leftText={"Отмена"}
                 rightText={"Завершить"}
                 rightFunc={ () => {
-                    finishSurveyWithOutCheck();
+                    finishSurveyWithOutCheck()
                 }}
                 onClose={()=>{ 
                     setUserAnswersFinishValidator(false)
@@ -295,7 +326,7 @@ const ListQuestions = ({id,
     return (
         <View id={id} 
             activePanel={activePanel} 
-            modal={modal} 
+            // modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
             popout={alert}
@@ -316,7 +347,7 @@ const ListQuestions = ({id,
                         goToPrevQuestion={goToPrevQuestion}
                         getUserAnswer={getUserAnswer}
 
-                        changeModal={changeModal}
+                        changeModal={openModal}
 
                         // setNotActiveBackgoundToAnswerButton={setNotActiveBackgoundToAnswerButton}
                     />

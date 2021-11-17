@@ -14,8 +14,7 @@ const ModalPageForListQuestions = ({id,arrQuestions,
 
     return(
         <ModalPage
-            settlingHeight={100} 
-            id={id}
+            nav={id}
             header={
                 <ModalPageHead text="Вопросы" onClose={changeModal}></ModalPageHead>
             }>

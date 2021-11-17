@@ -10,7 +10,9 @@ const ModalRootMain = ({}) => {
     
     //actions
     const dispatch = useDispatch();
-    const closeModal = () => dispatch(actions.closeModal)
+    const closeModal = () => {
+        dispatch(actions.closeModal())
+    }
 
     //ModalRoot
     const activeModal = useSelector(getIdActiveModal);
@@ -18,10 +20,10 @@ const ModalRootMain = ({}) => {
     //ModalPageForListQuestions
     const modalPageListQuestions = useSelector(getDataModalListQuestions)
 
-
     return(
-        <ModalRoot activeModal={null}>
+        <ModalRoot activeModal={activeModal} onClose={closeModal} onClick={(e)=>e.stopPropagation()}>
             <ModalPageForListQuestions
+                settlingHeight={100} 
                 id={consts.MODAL_ID_LIST_QUESTIONS}
                 arrQuestions={modalPageListQuestions.arrQuestions}
                 getUserAnswer={modalPageListQuestions.getUserAnswer}
