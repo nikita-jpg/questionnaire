@@ -34,7 +34,6 @@ const ModalPageForListQuestions = ({id,arrQuestions,
                     
                 }
                 <SimpleCell
-                    hasActive={false}
                     onClick={ () => {finishSurvey()}}
                     className="ListQuestions__modal-el">
                     <div className="ListQuestions__modal-el__finish-btn">
