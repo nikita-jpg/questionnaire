@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import CardWrapper from '../../../components/CardWrapper/CardWrapper';
 import { getAnswersResultSurvey, getAnswersResultEra } from '../../../help';
-import { getCurSurvey, getCurEraSurveys, getIndexSurvey, testSelector } from '../../../Selectors/data_selectors';
+import { getCurSurvey, getCurEraSurveys, getIndexSurvey, testSelector, getCurEra } from '../../../Selectors/data_selectors';
 import './ResultCards.css'
 
 const makeUsedData = (survey, surveyResult) =>{
@@ -39,12 +39,17 @@ const makeCard = (info, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyFo
 }
 
 
-const getCardsFromSurveysFilter = (surveys,surveysResult, curSurveyID, isFirstOpenResult, 
+const getCardsFromSurveysFilter = (surveys,surveysResult, curSurveyID, isFirstOpenResult, eraName,
     cardClick=()=>{}, 
     makeStepAnimDealyForCard=()=>{}
     ) => {
 
+    let title = <div className={`ResultCards__cardTitle ${isFirstOpenResult ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard() }}>
+        Другие опросы из «{eraName}»
+        </div>
     let arr = [];
+
+    arr.push(title)
     surveysResult.map((surveyResult)=>{
         if((surveyResult.score !== surveyResult.total) && (surveyResult.idSurvey !== curSurveyID)){
 
@@ -55,7 +60,7 @@ const getCardsFromSurveysFilter = (surveys,surveysResult, curSurveyID, isFirstOp
         }
     })
 
-    if(arr.length === 0)
+    if(arr.length === 1)
         return null
     else
         return(arr)
@@ -150,9 +155,11 @@ const ResultCards = ({
         goToSurveyView()
     }
 
+    let curEraName = useSelector(getCurEra).russianName;
+
     
     //Узнаём есть ли непройденные опросы (кроме текущего)
-    let surveysFilterResultArr = getCardsFromSurveysFilter(curSurveys,curSurveysResult, curSurveyIndex, isFirstOpenResult, cardClick, makeStepAnimDealyForCard)
+    let surveysFilterResultArr = getCardsFromSurveysFilter(curSurveys,curSurveysResult, curSurveyIndex, isFirstOpenResult, curEraName, cardClick, makeStepAnimDealyForCard)
     if(surveysFilterResultArr !== null){
         return surveysFilterResultArr
     }

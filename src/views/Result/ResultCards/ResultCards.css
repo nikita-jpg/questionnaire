@@ -1,7 +1,16 @@
 .ResultCards__card{
-    margin-top: 8px;
+    margin-top: 15px;
     width: 100%;
     color: var(--main-white-color);
+}
+
+.ResultCards__cardTitle{
+    width: 100%;
+    text-align: center;
+    color: var(--main-gray-color);
+    margin-top: 30px
+    /* margin-bottom: 15px;
+    margin-top: 20px; */
 }
 
 /* Второй Фильтр */
