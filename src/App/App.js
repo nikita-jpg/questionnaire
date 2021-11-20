@@ -40,6 +40,7 @@ import PoolView from '../views/PoolView/PoolView';
 import { getIsFirstOpen } from '../Selectors/data_selectors';
 import { getAlert } from '../Selectors/alert_selectors';
 import ModalRootMain from '../components/Modal/ModalRootMain';
+import AlertCloseApp from '../components/Alert/AlertCloseApp/AlertCloseApp';
 
 // import './svg/book.svg'
 // import './svg/imgLoader.svg'
@@ -159,6 +160,8 @@ const App = ({results, MAX_SCORE,
 	const [surveyImages, setSurveyImages] = useState([])
 
 
+	const errorAlert = <AlertCloseApp errorText = {"К сожалению, сервер недоступен. Просим вас зайти позже"}></AlertCloseApp>
+
 	// Прелзагрузка всего необходимого
 	useEffect(() => {
 
@@ -203,9 +206,11 @@ const App = ({results, MAX_SCORE,
 			})
 			.catch(err=>console.log(err))
 
-
 		})
-		.catch(err=>console.log(err))
+		.catch(err=>{
+			dispatch(alert.Alert_setAlert(errorAlert))
+			console.log(err)
+		})
 		//Обновляем текущую ширину
 
 		// additionalActions.Additional_setCurHeight(document.getElementById('root').scrollHeight)

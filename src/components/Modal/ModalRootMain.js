@@ -21,7 +21,7 @@ const ModalRootMain = ({}) => {
     const modalPageListQuestions = useSelector(getDataModalListQuestions)
 
     return(
-        <ModalRoot activeModal={activeModal} onClose={closeModal} onClick={(e)=>e.stopPropagation()}>
+        <ModalRoot activeModal={activeModal} onClose={closeModal}>
             <ModalPageForListQuestions
                 settlingHeight={100} 
                 id={consts.MODAL_ID_LIST_QUESTIONS}

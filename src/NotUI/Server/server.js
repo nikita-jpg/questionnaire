@@ -1,5 +1,8 @@
-
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { Alert_setAlert } from '../../components/Alert/actions';
+import AlertCloseApp from '../../components/Alert/AlertCloseApp/AlertCloseApp';
 
 //Для запросов на сервер
 const http = axios.create({
@@ -9,7 +12,7 @@ const http = axios.create({
     }
 });
 export const DEFAULT_IMAGE_EXPANSION = ".webp"
-export const DEFAULT_URL = "https://ef96-62-33-49-154.ngrok.io/"
+export const DEFAULT_URL = "https://fb42-62-33-49-154.ngrok.io/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
@@ -22,12 +25,16 @@ const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 //     return data
 // }
 
+// const dispatch = () => {useDispatch()}
+
 //Загрузка isFirstOpen и eras
-export async function  downloadData(){
+export const downloadData = async () => {
 
     let data = await http.get(DEFAULT_URL)
                         .then(data=>{return data.data})
-                        .catch(err => console.log(err + " - downloadData error"))
+                        .catch(err => {
+                            console.log(err + " - downloadData error")
+                        })
 
     //Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard обращается к свойству subset
     // let stringData = JSON.stringify(data)

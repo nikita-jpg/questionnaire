@@ -16,7 +16,9 @@ const ModalPageForListQuestions = ({id,arrQuestions,
         <ModalPage
             nav={id}
             header={
-                <ModalPageHead text="Вопросы" onClose={changeModal}></ModalPageHead>
+                <ModalPageHead text="Вопросы" onClose={changeModal}>
+                    
+                </ModalPageHead>
             }>
             <Div>
                 {
@@ -34,6 +36,7 @@ const ModalPageForListQuestions = ({id,arrQuestions,
                     
                 }
                 <SimpleCell
+                    hasActive={false}
                     onClick={ () => {finishSurvey()}}
                     className="ListQuestions__modal-el">
                     <div className="ListQuestions__modal-el__finish-btn">
