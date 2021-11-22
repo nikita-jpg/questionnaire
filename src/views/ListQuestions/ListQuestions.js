@@ -42,7 +42,6 @@ const ListQuestions = ({id,
         changeHistory(newIndex)
     }
 
-
     // // //Подгрузка картинок
     // useEffect(()=>{
 
@@ -182,6 +181,7 @@ const ListQuestions = ({id,
             dispath(openModalListQuestions())
     }
     const closeModalListQuestions = () => dispath(closeModal())
+    const closeModalListQuestionsWithTimuot = () => setTimeout(()=>{closeModalListQuestions()}, 450)
 
 
 
@@ -217,7 +217,7 @@ const ListQuestions = ({id,
     const finishWithTimeOut = () => setTimeout(()=>{
         saveAnswersToState()
         saveAnswersToServer()
-        goToResultView()}, 250)
+        goToResultView()}, 750)
     
     const finishWithOutTimeOut = () => {
         saveAnswersToState()
@@ -226,8 +226,8 @@ const ListQuestions = ({id,
     }
 
     const finishSurveyWithOutCheck = () =>{
-        closeModalListQuestions()
         if(isModalOpen){
+            closeModalListQuestionsWithTimuot()
             finishWithTimeOut()
         }
         else{

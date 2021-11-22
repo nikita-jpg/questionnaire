@@ -23,16 +23,22 @@ const CardWrapper = ({title,
     const [image, setImage] = useState(stateImage !== undefined ? stateImage : defaultImage)
 
     useEffect(()=>{
-        if(stateImage === undefined){
-            downloadImageFromServer(imageName)
-            .then(res=>setImage(
-                {
-                    imageName:imageName,
-                    data:res
-                }
-            ))
+        if(stateImage !== undefined){
+            setImage(stateImage)
         }
-    },[])
+    },[stateImage])
+
+    // useEffect(()=>{
+    //     if(stateImage === undefined){
+    //         downloadImageFromServer(imageName)
+    //         .then(res=>setImage(
+    //             {
+    //                 imageName:imageName,
+    //                 data:res
+    //             }
+    //         ))
+    //     }
+    // },[])
 
 
     // const down = () =>{

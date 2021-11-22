@@ -1,7 +1,12 @@
 .App-alert {
     text-align: left;
 }
-:root {
+/* :root, [scheme*="bright_light"], body[scheme*="bright_light"] {
+  --background_content:var(--main-first-bg-color);
+} */
+
+:root[scheme*="_"], body[scheme*="_"]  {
+/* :root, [scheme=bright_light], [scheme=space_gray], body[scheme=bright_light], body[scheme=space_gray]{ */
 
     /* Цвета уровней */
     --main-first-bg-color:#1c1c1c;

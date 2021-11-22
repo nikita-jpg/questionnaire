@@ -17,7 +17,7 @@ const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
     useEffect(()=>{
         setCurWidth(document.getElementById('root').scrollWidth)
         setCurHeight(document.getElementById('root').scrollHeight)
-    })
+    },[document.getElementById('root').scrollWidth, document.getElementById('root').scrollHeight])
 
     // const curWidth = useSelector(getCurWidth)
     // const curHeight = useSelector(getCurHeight)
