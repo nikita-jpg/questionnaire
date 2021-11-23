@@ -112,12 +112,15 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
         }
 
 //Реклама
+        useEffect(()=>{
+            getAdData()
+        },[])
         const getAdData = () => {
-            let addData = "";
-            console.log("getAdData use")
+            // let addData = "";
             bridge.send('VKWebAppGetAds',{}).then((promoBannerProps) => {
-                    console.log("promo")
-                    addData = promoBannerProps
+                    // console.log(promoBannerProps)
+                    setAdDate(promoBannerProps)
+                    // addData = promoBannerProps
                     // setAdDate(promoBannerProps)
                     // (true);
                 })
@@ -125,7 +128,8 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
                 .finally(()=>{
                     console.log("final")
                 })
-            return addData
+            // console.log(promoBannerProps)
+            // return addData
         }
         const [isAdVisible, setAdVisible] = useState(true)
         // const [adDate, setAdDate] = useState(getAdData())
