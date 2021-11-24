@@ -349,7 +349,6 @@ const ListQuestions = ({id,
 
                         changeModal={openModal}
 
-                        // setNotActiveBackgoundToAnswerButton={setNotActiveBackgoundToAnswerButton}
                     />
                 ))
             }

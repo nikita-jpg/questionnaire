@@ -12,7 +12,7 @@ const http = axios.create({
     }
 });
 export const DEFAULT_IMAGE_EXPANSION = ".webp"
-export const DEFAULT_URL = "https://1abe-62-33-49-154.ngrok.io/"
+export const DEFAULT_URL = "https://1397-62-33-49-154.ngrok.io/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
@@ -35,13 +35,7 @@ export const downloadData = async () => {
                         .catch(err => {
                             console.log(err + " - downloadData error")
                         })
-
-    //Переименовываемым эти ключи, так как оба они указывают на подмножеста, и ListCard обращается к свойству subset
-    // let stringData = JSON.stringify(data)
-    // stringData = stringData.replaceAll('"surveys":', '"subset":')
-    // stringData = stringData.replaceAll('"questions":', '"subset":')
-    // data = JSON.parse(stringData)
-
+    console.log(data)
     return data;
 }
 

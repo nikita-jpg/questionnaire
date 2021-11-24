@@ -2,7 +2,7 @@ import { Alert } from "@vkontakte/vkui"
 import React from 'react';
 import './AlertWrapper.css'
 
-const AlertWrapper = ({header, description, leftText = null, children, leftFunc = () => { }, rightText, rightFunc = () => { }, onClose = () => { }}) => {
+const AlertWrapper = ({header, description, leftText = null, children, style, leftFunc = () => { }, rightText, rightFunc = () => { }, onClose = () => { }}) => {
 
   const leftAction = 
   leftText !== null ?
@@ -26,6 +26,7 @@ const AlertWrapper = ({header, description, leftText = null, children, leftFunc 
 
   return(
     <Alert    
+      style={style}
       header={header}
       text={description}
       actionsLayout="horizontal"
