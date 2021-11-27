@@ -11,3 +11,6 @@ export const SET_IMAGES_ERAS = "SET_IMAGES_ERAS"
 export const SET_IMAGES_SURVEYS = "SET_IMAGES_SURVEYS"
 
 export const ADD_STATIC_IMAGES = "ADD_STATIC_IMAGES"
+
+//Реклама
+export const SET_ADS_PROPS = "SET_ADS_PROPS"

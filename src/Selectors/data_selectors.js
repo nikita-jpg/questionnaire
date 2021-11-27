@@ -272,6 +272,9 @@ export const getImageByName = (imageName) => (state) => {
 
 }
 
+//Реклама
+export const getAdsProps = (state) => state.Data.AdsProps
+
 // //Статические (меняются на протяжении всей работы приложения) картинки
 // const getDynamicImage = (imageName) => (state) => {
 //     const values = Object.values(state.Data.DynamicImages)

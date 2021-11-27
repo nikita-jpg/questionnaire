@@ -58,6 +58,13 @@ export const dataReducer = (state = initialState, action) =>{
             }}
         }
 
+        case consts.SET_ADS_PROPS:{
+            const adsProps = action.adsProps
+            return{...state, ...{
+                AdsProps: adsProps
+            }}
+        }
+
         // case consts.SET_IMAGES_SURVEYS:{
         //     const images = action.images
         //     let imagesFromState = Object.assign([],state.Images)

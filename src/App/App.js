@@ -96,6 +96,15 @@ const App = ({results, MAX_SCORE,
 	const sendImagesToStateEras = (images) => dispatch(data.Data_addStaticImages(images))
 	const sendImagesToStateSurveys = (images) => dispatch(data.Data_addStaticImages(images))
 
+	//Реклама
+	const setAdsProps = (adsPropsa) => dispatch(data.Set_adsProps(adsPropsa))
+	const getAdsData = () => {
+		bridge.send('VKWebAppGetAds',{}).then((promoBannerProps) => {
+				setAdsProps(promoBannerProps)
+			})
+			.catch(error => console.log(error))
+	}
+
 
 	const [eras, setEras] = useState(
 	[
@@ -211,6 +220,9 @@ const App = ({results, MAX_SCORE,
 			dispatch(alert.Alert_setAlert(errorAlert))
 			console.log(err)
 		})
+
+		//Загружаем рекламу
+		getAdsData()
 		//Обновляем текущую ширину
 
 		// additionalActions.Additional_setCurHeight(document.getElementById('root').scrollHeight)

@@ -38,12 +38,19 @@ export const Data_setStaticDataFromServer = (data) => {
 
 
 
-// //Картинки
-
+//Картинки
 export const Data_addStaticImages = (images) => {
     return{
         type:consts.ADD_STATIC_IMAGES,
         images:images
+    }
+}
+
+//Реклама
+export const Set_adsProps = (adsProps) => {
+    return{
+        type:consts.SET_ADS_PROPS,
+        adsProps:adsProps
     }
 }
 

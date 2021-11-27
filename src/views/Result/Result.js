@@ -2,13 +2,14 @@ import bridge from '@vkontakte/vk-bridge';
 import { ContentCard, Div, Panel, PromoBanner, View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { App_goToResultView } from '../../App/Actions';
 import AlertQuestionResult from "../../components/Alert/AlertQuestionResult/AlertQuestionResult";
 import CustomTooltip from '../../components/CustomTooltip/CustomTooltip';
 import Header from "../../components/Header/Header";
 import "../../components/ListCard/ListCard.css";
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { getAnswersResultSurvey } from '../../help';
-import { getArrQuestions, getCurQuestions, getCurSurvey, getQuestions } from '../../Selectors/data_selectors';
+import { getAdsProps, getArrQuestions, getCurQuestions, getCurSurvey, getQuestions } from '../../Selectors/data_selectors';
 import PanelAnswersQuestions from './PanelAnswersQuestions/PanelAnswersQuestions';
 // import { getIndexEraAndSurvey } from '../../Selectors/data_selectors';
 import PanelResult from './PanelResult/PanelResult';
@@ -112,6 +113,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
         }
 
 //Реклама
+const [isAdVisible, setAdVisible] = useState(false)
         useEffect(()=>{
             getAdData()
         },[])
@@ -120,6 +122,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
             bridge.send('VKWebAppGetAds',{}).then((promoBannerProps) => {
                     // console.log(promoBannerProps)
                     setAdDate(promoBannerProps)
+                    setAdVisible(App_goToResultView)
                     // addData = promoBannerProps
                     // setAdDate(promoBannerProps)
                     // (true);
@@ -131,7 +134,6 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
             // console.log(promoBannerProps)
             // return addData
         }
-        const [isAdVisible, setAdVisible] = useState(true)
         // const [adDate, setAdDate] = useState(getAdData())
         const [adDate, setAdDate] = useState({
             title: 'Заголовок',
@@ -173,6 +175,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
             setIsVisibleAlert(false)
         }
 
+    const adsPropsModified = useSelector(getAdsProps)
     return (
         <View 
             id={id} 
@@ -191,7 +194,7 @@ const Result = ({ id, titleAge, percent, eras, quizes, indexesAnswers, isFirstOp
             <PanelResult
                 id={PANEL_RESULT}
                 isNeedAnim={isNeedAnim}
-                adDate={adDate}
+                adDate={adsPropsModified}
                 isAdVisible={isAdVisible}
 
                 goToSurveyView={goToSurveyView}

@@ -206,7 +206,9 @@ export const initialState = {
 				data:""
 			}
 		}
-	}
+	},
+
+	AdsProps:null
 
 
 

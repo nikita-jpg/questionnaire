@@ -11,6 +11,9 @@ import { createStore } from "redux";
 import {comboReducer} from './comboReducer'
 import { Provider } from "react-redux";
 
+
+bridge.send("VKWebAppGetConfig").then((data)=>console.log(data));
+
 // Init VK  Mini App
 bridge.send("VKWebAppInit");
 
@@ -27,6 +30,11 @@ bridge
     .catch(error =>{
         console.log(error)
     })
+
+bridge.subscribe((e) => {
+    if(e.type == 'VKWebAppUpdateConfig') {
+        console.log("fdwf"+e.data.status);
+    }});
 
 // const [isDownloaded, setIsDownloaded] = 
 

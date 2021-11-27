@@ -3,10 +3,10 @@ import PanelWrapper from "../../../components/PanelWrapper/PanelWrapper"
 import './PanelResult.css'
 import React, { useEffect, useState } from "react";
 import ResultButtons from "../ResultButtons/ResultButtons";
-import { PromoBanner } from "@vkontakte/vkui";
+import { PromoBanner, usePlatform } from "@vkontakte/vkui";
 import bridge from '@vkontakte/vk-bridge';
 import ResultCards from "../ResultCards/ResultCards";
-import { getCurEraId, getCurEraSurveys, getCurSurveyId, getCurSurveys, getEras, getIndexEra, getIndexSurvey, getResultCurSurvey, getResultCurSurveys, getResultsEras } from "../../../Selectors/data_selectors";
+import { getAdsProps, getCurEraId, getCurEraSurveys, getCurSurveyId, getCurSurveys, getEras, getIndexEra, getIndexSurvey, getResultCurSurvey, getResultCurSurveys, getResultsEras } from "../../../Selectors/data_selectors";
 import { useSelector } from "react-redux";
 
 
@@ -41,6 +41,10 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
     const erasModified = useSelector(getEras)
     const erasResultModified = useSelector(getResultsEras)
     const surveysCurResultModified = useSelector(getResultCurSurveys)
+
+    //Реклама
+    // const [adsProps, setAdsProps] = useState(null)
+    const adsPropsModified = useSelector(getAdsProps)
 
 
     useEffect(()=>{
@@ -109,9 +113,9 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
 
         {/* Реклама */}
             {
-                isAdVisible &&
+                (adsPropsModified!==null) &&
                 <div className={`Result__adds ${isNeedAnim ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
-                    <PromoBanner bannerData={adDate} onClose={() => {setAdVisible(false)}}></PromoBanner>
+                    <PromoBanner bannerData={adsPropsModified} onClose={() => {setAdVisible(false)}}></PromoBanner>
                 </div>
             }
 

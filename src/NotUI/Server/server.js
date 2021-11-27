@@ -12,7 +12,7 @@ const http = axios.create({
     }
 });
 export const DEFAULT_IMAGE_EXPANSION = ".webp"
-export const DEFAULT_URL = "https://1397-62-33-49-154.ngrok.io/"
+export const DEFAULT_URL = "https://fb73-62-33-49-154.ngrok.io/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
