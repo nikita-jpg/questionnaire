@@ -1,11 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { getCurWidth } from './Additional/selectors';
 import { QUESTION_NOT_ANSWERED } from './NotUI/Data/consts';
 
 export const isTitleCentre = (curWidth) => {
     return({
-    // stub:curWidth >= 370 ? <div style={{width:"90px"}}>{element} </div> :element,
     text:curWidth >= 370 ? "center" : "start"
     })
 }
