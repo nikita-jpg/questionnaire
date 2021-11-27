@@ -1,10 +1,9 @@
-import { Button } from '@vkontakte/vkui';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import * as alert from '../../Alert/actions';
+import AlertWrapper from '../../Alert/AlertWrapper/AlertWrapper';
 import ButtonWrapper from '../../ButtonWrapper/ButtonWrapper';
-import AlertWrapper from '../../Alert/AlertWrapper/AlertWrapper'
-import * as alert from '../../Alert/actions'
-import './CardWrapperDescription.css'
+import './CardWrapperDescription.css';
 
 const CardWrapperDescription = ({text, textBtn,imgSource, btnCardClickObj={}}) => {
 
@@ -36,8 +35,6 @@ const CardWrapperDescription = ({text, textBtn,imgSource, btnCardClickObj={}}) =
         <div className="CardWrapperDescription">
 
             <div className="CardWrapperDescription__text">{text}</div>
-
-            {/* <a href="https://translate.yandex.ru"> Источник ссылка</a> */}
 
             <div className="My_link CardWrapperDescription__text CardWrapperDescription__imageSource" onClick={sourceImgClick}>Источник изображения</div>
 

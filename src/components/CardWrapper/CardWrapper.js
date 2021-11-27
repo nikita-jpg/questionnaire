@@ -1,11 +1,11 @@
-import { Button, ContentCard } from "@vkontakte/vkui"
+import { ContentCard } from "@vkontakte/vkui";
 import React, { useEffect, useState } from 'react';
-import './CardWrapper.css';
-import defaultImage from '../DefaultImage/DefaultImage'
-import {DEFAULT_URL, DEFAULT_URL_DOWNLOAD_IMG, downloadImageFromServer as downloadImage, downloadImageFromServer, downloadImageFromServerTset} from '../../NotUI/Server/server'
-import CardWrapperDescription from "./CardWrapperDescription/CardWrapperDescription";
 import { useSelector } from "react-redux";
+import { downloadImageFromServer } from '../../NotUI/Server/server';
 import { getImageByName } from "../../Selectors/data_selectors";
+import defaultImage from '../DefaultImage/DefaultImage';
+import './CardWrapper.css';
+import CardWrapperDescription from "./CardWrapperDescription/CardWrapperDescription";
 
 const CardWrapper = ({title, 
     textBtn, 

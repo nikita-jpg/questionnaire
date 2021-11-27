@@ -1,4 +1,3 @@
-import { ContentCard, Div } from '@vkontakte/vkui';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getCurWidth } from '../../Additional/selectors';
