@@ -5,7 +5,6 @@ import ReactDOM from "react-dom";
 import bridge from "@vkontakte/vk-bridge";
 import App from "./App/App";
 
-import store, { savePercentQuiz } from "./store/store.js";
 import { Platform } from "@vkontakte/vkui";
 import { createStore } from "redux";
 import {comboReducer} from './comboReducer'
@@ -65,7 +64,7 @@ const state = createStore(comboReducer)
 
 ReactDOM.render(
     <Provider store={state}>
-        <App {...store} savePercentQuiz={savePercentQuiz}/>
+        <App/>
     </Provider>, 
     document.getElementById("root")
 );

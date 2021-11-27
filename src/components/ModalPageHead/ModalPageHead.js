@@ -1,5 +1,5 @@
 import React from "react";
-import { ModalPageHeader, useAdaptivity ViewWidth } from "@vkontakte/vkui";
+import { ModalPageHeader, useAdaptivity, ViewWidth } from "@vkontakte/vkui";
 import './ModalPageHead.css'
 import { isTitleCentre } from "../../help";
 import { Icon24Dismiss } from "@vkontakte/icons";
