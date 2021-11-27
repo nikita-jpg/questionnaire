@@ -62,7 +62,7 @@ const App = ({}) => {
 				if(info.UserData.isFirstOpen){
 					dispatch(appNavigate.App_goToStartView())
 				}else{
-					// dispatch(appNavigate.App_goToPollView())
+					dispatch(appNavigate.App_goToPollView())
 				}
 
 				let surveysImages = [];
