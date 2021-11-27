@@ -49,7 +49,7 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
             return(
                 <div onClick={click} style={{width:"100%", paddingLeft:marginLeft}}>
                     <div className="Header__title" style={{maxWidth:maxWidth}}>
-                        <Marquee childMargin="20" speed="0.08" direction="left" delay="600">
+                        <Marquee childMargin={20} speed={0.08} direction="left" delay={600}>
                             {text}
                             {icon}
                         </Marquee>
