@@ -17,75 +17,28 @@ export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
 
-// //Загрузка перед входом в основное окно приложения
-// export async function firstDownload(){	
-//     // await downloadDefaultIMG();
-//     const data = await downloadData();
-//     // await downloadImagesArr(data.eras);
-//     return data
-// }
-
-// const dispatch = () => {useDispatch()}
-
 //Загрузка isFirstOpen и eras
 export const downloadData = async () => {
 
     let data = await http.get(DEFAULT_URL)
                         .then(data=>{return data.data})
-                        .catch(err => {
-                            console.log(err + " - downloadData error")
-                        })
-    console.log(data)
     return data;
 }
 
 // Загрузка изображений, которы должны быть в кэше до запуска
 export async function downloadDefaultIMG(){
-    // let retArr = []
 
     const paths = reqSvgs.keys();
 
-    
     for(let i=0;i<paths.length;i++){
-        await downloadImgFromFolder(paths[i]).then(imageData=>{
-
-            // retArr.push({
-            //     imageName:paths[i], 
-            //     data:imageData
-            // })
-        })
+        await downloadImgFromFolder(paths[i])
     }
 
 }
 
 export async function downloadImgFromFolder(path){
-    let ret = undefined
-
     let img = new Image();
     img.src = reqSvgs(path);
-
-    img.onerror = () => {
-        console.log(img.src + " - downloadImgFromFolder error")
-    }
-    img.onload = () => {
-        // console.log(img)
-        // ret = img.src
-    }
-}
-
-export async function TestdownloadImagesArr(arr){
-
-    let retArr = []
-    for(let i=0;i<42;i++){
-        await downloadImageFromServer(arr[0]).then(imageData=>{
-
-            // retArr.push({
-            //     imageName:arr[i], 
-            //     data:imageData
-            // })
-        })
-    }
-    // return retArr
 }
 
 export async function downloadImagesArr(arr){

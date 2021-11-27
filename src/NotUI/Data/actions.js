@@ -53,24 +53,3 @@ export const Set_adsProps = (adsProps) => {
         adsProps:adsProps
     }
 }
-
-// export const Data_setImagesEras = (images) => {
-//     return{
-//         type:consts.SET_IMAGES_ERAS,
-//         images:images
-//     }
-// }
-
-// export const Data_setImagesSurveys = (images) => {
-//     return{
-//         type:consts.SET_IMAGES_SURVEYS,
-//         images:images
-//     }
-// }
-
-// export const Data_setImages_Cur = (images) => {
-//     return{
-//         type:SET_IMAGES_CUR,
-//         images:images
-//     }
-// }

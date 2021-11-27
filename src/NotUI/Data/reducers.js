@@ -65,18 +65,6 @@ export const dataReducer = (state = initialState, action) =>{
             }}
         }
 
-        // case consts.SET_IMAGES_SURVEYS:{
-        //     const images = action.images
-        //     let imagesFromState = Object.assign([],state.Images)
-        //     images.map((image)=>{
-        //         imagesFromState.Surveys.push(image)
-        //     })
-            
-        //     return{...state, ...{
-        //         Images: imagesFromState
-        //     }}
-        // }
-
         case consts.ADD_STATIC_IMAGES:{
             const images = action.images
             let imagesFromState = Object.assign([],state.StaticImages)
@@ -89,16 +77,6 @@ export const dataReducer = (state = initialState, action) =>{
                 StaticImages: imagesFromState
             }}
         }
-
-        // case consts.SET_IMAGES_CUR:{
-        //     const images = action.images
-        //     let imagesFromState = Object.assign([],state.Images)
-        //     imagesFromState.CurImages = images
-            
-        //     return{...state, ...{
-        //         Images: imagesFromState
-        //     }}
-        // }
 
         default:{
             return state
