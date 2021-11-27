@@ -1,15 +1,7 @@
 .IteamListQuestion {
     width: 100%;
-    /* height: 100%; */
-    /* max-height: 500px; */
-    /* margin-top: 50%; */
-    /* min-height: 100%; */
     color: var(--main-white-color);
 
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center; */
 }
 
 .IteamListQuestion__content {
@@ -18,63 +10,6 @@
     justify-content: center;
     flex-direction: column;
 }
-
-
-/* Картинка */
-/* .IteamListQuestion__image-container{
-    position:relative;  
-    overflow: hidden;
-    border-radius: 6px; 
-    cursor: pointer;
-
-    display: flex;
-    justify-content: center;
-}
-
-.IteamListQuestion__image {
-    display: block;
-    width: 100%;
-    /* max-width: var(--main-max-imgWidth-In-IteamListQuestion); */
-    /* border-radius: 8px; */
-/* } */
-
-/* Задняя часть картинки */
-/* .IteamListQuestion__image-info{
-    opacity: 0;
-    position:absolute;
-    left:0;
-    bottom:0;
-    right:0;
-    top:0;
-    width: 100%;
-    height: 100%;
-    background:var(--main-second-bg-color);
-    /* border-radius: 8px; */
-
-    /* display: flex;
-    align-items: center;
-} */
-  /* .IteamListQuestion__image-info-enter {
-    opacity: 1;
-    transition: opacity 0.2s;
-  }
-  .IteamListQuestion__image-info-enter-done {
-    opacity: 1;
-  }
-  .IteamListQuestion__image-info-exit {
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .IteamListQuestion__image-description{
-      width: 100%;
-      text-align: center;
-      color: var(--text_secondary);
-      font-size: 14px;
-  }
-  .IteamListQuestion__image-link{
-    color: var(--main-white-color);
-    font-size: 24px;
-  } */
 
   /* Текст вопроса */
   .IteamListQuestion__question{

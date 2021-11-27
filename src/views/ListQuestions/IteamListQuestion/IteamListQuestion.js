@@ -1,18 +1,11 @@
 import { Icon28ChevronDownOutline } from '@vkontakte/icons';
-import { Panel, platform, Text, Div, Platform, PanelHeaderButton}  from '@vkontakte/vkui';
-import React, { useEffect, useState } from 'react';
+import { Text } from '@vkontakte/vkui';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { CSSTransition } from 'react-transition-group';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
-import Header from '../../../components/Header/Header';
 import PanelWrapper from '../../../components/PanelWrapper/PanelWrapper';
-import { QUESTION_NOT_ANSWERED } from '../../../NotUI/Data/consts';
 import { getAnswerOptionsById } from '../../../Selectors/data_selectors';
-import ImageCard from './ImageCard/ImageCard';
-
 import "./IteamListQuestion.css";
-
-const osName = platform();
 
 const IteamListQuestion = ({ id, question,
     countQuestions,
@@ -47,7 +40,6 @@ const IteamListQuestion = ({ id, question,
                                 onClick={() => {
                                     giveAnswer(question.idQuestion, answer.idAnswerOption)
                                     goToNextQuestion()
-                                    // setNotActiveBackgoundToAnswerButton();
                                 }}
                                 text={answer.text}
                                 className={`IteamListQuestion__answer ${(getUserAnswer(question.idQuestion) === answer.idAnswerOption)?"IteamListQuestion__answer-active":""}` }

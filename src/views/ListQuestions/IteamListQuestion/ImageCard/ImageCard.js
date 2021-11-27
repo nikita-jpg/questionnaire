@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import "./ImageCard.css"
-import defaultImage from '../../../../svg/imgLoader.svg'
-import { DEFAULT_URL_DOWNLOAD_IMG, downloadImageFromServer } from '../../../../NotUI/Server/server';
 import { Div } from '@vkontakte/vkui';
+import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { useSelector } from 'react-redux';
+import "./ImageCard.css";
 
 const ImageCard = ({image, sourceImageLink}) => {
 
@@ -12,23 +9,8 @@ const ImageCard = ({image, sourceImageLink}) => {
     const [isImgInfoOpen, setisImgInfoOpen] = useState(false)
     const onLinkClick = (e) => e.stopPropagation();    
 
-    //Картинка
-    //Устанавливаем дефолтую картинку на карточки
-    // const [image, setImage] = useState(defaultImage)
-    //Загружаем основную картинку
-    // useEffect(()=>{
-    //     downloadImageFromServer(imageName).then(imageData=>{setImage(imageData)})
-    // },[])
-
-
     return(
         <div className="Image__container" onClick={() => {setisImgInfoOpen(!isImgInfoOpen)}}>
-
-        {/* <img
-            className="Image__image_default" 
-            src={defaultImage}
-        /> */}
-
 
         <img
             className="Image__image" 
