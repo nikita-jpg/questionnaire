@@ -1,27 +1,21 @@
-import { View,ModalRoot,ModalPage,List, SimpleCell, Div, usePlatform, ViewWidth, Group } from '@vkontakte/vkui';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
-import ModalPageHead from '../../components/ModalPageHead/ModalPageHead';
-import vkBridge from '@vkontakte/vk-bridge'
-import AlertWrapper from '../../components/Alert/AlertWrapper/AlertWrapper';
+import vkBridge from '@vkontakte/vk-bridge';
+import { View } from '@vkontakte/vkui';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getArrQuestions, getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
-import { getSurveyFinishedGoToResult } from '../../Selectors/listSurvey_selectors';
-import { downloadImagesArr, sendUserAnswersToServer } from '../../NotUI/Server/server';
-import ModalPageForListQuestions from '../../components/Modal/Modals/ModalPageForListQuestions/ModalPageForListQuestions';
-import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
-import LoadingPanel from '../../components/LoadingPanel/LoadingPanel'
-import {closeModal, openModalListQuestions } from '../../components/Modal/actions';
+import AlertWrapper from '../../components/Alert/AlertWrapper/AlertWrapper';
+import LoadingPanel from '../../components/LoadingPanel/LoadingPanel';
+import { closeModal, openModalListQuestions } from '../../components/Modal/actions';
 import { setDataModalListQuestions } from '../../components/Modal/Modals/ModalPageForListQuestions/actionsModalListQuestions';
+import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
+import { sendUserAnswersToServer } from '../../NotUI/Server/server';
+import { getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { isModalListQuestionsOpen } from '../../Selectors/modal_selectors';
+import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 
-const MODAL_ID = "MODAL_ID"
 const PANEL_LOADING = "PANEL_LOADING-0"
 
 
 const ListQuestions = ({id,
-    goToLoadingViewAction=()=>{}, 
-    goToViewListQuestionsAction=()=>{},
     goToPollViewAction=()=>{}, 
     goToResultViewAction=()=>{}, 
     goToListSurveyAction=()=>{},
@@ -32,31 +26,10 @@ const ListQuestions = ({id,
     //Получение данных
     const arrQuestions = useSelector(getCurQuestions)
     const curSurveyId = useSelector(getCurSurveyId)
-    // const [imageArr, setImageArr] = useState([])
     const dispath = useDispatch();
 
     //Внутренняя навигация
     const [activePanel, setActivePanel] = useState(0);
-    const setIndexQuestionAndHistory = (newIndex) => {
-        setActivePanel(newIndex)
-        changeHistory(newIndex)
-    }
-
-    // // //Подгрузка картинок
-    // useEffect(()=>{
-
-    //     let imageArrNames = [];
-    //     arrQuestions.map((question)=>{
-    //         imageArrNames.push(question.image.imageName)
-    //     })
-
-    //     downloadImagesArr(imageArrNames)
-    //     .then((res)=>{
-    //         setImageArr(res)
-    //         setActivePanel(0)
-    //     })
-
-    // },[])
 
 
     //Работа с ответами
@@ -130,16 +103,11 @@ const ListQuestions = ({id,
 
 
     //Внешняя навигация
-    const goToLoadingView = () => dispath(goToLoadingViewAction)
     const goToResultView = () => dispath(goToResultViewAction())
     const goToPollView = () => {
         dispath(goToListSurveyAction())
         dispath(goToPollViewAction())
     }
-    const goToViewListQuestions = () =>dispath(goToViewListQuestionsAction())
-
-
-
 
 
     //Навигация
@@ -260,23 +228,6 @@ const ListQuestions = ({id,
     }
 
 
-
-
-    // const modal = (
-    //     <ModalRoot activeModal={isModalOpen} onClose={changeModal}>
-    //         <ModalPageForListQuestions
-    //             id={MODAL_ID}
-    //             arrQuestions={arrQuestions}
-    //             getUserAnswer={getUserAnswer}
-    //             changeModal={changeModal}
-    //             goToCurrentQuestion={goToCurrentQuestion}
-    //             finishSurvey={finishSurvey}
-    //         />
-    //     </ModalRoot>
-    // )
-
-
-
     //Alert
     const [alert, setAlert] = useState(null);
 
@@ -312,21 +263,9 @@ const ListQuestions = ({id,
     )}
 
 
-
-    // const setNotActiveBackgoundToAnswerButton = () =>{
-    //     let panel = document.getElementsByName(createIdActivePanel(indexQuestion));
-    //     const buttons = panel[0].getElementsByClassName("IteamListQuestion__answer");
-
-    //     for(let i=0;i<buttons.length;i++){
-    //         buttons[i].style.backgroundColor = "var(--main-second-bg-color)"
-    //     }
-    // }
-
-
     return (
         <View id={id} 
             activePanel={activePanel} 
-            // modal={modal} 
             history={history} 
             onSwipeBack={goToPrevQuestion}
             popout={alert}
