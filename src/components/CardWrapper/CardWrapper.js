@@ -28,17 +28,17 @@ const CardWrapper = ({title,
         }
     },[stateImage])
 
-    // useEffect(()=>{
-    //     if(stateImage === undefined){
-    //         downloadImageFromServer(imageName)
-    //         .then(res=>setImage(
-    //             {
-    //                 imageName:imageName,
-    //                 data:res
-    //             }
-    //         ))
-    //     }
-    // },[])
+    useEffect(()=>{
+        if(stateImage === undefined){
+            downloadImageFromServer(imageName)
+            .then(res=>setImage(
+                {
+                    imageName:imageName,
+                    data:res
+                }
+            ))
+        }
+    },[])
 
 
     // const down = () =>{
