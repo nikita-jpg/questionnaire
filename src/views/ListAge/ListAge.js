@@ -1,16 +1,12 @@
-import { PanelHeader, Panel, Div } from '@vkontakte/vkui';
 import React from 'react';
 import './ListAge.css'
-import { getAnswersResultEra, isTitleCentre } from '../../help';
 import ListCard from '../../components/ListCard/ListCard'
-import Header from '../../components/Header/Header'
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
-import downloadImage from '../../NotUI/Server/server.js'
-import { useDispatch, useSelector } from 'react-redux';
-import { getEraResult, getResultsEras } from '../../Selectors/data_selectors';
+import { useSelector } from 'react-redux';
+import { getResultsEras } from '../../Selectors/data_selectors';
 
 
-const ListAge = ({id, eras, createOnClickItemAge=index=>null,setAlert=()=>{},}) => {
+const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
  
     const eraResults = useSelector(getResultsEras);
 
