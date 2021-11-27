@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import ButtonWrapper from '../../../components/ButtonWrapper/ButtonWrapper';
 import CardWrapper from '../../../components/CardWrapper/CardWrapper';
-import { getAnswersResultSurvey, getAnswersResultEra } from '../../../help';
-import { getCurSurvey, getCurEraSurveys, getIndexSurvey, testSelector, getCurEra } from '../../../Selectors/data_selectors';
-import './ResultCards.css'
+import { getCurEra } from '../../../Selectors/data_selectors';
+import './ResultCards.css';
 
 const makeUsedData = (survey, surveyResult) =>{
     // console.log(survey)
@@ -138,7 +137,6 @@ const ResultCards = ({
     curSurveyIndex,
     erasResult,
 
-    goToQuiz=()=>{}, 
     goToPollView=()=>{},
     onAgain=()=>{},
     setIndexSurvey=()=>{},
@@ -146,8 +144,6 @@ const ResultCards = ({
     makeStepAnimDealyForCard=()=>{}
 }) =>{
 
-    // const eras = upperEras;
-    // const surveys = makeUsedData(upperCurSurveys)
 
 
     const cardClick = (indexSurvey) => () => {
@@ -166,20 +162,11 @@ const ResultCards = ({
 
     
     let eraFilterResult = getCardsFromEraFilter(erasResult, curEraIndex, isFirstOpenResult, isCompletedSurvey, onAgain, goToPollView, makeStepAnimDealyForCard)
-    // console.log(eraFilterResult)
     if(eraFilterResult !== null){
         return eraFilterResult
     }
     
     return null
-    // return null
-
-    // if(isCurSurveyCompleted)
-    //     // return(surveysFilterResultArr)
-    
-    // let eraFilterResult = eraFilter(eras, indexAge, isFirstOpenResult, isCurSurveyCompleted, onAgain, goToEras, makeStepAnimDealyForCard)
-    // if(eraFilter !== null)
-    //     return(eraFilterResult)
 
 }
 export default ResultCards
