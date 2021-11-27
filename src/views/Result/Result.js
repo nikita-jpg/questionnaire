@@ -1,8 +1,7 @@
 import bridge from '@vkontakte/vk-bridge';
 import { View } from "@vkontakte/vkui";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { App_goToResultView } from '../../App/Actions';
 import AlertQuestionResult from "../../components/Alert/AlertQuestionResult/AlertQuestionResult";
 import "../../components/ListCard/ListCard.css";
 import { getAdsProps, getCurQuestions } from '../../Selectors/data_selectors';
