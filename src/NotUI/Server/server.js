@@ -69,7 +69,6 @@ export async function downloadImageFromServer(imageName){
 
 // Отправка ответа на сервер
 export async function sendUserAnswersToServer(userAnswers){
-    console.log(userAnswers)
     const data = await http.post(DEFAULT_URL+"giveAnswers",{
         userAnswers:userAnswers
     }).then(data=>{return data.data})

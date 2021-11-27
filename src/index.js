@@ -11,7 +11,7 @@ import {comboReducer} from './comboReducer'
 import { Provider } from "react-redux";
 
 
-bridge.send("VKWebAppGetConfig").then((data)=>console.log(data));
+bridge.send("VKWebAppGetConfig");
 
 // Init VK  Mini App
 bridge.send("VKWebAppInit");

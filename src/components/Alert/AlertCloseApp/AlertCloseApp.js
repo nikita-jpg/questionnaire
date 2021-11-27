@@ -10,7 +10,6 @@ const AlertCloseApp = ({errorText}) => {
   const closeAlert = () => dispatch(AlertCloseApp())
 
   const cloaseApp = () => {
-    console.log("cwefwefe")
     vkBridge.send("VKWebAppClose", {"status": "success", "payload": {"name": "test"} });
   }
 

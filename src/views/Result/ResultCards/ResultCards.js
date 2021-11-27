@@ -6,7 +6,6 @@ import { getCurEra } from '../../../Selectors/data_selectors';
 import './ResultCards.css';
 
 const makeUsedData = (survey, surveyResult) =>{
-    // console.log(survey)
     return(
         {
             russianName: survey.russianName,
@@ -14,7 +13,6 @@ const makeUsedData = (survey, surveyResult) =>{
             numberOfQuestions: surveyResult.total,
             imageName: survey.image.imageName,
             description: survey.description,
-            // isBtnNeed: getAnswersResultSurvey(survey).score !== 0 ? true : false
         }
     )
 
