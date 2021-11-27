@@ -13,14 +13,10 @@ const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
     headerIcon, headerText, headerClick, isMustHasMaxHeight=false}) => {
 
     const [curWidth,setCurWidth] = useState(0);
-    const [curHeight, setCurHeight] = useState(0);
     useEffect(()=>{
         setCurWidth(document.getElementById('root').scrollWidth)
-        setCurHeight(document.getElementById('root').scrollHeight)
     },[document.getElementById('root').scrollWidth, document.getElementById('root').scrollHeight])
 
-    // const curWidth = useSelector(getCurWidth)
-    // const curHeight = useSelector(getCurHeight)
 
     return(
 
@@ -28,8 +24,6 @@ const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
 
             <div className="PanelWrapper" 
                 style={{
-                    // minHeight:curHeight,
-                    // minWidth:curWidth, 
                     height:isMustHasMaxHeight?"100%":"fit-content",
                     justifyContent:isVerticalCentre?"center":"start"}}>
                 {

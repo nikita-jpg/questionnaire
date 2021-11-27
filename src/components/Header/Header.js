@@ -1,17 +1,10 @@
 import { Icon28CancelOutline } from '@vkontakte/icons';
-import { Div, PanelHeader, PanelHeaderBack, PanelHeaderClose, PanelHeaderContent, platform, Platform, usePlatform  } from '@vkontakte/vkui';
+import { PanelHeader, PanelHeaderBack, PanelHeaderClose, Platform, usePlatform  } from '@vkontakte/vkui';
 import React from 'react';
 import Marquee from 'react-double-marquee';
-import { useSelector } from 'react-redux';
-// import { isTitleCentre } from '../../help';
 import './Header.css'
 
-import { getCurWidth } from "../../Additional/selectors";
-
-const WIDTH_HEAD_TEXT_CENTERED = 380;
 const RIGHT_STUB_WIDTH = 95;
-// const ANDROID_MARGIN_LEFT = "16px";
-// const IOS_MARGIN_LEFT = "12px";
 const PLATFORM_MARGIN_LEFT = usePlatform !== Platform.IOS ? 16 : 12
 
 
@@ -30,7 +23,6 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
 
     let textWidth = getTextWidth(text);
     let marginLeft = 0
-    // console.log(curWidth)
 
     //Если можем зацентрить текст
     if( (curWidth - textWidth)/2 > RIGHT_STUB_WIDTH )
@@ -79,7 +71,6 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
 
 
 const Header = ({onBack, curWidth, onClose, isFixed, text, icon, click}) => {
-    // const curWidth = useSelector(getCurWidth)
 
     let left;
     let cursor = "inherit";

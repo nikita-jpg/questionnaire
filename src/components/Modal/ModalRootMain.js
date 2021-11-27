@@ -1,5 +1,5 @@
 import { ModalRoot } from "@vkontakte/vkui"
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ModalPageForListQuestions from "./Modals/ModalPageForListQuestions/ModalPageForListQuestions"
 import * as consts from './consts'
 import * as actions from './actions'

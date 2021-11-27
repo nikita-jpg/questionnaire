@@ -1,5 +1,5 @@
 import React from "react";
-import { ANDROID, IOS, ModalPageHeader, useAdaptivity, usePlatform, PanelHeaderButton, PanelHeaderClose, ViewWidth } from "@vkontakte/vkui";
+import { ModalPageHeader, useAdaptivity ViewWidth } from "@vkontakte/vkui";
 import './ModalPageHead.css'
 import { isTitleCentre } from "../../help";
 import { Icon24Dismiss } from "@vkontakte/icons";
@@ -14,11 +14,7 @@ const ModalPageHead = ({text, onClose = () => {}}) => {
     const isNotDesktop = !(viewWidth >= ViewWidth.SMALL_TABLET);    
     return(
         <ModalPageHeader
-            // separator={false}
-            // visor={true}
-            // transparent={true}
             right={isNotDesktop && <Icon24Dismiss className="ModalPageHead__button-close" onClick={onClose}/>}
-            // left={isDesktop && <PanelHeaderClose className="ModalPageHead__button-pug"/>}
         >
          <div className="ModalPageHead__inside" style={{textAlign}}>
             {text}
