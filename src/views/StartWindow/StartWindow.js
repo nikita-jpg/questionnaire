@@ -1,14 +1,10 @@
-import { Card, CardScroll, Panel, PanelHeader, View, CardGrid, ContentCard, Button, ScreenSpinner, usePlatform, Platform} from '@vkontakte/vkui';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { View } from '@vkontakte/vkui';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import ButtonWrapper from '../../components/ButtonWrapper/ButtonWrapper';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
-
-
 import book from '../../svg/book.svg';
-
 import './StartWindow.css';
-
 
 const StartWindow = ({id, goToPollView=()=>{}}) => {
 
