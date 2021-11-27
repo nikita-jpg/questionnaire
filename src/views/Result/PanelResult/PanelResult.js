@@ -1,17 +1,14 @@
-import CustomTooltip from "../../../components/CustomTooltip/CustomTooltip"
-import PanelWrapper from "../../../components/PanelWrapper/PanelWrapper"
-import './PanelResult.css'
+import { PromoBanner } from "@vkontakte/vkui";
 import React, { useEffect, useState } from "react";
-import ResultButtons from "../ResultButtons/ResultButtons";
-import { PromoBanner, usePlatform } from "@vkontakte/vkui";
-import bridge from '@vkontakte/vk-bridge';
-import ResultCards from "../ResultCards/ResultCards";
-import { getAdsProps, getCurEraId, getCurEraSurveys, getCurSurveyId, getCurSurveys, getEras, getIndexEra, getIndexSurvey, getResultCurSurvey, getResultCurSurveys, getResultsEras } from "../../../Selectors/data_selectors";
 import { useSelector } from "react-redux";
+import PanelWrapper from "../../../components/PanelWrapper/PanelWrapper";
+import { getAdsProps, getCurEraId, getCurSurveyId, getCurSurveys, getEras, getResultCurSurvey, getResultCurSurveys, getResultsEras } from "../../../Selectors/data_selectors";
+import ResultButtons from "../ResultButtons/ResultButtons";
+import ResultCards from "../ResultCards/ResultCards";
+import './PanelResult.css';
 
 
-// onClose={()=>{setIsFirstOpenResult(false)}} 
-const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
+const PanelResult = ({id,isNeedAnim,
     goToSurveyView=()=>{},
     goToPanelAnswers=()=>{},
     goToPollView=()=>{},
@@ -43,7 +40,6 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
     const surveysCurResultModified = useSelector(getResultCurSurveys)
 
     //Реклама
-    // const [adsProps, setAdsProps] = useState(null)
     const adsPropsModified = useSelector(getAdsProps)
 
 
@@ -90,13 +86,7 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
         {/* Цифра в виде результата */}
             <div className={`PanelResult__title ${isNeedAnim ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                 <span className={`PanelResult__points ${getClassNameForPercent(totalResult)}`}>
-                    <CustomTooltip
-                        // text={`${titleAge}: ${quizes[indexQuiz].title}`}
-                        // defaultIsShown={isFirstOpenResult}
-                    >
-                        {totalResult.score}
-                        <span>/{totalResult.total}</span>
-                    </CustomTooltip>
+                    {totalResult.score}/{totalResult.total}
                 </span>
             </div>
 
@@ -104,7 +94,6 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
             <div className={`Result__buttons ${isNeedAnim ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                 <ResultButtons 
                     onAgain={goToSurveyView}
-                    // onGoToAnswersQuestion={ () => { setIsFirstOpenResult(false); goToPanelAnswers()}}
                     onGoToAnswersQuestion={goToPanelAnswers}
                     goToPollView={goToPollView}
                     goToPanelAnswers={goToPanelAnswers}
@@ -121,9 +110,6 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
 
         {/* Карточки опросов */}
             <ResultCards 
-                // indexAge={indexAge}
-                // indexQuiz={indexQuiz}
-                // eras={eras}
                 isFirstOpenResult={isNeedAnim}
 
                 eras={eras}
@@ -135,15 +121,12 @@ const PanelResult = ({id,isNeedAnim,adDate,isAdVisible,
                 curSurveyIndex={curSurveyIndex}
 
                 isCompletedSurvey={totalResult.score === totalResult.total}
-                // isCompletedQuiz={percent === questions.length ? true : false}
 
                 makeStepAnimDealyForCard={makeStepAnimDealyForCard}
                 goToSurveyView={goToSurveyView}
                 setIndexSurvey={setIndexSurvey}
                 goToPollView={goToPollView}
                 onAgain={goToSurveyView}
-                // goToQuiz={createOnClickItemQuizes}
-                // goToEras={goToViewListAndQuizes}
             >
             </ResultCards>
 
