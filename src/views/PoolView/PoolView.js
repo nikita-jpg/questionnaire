@@ -1,12 +1,12 @@
+import vkBridge from '@vkontakte/vk-bridge';
+import { View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from 'react';
-import vkBridge from '@vkontakte/vk-bridge'
-import { View } from "@vkontakte/vkui"
-import ListAge from "../ListAge/ListAge"
-import ListQuizes from "../ListQuizes/ListQuizes"
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurEra, getCurSurveys, getEras, getErasResults, getImageByName, getIndexEra, getIndexEraAndSurvey, getIndexSurvey, getSurveys, getSurveysResults } from '../../Selectors/data_selectors';
-import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
+import { getCurSurveys, getEras } from '../../Selectors/data_selectors';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
+import ListAge from "../ListAge/ListAge";
+import ListQuizes from "../ListQuizes/ListQuizes";
+import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
 
 
 const PoolView = ({id,
@@ -24,11 +24,9 @@ const PoolView = ({id,
 	const eras = useSelector(getEras)
 	const erasResults = {tottal:0, score:0}
 
-
 	
 	const surveys = useSelector(getCurSurveys)
 
-	// const indexEra = useSelector(getIndexEra);
 	const mustCurrentPanel = useSelector(getFirstPanel); //Проверяем какая панелька должна быть открыта по приказу извне
 
 	const [activePanel, setActivePanel] = useState(mustCurrentPanel);
@@ -63,12 +61,6 @@ const PoolView = ({id,
 			setHistory(his)
 		}
 	}
-
-	// const getImageFromState = (imageName) => useSelector(getImageByName(imageName))
-
-	// useEffect(()=>{
-		
-	// },[])
 
 	//Проверяем какая панелька должна быть открыта по приказу извне
 	useEffect(() => {
