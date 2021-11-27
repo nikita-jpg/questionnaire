@@ -1,13 +1,10 @@
-import { Panel } from '@vkontakte/vkui';
 import React from 'react';
-import ListCard from '../../components/ListCard/ListCard'
-
-import './ListQuizes.css';
-import Header from '../../components/Header/Header';
+import { useSelector } from 'react-redux';
+import ListCard from '../../components/ListCard/ListCard';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAnswersResultSurvey } from '../../help';
-import { getCurEra, getImages, getResultCurSurveys } from '../../Selectors/data_selectors';
+import { getCurEra, getResultCurSurveys } from '../../Selectors/data_selectors';
+import './ListQuizes.css';
+
 
 const ListQuizes = ({ id, surveys,
     onBack = () => { }, 
@@ -15,20 +12,6 @@ const ListQuizes = ({ id, surveys,
     createOnClickItemQuizes = (index) => null 
 }) => {
 
-
-    // const info = surveys.map((survey)=>{
-    //     return{
-    //         russianName: survey.russianName,
-    //         percentProgress: surveyResult.score,
-    //         numberOfQuestions: surveyResult.total,
-    //         imageName: survey.image.imageName,
-    //         description: survey.description,
-    //         isBtnNeed: surveyResult.score !== 0 ? true : false
-    //     }
-    // })
-
-    // const newImages = useSelector(getImages)
-    // console.log(newImages)
     const surveysResult = useSelector(getResultCurSurveys);
     const title = useSelector(getCurEra).russianName
     let surveyResult = {};
