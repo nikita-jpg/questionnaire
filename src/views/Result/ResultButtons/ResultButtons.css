@@ -1,7 +1,4 @@
 .Result-buttons__container {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 24px -7px 24px -7px; */
     margin-top: 10px;
     background-color: var(--main-second-bg-color);
     border-radius: 15px;
@@ -11,8 +8,6 @@
     padding: 10px;
     box-sizing: border-box;
 
-    /* display: grid;
-    grid-template-columns: 1fr; */
 }
 
 .Result-buttons__button {
@@ -25,8 +20,6 @@
 }
 
 .Result-buttons__text{
-    /* margin-top: 2px; */
-    /* color: var(--main-white-color); */
     font-family: var(--font-tt);
     font-size: 20px;
 }
