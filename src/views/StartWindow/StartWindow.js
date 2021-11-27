@@ -1,6 +1,6 @@
 import { Card, CardScroll, Panel, PanelHeader, View, CardGrid, ContentCard, Button, ScreenSpinner, usePlatform, Platform} from '@vkontakte/vkui';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ButtonWrapper from '../../components/ButtonWrapper/ButtonWrapper';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 
@@ -16,7 +16,7 @@ const StartWindow = ({id, goToPollView=()=>{}}) => {
     
     return (
         <View id={id}> 
-            <PanelWrapper separator={false} isHeaderHide={true} isVerticalCentre={true}>
+            <PanelWrapper separator={false} isHeaderHide={true} isVerticalCentre={true} isMustHasMaxHeight={true}>
                 <div className="StartWindow">
                     <div className="StartWindow__container">
                         <img width="50" height="50" src={book}/>

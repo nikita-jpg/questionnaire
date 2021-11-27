@@ -10,7 +10,7 @@ import './PanelWrapper.css'
 // Задаёт отступ и даёт доп возможности
 const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
     isHeaderHide, isHeaderFixed, onHeaderClose, onHeaderBack, 
-    headerIcon, headerText, headerClick}) => {
+    headerIcon, headerText, headerClick, isMustHasMaxHeight=false}) => {
 
     const [curWidth,setCurWidth] = useState(0);
     const [curHeight, setCurHeight] = useState(0);
@@ -30,6 +30,7 @@ const PanelWrapper = ({id, name, children, isOneColumn, isVerticalCentre,
                 style={{
                     // minHeight:curHeight,
                     // minWidth:curWidth, 
+                    height:isMustHasMaxHeight?"100%":"fit-content",
                     justifyContent:isVerticalCentre?"center":"start"}}>
                 {
                     !isHeaderHide &&
