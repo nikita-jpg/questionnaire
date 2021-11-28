@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { Alert_setAlert } from '../../components/Alert/actions';
-import AlertCloseApp from '../../components/Alert/AlertCloseApp/AlertCloseApp';
 
 //Для запросов на сервер
 const http = axios.create({
@@ -12,7 +8,7 @@ const http = axios.create({
     }
 });
 export const DEFAULT_IMAGE_EXPANSION = ".webp"
-export const DEFAULT_URL = "https://fb73-62-33-49-154.ngrok.io/"
+export const DEFAULT_URL = "https://aaee-212-16-10-199.ngrok.io/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
