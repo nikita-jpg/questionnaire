@@ -81,7 +81,7 @@ const PanelResult = ({id,isNeedAnim,
     }
 
     return(
-        <PanelWrapper id={id} isOneColumn={true}>
+        <PanelWrapper id={id} isOneColumn={true} isHeaderFixed={true}>
 
         {/* Цифра в виде результата */}
             <div className={`PanelResult__title ${isNeedAnim ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
