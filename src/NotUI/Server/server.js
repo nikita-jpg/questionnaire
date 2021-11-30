@@ -8,7 +8,7 @@ const http = axios.create({
     }
 });
 export const DEFAULT_IMAGE_EXPANSION = ".webp"
-export const DEFAULT_URL = "https://aaee-212-16-10-199.ngrok.io/"
+export const DEFAULT_URL = "https://vkma123.ru/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
@@ -18,6 +18,7 @@ export const downloadData = async () => {
 
     let data = await http.get(DEFAULT_URL)
                         .then(data=>{return data.data})
+                        // .catch((err)=>console.log(err))
     return data;
 }
 
@@ -49,6 +50,7 @@ export async function downloadImagesArr(arr){
                 data:imageData
             })
         })
+        // .catch((err)=>console.log(err))
     }
     return retArr
 }

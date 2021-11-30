@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import { AdaptivityProvider,AppRoot, ConfigProvider, Root, SplitCol, SplitLayout } from '@vkontakte/vkui';
+import { AdaptivityProvider,AppRoot, ConfigProvider, Root, SplitCol, SplitLayout, usePlatform } from '@vkontakte/vkui';
 
 import "./App.css";
 import StartWindow from '../views/StartWindow/StartWindow';
@@ -35,6 +35,7 @@ const App = ({}) => {
 	const sendImagesToStateEras = (images) => dispatch(data.Data_addStaticImages(images))
 	const sendImagesToStateSurveys = (images) => dispatch(data.Data_addStaticImages(images))
 
+
 	//Реклама
 	const setAdsProps = (adsPropsa) => dispatch(data.Set_adsProps(adsPropsa))
 	const getAdsData = () => {
@@ -43,7 +44,7 @@ const App = ({}) => {
 			})
 	}
 
-	const errorAlert = <AlertCloseApp errorText = {"К сожалению, сервер недоступен. Просим вас зайти позже"}></AlertCloseApp>
+	const serverErrorAlert = <AlertCloseApp errorText = {"К сожалению, сервер недоступен. Просим вас зайти позже"}></AlertCloseApp>
 
 	// Прелзагрузка всего необходимого
 	useEffect(() => {
@@ -84,7 +85,8 @@ const App = ({}) => {
 
 		})
 		.catch(err=>{
-			dispatch(alert.Alert_setAlert(errorAlert))
+			// console.log(err)
+			dispatch(alert.Alert_setAlert(serverErrorAlert))
 		})
 
 		//Загружаем рекламу
