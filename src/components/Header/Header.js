@@ -24,6 +24,7 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click) => {
     let textWidth = getTextWidth(text);
     let marginLeft = 0
 
+
     //Если можем зацентрить текст
     if( (curWidth - textWidth)/2 > RIGHT_STUB_WIDTH )
     {

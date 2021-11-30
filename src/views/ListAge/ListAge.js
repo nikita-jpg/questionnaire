@@ -29,7 +29,7 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
     }
 
     return (
-        <PanelWrapper id={id} headerText="Выбирете эпоху" isHeaderFixed={true}>
+        <PanelWrapper id={id} headerText="Выберите эпоху" isHeaderFixed={true}>
 
                 <div className="ListAge__content">
                     <ListCard
