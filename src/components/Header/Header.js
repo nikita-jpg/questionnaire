@@ -1,34 +1,22 @@
 import { Icon28CancelOutline } from '@vkontakte/icons';
-import { PanelHeader, PanelHeaderBack, PanelHeaderClose, Platform, usePlatform  } from '@vkontakte/vkui';
+import { PanelHeader, PanelHeaderBack, PanelHeaderClose, Platform, usePlatform } from '@vkontakte/vkui';
 import React from 'react';
-import Marquee from 'react-double-marquee';
 import { useSelector } from 'react-redux';
 import { getPlatform } from '../../Selectors/data_selectors';
-import './Header.css'
+import './Header.css';
 
 const RIGHT_STUB_WIDTH = 95;
 const PLATFORM_MARGIN_LEFT = usePlatform !== Platform.IOS ? 16 : 12
 
-
-const getTextWidth = (text) => {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-  
-    context.font = '20px Lato';
-  
-    return context.measureText(text).width + 25;
-  }
   
 const getTitle = (text, icon, curWidth, hasLeftBtn, click, isAlignmentCenter, cursor) => {
 
     const LEFT_BTN_WIDTH = hasLeftBtn ? 42 : PLATFORM_MARGIN_LEFT;
 
-    let textWidth = getTextWidth(text);
     let marginLeft = 0
     
 
     //Если можем зацентрить текст
-    // if( ((curWidth - textWidth)/2 > RIGHT_STUB_WIDTH) && (platform !== "android") )
     if( isAlignmentCenter )
     {
         marginLeft = hasLeftBtn ? (RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH) : RIGHT_STUB_WIDTH;
@@ -46,31 +34,14 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click, isAlignmentCenter, cu
     }else{
         marginLeft = hasLeftBtn ? 8 : PLATFORM_MARGIN_LEFT;
         let maxWidth = curWidth - RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH - 8;
-
-        //Если текст не влезает
-        // if(textWidth > maxWidth)
-        if(false)
-        {
-            return(
-                <div onClick={click} style={{width:"100%", paddingLeft:marginLeft}}>
-                    <div className="Header__title" style={{maxWidth:maxWidth}}>
-                        <Marquee childMargin={20} speed={0.08} direction="left" delay={600}>
-                            {text}
-                            {icon}
-                        </Marquee>
-                    </div>
+        return(
+            <div onClick={click} style={{maxWidth:"100%", paddingLeft:marginLeft, paddingTop:"5px", cursor:cursor}}>
+                <div className="Header__title" style={{maxWidth:maxWidth, textAlign:"start"}}>
+                    {text}
+                    {icon}
                 </div>
-            ) 
-        }else{
-            return(
-                <div onClick={click} style={{maxWidth:"100%", paddingLeft:marginLeft, paddingTop:"5px", cursor:cursor}}>
-                    <div className="Header__title" style={{maxWidth:maxWidth, textAlign:"start"}}>
-                        {text}
-                        {icon}
-                    </div>
-                </div>
-            ) 
-        }
+            </div>
+        )
     }
 }
 
@@ -104,9 +75,6 @@ const Header = ({onBack, curWidth, onClose, isFixed, text, icon, click}) => {
 
     const platform = useSelector(getPlatform)
     const isAlignmentCenter = platform.indexOf("android") !== -1 ? false : true 
-    // const isAlignmentCenter = false
-    // console.log(platform)
-    // console.log(isAlignmentCenter)
 
     if (onClose) {
         left = <PanelHeaderClose className="Header__button" >
@@ -138,13 +106,6 @@ const Header = ({onBack, curWidth, onClose, isFixed, text, icon, click}) => {
                 {
                     getLeftAndRight(left, click, leftClick, text, icon, curWidth, isAlignmentCenter, cursor).map((obj)=>obj)
                 }
-            {/* {left && <div className="Header__leftBtn" onClick={leftClick}>{left}</div>}
-            {getTitle(text,icon,curWidth, left, click, isAlignmentCenter)} */}
-                {/* <div style={{display:"flex", alignItems:"center", justifyContent:"start"}}>
-                    {left && <div className="Header__leftBtn" onClick={leftClick}>{left}</div>}
-                    {isAlignmentLeft ? getTitle(text,icon,curWidth, left, click, isAlignmentLeft) : <div/>}
-                </div>
-                {isAlignmentLeft ? <div/> : getTitle(text,icon,curWidth, left, click, isAlignmentLeft)} */}
                 <div className="Header__rightStub" onClick={click}></div>
             </div>
 
