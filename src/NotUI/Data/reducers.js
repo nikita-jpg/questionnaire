@@ -1,5 +1,6 @@
 import { initialState } from "./initialState"
 import * as consts from './consts'
+import { platform } from "@vkontakte/vkui"
 
 export const dataReducer = (state = initialState, action) =>{
 
@@ -62,6 +63,13 @@ export const dataReducer = (state = initialState, action) =>{
             const adsProps = action.adsProps
             return{...state, ...{
                 AdsProps: adsProps
+            }}
+        }
+
+        case consts.SET_PLATFORM:{
+            const platform = action.platform
+            return{...state, ...{
+                Platform: platform
             }}
         }
 

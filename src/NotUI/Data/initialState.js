@@ -204,7 +204,9 @@ export const initialState = {
 		}
 	},
 
-	AdsProps:null
+	AdsProps:null,
+
+	Platform:"android"
 
 
 

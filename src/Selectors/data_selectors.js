@@ -274,3 +274,6 @@ export const getImageByName = (imageName) => (state) => {
 
 //Реклама
 export const getAdsProps = (state) => state.Data.AdsProps
+
+//Платформа
+export const getPlatform = (state) => state.Data.Platform
