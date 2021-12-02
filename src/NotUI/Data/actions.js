@@ -53,3 +53,12 @@ export const Set_adsProps = (adsProps) => {
         adsProps:adsProps
     }
 }
+
+//Платформа
+export const Set_platform = (platform) => {
+    return{
+        type:consts.SET_PLATFORM,
+        platform:platform
+    }
+}
+

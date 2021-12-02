@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
 
+<<<<<<< HEAD
 import { AdaptivityProvider,AppRoot, ConfigProvider, Root, SplitCol, SplitLayout, usePlatform } from '@vkontakte/vkui';
+=======
+import { AdaptivityProvider,AppRoot, ConfigProvider, Root, SplitCol, SplitLayout, withPlatform } from '@vkontakte/vkui';
+>>>>>>> NewDataFormat
 
 import "./App.css";
 import StartWindow from '../views/StartWindow/StartWindow';
@@ -44,10 +48,30 @@ const App = ({}) => {
 			})
 	}
 
+<<<<<<< HEAD
 	const serverErrorAlert = <AlertCloseApp errorText = {"К сожалению, сервер недоступен. Просим вас зайти позже"}></AlertCloseApp>
+=======
+	//Платформа
+	const setPlatform = (platform) => dispatch(data.Set_platform(platform))
 
-	// Прелзагрузка всего необходимого
+	// Парсим данные из query-запроса
+	const getQueryObject = (queryString) => {
+		return queryString.split('&').map(function(i) { 
+			return i.split('=');
+		}).reduce(function(memo, i) { 
+			memo[i[0]] = i[1] == +i[1] ? parseFloat(i[1],10) : decodeURIComponent(i[1]); 
+			return memo;
+		}, {})
+	}
+
+	const errorAlert = <AlertCloseApp errorText = {"К сожалению, сервер недоступен. Просим вас зайти позже"}></AlertCloseApp>
+>>>>>>> NewDataFormat
+
+	// Предзагрузка всего необходимого
 	useEffect(() => {
+
+		//Зашружаем в State инфцу о текущей платформе
+		setPlatform(getQueryObject(window.location.search.slice(1)).vk_platform)
 
 		// Загрузка текста для эр и опросов, результатов. Вопросы для кокретного опроса не грузятся
 		server.downloadData().then(info=>{

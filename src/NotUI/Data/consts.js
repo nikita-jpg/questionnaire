@@ -14,3 +14,6 @@ export const ADD_STATIC_IMAGES = "ADD_STATIC_IMAGES"
 
 //Реклама
 export const SET_ADS_PROPS = "SET_ADS_PROPS"
+
+//Платформа
+export const SET_PLATFORM = "SET_PLATFORM"
