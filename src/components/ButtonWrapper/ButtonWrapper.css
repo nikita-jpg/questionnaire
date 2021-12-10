@@ -1,0 +1,26 @@
+.ButtonWrapper{
+    word-break: break-all;
+    background-color: var(--main-second-bg-color);
+    color: var(--main-white-color);
+    border-radius: 8px;
+    /* height: 24px; */
+}
+.ButtonWrapper_active{
+    background-color: var(--main-therd-bg-color);
+}
+.ButtonWrapper__text{
+    max-width: 370px;
+    word-break: normal;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    margin-top: 1px;
+    color: var(--main-white-color);
+    font-family: var(--font-tt);
+    font-size: 16px;
+}
+
+/* linkForm */
+.ButtonWrapper__text_linkForm{
+    font-size: 24px;
+}

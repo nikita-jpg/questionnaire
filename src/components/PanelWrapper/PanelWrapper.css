@@ -1,0 +1,21 @@
+.PanelWrapper{
+    width: 100%;
+    height: fit-content;
+
+    margin: 0;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+::-webkit-scrollbar {
+    width: 0;
+  }
+.PanelWrapper__container{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    box-sizing:border-box;
+}

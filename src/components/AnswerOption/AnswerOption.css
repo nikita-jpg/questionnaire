@@ -1,0 +1,8 @@
+.AnswerOption{
+    word-break: break-all;
+    background-color: var(--main-second-bg-color);
+    color: var(--main-white-color);
+}
+.AnswerOption_active{
+    background-color: var(--main-therd-bg-color);
+}

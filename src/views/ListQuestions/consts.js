@@ -1,0 +1,2 @@
+export const GIVE_ANSWER = "GIVE_ANSWER"
+export const IS_NEED_DOWNLOAD_TRUE = "GIVE_ANSWER"

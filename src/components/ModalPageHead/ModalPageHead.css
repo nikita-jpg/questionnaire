@@ -1,0 +1,16 @@
+.ModalPageHead__inside{
+    width: 100%;
+    height: 100%;
+
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--main-white-color);
+}
+.ModalPageHead__button-close{
+    color: var(--main-white-color);
+    padding-right: 12px;
+}
+.ModalPageHead__button-pug{
+    color: var(--main-second-text-color);
+    cursor: inherit;
+}

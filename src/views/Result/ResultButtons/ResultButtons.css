@@ -1,0 +1,25 @@
+.Result-buttons__container {
+    margin-top: 10px;
+    background-color: var(--main-second-bg-color);
+    border-radius: 15px;
+    max-width: 370px;
+    width: 100%;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+}
+
+.Result-buttons__button {
+    background: var(--background_content);
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.Result-buttons__button:first-child{
+    margin-top: 0;
+}
+
+.Result-buttons__text{
+    font-family: var(--font-tt);
+    font-size: 20px;
+}

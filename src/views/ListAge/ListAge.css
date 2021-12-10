@@ -1,0 +1,11 @@
+.ListAge__content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.ListAge__content_title{
+    width: 100%;
+    text-align: center;
+    color: var(--main-first-text-color);
+}

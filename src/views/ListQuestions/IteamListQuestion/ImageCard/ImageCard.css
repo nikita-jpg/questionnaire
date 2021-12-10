@@ -1,0 +1,68 @@
+/* Картинка */
+.Image__container{
+    position:relative;  
+    overflow: hidden;
+    border-radius: 6px; 
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+}
+
+.Image__image_default{
+  display: block;
+  width: 100%;
+  /* max-width: var(--main-max-imgWidth-In-IteamListQuestion); */
+  border-radius: 10px;
+}
+
+
+.Image__image {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    height: 200px;
+    width: 100%;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.Image__description{
+    width: 100%;
+    text-align: center;
+    color: var(--text_secondary);
+    font-size: 14px;
+}
+.Image__link{
+  color: var(--main-white-color);
+  font-size: 24px;
+}
+
+/* Задняя часть картинки */
+.Image__info{
+    opacity: 0;
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background:var(--main-second-bg-color);
+    z-index: 2;
+    /* border-radius: 8px; */
+
+    display: flex;
+    align-items: center;
+}
+  .Image__info-enter {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+  .Image__info-enter-done {
+    opacity: 1;
+  }
+  .Image__info-exit {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }

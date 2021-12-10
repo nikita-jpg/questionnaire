@@ -1,0 +1,34 @@
+.IteamListQuestion {
+    width: 100%;
+    color: var(--main-white-color);
+
+}
+
+.IteamListQuestion__content {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+  /* Текст вопроса */
+  .IteamListQuestion__question{
+      text-align: left;
+      font-size: 20px;
+      line-height: 25px;
+      color: var(--main-white-color);
+      overflow-wrap: break-word;
+  }
+
+  /* Варианты ответа */
+.IteamListQuestion__answer-options {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.IteamListQuestion__answer{
+    margin-top: 10px; 
+}
+.IteamListQuestion__answer-active{
+    background-color: var(--main-therd-bg-color);
+}

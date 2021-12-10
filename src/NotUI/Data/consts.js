@@ -1,0 +1,19 @@
+export const SET_INDEX_ERA = "SET_INDEX_ERA"
+export const SET_INDEX_SURVEY = "SET_INDEX_SURVEY"
+export const SET_INDEX_QUESTION = "SET_INDEX_QUESTION"
+
+export const SAVE_USER_ANSWERS = "SAVE_USER_ANSWERS"
+export const QUESTION_NOT_ANSWERED = null;
+
+export const SET_STATIC_DATA_FROM_SERVER = "SET_STATIC_DATA_FROM_SERVER"
+
+export const SET_IMAGES_ERAS = "SET_IMAGES_ERAS"
+export const SET_IMAGES_SURVEYS = "SET_IMAGES_SURVEYS"
+
+export const ADD_STATIC_IMAGES = "ADD_STATIC_IMAGES"
+
+//Реклама
+export const SET_ADS_PROPS = "SET_ADS_PROPS"
+
+//Платформа
+export const SET_PLATFORM = "SET_PLATFORM"
