@@ -25,7 +25,9 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click, isAlignmentCenter, cu
         return(
             <div onClick={click} style={{width:"100%", maxWidth:"100%", paddingLeft:marginLeft, cursor:cursor}}>
                 <div className="Header__title">
-                    {text}
+                    <div className="Header__title__text">
+                        {text}
+                    </div>
                     {icon}
                 </div>
             </div>
@@ -33,11 +35,13 @@ const getTitle = (text, icon, curWidth, hasLeftBtn, click, isAlignmentCenter, cu
         
     }else{
         marginLeft = hasLeftBtn ? 8 : PLATFORM_MARGIN_LEFT;
-        let maxWidth = curWidth - RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH - 8;
+        let maxWidth = curWidth - RIGHT_STUB_WIDTH - LEFT_BTN_WIDTH - 16;
         return(
             <div onClick={click} style={{maxWidth:"100%", paddingLeft:marginLeft, paddingTop:"5px", cursor:cursor}}>
                 <div className="Header__title" style={{maxWidth:maxWidth, textAlign:"start"}}>
-                    {text}
+                    <div className="Header__title__text" style={{maxWidth:maxWidth}}>
+                        {text}
+                    </div>
                     {icon}
                 </div>
             </div>
@@ -74,7 +78,8 @@ const Header = ({onBack, curWidth, onClose, isFixed, text, icon, click}) => {
     let leftClick;
 
     const platform = useSelector(getPlatform)
-    const isAlignmentCenter = platform.indexOf("android") !== -1 ? false : true 
+    console.log(platform)
+    const isAlignmentCenter = (platform.indexOf("android") !== -1) || (platform.indexOf("mobile") !== -1) ? false : true 
 
     if (onClose) {
         left = <PanelHeaderClose className="Header__button" >

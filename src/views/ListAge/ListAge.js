@@ -3,12 +3,15 @@ import './ListAge.css'
 import ListCard from '../../components/ListCard/ListCard'
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
 import { useSelector } from 'react-redux';
-import { getResultsEras } from '../../Selectors/data_selectors';
+import { getPlatform, getResultsEras } from '../../Selectors/data_selectors';
 
 
 const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
  
     const eraResults = useSelector(getResultsEras);
+    const platform = useSelector(getPlatform)
+
+    const isTitleInHeader = platform === "desktop_web" ? true : false
 
     const info = eras.map((era)=>{
         let eraResult = eraResults.filter((eraResult)=>eraResult.idEra === era.idEra)[0]
@@ -29,9 +32,20 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
     }
 
     return (
-        <PanelWrapper id={id} headerText="Выберите эпоху" isHeaderFixed={true}>
+        <PanelWrapper id={id} 
+        // headerText={isTitleInHeader ? "Выберите эпоху" : ""}
+        headerText="Выберите эпоху"
+        isHeaderFixed={true}>
 
                 <div className="ListAge__content">
+                    {/* {
+                        !isTitleInHeader 
+                        ? 
+                        <div className="ListAge__content_title">
+                            Выберите эпоху
+                        </div>
+                        :""
+                    } */}
                     <ListCard
                         info={newInfo}
                         cardClick={cardClick}>

@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import '@vkontakte/vkui/dist/vkui.css';
 
-<<<<<<< HEAD
-import { AdaptivityProvider,AppRoot, ConfigProvider, Root, SplitCol, SplitLayout, usePlatform } from '@vkontakte/vkui';
-=======
-import { AdaptivityProvider,AppRoot, ConfigProvider, Root, SplitCol, SplitLayout, withPlatform } from '@vkontakte/vkui';
->>>>>>> NewDataFormat
 
 import "./App.css";
 import StartWindow from '../views/StartWindow/StartWindow';
@@ -30,6 +25,7 @@ import PoolView from '../views/PoolView/PoolView';
 import { getAlert } from '../Selectors/alert_selectors';
 import ModalRootMain from '../components/Modal/ModalRootMain';
 import AlertCloseApp from '../components/Alert/AlertCloseApp/AlertCloseApp'
+import { AppRoot, ConfigProvider, AdaptivityProvider, SplitCol, Root, SplitLayout } from '@vkontakte/vkui';
 
 
 const App = ({}) => {
@@ -48,9 +44,7 @@ const App = ({}) => {
 			})
 	}
 
-<<<<<<< HEAD
 	const serverErrorAlert = <AlertCloseApp errorText = {"К сожалению, сервер недоступен. Просим вас зайти позже"}></AlertCloseApp>
-=======
 	//Платформа
 	const setPlatform = (platform) => dispatch(data.Set_platform(platform))
 
@@ -65,7 +59,6 @@ const App = ({}) => {
 	}
 
 	const errorAlert = <AlertCloseApp errorText = {"К сожалению, сервер недоступен. Просим вас зайти позже"}></AlertCloseApp>
->>>>>>> NewDataFormat
 
 	// Предзагрузка всего необходимого
 	useEffect(() => {

@@ -25,8 +25,12 @@
     width: 100%;
     padding-bottom: 4px;
     line-height: 54px;
-    text-align: center;
 
+}
+.Header__title__text{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
 }
 
 .Header__leftBtn{
