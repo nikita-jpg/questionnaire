@@ -34,7 +34,7 @@ const CardWrapperDescription = ({text, textBtn,imgSource, btnCardClickObj={}}) =
     return(
         <div className="CardWrapperDescription">
 
-            <div className="CardWrapperDescription__text">{text}</div>
+            <div className="CardWrapperDescription__text CardWrapperDescription__textForResizing">{text}</div>
 
             <div className="My_link CardWrapperDescription__text CardWrapperDescription__imageSource" onClick={sourceImgClick}>Источник изображения</div>
 
