@@ -5,6 +5,16 @@
   --background_content:var(--main-first-bg-color);
 } */
 
+* {
+  -webkit-user-select: none;
+  /* user-select -- это нестандартное свойство */
+
+  -moz-user-select: none;
+  /* поэтому нужны префиксы */
+
+  -ms-user-select: none;
+}
+
 :root[scheme*="_"], body[scheme*="_"]  {
 /* :root, [scheme=bright_light], [scheme=space_gray], body[scheme=bright_light], body[scheme=space_gray]{ */
 

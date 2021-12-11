@@ -11,7 +11,7 @@ const CardWrapperDescription = ({text, textBtn,imgSource, btnCardClickObj={}}) =
     const closeAlert = () => dispath(alert.Alert_closeAlert())
     const imgSourceAlert = 
     <AlertWrapper
-        header="Ссылка на источник фото"
+        header="Ссылка на источник изображения"
         description={<a className="My_link" href={imgSource} target="_blank">{imgSource}</a>}
         rightText={"Закрыть"}
         style={{wordWrap:"break-word"}}
