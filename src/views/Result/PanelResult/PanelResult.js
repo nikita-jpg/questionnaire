@@ -8,7 +8,7 @@ import ResultCards from "../ResultCards/ResultCards";
 import './PanelResult.css';
 
 
-const PanelResult = ({id,isNeedAnim,
+const PanelResult = ({id,isNeedAnim,isAdVisible,
     goToSurveyView=()=>{},
     goToPanelAnswers=()=>{},
     goToPollView=()=>{},
@@ -104,7 +104,7 @@ const PanelResult = ({id,isNeedAnim,
 
         {/* Реклама */}
             {
-                (adsPropsModified!==null) &&
+                (adsPropsModified!==null) && isAdVisible &&
                 <div className={`Result__adds ${isNeedAnim ? "Result__fade-anim":""}`} style={{animationDelay:makeStepAnimDealyForCard()}}>
                     <PromoBanner bannerData={adsPropsModified} onClose={() => {setAdVisible(false)}}></PromoBanner>
                 </div>
