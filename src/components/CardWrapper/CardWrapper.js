@@ -62,7 +62,7 @@ const CardWrapper = ({title,
     return(
     <ContentCard
         header={
-            <div className="CardWrapper__title">
+            <div className="CardWrapper__title CardWrapperTitle__textForResizing">
                 <div>{title}</div>
                 <div>{percentProgress}/{numberOfQuestions}</div>
             </div>
