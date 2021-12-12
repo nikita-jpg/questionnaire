@@ -1,4 +1,4 @@
-import { Icon24Globe, Icon24List, Icon28RefreshOutline } from '@vkontakte/icons';
+import { Icon24Globe, Icon24List, Icon28RefreshOutline, Icon28ShareOutline } from '@vkontakte/icons';
 import React from "react";
 import ButtonWrapper from "../../../components/ButtonWrapper/ButtonWrapper";
 import './ResultButtons.css';
@@ -7,7 +7,8 @@ import './ResultButtons.css';
 const ResultButtons = ({
     onAgain=()=>{},
     goToPollView=()=>{},
-    goToPanelAnswers=()=>{}
+    goToPanelAnswers=()=>{},
+    shareToWall=()=>{}
 }) => {
 
     const iconSize = 28;
@@ -44,6 +45,16 @@ const ResultButtons = ({
                     classNameText="Result-buttons__text"
                     before={<Icon28RefreshOutline width={iconSize} height={iconSize} style={{color:"var(--main-green-color)"}}/>}
                     onClick={onAgain}
+                >
+                </ButtonWrapper>
+
+            {/* Поделиться */}
+            <ButtonWrapper
+                    text="Поделиться"
+                    className="Result-buttons__button"
+                    classNameText="Result-buttons__text"
+                    before={<Icon28ShareOutline width={iconSize} height={iconSize} style={{color:"var(--main-pink-color)"}}/>}
+                    onClick={shareToWall}
                 >
                 </ButtonWrapper>
         </div>

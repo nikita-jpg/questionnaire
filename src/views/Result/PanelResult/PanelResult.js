@@ -12,13 +12,14 @@ const PanelResult = ({id,isNeedAnim,
     goToSurveyView=()=>{},
     goToPanelAnswers=()=>{},
     goToPollView=()=>{},
+    shareToWall=()=>{},
 
     setAdVisible=()=>{},
     setIndexSurvey=()=>{}
 }) =>{
 
 //Кешируем
-    // Мы делаем локальную копию резульата, чтобы при переходе другому опросу, не менялось значение.
+    // Мы делаем локальную копию результата, чтобы при переходе другому опросу, не менялось значение.
     // Значение меняется быстрее анимации, поэтому при переходе к другому опросу,
     // пользователь вначале увидит изменение результата на результат кликнутого опроса,
     // а после перейдёт к новому опросу
@@ -97,6 +98,7 @@ const PanelResult = ({id,isNeedAnim,
                     onGoToAnswersQuestion={goToPanelAnswers}
                     goToPollView={goToPollView}
                     goToPanelAnswers={goToPanelAnswers}
+                    shareToWall={shareToWall}
                 />
             </div>
 
@@ -109,7 +111,7 @@ const PanelResult = ({id,isNeedAnim,
             }
 
         {/* Карточки опросов */}
-            <ResultCards 
+            <ResultCards  ds 
                 isFirstOpenResult={isNeedAnim}
 
                 eras={eras}

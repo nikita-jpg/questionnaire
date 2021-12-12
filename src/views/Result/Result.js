@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import AlertQuestionResult from "../../components/Alert/AlertQuestionResult/AlertQuestionResult";
 import "../../components/ListCard/ListCard.css";
-import { getAdsProps, getCurQuestions } from '../../Selectors/data_selectors';
+import { getAdsProps, getCurQuestions, getCurSurvey, getResultCurSurvey } from '../../Selectors/data_selectors';
 import PanelAnswersQuestions from './PanelAnswersQuestions/PanelAnswersQuestions';
 import PanelResult from './PanelResult/PanelResult';
 import "./Result.css";
@@ -19,8 +19,10 @@ const Result = ({ id, indexesAnswers,
  }) => {
 
 //Получаем необходимые данные
-    const questions = useSelector(getCurQuestions)
     const dispatch = useDispatch()
+    const questions = useSelector(getCurQuestions)
+    const curSurvey = useSelector(getCurSurvey)
+    const totalResult = useSelector(getResultCurSurvey)
 
 
 //Если мы не первый раз открываем Result, то нам не нужно запускать заново анимацию
@@ -89,6 +91,28 @@ const adsPropsModified = useSelector(getAdsProps)
         setIsVisibleAlert(false)
     }
 
+// Поделиться на стене
+    const shareToWall = () =>{
+        const curSurveyName = curSurvey.russianName;
+        const message = `Мой результат в тесте «${curSurveyName}» ${totalResult.score}/${totalResult.total} баллов. \nСможешь повторить?`
+        // const message = `Мой результат в тесте ${curSurveyName} 15 баллов.\nСможешь повторить?`
+        bridge
+            .send("VKWebAppShowWallPostBox",{
+                "message": message,
+                "attachments": "https://vk.com/app7715551"
+            })
+            .then(res=>{console.log(res)})
+            .catch(err=>{console.log(err)})   
+
+        // bridge
+        //     .send("VKWebAppShowWallPostBox", {
+        //         "message": "",
+        //         "attachments": "photo34_408897832,https://vk.com/app7715551"
+        //     })
+        //     .then(res=>{console.log(res)})
+        //     .catch(err=>{console.log(err)})    
+    }
+
     return (
         <View 
             id={id} 
@@ -113,6 +137,7 @@ const adsPropsModified = useSelector(getAdsProps)
                 goToSurveyView={goToSurveyView}
                 goToPollView={goToPollView}
                 goToPanelAnswers={goToPanelAnswers}
+                shareToWall={shareToWall}
 
                 setAdVisible={setAdVisible}
 
