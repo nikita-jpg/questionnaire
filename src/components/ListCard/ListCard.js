@@ -14,7 +14,6 @@ const ListCard = ( {info,
     const curWidth = useSelector(getCurWidth)
 
     const ref = useRef(null)
-    console.log(curWidth)
     useEffect(()=>{
 
         if(getComputedStyle(ref.current).gridTemplateColumns.indexOf(" ") !== -1){
@@ -56,11 +55,9 @@ const ListCard = ( {info,
                 let isSecondHasBtn = cards[i + 1].getElementsByClassName("CardWrapperDescription__button_Container").length>0 ? true : false
 
                 if(isFirstHasBtn && !isSecondHasBtn){
-                    console.log("1")
                     cards[i+1].getElementsByClassName("vkuiContentCard__tappable")[0].style.height = cards[i].clientHeight + 'px';
                 }
                 if(isSecondHasBtn && !isFirstHasBtn){
-                    console.log(cards[i+1])
                     cards[i].getElementsByClassName("vkuiContentCard__tappable")[0].style.height = cards[i+1].clientHeight + 'px';
                 }
 
@@ -75,7 +72,7 @@ const ListCard = ( {info,
         <div className="ListCard" ref={ref}>
             {
                 info.map((record,i) => {
-                    return <div key={record.russianName}>
+                    return <div key={record.russianName} style={{display:"flex", justifyContent:"center"}}>
                         <CardWrapper
                             title={record.russianName}
                             percentProgress={record.percentProgress}
