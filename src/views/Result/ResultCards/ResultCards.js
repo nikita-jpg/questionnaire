@@ -12,6 +12,7 @@ const makeUsedData = (survey, surveyResult) =>{
             percentProgress: surveyResult.score,
             numberOfQuestions: surveyResult.total,
             imageName: survey.image.imageName,
+            imgSource: survey.image.sourceImageLink,
             description: survey.description,
         }
     )
@@ -26,7 +27,7 @@ const makeCard = (info, isFirstOpenResult, cardClick=()=>{}, makeStepAnimDealyFo
                 percentProgress={info.percentProgress}
                 numberOfQuestions={info.numberOfQuestions}
                 imageName={info.imageName}
-                imageSrc={info.imageSrc}
+                imgSource={info.imgSource}
                 description={info.description}
                 cardClick={cardClick}
             >    
