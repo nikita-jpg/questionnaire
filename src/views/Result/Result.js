@@ -95,14 +95,19 @@ const adsPropsModified = useSelector(getAdsProps)
     const shareToWall = () =>{
         const curSurveyName = curSurvey.russianName;
         const message = `Мой результат в тесте «${curSurveyName}» ${totalResult.score}/${totalResult.total} баллов. \nСможешь повторить?`
-        // const message = `Мой результат в тесте ${curSurveyName} 15 баллов.\nСможешь повторить?`
         bridge
             .send("VKWebAppShowWallPostBox",{
                 "message": message,
                 "attachments": "https://vk.com/app7715551"
             })
-            // .then(res=>{console.log(res)})
-            // .catch(err=>{console.log(err)})   
+
+
+
+        // bridge.send("VKWebAppShare", {"link": "https://vk.com/app7715551"});
+        // bridge
+        //     .send("VKWebAppShowInviteBox", {})
+        //     .then(data => console.log(data.success))
+        //     .catch(error => console.log(error));
 
         // bridge
         //     .send("VKWebAppShowWallPostBox", {
