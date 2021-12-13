@@ -8,7 +8,7 @@
     width: 100%;
     text-align: center;
     color: var(--main-gray-color);
-    margin-top: 30px
+    margin-top: 30px;
 }
 
 /* Второй Фильтр */
@@ -17,6 +17,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-top: 30px;
 }
 .ResultCards__container__text{
     box-sizing: border-box;
