@@ -28,6 +28,7 @@ import AlertCloseApp from '../components/Alert/AlertCloseApp/AlertCloseApp'
 import { AppRoot, ConfigProvider, AdaptivityProvider, SplitCol, Root, SplitLayout } from '@vkontakte/vkui';
 
 
+
 const App = ({}) => {
 	
 	const dispatch = useDispatch()
@@ -117,7 +118,7 @@ const App = ({}) => {
 	return (
 	<ConfigProvider isWebView={true}>
 		<AdaptivityProvider>
-			<AppRoot>
+			<AppRoot mode='full'>
 				<SplitLayout 
 					modal={<ModalRootMain/>}
 					header={null} 

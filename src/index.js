@@ -29,6 +29,12 @@ bridge
 
 const state = createStore(comboReducer)
 
+window.addEventListener('popstate', (event) =>{
+	console.log(event)
+})
+window.onpopstate = function(event) {
+	console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+};
 
 ReactDOM.render(
     <Provider store={state}>
