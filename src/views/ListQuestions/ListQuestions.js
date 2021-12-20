@@ -2,6 +2,7 @@ import vkBridge from '@vkontakte/vk-bridge';
 import { View } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AlertCloseApp from '../../components/Alert/AlertCloseApp/AlertCloseApp';
 import AlertWrapper from '../../components/Alert/AlertWrapper/AlertWrapper';
 import LoadingPanel from '../../components/LoadingPanel/LoadingPanel';
 import { closeModal, openModalListQuestions } from '../../components/Modal/actions';
@@ -11,6 +12,9 @@ import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import { getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { isModalListQuestionsOpen } from '../../Selectors/modal_selectors';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
+import * as appNavigate from '../../App/Actions'
+
+import * as alertActions from '../../components/Alert/actions'
 
 const PANEL_LOADING = "PANEL_LOADING-0"
 
@@ -27,6 +31,11 @@ const ListQuestions = ({id,
     const arrQuestions = useSelector(getCurQuestions)
     const curSurveyId = useSelector(getCurSurveyId)
     const dispath = useDispatch();
+
+    //Если пропало соединение с интернетом
+    const goToViewListQuestions = () => dispath(appNavigate.App_goToLoadingtView())
+    const serverErrorAlert = <AlertCloseApp errorText = {"К сожалению, потеряно соединение с сервером. Просим вас зайти позже"}></AlertCloseApp>
+
 
     //Внутренняя навигация
     const [activePanel, setActivePanel] = useState(0);
@@ -98,7 +107,7 @@ const ListQuestions = ({id,
     }
 
     const saveAnswersToState = () => {dispath(saveUserAnswersAction(getPrepareDataToSend()))}
-    const saveAnswersToServer= () => sendUserAnswersToServer(getPrepareDataToSendToServer())
+    const saveAnswersToServer= () => sendUserAnswersToServer(getPrepareDataToSendToServer()).then(data=>{return data})
 
 
 
@@ -184,13 +193,26 @@ const ListQuestions = ({id,
     
     const finishWithTimeOut = () => setTimeout(()=>{
         saveAnswersToState()
-        saveAnswersToServer()
-        goToResultView()}, 750)
+        saveAnswersToServer().then(res=>{
+            if (res === null){
+                dispath(alertActions.Alert_setAlert(serverErrorAlert))
+                goToViewListQuestions()
+            }else{
+                goToResultView()
+            }
+        })
+    }, 750)
     
     const finishWithOutTimeOut = () => {
         saveAnswersToState()
-        saveAnswersToServer()
-        goToResultView()
+        saveAnswersToServer().then(res=>{
+            if (res === null){
+                dispath(alertActions.Alert_setAlert(serverErrorAlert))
+                goToViewListQuestions()
+            }else{
+                goToResultView()
+            }
+        })
     }
 
     const finishSurveyWithOutCheck = () =>{
