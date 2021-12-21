@@ -9,6 +9,7 @@ import { Platform } from "@vkontakte/vkui";
 import { createStore } from "redux";
 import {comboReducer} from './comboReducer'
 import { Provider } from "react-redux";
+import { BrowserRouter, useNavigate } from "react-router-dom";
 
 
 bridge.send("VKWebAppGetConfig");
@@ -29,16 +30,16 @@ bridge
 
 const state = createStore(comboReducer)
 
-window.addEventListener('popstate', (event) =>{
-	console.log(event)
-})
-window.onpopstate = function(event) {
-	console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-};
+// window.addEventListener('popstate', (event) =>{
+// 	console.log(event)
+// })
+
 
 ReactDOM.render(
     <Provider store={state}>
-        <App/>
+        <BrowserRouter basename="/">
+            <App/>
+        </BrowserRouter>
     </Provider>, 
     document.getElementById("root")
 );

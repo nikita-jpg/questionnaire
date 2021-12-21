@@ -15,13 +15,14 @@ import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import * as appNavigate from '../../App/Actions'
 
 import * as alertActions from '../../components/Alert/actions'
+import { useNavigate } from 'react-router-dom';
 
 const PANEL_LOADING = "PANEL_LOADING-0"
 
 
 const ListQuestions = ({id,
     goToPollViewAction=()=>{}, 
-    goToResultViewAction=()=>{}, 
+    goToResultViewAction=()=>{},
     goToListSurveyAction=()=>{},
     saveUserAnswersAction=()=>{}
 }) => {
@@ -113,9 +114,11 @@ const ListQuestions = ({id,
 
     //Внешняя навигация
     const goToResultView = () => dispath(goToResultViewAction())
+    let navigate = useNavigate();
     const goToPollView = () => {
         dispath(goToListSurveyAction())
         dispath(goToPollViewAction())
+        navigate("/")
     }
 
 

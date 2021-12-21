@@ -2,6 +2,7 @@ import vkBridge from '@vkontakte/vk-bridge';
 import { View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getCurSurveys, getEras } from '../../Selectors/data_selectors';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
 import ListAge from "../ListAge/ListAge";
@@ -88,9 +89,12 @@ const PoolView = ({id,
 		setActivePanel(LIST_SURVEYS_PANEL);
 	}
 
+	let navigate = useNavigate();
 	const createOnClickItemQuizes = (indexSurvey) => {
 		setIndexSurvey(indexSurvey)
 		goToViewListQuestions()
+		window.history.back()
+		// navigate("/ListQuestions")
 	}
 
 	const createOnClickItemQuizesBtn = (indexSurvey) => {
