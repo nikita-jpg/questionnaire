@@ -29,7 +29,7 @@ const CardWrapper = ({title,
     },[stateImage])
 
     useEffect(()=>{
-        if(stateImage === undefined){
+        if(stateImage === undefined && imageName !== "plug"){
             downloadImageFromServer(imageName)
             .then(res=>setImage(
                 {

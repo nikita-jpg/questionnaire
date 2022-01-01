@@ -34,9 +34,10 @@ const state = createStore(comboReducer)
 // 	console.log(event)
 // })
 
-
+// console.log(window.location.search.slice(1).vk_platform)
 ReactDOM.render(
     <Provider store={state}>
+        {/* <BrowserRouter basename="/index.html"> */}
         <BrowserRouter basename="/">
             <App/>
         </BrowserRouter>

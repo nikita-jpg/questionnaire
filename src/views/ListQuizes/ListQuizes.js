@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ListCard from '../../components/ListCard/ListCard';
 import PanelWrapper from '../../components/PanelWrapper/PanelWrapper';
@@ -11,6 +11,13 @@ const ListQuizes = ({ id, surveys,
     createOnClickItemQuizesBtn = (index) => null , 
     createOnClickItemQuizes = (index) => null 
 }) => {
+
+
+    //Переписываем историю чтобы быть уверенными что при клике "Назад" вернёмся к эрам
+    useEffect(()=>{
+        console.log("work")
+        window.history.pushState({urlPath:'/PoolView/ListAge'},undefined);
+    },[])
 
     const surveysResult = useSelector(getResultCurSurveys);
     const title = useSelector(getCurEra).russianName

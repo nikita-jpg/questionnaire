@@ -31,6 +31,7 @@ const ListAge = ({id, eras, createOnClickItemAge=index=>null}) => {
         createOnClickItemAge(eras[index].idEra)
     }
 
+
     return (
         <PanelWrapper id={id} 
         // headerText={isTitleInHeader ? "Выберите эпоху" : ""}

@@ -12,7 +12,7 @@ export const initialState = {
 			description: "Описание Эры1",
 			image: 
 			{
-				imageName: "1.jpg",
+				imageName: "plug",
 				sourceImageLink: "Ссылка на картинку1"
 			}
 		},
@@ -23,7 +23,7 @@ export const initialState = {
 			description: "Описание Эры2",
 			image: 
 			{
-				imageName: "2.jpg",
+				imageName: "plug",
 				sourceImageLink: "Ссылка на картинку2"
 			}
 		}
@@ -38,7 +38,7 @@ export const initialState = {
 			description: "ОписаниеОпроса1",
 			image: 
 			{
-				imageName: "1.jpg",
+				imageName: "plug",
 				sourceImageLink: "Ссылка на картинку1"
 			},
 		},
@@ -50,7 +50,7 @@ export const initialState = {
 			description: "ОписаниеОпроса2",
 			image: 
 			{
-				imageName: "2.jpg",
+				imageName: "plug",
 				sourceImageLink: "Ссылка на картинку2"
 			},
 		},
@@ -62,7 +62,7 @@ export const initialState = {
 			description: "ОписаниеОпроса3",
 			image: 
 			{
-				imageName: "3.jpg",
+				imageName: "plug",
 				sourceImageLink: "Ссылка на картинку3"
 			},
 		}
@@ -77,7 +77,7 @@ export const initialState = {
 			textQuestion: "Вопрос1",
 			image: 
 			{
-				imageName: "3.jpg",
+				imageName: "plug",
 				sourceImageLink: "Ссылка на картинку3"
 			}
 		},
@@ -87,7 +87,7 @@ export const initialState = {
 			textQuestion: "Вопрос2",
 			image: 
 			{
-				imageName: "3.jpg",
+				imageName: "plug",
 				sourceImageLink: "Ссылка на картинку3"
 			}
 		},
@@ -97,7 +97,7 @@ export const initialState = {
 			textQuestion: "Вопрос2",
 			image: 
 			{
-				imageName: "3.jpg",
+				imageName: "plug",
 				sourceImageLink: "Ссылка на картинку3"
 			}
 		}

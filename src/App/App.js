@@ -32,13 +32,20 @@ import { Link, BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react
 
 const App = ({}) => {
 
+	// let history = window.history
 	let navigate = useNavigate();
-	window.onpopstate = function(event) {
-    	if(event.state === null){
-        	window.history.forward()
-    	}
-		console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-	};
+	useEffect(()=>{
+		navigate("/PoolView/ListAge")
+
+		// window.onpopstate = function(event) {
+		// 	// if(event.state === null){
+		// 	// 	window.history.forward()
+		// 	// }
+		// 	console.log(history)
+		// 	// console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+		// };
+	},[])
+
 	
 	const dispatch = useDispatch()
 
@@ -125,7 +132,6 @@ const App = ({}) => {
 	const curAlert = useSelector(getAlert)
 	const DEFAULT_PATCH = "/index.html"
 
-	// console.log(window.location.pathname)
 	return (
 	<ConfigProvider isWebView={true}>
 		<AdaptivityProvider>
@@ -137,7 +143,7 @@ const App = ({}) => {
 				>
 					<SplitCol animate={true}>
 						<Routes>
-							<Route exact path="/" element={
+							<Route exact path="/PoolView/*" element={
 								<PoolView
 									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
 									setIndexEraAction={data.Data_setIndexEra}
@@ -148,7 +154,7 @@ const App = ({}) => {
 								/>
 							}/>   
 
-							<Route path="/ListQuestions" element={
+							<Route path="/ListQuestions/*" element={
 								<ListQuestions 
 									id={viewsId.VIEW_ID_LIST_QUESTIONES}
 									goToListSurveyAction={poolView.PoolView_goToListSurvey}
@@ -163,7 +169,7 @@ const App = ({}) => {
 
 							<Route
 								path="*"
-								element={<Navigate to="/" />}
+								element={<Navigate to="/PoolView" />}
 							/>
 						</Routes>
 							{/* <Root activeView={activeView}> */}

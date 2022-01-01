@@ -2,7 +2,7 @@ import vkBridge from '@vkontakte/vk-bridge';
 import { View } from "@vkontakte/vkui";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { getCurSurveys, getEras } from '../../Selectors/data_selectors';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
 import ListAge from "../ListAge/ListAge";
@@ -19,6 +19,11 @@ const PoolView = ({id,
 	}) => {
 
 	const dispatch = useDispatch()
+
+	//Рутинг
+	let navigate = useNavigate();
+	let location = useLocation();
+	// console.log(location.pathname)
 
 
 	//Получение данных
@@ -81,20 +86,20 @@ const PoolView = ({id,
 	
 	const onBackListQuizes = () => {
 		goBackInHistory(LIST_AGE_PANEL)
+		navigate(-1)
 	}
 
 	const createOnClickItemAge = (indexEra) => {
 		setIndexEra(indexEra);
 		goForwardInHistory(LIST_SURVEYS_PANEL);
 		setActivePanel(LIST_SURVEYS_PANEL);
+		navigate("/PoolView/ListQuizes")
 	}
 
-	let navigate = useNavigate();
 	const createOnClickItemQuizes = (indexSurvey) => {
 		setIndexSurvey(indexSurvey)
 		goToViewListQuestions()
-		window.history.back()
-		// navigate("/ListQuestions")
+		navigate("/ListQuestions/0")
 	}
 
 	const createOnClickItemQuizesBtn = (indexSurvey) => {
@@ -102,31 +107,28 @@ const PoolView = ({id,
 		goToResultView()
 	}
 
-        
+
     return(
-        <View 
-            id={id}
-            activePanel={activePanel}
-            onSwipeBack={goBackInHistory}
-            history={history}
-        >
+		<Routes>
+			<Route exact path="ListAge" element={
+				<ListAge 
+					id={LIST_AGE_PANEL} 
+					eras={eras} 
+					erasResults={erasResults}
+					createOnClickItemAge={createOnClickItemAge}
+				/>
+			}/>  
 
-        <ListAge 
-            id={LIST_AGE_PANEL} 
-            eras={eras} 
-			erasResults={erasResults}
-            createOnClickItemAge={createOnClickItemAge}
-        />
-
-        <ListQuizes 
-            id={LIST_SURVEYS_PANEL} 
-            surveys={surveys} 
-            onBack={onBackListQuizes} 
-            createOnClickItemQuizes={createOnClickItemQuizes}
-			createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}
-        />
-
-    </View>
+			<Route exact path="ListQuizes" element={
+				<ListQuizes 
+					id={LIST_SURVEYS_PANEL} 
+					surveys={surveys} 
+					onBack={onBackListQuizes} 
+					createOnClickItemQuizes={createOnClickItemQuizes}
+					createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}
+				/>
+			}/>  
+		</Routes>
     )
 }
 

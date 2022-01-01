@@ -12,12 +12,21 @@ import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import { getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { isModalListQuestionsOpen } from '../../Selectors/modal_selectors';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
-import * as appNavigate from '../../App/Actions'
+import * as appNavigate from '../../App/Actions';
+
+import * as alert from '../../components/Alert/actions'
+
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import * as alertActions from '../../components/Alert/actions'
-import { useNavigate } from 'react-router-dom';
 
 const PANEL_LOADING = "PANEL_LOADING-0"
+
+
+let activePanel = 0;
+let isStartExitModalOpen =  false;
+let isAllowedGoToPoolView = false;
+
 
 
 const ListQuestions = ({id,
@@ -26,6 +35,25 @@ const ListQuestions = ({id,
     goToListSurveyAction=()=>{},
     saveUserAnswersAction=()=>{}
 }) => {
+
+    // window.onpopstate = function(event) {
+    //     setActivePanel(activePanel-1)
+    //     console.log("pop")
+    //     // console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    //   };
+
+    
+    // window.addEventListener('popstate', (event) => {
+    //     console.log("pop");
+    // });
+
+
+
+    // window.addEventListener('pushstate', (event) => {
+    //     console.log("pop");
+    //     // setActivePanel(activePanel-1)
+    // });
+
 
 
     //Получение данных
@@ -39,7 +67,7 @@ const ListQuestions = ({id,
 
 
     //Внутренняя навигация
-    const [activePanel, setActivePanel] = useState(0);
+    // const [activePanel, setActivePanel] = useState(0);
 
 
     //Работа с ответами
@@ -118,35 +146,47 @@ const ListQuestions = ({id,
     const goToPollView = () => {
         dispath(goToListSurveyAction())
         dispath(goToPollViewAction())
-        navigate("/")
+        navigate("/PoolView/ListQuizes")
     }
 
 
     //Навигация
     const checkIndex = (indexQuestion) =>{
 
-        //Если мы переходим к этому индексу, значит пользователь ответил на посл вопрос и надо завершать опрос
-        if(indexQuestion===arrQuestions.length){
-            finishSurvey()
-            return false;
-        }
+        // //Если мы переходим к этому индексу, значит пользователь ответил на посл вопрос и надо завершать опрос
+        // if(indexQuestion===arrQuestions.length){
+        //     finishSurvey()
+        //     return false;
+        // }
 
-        if(indexQuestion === -1){
-            openCloseListQuestionsAleret()
-            return false;
-        }
+        // if(indexQuestion === -1){
+        //     openCloseListQuestionsAleret()
+        //     return false;
+        // }
 
         return true
     }
     const goToCurrentQuestion = (indexQuestion)=>{
-
+        
         if(checkIndex(indexQuestion)){
             changeHistory(indexQuestion)
-            setActivePanel(indexQuestion)
+
+            if(indexQuestion > activePanel){
+                for(let i=activePanel+1;i<=indexQuestion;i++){
+                    navigate(`${i}`)
+                }
+                activePanel = indexQuestion
+            }else{
+                for(let i=indexQuestion;i<activePanel;i++){
+                    navigate(-1)
+                }
+            }
         }
     }
-    const goToPrevQuestion=()=> goToCurrentQuestion(activePanel - 1)
-    const goToNextQuestion=()=> goToCurrentQuestion(history.length)
+    // const goToPrevQuestion=()=> goToCurrentQuestion(activePanel - 1)
+    const goToPrevQuestion=() => {goToCurrentQuestion(activePanel - 1)}
+    // const goToNextQuestion=()=> navigate(`${activePanel + 1}`)
+    const goToNextQuestion=() => {goToCurrentQuestion(activePanel + 1)}
 
 
     // Работа с модальным окном
@@ -171,6 +211,17 @@ const ListQuestions = ({id,
         return arrQuestions.length === userAnswers.length;
     }
 
+    // const backEventListener = (event) =>{
+    //     const activePanelNumber = Number.parseInt(document.location.toString().slice(-1))
+    //     // setActivePanel( activePanelNumber )
+    //     activePanel = indexQuestion
+
+    //     console.log(test)
+
+    //     // console.log(Number.parseInt(document.location.toString().slice(-1)) + 1)
+    //     // navigate(     `${Number.parseInt(document.location.toString().slice(-1)) + 1 }`   )
+    // }
+
     useEffect(() => {
         dispath(setDataModalListQuestions({
             arrQuestions:arrQuestions,
@@ -178,6 +229,65 @@ const ListQuestions = ({id,
             goToCurrentQuestion:goToCurrentQuestion,
             finishSurvey:finishSurvey
         }))   
+
+        window.addEventListener('popstate', (event) =>{
+            activePanel = activePanel - 1;
+            console.log(window.history)
+
+            if(activePanel === -1){
+
+                if(!isAllowedGoToPoolView){
+                    if(!isStartExitModalOpen){
+                        openCloseListQuestionsAleret();
+                    } 
+                    navigate(`${activePanel + 1}`)
+                    activePanel = activePanel + 1;
+                }
+            }
+        })
+        // window.onpopstate = function(event) {
+        //     console.log(activePanel)
+        //     setActivePanel(activePanel-1)
+        // }
+
+        // window.onpopstate = function(event) {
+        //     console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+        //     navigate(Number.parseInt(document.location.toString().slice(-1)) + 1)
+        // };
+        // window.addEventListener('popstate', backEventListener);
+
+        // const unblock = history.block((location, action) => {
+        //     if (true) {
+        //       return window.confirm("Navigate Back?");
+        //     }
+        //     return true;
+        //   });
+        
+        //   return () => {
+        //     unblock();
+        //   };
+
+        // window.addEventListener('pushstate', (event) => {
+        //     console.log("pop");
+        // // setActivePanel(activePanel-1)
+        // });
+
+        // window.onhashchange = function(event) {
+        //     console.log("vdsklfvsdlf");
+        // }
+
+
+        // window.history.pushState = function(event) {
+        //     setActivePanel(activePanel+1)
+        //     console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+        // };
+
+    //     window.onpopstate = function(event) {
+    // 	// if(event.state === null){
+    //     // 	window.history.forward()
+    // 	// }
+	// 	console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+	// };
     },[])
 
     useEffect(() => {
@@ -258,16 +368,21 @@ const ListQuestions = ({id,
 
     const openCloseListQuestionsAleret = () => {
 
-        setAlert(
+        dispath(alertActions.Alert_setAlert(
             <AlertWrapper
                 header="Уверены, что хотите выйти?"
                 leftText={"Отмена"}
                 rightText={"Выйти"}
-                rightFunc={()=>{goToPollView()}}
-                onClose={()=>{setAlert(null)}}
+                rightFunc={()=>{  
+                    isAllowedGoToPoolView = true;
+                    navigate(-1) 
+                    // goToPollView()
+                }}
+                onClose={()=>{dispath(alertActions.Alert_closeAlert())}}
             >
             </AlertWrapper>
-    )}
+        ))
+    }
     const openFinishAlert = () => {       
         setAlert(
 
@@ -287,36 +402,30 @@ const ListQuestions = ({id,
 
     )}
 
-
+    // console.log(window.location)
     return (
-        <View id={id} 
-            activePanel={activePanel} 
-            history={history} 
-            onSwipeBack={goToPrevQuestion}
-            popout={alert}
-            >
             
-            <LoadingPanel id={PANEL_LOADING}/>
-            
-            {
-                arrQuestions.map((question, i) =>(
-                    <IteamListQuestion
-                        id={i}            
-                        question={question}
-                        countQuestions={arrQuestions.length}
-                        isModalOpen={isModalOpen}
+            <Routes>
+                {
+                    arrQuestions.map((question, i) =>(
+                        <Route exact path={`${i}`} element={
+                            <IteamListQuestion
+                                id={i}            
+                                question={question}
+                                countQuestions={arrQuestions.length}
+                                isModalOpen={isModalOpen}
 
-                        giveAnswer={giveAnswer}
-                        goToNextQuestion={goToNextQuestion}
-                        goToPrevQuestion={goToPrevQuestion}
-                        getUserAnswer={getUserAnswer}
+                                giveAnswer={giveAnswer}
+                                goToNextQuestion={goToNextQuestion}
+                                goToPrevQuestion={goToPrevQuestion}
+                                getUserAnswer={getUserAnswer}
 
-                        changeModal={openModal}
-
-                    />
-                ))
-            }
-        </View>
+                                changeModal={openModal}
+                            />
+                        }/>
+                    ))
+                }
+            </Routes>
     )
 }
 

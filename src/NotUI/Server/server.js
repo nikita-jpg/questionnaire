@@ -8,7 +8,7 @@ const http = axios.create({
     }
 });
 export const DEFAULT_IMAGE_EXPANSION = ".webp"
-export const DEFAULT_URL = "https://www.vkma123.ru//"
+export const DEFAULT_URL = "https://www.vkma123.ru/"
 export const DEFAULT_URL_DOWNLOAD_IMG = DEFAULT_URL+"getImage?imageName="
 const reqSvgs = require.context( '../../svg', true, /\.svg$/ )
 
