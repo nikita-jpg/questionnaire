@@ -21,7 +21,8 @@ const PANEL_LOADING = "PANEL_LOADING-0"
 
 
 
-let activePanel = 0
+let activePanel = 0;
+let history = [0]
 
 const ListQuestions = ({id,
     goToPollViewAction=()=>{}, 
@@ -30,6 +31,7 @@ const ListQuestions = ({id,
     saveUserAnswersAction=()=>{}
 }) => {
 
+    let  [,setState]=useState();
 
 
     //Получение данных
@@ -252,7 +254,7 @@ const ListQuestions = ({id,
 
 
     // История
-    const [history, setHistory] = useState([0]);
+    // const [history, setHistory] = useState([0]);
     const changeHistory = (nextIndex) => {
 
         //Установка истории
@@ -260,7 +262,8 @@ const ListQuestions = ({id,
         for(let i=0;i<nextIndex+1;i++){
             his.push(i)
         }
-        setHistory(his)
+        // setHistory(his)
+        history = his
 
 
         //vkBridge
@@ -273,11 +276,12 @@ const ListQuestions = ({id,
     }
 
 
-    let  [,setState]=useState();
+    // let  [,setState]=useState();
     //Кнопка назад на андроиде
     const backAndroid = (event) => {
         goToPrevQuestion()
         setState({});
+        console.log("ListQuestions")
     }
 	useEffect(()=>{
         addAndroidBackListener()
@@ -334,7 +338,7 @@ const ListQuestions = ({id,
         <View id={id} 
             activePanel={activePanel} 
             history={history} 
-            onSwipeBack={goToPrevQuestion}
+            onSwipeBack={backAndroidImmitator}
             popout={alert}
             >
             

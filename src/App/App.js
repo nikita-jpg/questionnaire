@@ -37,12 +37,12 @@ const App = ({}) => {
 		// navigate("/4164")
 		// navigate("/index.html/data")
 
-		console.log("window.history.pushState")
+		// console.log("window.history.pushState")
 
 		window.history.pushState("","/")
 		window.history.pushState("","/index.html/data")
         window.addEventListener('popstate', (event) =>{
-			console.log("qde")
+			// console.log("qde")
 			navigate("/data")
         })
 	},[])
