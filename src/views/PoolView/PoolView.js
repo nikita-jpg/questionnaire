@@ -9,6 +9,9 @@ import ListQuizes from "../ListQuizes/ListQuizes";
 import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
 
 
+let activePanel = LIST_AGE_PANEL;
+let history = [LIST_AGE_PANEL]
+
 const PoolView = ({id,
 	setIndexEraAction=()=>{}, 
 	setIndexSurveyAction=()=>{}, 
@@ -18,6 +21,7 @@ const PoolView = ({id,
 	}) => {
 
 	const dispatch = useDispatch()
+	let  [,setState]=useState();
 
 
 	//Получение данных
@@ -29,16 +33,25 @@ const PoolView = ({id,
 
 	const mustCurrentPanel = useSelector(getFirstPanel); //Проверяем какая панелька должна быть открыта по приказу извне
 
-	const [activePanel, setActivePanel] = useState(mustCurrentPanel);
+	useEffect(()=>{
+		activePanel = mustCurrentPanel
+	},[])
+	// const [activePanel, setActivePanel] = useState(mustCurrentPanel);
 
 	const setIndexEra = (indexEra) => dispatch(setIndexEraAction(indexEra))
 	const setIndexSurvey = (indexSurvey) => dispatch(setIndexSurveyAction(indexSurvey))
-	const goToViewListQuestions = () => dispatch(goToSurveyViewAction())
-	const goToResultView = () => dispatch(goToResultViewAction())
+	const goToViewListQuestions = () => {
+		removeAndroidBackListener()
+		dispatch(goToSurveyViewAction())
+	}
+	const goToResultView = () => {
+		removeAndroidBackListener()
+		dispatch(goToResultViewAction())
+	}
 	const goToListAge = () => dispatch(goToListAgeAction())
 
 	// История
-	const [history, setHistory] = useState([LIST_AGE_PANEL]);
+	// const [history, setHistory] = useState([LIST_AGE_PANEL]);
 
 	const goBackInHistory = () => {
 		let his = history;
@@ -46,8 +59,12 @@ const PoolView = ({id,
 		if (activePanel === LIST_AGE_PANEL) {
 			vkBridge.send('VKWebAppEnableSwipeBack');
 		}
-		setHistory(his)
-		setActivePanel(history[history.length - 1])	
+		history = his
+		// setHistory(his)
+		activePanel = LIST_AGE_PANEL
+		setState({});
+		// activePanel = history[history.length - 1]
+		// setActivePanel(history[history.length - 1])	
 	}
 
 	const goForwardInHistory = (view) => { 
@@ -55,22 +72,28 @@ const PoolView = ({id,
 		his.push(view);
 		if (activePanel === LIST_AGE_PANEL) {
 			vkBridge.send('VKWebAppDisableSwipeBack');
-			setHistory(his)
+			history = his
+			// setHistory(his)
 		}
 		else{
-			setHistory(his)
+			history = his
+			// setHistory(his)
 		}
 	}
 
 	//Проверяем какая панелька должна быть открыта по приказу извне
 	useEffect(() => {
 		if(mustCurrentPanel === LIST_AGE_PANEL){
-			setActivePanel(LIST_AGE_PANEL)
-			setHistory([LIST_AGE_PANEL])
+			activePanel = LIST_AGE_PANEL
+			// setActivePanel(LIST_AGE_PANEL)
+			history = [LIST_AGE_PANEL]
+			// setHistory([LIST_AGE_PANEL])
 		}
 		if(mustCurrentPanel === LIST_SURVEYS_PANEL){
-			setActivePanel(LIST_SURVEYS_PANEL)
-			setHistory([LIST_AGE_PANEL, LIST_SURVEYS_PANEL])
+			activePanel = LIST_SURVEYS_PANEL
+			// setActivePanel(LIST_SURVEYS_PANEL)
+			history = [LIST_AGE_PANEL, LIST_SURVEYS_PANEL]
+			// setHistory([LIST_AGE_PANEL, LIST_SURVEYS_PANEL])
 
 			//Сбрасываем значение начальное панели на значение по умолчанию (панель эр)
 			goToListAge()
@@ -79,13 +102,14 @@ const PoolView = ({id,
 
 	
 	const onBackListQuizes = () => {
-		goBackInHistory(LIST_AGE_PANEL)
+		goBackInHistory()
 	}
 
 	const createOnClickItemAge = (indexEra) => {
 		setIndexEra(indexEra);
 		goForwardInHistory(LIST_SURVEYS_PANEL);
-		setActivePanel(LIST_SURVEYS_PANEL);
+		activePanel = LIST_SURVEYS_PANEL;
+		// setActivePanel(LIST_SURVEYS_PANEL);
 	}
 
 	const createOnClickItemQuizes = (indexSurvey) => {
@@ -98,6 +122,31 @@ const PoolView = ({id,
 		goToResultView()
 	}
 
+	//Кнопка назад на андроиде
+	const backAndroid = (event) => {
+		console.log("activePanel:")
+		console.log(activePanel)
+		if (activePanel === LIST_SURVEYS_PANEL) {
+			console.log("Must go to ListAge")
+			onBackListQuizes()
+			setState({});
+		}
+	}
+	useEffect(()=>{
+		addAndroidBackListener()
+	},[])
+
+	const addAndroidBackListener = () =>{
+		window.addEventListener('popstate', backAndroid)
+	}
+
+	const removeAndroidBackListener = () =>{
+		window.removeEventListener('popstate', backAndroid)
+	}
+
+	const backAndroidImmitator = () =>{
+        window.history.back()
+    }
         
     return(
         <View 
@@ -117,7 +166,7 @@ const PoolView = ({id,
         <ListQuizes 
             id={LIST_SURVEYS_PANEL} 
             surveys={surveys} 
-            onBack={onBackListQuizes} 
+            onBack={backAndroidImmitator} 
             createOnClickItemQuizes={createOnClickItemQuizes}
 			createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}
         />

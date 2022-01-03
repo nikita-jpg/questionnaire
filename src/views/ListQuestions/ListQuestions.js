@@ -15,9 +15,13 @@ import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
 import * as appNavigate from '../../App/Actions'
 
 import * as alertActions from '../../components/Alert/actions'
+import { useNavigate } from 'react-router-dom';
 
 const PANEL_LOADING = "PANEL_LOADING-0"
 
+
+
+let activePanel = 0
 
 const ListQuestions = ({id,
     goToPollViewAction=()=>{}, 
@@ -27,18 +31,26 @@ const ListQuestions = ({id,
 }) => {
 
 
+
     //Получение данных
     const arrQuestions = useSelector(getCurQuestions)
     const curSurveyId = useSelector(getCurSurveyId)
     const dispath = useDispatch();
 
     //Если пропало соединение с интернетом
-    const goToViewListQuestions = () => dispath(appNavigate.App_goToLoadingtView())
+    const goToViewListQuestions = () => {
+        removeAndroidBackListener()
+        dispath(appNavigate.App_goToLoadingtView())
+    }
     const serverErrorAlert = <AlertCloseApp errorText = {"К сожалению, потеряно соединение с сервером. Просим вас зайти позже"}></AlertCloseApp>
 
 
     //Внутренняя навигация
-    const [activePanel, setActivePanel] = useState(0);
+    // const [activePanelLocal, setActivePanelLocal] = useState(0);
+    // useEffect(()=>{
+    //     console.log("setActivePanelLocal")
+    //     setActivePanelLocal(activePanelLocal=>activePanel)
+    // },[activePanel])
 
 
     //Работа с ответами
@@ -112,8 +124,12 @@ const ListQuestions = ({id,
 
 
     //Внешняя навигация
-    const goToResultView = () => dispath(goToResultViewAction())
+    const goToResultView = () => {
+        removeAndroidBackListener()
+        dispath(goToResultViewAction())
+    }
     const goToPollView = () => {
+        removeAndroidBackListener()
         dispath(goToListSurveyAction())
         dispath(goToPollViewAction())
     }
@@ -137,13 +153,20 @@ const ListQuestions = ({id,
     }
     const goToCurrentQuestion = (indexQuestion)=>{
 
+        // console.log(activePanel)
+        // console.log(indexQuestion)
         if(checkIndex(indexQuestion)){
             changeHistory(indexQuestion)
-            setActivePanel(indexQuestion)
+            activePanel = indexQuestion
+            // setActivePanel(indexQuestion)
+            // setActivePanel(indexQuestion)
         }
     }
+    // const goToPrevQuestion=()=> setActivePanel(activePanel => {
+    //     return checkIndex(activePanel - 1) ? activePanel - 1 : activePanel;
+    // });
     const goToPrevQuestion=()=> goToCurrentQuestion(activePanel - 1)
-    const goToNextQuestion=()=> goToCurrentQuestion(history.length)
+    const goToNextQuestion=()=> goToCurrentQuestion(activePanel + 1)
 
 
     // Работа с модальным окном
@@ -250,6 +273,25 @@ const ListQuestions = ({id,
     }
 
 
+    let  [,setState]=useState();
+    //Кнопка назад на андроиде
+    const backAndroid = (event) => {
+        goToPrevQuestion()
+        setState({});
+    }
+	useEffect(()=>{
+        addAndroidBackListener()
+	},[])
+
+    const addAndroidBackListener = () =>{
+        window.addEventListener('popstate', backAndroid)
+    }
+
+    const removeAndroidBackListener = () =>{
+        window.removeEventListener('popstate', backAndroid)
+    }
+
+
     //Alert
     const [alert, setAlert] = useState(null);
 
@@ -285,6 +327,9 @@ const ListQuestions = ({id,
     )}
 
 
+    const backAndroidImmitator = () =>{
+        window.history.back()
+    }
     return (
         <View id={id} 
             activePanel={activePanel} 
@@ -305,7 +350,7 @@ const ListQuestions = ({id,
 
                         giveAnswer={giveAnswer}
                         goToNextQuestion={goToNextQuestion}
-                        goToPrevQuestion={goToPrevQuestion}
+                        goToPrevQuestion={backAndroidImmitator}
                         getUserAnswer={getUserAnswer}
 
                         changeModal={openModal}
