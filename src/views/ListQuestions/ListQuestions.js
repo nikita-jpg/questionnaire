@@ -1,7 +1,9 @@
 import vkBridge from '@vkontakte/vk-bridge';
 import { View } from '@vkontakte/vkui';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as appNavigate from '../../App/Actions';
+import * as alertActions from '../../components/Alert/actions';
 import AlertCloseApp from '../../components/Alert/AlertCloseApp/AlertCloseApp';
 import AlertWrapper from '../../components/Alert/AlertWrapper/AlertWrapper';
 import LoadingPanel from '../../components/LoadingPanel/LoadingPanel';
@@ -12,17 +14,14 @@ import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import { getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { isModalListQuestionsOpen } from '../../Selectors/modal_selectors';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
-import * as appNavigate from '../../App/Actions'
 
-import * as alertActions from '../../components/Alert/actions'
-import { useNavigate } from 'react-router-dom';
 
 const PANEL_LOADING = "PANEL_LOADING-0"
 
 
 
-let activePanel = 0;
-let history = [0]
+// let activePanel = 0;
+// let history = [0]
 
 const ListQuestions = ({id,
     goToPollViewAction=()=>{}, 
@@ -31,7 +30,7 @@ const ListQuestions = ({id,
     saveUserAnswersAction=()=>{}
 }) => {
 
-    let  [,setState]=useState();
+    // let  [,setState]=useState();
 
 
     //Получение данных
@@ -39,9 +38,12 @@ const ListQuestions = ({id,
     const curSurveyId = useSelector(getCurSurveyId)
     const dispath = useDispatch();
 
+    const [activePanel, setActivePanel] = useState(0)
+    const [history, setHistory] = useState([0])
+
     //Если пропало соединение с интернетом
     const goToViewListQuestions = () => {
-        removeAndroidBackListener()
+        // removeAndroidBackListener()
         dispath(appNavigate.App_goToLoadingtView())
     }
     const serverErrorAlert = <AlertCloseApp errorText = {"К сожалению, потеряно соединение с сервером. Просим вас зайти позже"}></AlertCloseApp>
@@ -127,11 +129,11 @@ const ListQuestions = ({id,
 
     //Внешняя навигация
     const goToResultView = () => {
-        removeAndroidBackListener()
+        // removeAndroidBackListener()
         dispath(goToResultViewAction())
     }
     const goToPollView = () => {
-        removeAndroidBackListener()
+        // removeAndroidBackListener()
         dispath(goToListSurveyAction())
         dispath(goToPollViewAction())
     }
@@ -159,8 +161,9 @@ const ListQuestions = ({id,
         // console.log(indexQuestion)
         if(checkIndex(indexQuestion)){
             changeHistory(indexQuestion)
-            activePanel = indexQuestion
-            // setActivePanel(indexQuestion)
+            // activePanel = indexQuestion
+            // setActivePanel()
+            setActivePanel(indexQuestion)
             // setActivePanel(indexQuestion)
         }
     }
@@ -262,8 +265,8 @@ const ListQuestions = ({id,
         for(let i=0;i<nextIndex+1;i++){
             his.push(i)
         }
-        // setHistory(his)
-        history = his
+        setHistory(his)
+        // history = his
 
 
         //vkBridge
@@ -278,22 +281,38 @@ const ListQuestions = ({id,
 
     // let  [,setState]=useState();
     //Кнопка назад на андроиде
-    const backAndroid = (event) => {
-        goToPrevQuestion()
-        setState({});
-        console.log("ListQuestions")
-    }
-	useEffect(()=>{
-        addAndroidBackListener()
-	},[])
+    const backKeyPressAndroid = event => {goToPrevQuestion()};
+	
+    const cbRef = useRef(backKeyPressAndroid);
+  
+    useEffect(() => {
+      cbRef.current = backKeyPressAndroid;
+    });
+  
+    useEffect(() => {
+      const cb = e => cbRef.current(e);
+      window.addEventListener("popstate", cb);
+  
+      return () => {
+        window.removeEventListener("popstate", cb);
+      };
+    }, []);
+    // const backAndroid = (event) => {
+    //     goToPrevQuestion()
+    //     setState({});
+    //     console.log("ListQuestions")
+    // }
+	// useEffect(()=>{
+    //     addAndroidBackListener()
+	// },[])
 
-    const addAndroidBackListener = () =>{
-        window.addEventListener('popstate', backAndroid)
-    }
+    // const addAndroidBackListener = () =>{
+    //     window.addEventListener('popstate', backAndroid)
+    // }
 
-    const removeAndroidBackListener = () =>{
-        window.removeEventListener('popstate', backAndroid)
-    }
+    // const removeAndroidBackListener = () =>{
+    //     window.removeEventListener('popstate', backAndroid)
+    // }
 
 
     //Alert
