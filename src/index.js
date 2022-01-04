@@ -11,6 +11,7 @@ import {comboReducer} from './comboReducer'
 import { Provider } from "react-redux";
 import { BrowserRouter, useNavigate } from "react-router-dom";
 
+import { BrowserRouter, useNavigate } from "react-router-dom";
 
 bridge.send("VKWebAppGetConfig");
 
@@ -29,16 +30,20 @@ bridge
     })
 
 const state = createStore(comboReducer)
+// const navigate = useNavigate()
 
 // window.addEventListener('popstate', (event) =>{
 // 	console.log(event)
 // })
+// window.onpopstate = function(event) {
+// 	console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+// };
 
 // console.log(window.location.search.slice(1).vk_platform)
 ReactDOM.render(
     <Provider store={state}>
-        {/* <BrowserRouter basename="/index.html"> */}
         <BrowserRouter basename="/">
+        {/* <BrowserRouter basename="/index.html"> */}
             <App/>
         </BrowserRouter>
     </Provider>, 

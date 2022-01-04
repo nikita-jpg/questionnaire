@@ -1,7 +1,9 @@
 import vkBridge from '@vkontakte/vk-bridge';
 import { View } from '@vkontakte/vkui';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as appNavigate from '../../App/Actions';
+import * as alertActions from '../../components/Alert/actions';
 import AlertCloseApp from '../../components/Alert/AlertCloseApp/AlertCloseApp';
 import AlertWrapper from '../../components/Alert/AlertWrapper/AlertWrapper';
 import LoadingPanel from '../../components/LoadingPanel/LoadingPanel';
@@ -12,22 +14,14 @@ import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import { getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
 import { isModalListQuestionsOpen } from '../../Selectors/modal_selectors';
 import IteamListQuestion from './IteamListQuestion/IteamListQuestion';
-import * as appNavigate from '../../App/Actions';
 
-import * as alert from '../../components/Alert/actions'
-
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-
-import * as alertActions from '../../components/Alert/actions'
 
 const PANEL_LOADING = "PANEL_LOADING-0"
 
 
-let activePanel = 0;
-let isStartExitModalOpen =  false;
-let isAllowedGoToPoolView = false;
 
-
+// let activePanel = 0;
+// let history = [0]
 
 const ListQuestions = ({id,
     goToPollViewAction=()=>{}, 
@@ -36,24 +30,7 @@ const ListQuestions = ({id,
     saveUserAnswersAction=()=>{}
 }) => {
 
-    // window.onpopstate = function(event) {
-    //     setActivePanel(activePanel-1)
-    //     console.log("pop")
-    //     // console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-    //   };
-
-    
-    // window.addEventListener('popstate', (event) => {
-    //     console.log("pop");
-    // });
-
-
-
-    // window.addEventListener('pushstate', (event) => {
-    //     console.log("pop");
-    //     // setActivePanel(activePanel-1)
-    // });
-
+    // let  [,setState]=useState();
 
 
     //Получение данных
@@ -61,13 +38,23 @@ const ListQuestions = ({id,
     const curSurveyId = useSelector(getCurSurveyId)
     const dispath = useDispatch();
 
+    const [activePanel, setActivePanel] = useState(0)
+    const [history, setHistory] = useState([0])
+
     //Если пропало соединение с интернетом
-    const goToViewListQuestions = () => dispath(appNavigate.App_goToLoadingtView())
+    const goToViewListQuestions = () => {
+        // removeAndroidBackListener()
+        dispath(appNavigate.App_goToLoadingtView())
+    }
     const serverErrorAlert = <AlertCloseApp errorText = {"К сожалению, потеряно соединение с сервером. Просим вас зайти позже"}></AlertCloseApp>
 
 
     //Внутренняя навигация
-    // const [activePanel, setActivePanel] = useState(0);
+    // const [activePanelLocal, setActivePanelLocal] = useState(0);
+    // useEffect(()=>{
+    //     console.log("setActivePanelLocal")
+    //     setActivePanelLocal(activePanelLocal=>activePanel)
+    // },[activePanel])
 
 
     //Работа с ответами
@@ -141,9 +128,12 @@ const ListQuestions = ({id,
 
 
     //Внешняя навигация
-    const goToResultView = () => dispath(goToResultViewAction())
-    let navigate = useNavigate();
+    const goToResultView = () => {
+        // removeAndroidBackListener()
+        dispath(goToResultViewAction())
+    }
     const goToPollView = () => {
+        // removeAndroidBackListener()
         dispath(goToListSurveyAction())
         dispath(goToPollViewAction())
         navigate("/PoolView/ListQuizes")
@@ -167,26 +157,22 @@ const ListQuestions = ({id,
         return true
     }
     const goToCurrentQuestion = (indexQuestion)=>{
-        
+
+        // console.log(activePanel)
+        // console.log(indexQuestion)
         if(checkIndex(indexQuestion)){
             changeHistory(indexQuestion)
-
-            if(indexQuestion > activePanel){
-                for(let i=activePanel+1;i<=indexQuestion;i++){
-                    navigate(`${i}`)
-                }
-                activePanel = indexQuestion
-            }else{
-                for(let i=indexQuestion;i<activePanel;i++){
-                    navigate(-1)
-                }
-            }
+            // activePanel = indexQuestion
+            // setActivePanel()
+            setActivePanel(indexQuestion)
+            // setActivePanel(indexQuestion)
         }
     }
-    // const goToPrevQuestion=()=> goToCurrentQuestion(activePanel - 1)
-    const goToPrevQuestion=() => {goToCurrentQuestion(activePanel - 1)}
-    // const goToNextQuestion=()=> navigate(`${activePanel + 1}`)
-    const goToNextQuestion=() => {goToCurrentQuestion(activePanel + 1)}
+    // const goToPrevQuestion=()=> setActivePanel(activePanel => {
+    //     return checkIndex(activePanel - 1) ? activePanel - 1 : activePanel;
+    // });
+    const goToPrevQuestion=()=> goToCurrentQuestion(activePanel - 1)
+    const goToNextQuestion=()=> goToCurrentQuestion(activePanel + 1)
 
 
     // Работа с модальным окном
@@ -342,7 +328,7 @@ const ListQuestions = ({id,
 
 
     // История
-    const [history, setHistory] = useState([0]);
+    // const [history, setHistory] = useState([0]);
     const changeHistory = (nextIndex) => {
 
         //Установка истории
@@ -351,6 +337,7 @@ const ListQuestions = ({id,
             his.push(i)
         }
         setHistory(his)
+        // history = his
 
 
         //vkBridge
@@ -361,6 +348,26 @@ const ListQuestions = ({id,
             vkBridge.send('VKWebAppEnableSwipeBack');
         }
     }
+
+
+
+//Кнопка назад на андроиде
+    const backKeyPressAndroid = event => {goToPrevQuestion()};
+	
+    const cbRef = useRef(backKeyPressAndroid);
+  
+    useEffect(() => {
+      cbRef.current = backKeyPressAndroid;
+    });
+  
+    useEffect(() => {
+      const cb = e => cbRef.current(e);
+      window.addEventListener("popstate", cb);
+  
+      return () => {
+        window.removeEventListener("popstate", cb);
+      };
+    }, []);
 
 
     //Alert
@@ -402,8 +409,17 @@ const ListQuestions = ({id,
 
     )}
 
-    // console.log(window.location)
+
+    const backAndroidImmitator = () =>{
+        window.history.back()
+    }
     return (
+        <View id={id} 
+            activePanel={activePanel} 
+            history={history} 
+            onSwipeBack={backAndroidImmitator}
+            popout={alert}
+            >
             
             <Routes>
                 {
@@ -415,10 +431,10 @@ const ListQuestions = ({id,
                                 countQuestions={arrQuestions.length}
                                 isModalOpen={isModalOpen}
 
-                                giveAnswer={giveAnswer}
-                                goToNextQuestion={goToNextQuestion}
-                                goToPrevQuestion={goToPrevQuestion}
-                                getUserAnswer={getUserAnswer}
+                        giveAnswer={giveAnswer}
+                        goToNextQuestion={goToNextQuestion}
+                        goToPrevQuestion={backAndroidImmitator}
+                        getUserAnswer={getUserAnswer}
 
                                 changeModal={openModal}
                             />

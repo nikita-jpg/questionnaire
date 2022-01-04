@@ -43,7 +43,8 @@
     "react-redux": "^7.2.5",
     "react-router-dom": "^6.2.1",
     "react-transition-group": "^4.4.2",
-    "redux": "^4.1.1"
+    "redux": "^4.1.1",
+    "router-dom": "^2.2.9"
   },
   "browserslist": {
     "production": [

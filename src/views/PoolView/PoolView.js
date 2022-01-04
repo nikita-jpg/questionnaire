@@ -1,6 +1,6 @@
 import vkBridge from '@vkontakte/vk-bridge';
 import { View } from "@vkontakte/vkui";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { getCurSurveys, getEras } from '../../Selectors/data_selectors';
@@ -39,8 +39,12 @@ const PoolView = ({id,
 
 	const setIndexEra = (indexEra) => dispatch(setIndexEraAction(indexEra))
 	const setIndexSurvey = (indexSurvey) => dispatch(setIndexSurveyAction(indexSurvey))
-	const goToViewListQuestions = () => dispatch(goToSurveyViewAction())
-	const goToResultView = () => dispatch(goToResultViewAction())
+	const goToViewListQuestions = () => {
+		dispatch(goToSurveyViewAction())
+	}
+	const goToResultView = () => {
+		dispatch(goToResultViewAction())
+	}
 	const goToListAge = () => dispatch(goToListAgeAction())
 
 	// История
@@ -53,7 +57,7 @@ const PoolView = ({id,
 			vkBridge.send('VKWebAppEnableSwipeBack');
 		}
 		setHistory(his)
-		setActivePanel(history[history.length - 1])	
+		setActivePanel(LIST_AGE_PANEL)		
 	}
 
 	const goForwardInHistory = (view) => { 
@@ -85,15 +89,13 @@ const PoolView = ({id,
 
 	
 	const onBackListQuizes = () => {
-		goBackInHistory(LIST_AGE_PANEL)
-		navigate(-1)
+		goBackInHistory()
 	}
 
 	const createOnClickItemAge = (indexEra) => {
 		setIndexEra(indexEra);
 		goForwardInHistory(LIST_SURVEYS_PANEL);
-		setActivePanel(LIST_SURVEYS_PANEL);
-		navigate("/PoolView/ListQuizes")
+		setActivePanel(LIST_SURVEYS_PANEL)
 	}
 
 	const createOnClickItemQuizes = (indexSurvey) => {
@@ -107,28 +109,52 @@ const PoolView = ({id,
 		goToResultView()
 	}
 
+	//Кнопка назад на андроиде
+	const backAndroidImmitator = () =>{
+        window.history.back()
+    }    
+	const backKeyPressAndroid = event => {goBackInHistory()};
+	
+	  const cbRef = useRef(backKeyPressAndroid);
+	
+	  useEffect(() => {
+		cbRef.current = backKeyPressAndroid;
+	  });
+	
+	  useEffect(() => {
+		const cb = e => cbRef.current(e);
+		window.addEventListener("popstate", cb);
+	
+		return () => {
+		  window.removeEventListener("popstate", cb);
+		};
+	  }, []);
+	
 
     return(
-		<Routes>
-			<Route exact path="ListAge" element={
-				<ListAge 
-					id={LIST_AGE_PANEL} 
-					eras={eras} 
-					erasResults={erasResults}
-					createOnClickItemAge={createOnClickItemAge}
-				/>
-			}/>  
+        <View 
+            id={id}
+            activePanel={activePanel}
+            onSwipeBack={backAndroidImmitator}
+            history={history}
+        >
 
-			<Route exact path="ListQuizes" element={
-				<ListQuizes 
-					id={LIST_SURVEYS_PANEL} 
-					surveys={surveys} 
-					onBack={onBackListQuizes} 
-					createOnClickItemQuizes={createOnClickItemQuizes}
-					createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}
-				/>
-			}/>  
-		</Routes>
+        <ListAge 
+            id={LIST_AGE_PANEL} 
+            eras={eras} 
+			erasResults={erasResults}
+            createOnClickItemAge={createOnClickItemAge}
+        />
+
+        <ListQuizes 
+            id={LIST_SURVEYS_PANEL} 
+            surveys={surveys} 
+            onBack={backAndroidImmitator} 
+            createOnClickItemQuizes={createOnClickItemQuizes}
+			createOnClickItemQuizesBtn={createOnClickItemQuizesBtn}
+        />
+
+    </View>
     )
 }
 

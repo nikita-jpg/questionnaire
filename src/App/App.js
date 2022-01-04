@@ -26,26 +26,27 @@ import { getAlert } from '../Selectors/alert_selectors';
 import ModalRootMain from '../components/Modal/ModalRootMain';
 import AlertCloseApp from '../components/Alert/AlertCloseApp/AlertCloseApp'
 import { AppRoot, ConfigProvider, AdaptivityProvider, SplitCol, Root, SplitLayout } from '@vkontakte/vkui';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 
 import { Link, BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 
 const App = ({}) => {
 
-	// let history = window.history
-	let navigate = useNavigate();
+	const navigate = useNavigate()
 	useEffect(()=>{
-		navigate("/PoolView/ListAge")
+		// navigate("/4164")
+		// navigate("/index.html/data")
 
-		// window.onpopstate = function(event) {
-		// 	// if(event.state === null){
-		// 	// 	window.history.forward()
-		// 	// }
-		// 	console.log(history)
-		// 	// console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-		// };
+		// console.log("window.history.pushState")
+
+		window.history.pushState("","/")
+		window.history.pushState("","/index.html/data")
+        window.addEventListener('popstate', (event) =>{
+			// console.log("qde")
+			navigate("/data")
+        })
 	},[])
-
 	
 	const dispatch = useDispatch()
 
@@ -143,75 +144,55 @@ const App = ({}) => {
 				>
 					<SplitCol animate={true}>
 						<Routes>
-							<Route exact path="/PoolView/*" element={
-								<PoolView
-									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
-									setIndexEraAction={data.Data_setIndexEra}
-									setIndexSurveyAction={data.Data_setIndexSurvey}
-									goToSurveyViewAction={appNavigate.App_goToSurveyView}
-									goToResultViewAction={appNavigate.App_goToResultView}
-									goToListAgeAction={poolView.PoolView_goToListAge}
-								/>
-							}/>   
+							<Route exact path="/data" element={
+								<Root activeView={activeView}>
 
-							<Route path="/ListQuestions/*" element={
-								<ListQuestions 
-									id={viewsId.VIEW_ID_LIST_QUESTIONES}
-									goToListSurveyAction={poolView.PoolView_goToListSurvey}
-									goToPollViewAction={appNavigate.App_goToPollView}
-									goToResultViewAction={appNavigate.App_goToResultView}
-									goToLoadingViewAction={appNavigate.App_goToLoadingtView}
-									goToViewListQuestions={appNavigate.App_goToSurveyView}
+									<StartWindow 
+										id={viewsId.VIEW_ID_START_WINDOW} 
+										goToPollView={appNavigate.App_goToPollView}/>
 
-									saveUserAnswersAction={data.Data_saveUserAnswers}
-								/>
-							}/>   
+									<PoolView
+										id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
+										setIndexEraAction={data.Data_setIndexEra}
+										setIndexSurveyAction={data.Data_setIndexSurvey}
+										goToSurveyViewAction={appNavigate.App_goToSurveyView}
+										goToResultViewAction={appNavigate.App_goToResultView}
+										goToListAgeAction={poolView.PoolView_goToListAge}
+									/>
+
+									<ListQuestions 
+										id={viewsId.VIEW_ID_LIST_QUESTIONES}
+										goToListSurveyAction={poolView.PoolView_goToListSurvey}
+										goToPollViewAction={appNavigate.App_goToPollView}
+										goToResultViewAction={appNavigate.App_goToResultView}
+										goToLoadingViewAction={appNavigate.App_goToLoadingtView}
+										goToViewListQuestions={appNavigate.App_goToSurveyView}
+
+										saveUserAnswersAction={data.Data_saveUserAnswers}
+									/>
+
+									<Result
+										id={viewsId.VIEW_ID_RESULT}
+										goToSurveyViewAction={appNavigate.App_goToSurveyView}
+										goToPollViewAction={appNavigate.App_goToPollView}
+										setCurSurveyIdAction={data.Data_setIndexSurvey}
+										setCurQuestionIdAction={data.Data_setIndexQuestion}
+									/>
+
+									<SpinnerView
+										id={viewsId.VIEW_ID_SPINNER}
+									>
+									</SpinnerView>
+
+								</Root>
+						}>
+							</Route>
 
 							<Route
 								path="*"
-								element={<Navigate to="/PoolView" />}
+								element={<Navigate to="/data" />}
 							/>
-						</Routes>
-							{/* <Root activeView={activeView}> */}
-
-								{/* <StartWindow 
-									id={viewsId.VIEW_ID_START_WINDOW} 
-									goToPollView={appNavigate.App_goToPollView}/> */}
-
-								{/* <PoolView
-									id={viewsId.VIEW_ID_LIST_AGE_AND_QUIZES}
-									setIndexEraAction={data.Data_setIndexEra}
-									setIndexSurveyAction={data.Data_setIndexSurvey}
-									goToSurveyViewAction={appNavigate.App_goToSurveyView}
-									goToResultViewAction={appNavigate.App_goToResultView}
-									goToListAgeAction={poolView.PoolView_goToListAge}
-								/>
-
-								<ListQuestions 
-									id={viewsId.VIEW_ID_LIST_QUESTIONES}
-									goToListSurveyAction={poolView.PoolView_goToListSurvey}
-									goToPollViewAction={appNavigate.App_goToPollView}
-									goToResultViewAction={appNavigate.App_goToResultView}
-									goToLoadingViewAction={appNavigate.App_goToLoadingtView}
-									goToViewListQuestions={appNavigate.App_goToSurveyView}
-
-									saveUserAnswersAction={data.Data_saveUserAnswers}
-								/> */}
-
-								{/* <Result
-									id={viewsId.VIEW_ID_RESULT}
-									goToSurveyViewAction={appNavigate.App_goToSurveyView}
-									goToPollViewAction={appNavigate.App_goToPollView}
-									setCurSurveyIdAction={data.Data_setIndexSurvey}
-									setCurQuestionIdAction={data.Data_setIndexQuestion}
-									/>
-
-								<SpinnerView
-									id={viewsId.VIEW_ID_SPINNER}
-								>
-								</SpinnerView> */}
-
-							{/* </Root> */}
+							</Routes>
 					</SplitCol>
 				</SplitLayout>
 			</AppRoot>
