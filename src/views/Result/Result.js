@@ -1,6 +1,6 @@
 import bridge from '@vkontakte/vk-bridge';
 import { View } from "@vkontakte/vkui";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import AlertQuestionResult from "../../components/Alert/AlertQuestionResult/AlertQuestionResult";
 import "../../components/ListCard/ListCard.css";
@@ -43,8 +43,8 @@ const Result = ({ id, indexesAnswers,
         const [activePanel, setActivePanel] = useState(PANEL_RESULT)
 
         const goToPanelAnswers = () => {
-            goForwardInHistory(PANEL_ANSWERS_QUESTIONS)
             setActivePanel(PANEL_ANSWERS_QUESTIONS)
+            goForwardInHistory(PANEL_ANSWERS_QUESTIONS)
             setIsNeedAnim(false)
         }
 
@@ -53,13 +53,16 @@ const Result = ({ id, indexesAnswers,
         const [history, setHistory] = useState([PANEL_RESULT]);
 
         const goBackInHistory = () => {
-			let his = history;
-			his.pop()
-			if (activePanel === PANEL_RESULT) {
-				bridge.send('VKWebAppEnableSwipeBack');
-			}
-			setHistory(his)
-            setActivePanel(history[history.length - 1])	
+            if(activePanel !== PANEL_RESULT){
+                let his = history;
+                his.pop()
+                bridge.send('VKWebAppEnableSwipeBack');
+                // if (activePanel === PANEL_RESULT) {
+                    
+                // }
+                setHistory(his)
+                setActivePanel(history[history.length - 1])	
+            }
 		}
 
 		const goForwardInHistory = (panelId) => { 
@@ -118,6 +121,28 @@ const adsPropsModified = useSelector(getAdsProps)
         //     .catch(err=>{console.log(err)})    
     }
 
+//Кнопка назад на андроиде
+    const backKeyPressAndroid = event => {goBackInHistory()};
+        
+    const cbRef = useRef(backKeyPressAndroid);
+
+    useEffect(() => {
+    cbRef.current = backKeyPressAndroid;
+    });
+
+    useEffect(() => {
+    const cb = e => cbRef.current(e);
+    window.addEventListener("popstate", cb);
+
+    return () => {
+        window.removeEventListener("popstate", cb);
+    };
+    }, []);
+
+    const backAndroidImmitator = () =>{
+        window.history.back()
+    }
+
     return (
         <View 
             id={id} 
@@ -130,7 +155,7 @@ const adsPropsModified = useSelector(getAdsProps)
                 </AlertQuestionResult>
                 :null
             }
-            onSwipeBack={goBackInHistory}
+            onSwipeBack={backAndroidImmitator}
             history={history}>
 
             <PanelResult
@@ -153,7 +178,7 @@ const adsPropsModified = useSelector(getAdsProps)
                 id={PANEL_ANSWERS_QUESTIONS}
                 questions={questions}
                 indexesAnswers={indexesAnswers}
-                onBack={goBackInHistory}
+                onBack={backAndroidImmitator}
                 openAlert={openAlert}
             >
             </PanelAnswersQuestions>

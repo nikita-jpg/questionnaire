@@ -175,7 +175,7 @@ const App = ({}) => {
 										goToPollViewAction={appNavigate.App_goToPollView}
 										setCurSurveyIdAction={data.Data_setIndexSurvey}
 										setCurQuestionIdAction={data.Data_setIndexQuestion}
-										/>
+									/>
 
 									<SpinnerView
 										id={viewsId.VIEW_ID_SPINNER}

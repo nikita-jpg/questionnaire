@@ -279,8 +279,8 @@ const ListQuestions = ({id,
     }
 
 
-    // let  [,setState]=useState();
-    //Кнопка назад на андроиде
+
+//Кнопка назад на андроиде
     const backKeyPressAndroid = event => {goToPrevQuestion()};
 	
     const cbRef = useRef(backKeyPressAndroid);
@@ -297,22 +297,6 @@ const ListQuestions = ({id,
         window.removeEventListener("popstate", cb);
       };
     }, []);
-    // const backAndroid = (event) => {
-    //     goToPrevQuestion()
-    //     setState({});
-    //     console.log("ListQuestions")
-    // }
-	// useEffect(()=>{
-    //     addAndroidBackListener()
-	// },[])
-
-    // const addAndroidBackListener = () =>{
-    //     window.addEventListener('popstate', backAndroid)
-    // }
-
-    // const removeAndroidBackListener = () =>{
-    //     window.removeEventListener('popstate', backAndroid)
-    // }
 
 
     //Alert
