@@ -281,7 +281,18 @@ const ListQuestions = ({id,
 
 
 //Кнопка назад на андроиде
-    const backKeyPressAndroid = event => {goToPrevQuestion()};
+    const backKeyPressAndroid = event => {
+        if(alert !== null){
+            setUserAnswersFinishValidator(false)
+            setAlert(null)
+        }else if(isModalOpen){
+            closeModalListQuestions()
+        }
+        else{
+            goToPrevQuestion()
+        }
+        
+    };
 	
     const cbRef = useRef(backKeyPressAndroid);
   

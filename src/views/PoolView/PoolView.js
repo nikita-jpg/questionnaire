@@ -41,17 +41,25 @@ const PoolView = ({id,
 	}
 	const goToListAge = () => dispatch(goToListAgeAction())
 
+
+	const cloaseApp = () => {
+		vkBridge.send("VKWebAppClose", {"status": "success", "payload": {"name": "test"} });
+	}
+
 	// История
 	const [history, setHistory] = useState([LIST_AGE_PANEL]);
 
 	const goBackInHistory = () => {
-		let his = history;
-		his.pop()
-		if (activePanel === LIST_AGE_PANEL) {
+		if(activePanel === LIST_AGE_PANEL){
+			cloaseApp()
+		}else{
+			let his = history;
+			his.pop()
 			vkBridge.send('VKWebAppEnableSwipeBack');
+			setHistory(his)
+			setActivePanel(LIST_AGE_PANEL)	
 		}
-		setHistory(his)
-		setActivePanel(LIST_AGE_PANEL)		
+
 	}
 
 	const goForwardInHistory = (view) => { 
