@@ -3,10 +3,12 @@ import { View } from "@vkontakte/vkui";
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurSurveys, getEras } from '../../Selectors/data_selectors';
+import { getAlert } from '../../Selectors/alert_selectors';
 import { getFirstPanel } from '../../Selectors/pollView_selectors';
 import ListAge from "../ListAge/ListAge";
 import ListQuizes from "../ListQuizes/ListQuizes";
 import { LIST_AGE_PANEL, LIST_SURVEYS_PANEL } from './consts';
+import { Alert_closeAlert } from '../../components/Alert/actions';
 
 
 const PoolView = ({id,
@@ -18,6 +20,8 @@ const PoolView = ({id,
 	}) => {
 
 	const dispatch = useDispatch()
+	const closeAlert = () => dispatch(Alert_closeAlert())
+	const alert = useSelector(getAlert)
 
 
 	//Получение данных
@@ -114,7 +118,13 @@ const PoolView = ({id,
 	const backAndroidImmitator = () =>{
         window.history.back()
     }    
-	const backKeyPressAndroid = event => {goBackInHistory()};
+	const backKeyPressAndroid = event => {
+		if(alert !== null){
+			closeAlert()
+		}else{
+			goBackInHistory()
+		}
+	};
 	
 	  const cbRef = useRef(backKeyPressAndroid);
 	
