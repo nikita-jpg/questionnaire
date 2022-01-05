@@ -122,7 +122,13 @@ const adsPropsModified = useSelector(getAdsProps)
     }
 
 //Кнопка назад на андроиде
-    const backKeyPressAndroid = event => {goBackInHistory()};
+    const backKeyPressAndroid = event => {
+        if(isVisibleAlert){
+            closeAlert()
+        }else{
+            goBackInHistory()
+        }
+    };
         
     const cbRef = useRef(backKeyPressAndroid);
 
