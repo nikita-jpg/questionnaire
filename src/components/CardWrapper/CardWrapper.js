@@ -64,7 +64,7 @@ const CardWrapper = ({title,
         header={
             <div className="CardWrapper__title CardWrapperTitle__textForResizing">
                 <div>{title}</div>
-                <div>{percentProgress}/{numberOfQuestions}</div>
+                <div style={{marginLeft:"10px"}}>{percentProgress}/{numberOfQuestions}</div>
             </div>
         }
         mode={"tint"}

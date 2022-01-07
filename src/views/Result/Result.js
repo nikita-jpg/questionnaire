@@ -2,8 +2,10 @@ import bridge from '@vkontakte/vk-bridge';
 import { View } from "@vkontakte/vkui";
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { Alert_closeAlert } from '../../components/Alert/actions';
 import AlertQuestionResult from "../../components/Alert/AlertQuestionResult/AlertQuestionResult";
 import "../../components/ListCard/ListCard.css";
+import { getAlert } from '../../Selectors/alert_selectors';
 import { getAdsProps, getCurQuestions, getCurSurvey, getResultCurSurvey } from '../../Selectors/data_selectors';
 import PanelAnswersQuestions from './PanelAnswersQuestions/PanelAnswersQuestions';
 import PanelResult from './PanelResult/PanelResult';
@@ -23,6 +25,9 @@ const Result = ({ id, indexesAnswers,
     const questions = useSelector(getCurQuestions)
     const curSurvey = useSelector(getCurSurvey)
     const totalResult = useSelector(getResultCurSurvey)
+
+    const curAlert = useSelector(getAlert)
+    const closeAlertDisp = () => dispatch(Alert_closeAlert())
 
 
 //Если мы не первый раз открываем Result, то нам не нужно запускать заново анимацию
@@ -125,9 +130,13 @@ const adsPropsModified = useSelector(getAdsProps)
 
 //Кнопка назад на андроиде
     const backKeyPressAndroid = event => {
-        if(isVisibleAlert){
+        if(curAlert !== null){
+            closeAlertDisp()
+        }
+        else if(isVisibleAlert){
             closeAlert()
-        }else{
+        }
+        else{
             goBackInHistory()
         }
     };

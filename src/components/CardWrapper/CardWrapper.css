@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-
+    /* margin-left: 5px; */
 }
 .CardWrapper__photoAuthor{
     color: var(--main-therd-text-color);

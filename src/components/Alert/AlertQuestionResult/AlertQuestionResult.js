@@ -17,6 +17,21 @@ const AlertQuestionResult = ({
 
     const isWin = ((userAnswer !== undefined) && (userAnswer.idAnswerOption === rightAnswer.idAnswerOption)) ? true : false
 
+    let hasAnotherVariants = false;
+    answerOptions.map((answerOption, i) => {
+        if ((answerOption.idAnswerOption !== rightAnswer.idAnswerOption)
+        &&
+        (
+            ((userAnswer !== undefined) && (answerOption.idAnswerOption !== userAnswer.idAnswerOption))
+            ||(userAnswer === undefined)
+        )){
+            hasAnotherVariants = true
+        }
+        
+    })
+
+
+
     let userAnswerText = "Вы не ответили";
     answerOptions.map((answerOption)=>{
         if((userAnswer !== undefined) && (answerOption.idAnswerOption === userAnswer.idAnswerOption)){
@@ -78,33 +93,37 @@ const AlertQuestionResult = ({
                             </div>
                         </div>
 
-                        <div>
-                            <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_normal">
-                                <div
-                                    className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_normal"
-                                >Остальные варианты</div>
-                            </div>
+                        {
+                            hasAnotherVariants &&
+                            <div>
+                                <div className="AnswersQuestions__alert__title-answer-wrap AnswersQuestions__alert__title-answer-wrap_normal">
+                                    <div
+                                        className="AnswersQuestions__alert__title-answer AnswersQuestions__alert__title-answer_normal"
+                                    >Остальные варианты</div>
+                                </div>
 
-                            {
-                                answerOptions.map((answerOption, i) => {
-                                    return (
-                                        (answerOption.idAnswerOption !== rightAnswer.idAnswerOption)
-                                        &&
-                                        (
-                                            ((userAnswer !== undefined) && (answerOption.idAnswerOption !== userAnswer.idAnswerOption))
-                                            ||(userAnswer === undefined)
-                                        ) 
-                                        &&
-                                        <div
-                                            className="AnswersQuestions__alert__text-answer"
-                                            key={answerOption.text}
-                                        >
-                                            {answerOption.text}
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+                                {
+                                    answerOptions.map((answerOption, i) => {
+                                        return (
+                                            (answerOption.idAnswerOption !== rightAnswer.idAnswerOption)
+                                            &&
+                                            (
+                                                ((userAnswer !== undefined) && (answerOption.idAnswerOption !== userAnswer.idAnswerOption))
+                                                ||(userAnswer === undefined)
+                                            ) 
+                                            &&
+                                            <div
+                                                className="AnswersQuestions__alert__text-answer"
+                                                key={answerOption.text}
+                                            >
+                                                {answerOption.text}
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        }
+
 
                 </div>
             </Alert>
