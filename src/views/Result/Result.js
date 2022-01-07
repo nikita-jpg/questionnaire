@@ -103,6 +103,8 @@ const adsPropsModified = useSelector(getAdsProps)
                 "message": message,
                 "attachments": "https://vk.com/app7715551"
             })
+            .then({})
+            .catch(()=>{})
 
 
 

@@ -78,6 +78,14 @@ const PoolView = ({id,
 		}
 	}
 
+	// useEffect(()=>{
+	// 	if(alert !== null){
+	// 		document.getElementById("root").style.overflow = "hidden"
+	// 	}else{
+	// 		document.getElementById("root").style.overflow = "visible"
+	// 	}
+	// },[alert])
+
 	//Проверяем какая панелька должна быть открыта по приказу извне
 	useEffect(() => {
 		if(mustCurrentPanel === LIST_AGE_PANEL){
