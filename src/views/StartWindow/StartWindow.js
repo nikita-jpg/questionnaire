@@ -18,7 +18,7 @@ const StartWindow = ({id, goToPollView=()=>{}}) => {
                         <img width="50" height="50" src={book}/>
                         <h1 className="StartWindow__title">Привет, друг!</h1>
                         <p className="StartWindow__text">
-                            Это приложение поможет тебе проверить свои знания в области истории родной страны. Удачи!
+                            Это приложение поможет тебе проверить свои знания в области истории России. Удачи!
                         </p>
                         <ButtonWrapper className="StartWindow__button" classNameText="StartWindow__button-text" isCentered={true} onClick={()=>dispath(goToPollView())} text="Поехали!"></ButtonWrapper>
                     </div>
