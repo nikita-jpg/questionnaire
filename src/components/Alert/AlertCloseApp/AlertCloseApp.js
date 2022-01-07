@@ -9,7 +9,8 @@ const AlertCloseApp = ({errorText}) => {
   const dispatch = useDispatch()
   const closeAlert = () => dispatch(AlertCloseApp())
 
-  const cloaseApp = () => {
+  const closeApp = () => {
+    console.log("close App")
     vkBridge.send("VKWebAppClose", {"status": "success", "payload": {"name": "test"} });
   }
 
@@ -18,12 +19,12 @@ const AlertCloseApp = ({errorText}) => {
     header={"Произошла ошибка"}
     text={errorText}
     actionsLayout={"horizontal"}
-    onClose={ () => closeAlert}
+    onClose={ () => closeApp()}
     actions={[{
         title: "Закрыть приложение",
         autoclose: true,
         mode: "cancel",
-        action: () => cloaseApp()
+        action: () => closeApp()
     }]}
 >
 </Alert>
