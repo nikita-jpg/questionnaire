@@ -77,9 +77,11 @@ const Header = ({onBack, curWidth, onClose, isFixed, text, icon, click}) => {
     let fixed = "true";
     let leftClick;
 
+
     const platform = useSelector(getPlatform)
-    // const isAlignmentCenter = (platform.indexOf("android") !== -1) || (platform.indexOf("mobile") !== -1) ? false : true 
-    const isAlignmentCenter = false
+    // console.log(platform)
+    const isAlignmentCenter = (platform === undefined) || (platform.indexOf("android") !== -1) || (platform.indexOf("mobile") !== -1) ? false : true 
+    // const isAlignmentCenter = false
 
     if (onClose) {
         left = <PanelHeaderClose className="Header__button" >

@@ -81,6 +81,7 @@ const App = ({}) => {
 	useEffect(() => {
 
 		//Зашружаем в State инфцу о текущей платформе
+		// console.log(window.location)
 		setPlatform(getQueryObject(window.location.search.slice(1)).vk_platform)
 
 		// Загрузка текста для эр и опросов, результатов. Вопросы для кокретного опроса не грузятся
