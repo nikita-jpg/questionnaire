@@ -224,7 +224,7 @@ const ListQuestions = ({id,
         saveAnswersToServer().then(res=>{
             if (res === null){
                 dispath(alertActions.Alert_setAlert(serverErrorAlert))
-                goToViewListQuestions()
+                // goToViewListQuestions()
             }else{
                 goToResultView()
             }
@@ -236,7 +236,7 @@ const ListQuestions = ({id,
         saveAnswersToServer().then(res=>{
             if (res === null){
                 dispath(alertActions.Alert_setAlert(serverErrorAlert))
-                goToViewListQuestions()
+                // goToViewListQuestions()
             }else{
                 goToResultView()
             }
@@ -329,7 +329,7 @@ const ListQuestions = ({id,
         setAlert(
 
             <AlertWrapper
-                header="Вы ответили не на все вопросы"
+                header="Вы ответили не на все вопросы. Уверены, что хотите завершить тест?"
                 leftText={"Отмена"}
                 rightText={"Завершить"}
                 rightFunc={ () => {

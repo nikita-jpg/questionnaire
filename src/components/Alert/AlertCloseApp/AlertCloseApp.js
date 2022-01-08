@@ -3,6 +3,8 @@ import React from 'react';
 import './AlertCloseApp.css'
 import vkBridge from '@vkontakte/vk-bridge'
 import { useDispatch } from "react-redux";
+import * as appNavigate from '../../../App/Actions'
+import { Alert_closeAlert } from "../actions";
 
 const AlertCloseApp = ({errorText}) => {
 
@@ -10,8 +12,8 @@ const AlertCloseApp = ({errorText}) => {
   const closeAlert = () => dispatch(AlertCloseApp())
 
   const closeApp = () => {
-    console.log("close App")
     vkBridge.send("VKWebAppClose", {"status": "success", "payload": {"name": "test"} });
+    dispatch(Alert_closeAlert())
   }
 
   return(
