@@ -9,6 +9,7 @@ import AlertWrapper from '../../components/Alert/AlertWrapper/AlertWrapper';
 import LoadingPanel from '../../components/LoadingPanel/LoadingPanel';
 import { closeModal, openModalListQuestions } from '../../components/Modal/actions';
 import { setDataModalListQuestions } from '../../components/Modal/Modals/ModalPageForListQuestions/actionsModalListQuestions';
+import { Set_adsProps } from '../../NotUI/Data/actions';
 import { QUESTION_NOT_ANSWERED } from '../../NotUI/Data/consts';
 import { sendUserAnswersToServer } from '../../NotUI/Server/server';
 import { getCurQuestions, getCurSurveyId } from '../../Selectors/data_selectors';
@@ -48,6 +49,16 @@ const ListQuestions = ({id,
     }
     const serverErrorAlert = <AlertCloseApp errorText = {"К сожалению, потеряно соединение с сервером. Просим вас зайти позже"}></AlertCloseApp>
 
+//Реклама
+    const setAdsProps = (adsProps) => dispath(Set_adsProps(adsProps))
+    const getAdsData = () => {
+        vkBridge.send('VKWebAppGetAds',{}).then((promoBannerProps) => {
+                setAdsProps(promoBannerProps)
+            })
+    }
+    useEffect(()=>{
+        getAdsData()
+    },[])
 
     //Внутренняя навигация
     // const [activePanelLocal, setActivePanelLocal] = useState(0);

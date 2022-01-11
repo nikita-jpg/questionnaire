@@ -125,7 +125,7 @@ const App = ({}) => {
 		})
 
 		//Загружаем рекламу
-		getAdsData()
+		// getAdsData()
 	}, []);
 
 
